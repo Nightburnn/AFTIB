@@ -1,6 +1,3 @@
-.about{
-    margin: 20px;
-}
 
 .about .bg-image {
     position: relative; 
@@ -92,22 +89,6 @@
     margin: 20px;
 }
 
-.about .bg-image {
-    position: relative; 
-    background-image: url('../../assets/images/about.png');
-    background-size: cover; 
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100%;
-    max-height: 100vh; 
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px; 
-}
 
 .about-title {
     width: 80%;
@@ -308,6 +289,57 @@
     }
     
   }
+  @media (max-width: 769px) {
+    .swiper-button-prev {
+      left: 10px;
+      margin-left: -55px;
+    }
+    
+    .swiper-button-next {
+      right: 10px;
+      margin-right: -55px;
+    }
+    
+  }
+
   
+ /* Smaller screens and mobile devices */
+@media (max-width: 751px) {
+  .about .bg-image {
+    background-image: none; /* Hide the background image */
+  }
+
+  .about{
+    margin-bottom: 110px;
+  }
+  .about-title {
+    /* Adjust the layout of the title */
+    width: 90%;
+    max-width: 90%;
+    padding: 10px;
+    font-size: 18px;
+    height: auto;
+    background-color: blue;
+  }
+
+  .about h2 {
+    font-size: 36px;
+    margin-bottom: 20px; 
+    color: #000;
+  }
+
+  .swiper-content-bg p {
+    font-size: 16px; /* Adjust font size of content */
+    margin-bottom: 20px; /* Adjust margin bottom */
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    margin-left: -50px; /* Adjust position of prev button */
+    margin-right: -50px; /* Adjust position of next button */
+    padding: 5px 10px; /* Adjust padding */
+  }
+}
+
   
   
