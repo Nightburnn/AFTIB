@@ -63,7 +63,7 @@ const Landing = () => {
       </section>
 
       <div className="py-5">
-            <div className="">
+            <div className="container">
                 <div className="bg-light rounded p-3">
                     <div className=" rounded p-4 landingContact">
                         <div className="row g-5 align-items-center">
