@@ -20,7 +20,7 @@ const About = () => {
     <main id="main">
       <section className="about">
       
-          <div className="bg-image">
+          <div className="container bg-image">
             <h2>ABOUT US</h2>
             <div className="about-title">
               <div className="swiper-content-bg">

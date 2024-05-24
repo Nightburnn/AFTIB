@@ -5,7 +5,7 @@ const Hero = () => {
   return (
    <main id="main">
     <section className="heroPage">
-        <div className="backGround">
+        <div className="container backGround">
 <div className="context">
     <h3>
         Homes, Loans,<br/> Tours, Agents.

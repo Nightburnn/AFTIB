@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const Help = () => {
   return (
     <main id="main">
-      <section className="hero-bg">
+      <section className="container hero-bg">
         <div className="hero">
           <div className="container">
             <div className="row">

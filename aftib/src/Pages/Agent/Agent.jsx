@@ -7,8 +7,6 @@ const Agent = () => {
   return (
     <>  <Hero/>
     <main id="main">
-   
-
     <h3 className='mt-4 agent-title'>Find an Agent</h3>
     <div classNameName="container-fluid  mb-5 agent "  >
             <div className="container">
