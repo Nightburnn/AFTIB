@@ -1,0 +1,134 @@
+.backGround {
+    background-image: url('../../assets/images/heroPage.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 80vh; /* Make the height fill most of the viewport */
+    border-radius: 10px;
+    display: flex; /* Add flexbox properties */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box; /* Ensure padding doesn't affect overall dimensions */
+}
+
+.context {
+    width: 100%; /* Ensure the container takes full width */
+    display: flex; /* Set to flexbox */
+    justify-content: space-between; /* Distribute space between items */
+    align-items: center; /* Center items vertically */
+    padding: 0 20px; /* Add padding if needed */
+}
+
+.context h3 {
+    margin: 0;
+    color: white;
+    font-size: 40px;
+    font-family: 'Limelight';
+    font-weight: 400;
+    line-height: 60px;
+}
+
+.hero-form {
+    display: flex;
+    margin: 0; 
+    align-items: center; 
+    background-color: #fff;
+    border-radius: 10px;
+    outline: none;
+}
+
+.hero-form input[type="search"] {
+    border: none;
+    background: transparent;
+    margin: 0;
+    padding: 10px 20px;
+    font-size: 14px;
+    width: 300px;
+    color: inherit;
+    border: 1px solid transparent;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 0; 
+    border-bottom-right-radius: 0; 
+}
+
+.hero-form input[type="search"]::placeholder {
+    color: rgba(0, 0, 0, 0.50);
+    font-size: 22px;
+    font-family: 'League Spartan';
+    font-weight: 400;
+}
+
+button[type="submit"] {
+    text-indent: -999px;
+    overflow: hidden;
+    width: 40px;
+    height: 40px;
+    padding: 0; 
+    margin: 0;
+    border: 1px solid transparent;
+    border-left: none; 
+    border-top-right-radius: 5px; 
+    border-bottom-right-radius: 5px; 
+    background: transparent url("../../assets/images/Vector.png") no-repeat center;
+    background-size: 20px 20px;
+    cursor: pointer;
+}
+
+@media (max-width: 560px) {
+    .context {
+      flex-direction: column; /* Stack items vertically */
+      align-items: center; /* Center items horizontally */
+    }
+  
+    .context h3 {
+      margin: 0;
+      color: white;
+      font-size: 30px;
+      font-family: 'Limelight';
+      font-weight: 400;
+      line-height: 50px;
+      margin-bottom: 20px; /* Add space below the heading */
+    }
+  
+    .hero-form {
+      margin: 0; /* Reset form margin */
+      margin-top: 10px; /* Add space between heading and form */
+    }
+
+  .hero-form  input[type="search"]{
+        width: 250px;
+    }
+  }
+  
+
+  
+@media (max-width: 340px) {
+    .context {
+      flex-direction: column; /* Stack items vertically */
+      align-items: center; /* Center items horizontally */
+    }
+  
+    .context h3 {
+      margin: 0;
+      color: white;
+      font-size: 20px;
+      font-family: 'Limelight';
+      font-weight: 400;
+      line-height: 40px;
+      margin-bottom: 10px; /* Add space below the heading */
+    }
+  
+    .hero-form {
+      margin: 0; /* Reset form margin */
+      margin-top: 10px; /* Add space between heading and form */
+    }
+
+   .hero-form input[type="search"]{
+        width: 200px;
+    }
+  }
+  

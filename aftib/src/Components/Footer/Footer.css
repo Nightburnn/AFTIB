@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=League+Spartan:wght@100..900&family=Limelight&display=swap');
+
+footer{
+    background: #4517FB;
+    padding: 10px;
+   margin-bottom: 0;
+}
+
+.footerLogo{
+    font-family: "Limelight", sans-serif;
+    color: white;
+font-size: 40px;
+
+}
+
+i{
+    color: white;
+    font-size: 26px;
+}
+
+.socials{
+    margin-left: 40px;
+}
+
+@media (max-width: 767px) {
+    .socials{
+        margin-left: 0;
+    }
+}

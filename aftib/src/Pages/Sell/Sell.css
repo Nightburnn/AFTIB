@@ -1,0 +1,36 @@
+#mainSell{
+    margin: 20px;
+}
+.sell {
+    text-align: center; 
+  }
+  
+  .sell h5 {
+    margin-bottom: 20px; 
+    color: rgba(55.25, 55.25, 55.25, 0.80);
+font-size: 18px;
+font-family: 'Moul';
+font-weight: 400;
+  }
+  
+  .sell img {
+    display: block; 
+    margin: 0 auto; 
+    width: 250px;
+  }
+  
+  .sell button {
+    display: block; 
+    margin: 20px auto 0; 
+    background-color: #4517FB;
+    width: 120px;
+    border: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+    color: white;
+font-size: 14px;
+font-family: 'Lato';
+font-weight: 900;
+  }
+  

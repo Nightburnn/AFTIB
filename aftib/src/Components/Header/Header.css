@@ -1,0 +1,140 @@
+.navbar-brand{
+  font-size: 38px;
+ max-width: 200px;
+  font-weight: 900;
+  font-family: 'Lato';
+  color: #000;
+  white-space: wrap;
+margin-bottom: 0;
+line-height: 40px;
+}
+
+.header_section .container-fluid {
+    padding-right: 25px;
+    padding-left: 25px;
+    top: 0;
+  
+  }
+  
+  .header_section .nav_container {
+    margin: 0 auto;
+  }
+
+ 
+  
+.custom_nav-container.navbar-expand-lg .navbar-nav .nav-item .nav-link {
+    margin: 0px 20px;
+    padding: 0;
+    color: black;
+    font-size: 17px;
+    font-family: 'Lato';
+    font-weight: 500;
+    text-align: center;
+    position: relative;
+ 
+  }.custom_nav-container.navbar-expand-lg .navbar-nav .nav-item .nav-link {
+    position: relative;
+}
+
+.custom_nav-container.navbar-expand-lg .navbar-nav .nav-item .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background-color: #4517FB;
+    border-radius: 50px;
+    opacity: 0;
+    transform: scaleX(0);
+    transition: opacity 0.3s ease-in, transform 0.3s ease-in;
+}
+
+.custom_nav-container.navbar-expand-lg .navbar-nav .nav-item .nav-link.active::after, 
+.custom_nav-container.navbar-expand-lg .navbar-nav .nav-item .nav-link:hover::after {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+  a,
+  a:hover,
+  a:focus {
+    text-decoration: none;
+  }
+  
+  a:hover,
+  a:focus {
+    color: #4517FB;
+  }
+  
+  .btn,
+  .btn:focus {
+    outline: none !important;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  
+
+  
+  
+  
+ 
+  
+  
+  
+  .custom_nav-container {
+    z-index: 99999;
+  
+  }
+  
+  .custom_nav-container .navbar-toggler {
+    outline: none;
+    border: none;
+    max-width: 100px;
+  }
+  
+  .custom_nav-container .navbar-toggler .navbar-toggler i {
+   font-size: 3em;
+   color: black;
+  }
+  
+
+   .sign-in{
+    
+    background-color: #4517FB;
+border: none;
+margin-top: -10px;
+  width: 100%;
+    border-radius: 10px;
+  padding: 7px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: white;
+font-size: 17px;
+font-family: 'Lato';
+font-weight: 500;
+
+  }
+
+
+  @media (max-width: 375px) {
+    .navbar-brand{
+      font-size: 20px;
+    max-width: 100px;
+    margin-bottom: 0;
+    }
+   
+
+
+}
+
+@media (max-width: 992px) {
+  .navbar-nav li{
+    margin-bottom: 10px;
+   } 
+
+   .navbar-nav button{
+    margin-top: 10px;
+   }
+}
+
