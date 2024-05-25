@@ -1,3 +1,96 @@
+
+
+.homecard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.home-title {
+ margin-top: 40px;
+  text-align: left;
+}
+
+
+
+
+.home-title h5{
+  color: #373737;
+font-size: 27px;
+font-family: 'Lato';
+font-weight: 900;
+margin-bottom: 20px;
+}
+
+.home-title p{
+  color: rgba(33, 33, 33, 0.797);
+font-size: 23px;
+font-family: 'League Spartan';
+font-weight: 400;
+margin-bottom: 3px;
+}
+
+.homeBtn {
+
+  border: 2px solid #4517FBCC;
+  color: #4517FB;
+font-size: 20px;
+font-family: 'League Spartan';
+font-weight: 800;
+border-radius: 15px;
+padding-top: 5px;
+padding-bottom: 5px;
+padding-left: 20px;
+padding-right: 20px;
+}
+
+
+
+
+.col-lg-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+  display: flex;
+  align-items: flex-start; 
+  flex-direction: column;
+  text-align: left; 
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+@media (max-width: 767.98px) {
+  .col-lg-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    align-items: center; 
+  }
+
+  .home-title {
+    margin-bottom: 0;
+  }
+
+  .homeBtn {
+   margin-bottom: 40px;
+  }
+
+  .home-title h5{
+    margin-bottom: 5px;
+  }
+  
+.home-title {
+  margin-top: 10px;
+   text-align: center;
+ }
+}
+
+
+
 .landingCard img {
   width: 100%;
   max-width: 200px;
@@ -60,8 +153,16 @@
 }
 
 .landingCard {
-  margin: 10px;
+  margin: 0px;
   justify-content: center;
+  background-color: #f0f0f0;
+ width: 100%;
+ padding: 20px;
+}
+
+
+.landingcontact{
+  background-color: #FFFFFF;
 }
 
 .col-lg-4 {
@@ -84,6 +185,10 @@ font-weight: 400;
 font-size: 40px;
 font-family: 'Limelight';
 font-weight: 400;
+}
+
+.landingContact img{
+  border-radius: 5px;
 }
 
 .landingicon{

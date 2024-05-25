@@ -4,6 +4,7 @@ import landingCard1 from '../../assets/images/landingCard1.png'
 import landingCard2 from '../../assets/images/landingCard2.png'
 import landingCard3 from '../../assets/images/landingCard3.png'
 import agent from '../../assets/images/agent.png'
+import homes from '../../assets/images/homes.png'
 import './Landing.css'
 import { Link } from 'react-router-dom'
 
@@ -12,12 +13,31 @@ const Landing = () => {
     <>
     <Hero/>
 
+<section className="homecard mt-5">
+<div className="container">
+  <div className="row">
+    <div className="col-lg-6">
+      <div className="home-title">
+        <h5>Get home recommendation</h5>
+
+        <p>Login for more experience</p>
+      </div>
+      <Link className="homeBtn">Login</Link>
+    </div>
+
+    <div className="col-lg-6">
+      <img src={homes} alt="" />
+    </div>
+  </div>
+</div>
+</section>
+
 
     <section className="landingCard mt-5">
-      <div class="container">
-      <div class="row">
-        <div class="col-lg-4 ">
-          <div class="landingCard-item">
+      <div className="container">
+      <div className="row">
+        <div className="col-lg-4 ">
+          <div className="landingCard-item">
            <img src={landingCard1} alt="" />
            <div className="landingTopics">
             <h4>Buy a home</h4>
@@ -30,8 +50,8 @@ const Landing = () => {
            </div>
           </div>
         </div>
-        <div class="col-lg-4">
-          <div class="landingCard-item">
+        <div className="col-lg-4">
+          <div className="landingCard-item">
           <img src={landingCard2} alt="" />
           <div className="landingTopics">
             <h4>Sell a home</h4>
@@ -44,8 +64,8 @@ const Landing = () => {
            </div>
           </div>
         </div>
-        <div class="col-lg-4">
-          <div class="landingCard-item">
+        <div className="col-lg-4">
+          <div className="landingCard-item">
           <img src={landingCard3} alt="" />
           <div className="landingTopics">
             <h4>Rent a home</h4>
@@ -62,10 +82,10 @@ const Landing = () => {
     </div>
       </section>
 
-      <div className="py-5">
+      <div className="landingcontact py-5">
             <div className="container">
-                <div className="bg-light rounded p-3">
-                    <div className=" rounded p-4 landingContact">
+                <div className="p-3">
+                    <div className="  p-4 landingContact">
                         <div className="row g-5 align-items-center">
                         <div className="col-lg-6 ">
                                 <div className="mb-4">
@@ -75,7 +95,7 @@ const Landing = () => {
                                 <Link href="#" className=" landingicon ">Find agents</Link>
                             </div>
                             <div className="col-lg-6">
-                                <img className="img-fluid rounded w-100" src={agent} alt=""/>
+                                <img className="img-fluid w-100" src={agent} alt=""/>
                             </div>
                             
                         </div>
