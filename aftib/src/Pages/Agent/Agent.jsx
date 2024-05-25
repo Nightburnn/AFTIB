@@ -7,8 +7,8 @@ const Agent = () => {
   return (
     <>  <Hero/>
     <main id="main">
+    <div classNameName="container-fluid  mb-5 agent">
     <h3 className='mt-4 agent-title'>Find an Agent</h3>
-    <div classNameName="container-fluid  mb-5 agent "  >
             <div className="container">
                 <div className="row g-2">   
                     <div className="col-md-10">
@@ -41,7 +41,7 @@ const Agent = () => {
             </div>
         </div>
         <div className="py-5">
-            <div className="">
+            <div className="container">
                 <div className="bg-light rounded p-3">
                     <div className="bg-white rounded p-4 contact">
                         <div className="row g-5 align-items-center">

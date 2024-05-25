@@ -28,7 +28,7 @@ const About = () => {
                   modules={[Navigation, Pagination, A11y]}
                   spaceBetween={50}
                   slidesPerView={1}
-                  pagination={{ clickable: true }}
+                 
                   navigation={{
                     prevEl: '.swiper-button-prev',
                     nextEl: '.swiper-button-next',

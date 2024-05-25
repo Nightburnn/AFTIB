@@ -1,134 +1,145 @@
-.backGround {
-    background-image: url('../../assets/images/heroPage.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 80vh; /* Make the height fill most of the viewport */
-    border-radius: 10px;
-    display: flex; /* Add flexbox properties */
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-    box-sizing: border-box; /* Ensure padding doesn't affect overall dimensions */
+.bg-image1{
+  background-image: url('../../assets/images/about.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
 }
 
-.context {
-    width: 100%; /* Ensure the container takes full width */
-    display: flex; /* Set to flexbox */
-    justify-content: space-between; /* Distribute space between items */
-    align-items: center; /* Center items vertically */
-    padding: 0 20px; /* Add padding if needed */
+.bg-image2{
+  background-image: url('../../assets/images/about.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
 }
 
-.context h3 {
-    margin: 0;
-    color: white;
-    font-size: 40px;
-    font-family: 'Limelight';
-    font-weight: 400;
-    line-height: 60px;
+.bg-image3{
+  background-image: url('../../assets/images/about.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
 }
 
-.hero-form {
-    display: flex;
-    margin: 0; 
-    align-items: center; 
-    background-color: #fff;
-    border-radius: 10px;
-    outline: none;
+/* Ensure the hero section takes up the full height of the viewport */
+.intro-carousel {
+  height: 90vh;
+  position: relative;
 }
 
-.hero-form input[type="search"] {
-    border: none;
-    background: transparent;
-    margin: 0;
-    padding: 10px 20px;
-    font-size: 14px;
-    width: 300px;
-    color: inherit;
-    border: 1px solid transparent;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-top-right-radius: 0; 
-    border-bottom-right-radius: 0; 
+/* Ensure each slide also takes up the full height of the viewport */
+.intro-item {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
 }
 
-.hero-form input[type="search"]::placeholder {
-    color: rgba(0, 0, 0, 0.50);
-    font-size: 22px;
-    font-family: 'League Spartan';
-    font-weight: 400;
+/* Ensure the overlay covers the entire slide */
+.overlay-a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
 }
 
-.hero-form button[type="submit"] {
-    text-indent: -999px;
-    overflow: hidden;
-    width: 40px;
-    height: 40px;
-    padding: 0; 
-    margin: 0;
-    border: 1px solid transparent;
-    border-left: none; 
-    border-top-right-radius: 5px; 
-    border-bottom-right-radius: 5px; 
-    background: transparent url("../../assets/images/Vector.png") no-repeat center;
-    background-size: 20px 20px;
-    cursor: pointer;
+/* Ensure the intro content is centered */
+.intro-content {
+  display: table;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 2; /* Ensure content is above overlay */
 }
 
-@media (max-width: 560px) {
-    .context {
-      flex-direction: column; /* Stack items vertically */
-      align-items: center; /* Center items horizontally */
-    }
-  
-    .context h3 {
-      margin: 0;
-      color: white;
-      font-size: 30px;
-      font-family: 'Limelight';
-      font-weight: 400;
-      line-height: 50px;
-      margin-bottom: 20px; /* Add space below the heading */
-    }
-  
-    .hero-form {
-      margin: 0; /* Reset form margin */
-      margin-top: 10px; /* Add space between heading and form */
-    }
+/* Center the table-cell vertically */
+.table-cell {
+  display: table-cell;
+  vertical-align: middle;
+}
 
-  .hero-form  input[type="search"]{
-        width: 250px;
-    }
-  }
-  
 
-  
-@media (max-width: 340px) {
-    .context {
-      flex-direction: column; /* Stack items vertically */
-      align-items: center; /* Center items horizontally */
-    }
-  
-    .context h3 {
-      margin: 0;
-      color: white;
-      font-size: 20px;
-      font-family: 'Limelight';
-      font-weight: 400;
-      line-height: 40px;
-      margin-bottom: 10px; 
-    }
-  
-    .hero-form {
-      margin: 0; 
-      margin-top: 10px; 
-    }
 
-   .hero-form input[type="search"]{
-        width: 200px;
-    }
-  }
+/* Text styles within the intro-body */
+.intro-body {
+  color: #ffffff; /* Text color */
+  text-align: left; /* Align text to the left */
+}
+
+.intro-title-top {
+  font-size: 1.2rem; /* Font size for the top title */
+  font-weight: 400; /* Font weight for the top title */
+  margin-bottom: 0.5rem; /* Margin below the top title */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for better readability */
+}
+
+.intro-title {
+  font-size: 3rem; /* Main title font size */
+  font-weight: 700; /* Main title font weight */
+  margin-bottom: 1rem; /* Margin below the main title */
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7); /* Stronger text shadow */
+}
+
+.color-b {
+  color: #4517FB; /* Special color for part of the main title */
+}
+
+.intro-subtitle {
+  font-size: 1.5rem; /* Subtitle font size */
+  font-weight: 300; /* Subtitle font weight */
+  margin-top: 1rem; /* Margin above the subtitle */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for better readability */
+}
+
+.intro-price a {
+  color: #ffffff; /* Link color */
+  font-size: 1.5rem; /* Link font size */
+  font-weight: 500; /* Link font weight */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for better readability */
+}
+
+.intro-price a:hover {
+  color: #4517FB; /* Link hover color */
+  text-decoration: none; /* Remove underline on hover */
+}
+
+/*------/ Pagination-a /------*/
+.swiper-pagination {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  z-index: 10;
+}
+
+.swiper-pagination-fraction,
+.swiper-pagination-custom,
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+  bottom: var(--swiper-pagination-bottom, 60px);
+ 
+}
+
+.swiper-pagination-bullet {
+ border-radius: 10px;
+ border-color: transparent;
+ padding: 0.5rem 0.8rem;
+ opacity: 1;
+ background-color: aliceblue;
   
+}
+
+.swiper-pagination-bullet:hover,
+.swiper-pagination-bullet-active {
+  background-color: blue;
+  opacity: 0.6;
+}
+
+.swiper-pagination-bullet span {
+  font-size: 1.2rem;
+}
+

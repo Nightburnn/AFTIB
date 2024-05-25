@@ -160,9 +160,7 @@
     margin-right: -100px;
 }
 
-.swiper-pagination {
-    display: none;
-}
+
 
 /* Media Queries for Responsive Design */
 
@@ -240,9 +238,6 @@
 }
 
   
-  .swiper-pagination {
-    display: none;
-  }
   
   
   @media (max-width: 1200px) {
