@@ -22,13 +22,13 @@
   background-position: center center;
 }
 
-/* Ensure the hero section takes up the full height of the viewport */
+
 .intro-carousel {
   height: 90vh;
   position: relative;
 }
 
-/* Ensure each slide also takes up the full height of the viewport */
+
 .intro-item {
   height: 90vh;
   display: flex;
@@ -38,26 +38,26 @@
   background-position: center;
 }
 
-/* Ensure the overlay covers the entire slide */
+
 .overlay-a {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
+  background: rgba(0, 0, 0, 0.5); 
 }
 
-/* Ensure the intro content is centered */
+
 .intro-content {
   display: table;
   width: 100%;
   height: 100%;
   position: relative;
-  z-index: 2; /* Ensure content is above overlay */
+  z-index: 2; 
 }
 
-/* Center the table-cell vertically */
+
 .table-cell {
   display: table-cell;
   vertical-align: middle;
@@ -65,50 +65,50 @@
 
 
 
-/* Text styles within the intro-body */
+
 .intro-body {
-  color: #ffffff; /* Text color */
-  text-align: left; /* Align text to the left */
+  color: #ffffff; 
+  text-align: left;
 }
 
 .intro-title-top {
-  font-size: 1.2rem; /* Font size for the top title */
-  font-weight: 400; /* Font weight for the top title */
-  margin-bottom: 0.5rem; /* Margin below the top title */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for better readability */
+  font-size: 1.2rem; 
+  font-weight: 400; 
+  margin-bottom: 0.5rem; 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
 }
 
 .intro-title {
-  font-size: 3rem; /* Main title font size */
-  font-weight: 700; /* Main title font weight */
-  margin-bottom: 1rem; /* Margin below the main title */
-  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7); /* Stronger text shadow */
+  font-size: 3rem;
+  font-weight: 700; 
+  margin-bottom: 1rem; 
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7); 
 }
 
 .color-b {
-  color: #4517FB; /* Special color for part of the main title */
+  color: #4517FB; 
 }
 
 .intro-subtitle {
-  font-size: 1.5rem; /* Subtitle font size */
-  font-weight: 300; /* Subtitle font weight */
-  margin-top: 1rem; /* Margin above the subtitle */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for better readability */
+  font-size: 1.5rem; 
+  font-weight: 300; 
+  margin-top: 1rem; 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
 }
 
 .intro-price a {
-  color: #ffffff; /* Link color */
-  font-size: 1.5rem; /* Link font size */
-  font-weight: 500; /* Link font weight */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for better readability */
+  color: #ffffff; 
+  font-size: 1.5rem; 
+  font-weight: 500;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
 }
 
 .intro-price a:hover {
-  color: #4517FB; /* Link hover color */
-  text-decoration: none; /* Remove underline on hover */
+  color: #4517FB; 
+  text-decoration: none; 
 }
 
-/*------/ Pagination-a /------*/
+
 .swiper-pagination {
   position: absolute;
   width: 100%;

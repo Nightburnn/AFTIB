@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -68,7 +69,7 @@ const Hero = () => {
                             <span className="color-b">{slide.titleNumber} </span>{slide.title}
                           </h1>
                           <p className="intro-subtitle intro-price">
-                            <a href="#"><span className="price-a">rent | {slide.price}</span></a>
+                            <Link><span className="price-a">rent | {slide.price}</span></Link>
                           </p>
                         </div>
                       </div>

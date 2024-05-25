@@ -7,6 +7,16 @@
     font-weight: 600;
     font-family: 'Lato';
     font-weight: 900;
+    background-color: #4517FB;
+}
+
+.ii{
+    background-color: #4517FB;
+    color: #fff;
+}
+.btn:hover{
+    background-color: #4517fbf9;
+    color: #fff;
 }
 
 .contact{

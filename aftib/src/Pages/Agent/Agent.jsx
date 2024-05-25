@@ -35,7 +35,7 @@ const Agent = () => {
                         </div>
                     </div>
                     <div className="col-md-2">
-                        <button className="btn bg-primary border-0 w-100 py-2 btn-custom">Search</button>
+                        <button className="btn border-0 w-100 py-2 btn-custom">Search</button>
                     </div>
                 </div>
             </div>
@@ -53,7 +53,7 @@ const Agent = () => {
                                     <h1 className="mb-3">Contact With Our Certified Agent</h1>
                                     <p>Eirmod sed ipsum dolor sit rebum magna erat. Tempor lorem kasd vero ipsum sit sit diam justo sed vero dolor duo.</p>
                                 </div>
-                                <Link href="#" className="btn btn-primary me-3 contact-icon ii "><i className="bi bi-telephone-fill"></i>Make A Call</Link>
+                                <Link href="#" className="btn me-3 contact-icon ii "><i className="bi bi-telephone-fill"></i>Make A Call</Link>
                                 <Link href="#" className="btn btn-dark  contact-icon "><i className="bi bi-calendar-week"></i>Get Appoinment</Link>
                             </div>
                         </div>
