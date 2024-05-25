@@ -47,9 +47,7 @@ const Hero = () => {
         slidesPerView={1}
         pagination={{ clickable: true }}
         autoplay={{ delay: 3000 }}
-        loop={true}
-        onSwiper={(swiper) => console.log(swiper)}
-        onSlideChange={() => console.log('slide change')}
+        loop={true}       
       >
         {slides.map(slide => (
           <SwiperSlide key={slide.id}>

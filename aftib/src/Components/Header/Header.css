@@ -93,7 +93,7 @@ line-height: 40px;
   }
   
   .custom_nav-container .navbar-toggler .navbar-toggler i {
-   font-size: 3em;
+   font-size: 2.5em;
    color: black;
   }
   
@@ -121,6 +121,7 @@ font-weight: 500;
       font-size: 22px;
     max-width: 100px;
     margin-bottom: 0;
+    line-height: 30px;
     }
    
 

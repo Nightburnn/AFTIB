@@ -32,27 +32,27 @@ const Header = () => {
             <div className="ml-auto d-flex flex-column flex-lg-row align-items-center">
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <NavLink exact className="nav-link" to="/" activeClassName="active"  onClick={handleNavLinkClick}>
+                  <NavLink exact="true" className="nav-link" to="/" activeclassname="active"  onClick={handleNavLinkClick}>
                     Home
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/about" activeClassName="active"  onClick={handleNavLinkClick}>About us</NavLink>
+                  <NavLink className="nav-link" to="/about" activeclassname="active"  onClick={handleNavLinkClick}>About us</NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/buy" activeClassName="active"  onClick={handleNavLinkClick}>Buy</NavLink>
+                  <NavLink className="nav-link" to="/buy" activeclassname="active"  onClick={handleNavLinkClick}>Buy</NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/sell" activeClassName="active"  onClick={handleNavLinkClick}>Sell</NavLink>
+                  <NavLink className="nav-link" to="/sell" activeclassname="active"  onClick={handleNavLinkClick}>Sell</NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/rent" activeClassName="active"  onClick={handleNavLinkClick}>Rent</NavLink>
+                  <NavLink className="nav-link" to="/rent" activeclassname="active"  onClick={handleNavLinkClick}>Rent</NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/agent-finder" activeClassName="active"  onClick={handleNavLinkClick}>Agent finder</NavLink>
+                  <NavLink className="nav-link" to="/agent-finder" activeclassname="active"  onClick={handleNavLinkClick}>Agent finder</NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/help" activeClassName="active"  onClick={handleNavLinkClick}>Help</NavLink>
+                  <NavLink className="nav-link" to="/help" activeclassname="active"  onClick={handleNavLinkClick}>Help</NavLink>
                 </li>
                 <li className="nav-item">
                 <NavLink to="/sign"  onClick={handleNavLinkClick}>
