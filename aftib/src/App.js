@@ -10,6 +10,7 @@ import Rent from './Pages/Rent/Rent';
 import Agent from './Pages/Agent/Agent';
 import Help from './Pages/Help/Help';
 import Signin from './Pages/Signin/Signin';
+import Footer from './Components/Footer/Footer';
 
 
 
@@ -27,7 +28,7 @@ function App() {
       <Route  path='/help' Component={Help}/>
       <Route path='/sign' Component={Signin}/>
       </Routes>
-
+<Footer/>
   </Router>
   );
 }

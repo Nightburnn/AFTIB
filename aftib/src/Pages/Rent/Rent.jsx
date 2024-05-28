@@ -1,30 +1,50 @@
 import {useState, React} from 'react'
-import Hero from '../../Components/Hero/Hero'
 import {propertyData} from '../../Components/PropertyData/PropertyData';
 import {buyData} from '../../Components/PropertyData/PropertyData';
 import './Rent.css'
 import { Link } from 'react-router-dom'
 
 const Rent = () => {
+
+
   const [activeTab, setActiveTab] = useState('tab-3');
 
   const handleTabChange = (tabId) => {
       setActiveTab(tabId);
   };
 
+
+  
   return (
     <>
-    <Hero/>
+   
+    <div className="row list">
+  <div className="pListing">
+    <h2>Property Listing</h2>
+    <div className="p-item">
+        <form action="#" className="plisting-head me-3">
+      <input type="search" placeholder="| Search for apartment based on location"/>
+      <button type="submit">Search</button>
+    </form>
+    <button className='p-btn'>Search</button>
+    </div>
+    
+  </div>
+</div>
+
+
+
+
 <div className="container-xxl py-5">
   <div className="container">
   <div className="row g-0 gx-5 align-items-end">
             <div className="col-lg-6">
-                <div className="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
-                    <h1 className="mb-3">Property Listing</h1>
-                    <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit eirmod sit diam justo sed rebum.</p>
+                <div className="text-start mx-auto mb-5  d-flex filter" >
+                    <p className='me-3'><i className="bi bi-funnel-fill"></i>Filter</p>
+                    <span id='filterNum'>6 Result Found !</span>
                 </div>
             </div>
-            <div className="col-lg-6 text-start text-lg-end wow slideInRight" data-wow-delay="0.1s">
+            <div className="col-lg-6 text-start text-lg-end  " >
                 <ul className="nav nav-pills d-inline-flex justify-content-end mb-5">
                     <li className="nav-item me-2">
                         <button
@@ -51,14 +71,21 @@ const Rent = () => {
                         </button>
                     </li>
                 </ul>
+                <aside>
+                    
+                </aside>
             </div>
+
+            <aside>
+                ho
+            </aside>
         </div>
 
         <div className="tab-content">
         <div id="tab-1" className={`tab-pane fade ${activeTab === 'tab-1' ? 'show active' : ''}`} >
             <div className="row g-4">
                 {propertyData.map(property => (
-                    <div key={property.id} className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div key={property.id} className="col-lg-4 col-md-6  " >
                         <div className="property-item rounded overflow-hidden">
                             <div className="position-relative overflow-hidden">
                                 <Link href=""><img className="img-fluid" src={property.image} alt="" /></Link>
@@ -78,7 +105,7 @@ const Rent = () => {
                         </div>
                     </div>
                 ))}
-                <div className="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
+                <div className="col-12 text-center  " >
                     <Link className="btn btn-primary py-3 px-5" href="">Browse More Property</Link>
                 </div>
             </div>
@@ -87,7 +114,7 @@ const Rent = () => {
         <div id="tab-2" className={`tab-pane fade ${activeTab === 'tab-2' ? 'show active' : ''}`}>
         <div className="row g-4">
                 {buyData.map(buy => (
-                    <div key={buy.id} className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div key={buy.id} className="col-lg-4 col-md-6  " >
                         <div className="property-item rounded overflow-hidden">
                             <div className="position-relative overflow-hidden">
                                 <Link href=""><img className="img-fluid" src={buy.image} alt="" /></Link>
@@ -107,7 +134,7 @@ const Rent = () => {
                         </div>
                     </div>
                 ))}
-                <div className="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
+                <div className="col-12 text-center  " >
                     <Link className="btn btn-primary py-3 px-5" href="">Browse More Property</Link>
                 </div>
             </div>
@@ -116,7 +143,7 @@ const Rent = () => {
         <div id="tab-3" className={`tab-pane fade ${activeTab === 'tab-3' ? 'show active' : ''}`}>
         <div className="row g-4">
                 {propertyData.map(property => (
-                    <div key={property.id} className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div key={property.id} className="col-lg-4 col-md-6  " >
                         <div className="property-item rounded overflow-hidden">
                             <div className="position-relative overflow-hidden">
                                 <Link href=""><img className="img-fluid" src={property.image} alt="" /></Link>
@@ -136,7 +163,7 @@ const Rent = () => {
                         </div>
                     </div>
                 ))}
-                <div className="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
+                <div className="col-12 text-center  " >
                     <Link className="btn btn-primary py-3 px-5" href="">Browse More Property</Link>
                 </div>
             </div>

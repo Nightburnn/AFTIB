@@ -184,7 +184,7 @@ font-weight: 400;
   .form-inner {
     padding: 30px 20px;
   }
-  button {
+  .form-inner button {
     width: 100%;
   }
 

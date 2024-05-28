@@ -12,28 +12,28 @@ const slides = [
   {
     id: 1,
     bgClass: 'bg-image1',
-    titleTop: 'Doral, Florida',
+    titleTop: 'VGC, Lagos',
     zip: '78345',
     titleNumber: '204',
-    title: 'Mount Olive Road Two',
+    title: 'Haris Drive, VGC, Lekki',
     price: '$ 12.000'
   },
   {
     id: 2,
     bgClass: 'bg-image2',
-    titleTop: 'Doral, Florida',
+    titleTop: 'VGC, Lagos',
     zip: '78345',
     titleNumber: '204',
-    title: 'Rino Venda Road Five',
+    title: 'Haris Drive, VGC, Lekki,',
     price: '$ 12.000'
   },
   {
     id: 3,
     bgClass: 'bg-image3',
-    titleTop: 'Doral, Florida',
+    titleTop: 'VGC, Lagos',
     zip: '78345',
     titleNumber: '204',
-    title: 'Alira Roan Road One',
+    title: 'Haris Drive, VGC, Lekki',
     price: '$ 12.000'
   },
 ];

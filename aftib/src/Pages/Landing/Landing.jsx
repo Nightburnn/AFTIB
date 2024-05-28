@@ -16,7 +16,7 @@ const Landing = () => {
 <section className="homecard mt-5">
 <div className="container">
   <div className="row">
-    <div className="col-lg-6">
+    <div className="col-lg-6 ">
       <div className="home-title">
         <h5>Get home recommendation</h5>
 

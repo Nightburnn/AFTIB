@@ -1,5 +1,5 @@
 import {useState, React} from 'react'
-import Hero from '../../Components/Hero/Hero'
+
 import {propertyData} from '../../Components/PropertyData/PropertyData';
 import {buyData} from '../../Components/PropertyData/PropertyData';
 import '../Rent/Rent.css'
@@ -14,7 +14,7 @@ const Buy = () => {
 
   return (
     <>
-    <Hero/>
+  
 <div className="container-xxl py-5">
   <div className="container">
   <div className="row g-0 gx-5 align-items-end">
@@ -24,7 +24,7 @@ const Buy = () => {
                     <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit eirmod sit diam justo sed rebum.</p>
                 </div>
             </div>
-            <div className="col-lg-6 text-start text-lg-end wow slideInRight" data-wow-delay="0.1s">
+            <div className="col-lg-6 text-end text-lg-end wow slideInRight" data-wow-delay="0.1s">
                 <ul className="nav nav-pills d-inline-flex justify-content-end mb-5">
                     <li className="nav-item me-2">
                         <button
@@ -52,6 +52,7 @@ const Buy = () => {
                     </li>
                 </ul>
             </div>
+
         </div>
 
         <div className="tab-content">
