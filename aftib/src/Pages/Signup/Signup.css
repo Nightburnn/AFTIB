@@ -52,7 +52,7 @@ transition: color 0.3s;
 }
 
 .rhead ul li:hover {
-  color: #e8e3e3; /* Adjust color for hover state if necessary */
+  color: #e8e3e3; 
 }
 
 .rhead ul li.active {
