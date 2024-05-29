@@ -1,0 +1,30 @@
+.lhead{
+    color: #717070;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+.lforgot{
+    margin-right: 40px;
+   margin-bottom: 40px;
+    line-height: 0;
+    color: #FF000F;
+    font-size: 16px;
+    font-family: 'Lato';
+    font-weight: 400;
+}
+
+
+.lsubtitle span{
+    color: #FF000F;
+font-size: 16px;
+font-family: 'Lato';
+font-weight: 400;
+}
+
+.lsubtitle{
+    color: #717070;
+font-size: 16px;
+font-family: 'Lato';
+font-weight: 400;
+}

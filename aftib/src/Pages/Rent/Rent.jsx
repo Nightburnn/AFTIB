@@ -71,14 +71,10 @@ const Rent = () => {
                         </button>
                     </li>
                 </ul>
-                <aside>
-                    
-                </aside>
+            
             </div>
 
-            <aside>
-                ho
-            </aside>
+           
         </div>
 
         <div className="tab-content">

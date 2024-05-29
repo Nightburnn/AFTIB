@@ -9,8 +9,9 @@ import Sell from './Pages/Sell/Sell';
 import Rent from './Pages/Rent/Rent';
 import Agent from './Pages/Agent/Agent';
 import Help from './Pages/Help/Help';
-import Signin from './Pages/Signin/Signin';
 import Footer from './Components/Footer/Footer';
+import Signup from './Pages/Signup/Signup';
+import Login from './Pages/Login/Login';
 
 
 
@@ -26,7 +27,8 @@ function App() {
       <Route  path='/rent' Component={Rent}/>
       <Route  path='/agent-finder' Component={Agent}/>
       <Route  path='/help' Component={Help}/>
-      <Route path='/sign' Component={Signin}/>
+      <Route path='/sign' Component={Signup}/>
+      <Route path='/login' Component={Login}/>
       </Routes>
 <Footer/>
   </Router>
