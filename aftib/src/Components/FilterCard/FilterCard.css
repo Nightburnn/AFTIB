@@ -1,0 +1,175 @@
+/* General styles for filter card */
+.filter-card {
+  display: flex;
+  float: right;
+  flex-direction: column;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, .08);
+  max-width: 300px;
+  margin-top: 54px; /* Moves the filter card downwards */
+}
+
+/* Button styles */
+.filter-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.filter-button {
+  flex: 1;
+  padding: 8px;
+  margin: 0 4px;
+  border: none;
+  border-radius: 4px;
+  background-color: #eee;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.filter-button:hover {
+  background-color: #ccc;
+}
+
+.filter-button.active {
+  background-color: #0d6efd;
+  color: white;
+}
+
+.price-range, .filter-options {
+  margin-bottom: 16px;
+  font-size: 14px; /* Reduced font size */
+}
+
+.price-inputs {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.price-inputs div {
+  flex: 1;
+  width: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 8px;
+}
+
+.price-inputs div:last-child {
+  margin-right: 0;
+}
+
+.price-inputs label {
+  margin-bottom: 4px;
+}
+
+.price-inputs input {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px; /* Reduced font size */
+}
+
+.price-type {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  
+}
+
+.price-type input {
+  margin-right: 4px;
+}
+
+.price-type-group {
+  margin-right: 16px; /* Space between radio button groups */
+}
+
+.bed-options, .bath-options, .home-type-options {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 14px; /* Reduced font size */
+}
+
+.bed-options button, .bath-options button {
+  margin-right: 4px;
+  margin-bottom: 4px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: #eee;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.bed-options button:hover, .bath-options button:hover {
+  background-color: #ccc;
+}
+
+.bed-options button.active, .bath-options button.active {
+  background-color: #0d6efd;
+  color: white;
+}
+
+.home-type-options input {
+  margin-right: 8px;
+}
+
+.reset-button, .apply-button {
+  flex: 1;
+  padding: 12px;
+  margin: 8px 4px;
+  border: none;
+  border-radius: 4px;
+  background-color: #eee;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.reset-button:hover, .apply-button:hover {
+  background-color: #ccc;
+}
+
+.apply-button {
+  background-color: #0d6efd;
+  color: white;
+  font-size: 14px;
+}
+
+.apply-button:hover {
+  background-color: #5300d3;
+}
+
+/* Media query for mobile view */
+@media (max-width: 768px) {
+  .filter-card {
+    max-width: 100%;
+    float: none;
+    margin-top: 0; /* Remove margin-top for mobile view */
+  }
+
+  .filter-buttons {
+    flex-direction: column;
+  }
+
+  .filter-button {
+    margin-bottom: 8px;
+    margin: 0 0 8px 0;
+  }
+
+  .price-inputs {
+    flex-direction: column;
+  }
+
+  .price-inputs div {
+    margin-right: 0;
+    margin-bottom: 8px;
+  }
+
+  .bed-options, .bath-options {
+    justify-content: space-between;
+  }
+}

@@ -1,0 +1,176 @@
+/*** Property List ***/
+.nav-pills .nav-item .btn {
+    color: var(--dark);
+}
+
+.nav-pills .nav-item .btn:hover,
+.nav-pills .nav-item .btn.active {
+    color: #FFFFFF;
+}
+
+.property-item {
+    box-shadow: 0 0 30px rgba(0, 0, 0, .08);
+}
+
+.property-item img {
+    transition: .5s;
+}
+
+.property-item:hover img {
+    transform: scale(1.1);
+}
+
+.property-item .border-top {
+    border-top: 1px dashed #4517fb98 !important;
+}
+
+.property-item .border-end {
+    border-right: 1px dashed #4517fb8d !important;
+}
+.pListing {
+    display: flex;
+    justify-content: space-between;
+    background-color: #4517FB;
+    width: 100%; 
+    margin: 0 auto; 
+    padding: 20px; 
+  }
+  .list{
+    margin: 0;
+    margin-top: 0;
+  }
+  .pListing h2 {
+    margin-left: 40px;
+    color: #FFF;
+font-family: 'Lato';
+font-size: 30px;
+font-weight: 800;
+  }
+  
+  .plisting-head {
+    display: flex;
+    align-items: center; 
+  }
+
+  .pListing form{
+    background-color: #FFFFFF;
+    width: 400px;
+    border-radius: 10px;
+  }
+
+.p-item{
+  display: flex;
+  margin-right: 40px;
+}
+  
+  .plisting-head input[type="search"] {
+    flex: 1; 
+    border: none;
+    background: transparent;
+    padding: 7px 8px;
+    font-size: 14px;
+    color: inherit;
+    border: 1px solid transparent;
+    border-radius: 5px;
+  }
+  
+  .plisting-head button[type="submit"] {
+    text-indent: -999px;
+    overflow: hidden;
+    width: 40px;
+    padding: 0;
+    margin-left: 10px; 
+    border: 1px solid #fff;
+    border-radius: 5px;
+    background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat center;
+    cursor: pointer;
+    opacity: 0.7;
+  }
+  
+  .plisting-head button[type="submit"]:hover {
+    opacity: 1;
+  }
+  
+  .plisting-head button[type="submit"]:focus,
+  .plisting-head input[type="search"]:focus {
+    box-shadow: transparent;
+    border-color: transparent;
+    outline: none;
+  }
+  
+  .p-btn {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #4517FB;
+    border-radius: 10px;
+    padding: 8px 16px;
+    cursor: pointer;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+ 
+
+@media (max-width: 756px) {
+    .pListing{
+        display: block;
+    }
+
+    .pListing h2 {
+      text-align: center;
+        margin-left: 0;
+        margin-bottom: 20px;
+        
+      }
+      .list{
+        margin: 0;
+      }
+
+      .pListing form{
+       
+        width: 100%;
+     margin-bottom: 10px;
+      }
+    .p-item{
+      display: block;
+      justify-content: center;
+      align-items: center;
+      margin-right: 0;
+    }
+
+    .p-btn{ 
+      width: 100%;
+    }
+}
+
+.filter{
+  align-items: center;
+}
+
+.filter p{
+  border-radius: 10px;
+border: 2px solid #0017E8;
+background: #FFF;
+color: #505050;
+font-family: 'Lato';
+font-size: 20px;
+padding-left: 10px;
+padding-right: 10px;
+padding-top: 5px;
+padding-bottom: 4px;
+}
+
+.filter  i{
+  
+  margin-right: 4px;
+}
+
+.bi-funnel{
+  color: red;
+}
+
+.filter span{
+  color: #6E6D6D;
+margin-top: -17px;
+font-family: 'Lato';
+font-size: 24px;
+font-weight: 800;
+}
