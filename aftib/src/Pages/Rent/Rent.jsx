@@ -23,7 +23,7 @@ const Rent = () => {
     <h2>Property Listing</h2>
     <div className="p-item">
         <form action="#" className="plisting-head me-3">
-      <input type="search" placeholder="| Search for apartment based on location"/>
+      <input type="search" placeholder="Search for apartment based on location"/>
       <button type="submit">Search</button>
     </form>
     <button className='p-btn'>Search</button>

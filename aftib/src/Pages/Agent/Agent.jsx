@@ -1,11 +1,10 @@
 import React from 'react'
-import Hero from '../../Components/Hero/Hero'
 import agent from '../../assets/images/agent.png'
 import { Link } from 'react-router-dom'
 import './Agent.css'
 const Agent = () => {
   return (
-    <>  <Hero/>
+    <> 
     <main id="main">
     <div classNameName="container-fluid  mb-5 agent">
     <h3 className='mt-4 agent-title'>Find an Agent</h3>

@@ -22,7 +22,7 @@ const Landing = () => {
 
         <p>Login for more experience</p>
       </div>
-      <Link className="homeBtn">Login</Link>
+      <Link className="homeBtn" to="/login">Login</Link>
     </div>
 
     <div className="col-lg-6">
