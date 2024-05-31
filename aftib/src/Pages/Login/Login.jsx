@@ -95,7 +95,7 @@ const Login = () => {
                                     <Link>
                                         <p className='text-end lforgot'>Forgot password ?</p>
                                     </Link>
-                                    <div className="r-btn mb-4">
+                                    <div className="l-btn mb-4">
                                         <button type="submit" className="rsubmit">Login</button>
                                     </div>
                                     <p className="lsubtitle text-center mt-4">

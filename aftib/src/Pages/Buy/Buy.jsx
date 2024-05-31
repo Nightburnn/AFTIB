@@ -41,7 +41,7 @@ const Buy = () => {
           <h2>Property Listing</h2>
           <div className="p-item">
             <form action="#" className="plisting-head me-3">
-              <input type="search" placeholder="| Search for apartment based on location" />
+              <input type="search" placeholder="Search for apartment based on location" />
               <button type="submit">Search</button>
             </form>
             <button className='p-btn'>Search</button>
@@ -58,7 +58,13 @@ const Buy = () => {
       <div className="container-xxl py-5">
         <div className="container">
           <div className="row g-0 gx-5 align-items-end">
-            {/* Additional content if needed */}
+          <div className="col-lg-6">
+                            <div className="text-start mx-auto mb-5 d-flex filter">
+                                <p className='me-3'><i className="bi bi-funnel-fill"></i>Filter</p>
+                                <span id='filterNum'>6 Results Found!</span>
+                            </div>
+                        </div>
+                     
           </div>
 
           <div className="tab-content">

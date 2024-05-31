@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import logo from '../../assets/images/logo.svg'
 import './Header.css';
-
 
 const Header = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -19,7 +19,7 @@ const Header = () => {
       <div className="container-fluid">
         <nav className="navbar navbar-expand-lg custom_nav-container">
           <NavLink className="navbar-brand" to="/" onClick={handleNavLinkClick}>
-          WELCOME TO AFTIB
+           <img src={logo} alt="" />
           </NavLink>
           <button
             className={`navbar-toggler ${isNavOpen ? 'active' : ''}`}
@@ -28,7 +28,10 @@ const Header = () => {
           >
             <span className="navbar-toggler"><i className="bi bi-list"></i></span>
           </button>
-          <div className={`collapse navbar-collapse justify-content-end ${isNavOpen ? 'show' : ''}`} id="navbarSupportedContent">
+          <div
+            className={`collapse navbar-collapse justify-content-end ${isNavOpen ? 'show' : ''}`}
+            id="navbarSupportedContent"
+          >
             <div className="ml-auto d-flex flex-column flex-lg-row align-items-center">
               <ul className="navbar-nav">
                 <li className="nav-item">
@@ -54,7 +57,7 @@ const Header = () => {
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/help" activeclassname="active"  onClick={handleNavLinkClick}>Help</NavLink>
                 </li>
-                <li className="nav-item">
+                <li className=" ">
                 <NavLink to="/sign"  onClick={handleNavLinkClick}>
                   <button className="sign-in">Sign in</button></NavLink>
                 </li>

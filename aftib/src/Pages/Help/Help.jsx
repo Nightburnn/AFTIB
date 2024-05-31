@@ -4,16 +4,17 @@ import help1 from '../../assets/images/help1.png'
 import help2 from '../../assets/images/help2.png'
 import help3 from '../../assets/images/help3.png'
 import { Link } from 'react-router-dom';
+import Chatbot from './Chatbot';
 
 const Help = () => {
   return (
-    <main id="main">
-      <section className="container hero-bg">
+    <main>
+      <section className=" hero-bg">
         <div className="hero">
           <div className="container">
             <div className="row">
               <div className="hero-title">
-                <h2>How can we help?</h2>
+                <h2>Hi! How can we help?</h2>
                 <div className="form-container">
                   <form>
                     <div className="form-item">
@@ -37,7 +38,6 @@ const Help = () => {
       <section className="help mt-5">
       <div class="container">
       <div class="row">
-        <h3>Help Desk</h3>
         <div class="col-lg-4 ">
           <div class="demo-item">
            <img src={help1} alt="help"  className='resize'/>
@@ -83,6 +83,9 @@ const Help = () => {
       </div>
     </div>
       </section>
+
+
+      <Chatbot/>
     </main>
   );
 };

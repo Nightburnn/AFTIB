@@ -1,5 +1,6 @@
 import React from 'react';
-import './Footer.css'; // Import the CSS file for styling
+import './Footer.css'; 
+import logo from '../../assets/images/logo.svg'
 
 
 const Footer = () => {
@@ -10,9 +11,10 @@ const Footer = () => {
         <div className="col-md-12">
          
           <div className="copyright-footer">
-            <p className="copyright color-text-a">
-              &copy;AFTIB
-            </p>
+          
+              <img src={logo} alt="" />
+              
+        
           </div>
           
         </div>

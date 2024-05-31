@@ -45,7 +45,7 @@ const Landing = () => {
             <p>Find your place with immersive photos and exclusive listings.</p>
 
             <Link className='enter'>
-           Enter
+           Buy
             </Link>
            </div>
           </div>
@@ -58,7 +58,7 @@ const Landing = () => {
 
             <p>Find your place with immersive photos and exclusive listings.</p>
             <Link className='enter'>
-           Enter
+           Sell
             </Link>
            
            </div>
@@ -73,7 +73,7 @@ const Landing = () => {
             <p>Find your place with immersive photos and exclusive listings.</p>
 
             <Link className='enter'>
-           Enter
+           Rent
             </Link>
            </div>
           </div>
