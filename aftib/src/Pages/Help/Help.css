@@ -31,7 +31,7 @@
     color: white;
     font-family: "League Spartan";
     font-size: 25px;
-    font-weight: 800;
+    font-weight: 600;
 padding-left: 15px;
 padding-right: 15px;
 padding-top: 0;
@@ -74,11 +74,19 @@ font-weight: 400;
   @media (max-width: 584px) {
    .form-item{
     display: block;
+    margin-left: 40px;
    }
 
    .form-item input{
-    width: 100%;
+    width: 80%;
     margin-bottom: 19px;
+
+  
+   }
+
+   .custom-btn{
+    margin-right: 40px;
+    width: 50%;
    }
 
    .hero h2{

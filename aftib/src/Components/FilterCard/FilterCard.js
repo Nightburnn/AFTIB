@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
-import './FilterCard.css';
+import React, { useState } from "react";
+import "./FilterCard.css";
 
 const FilterCard = ({ onFilter }) => {
-  const [minPrice, setMinPrice] = useState('');
-  const [maxPrice, setMaxPrice] = useState('');
-  const [beds, setBeds] = useState('Any');
-  const [baths, setBaths] = useState('Any');
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+  const [beds, setBeds] = useState("Any");
+  const [baths, setBaths] = useState("Any");
 
   const handleFilter = () => {
     onFilter({ minPrice, maxPrice, beds, baths });
   };
 
   const resetFilters = () => {
-    setMinPrice('');
-    setMaxPrice('');
-    setBeds('Any');
-    setBaths('Any');
-    onFilter({ minPrice: '', maxPrice: '', beds: 'Any', baths: 'Any' });
+    setMinPrice("");
+    setMaxPrice("");
+    setBeds("Any");
+    setBaths("Any");
+    onFilter({ minPrice: "", maxPrice: "", beds: "Any", baths: "Any" });
   };
 
   return (
@@ -49,24 +49,29 @@ const FilterCard = ({ onFilter }) => {
           </div>
         </div>
         <div className="price-type">
-        <div class="price-type-group">
-          <input type="radio" id="list-price" name="price-type" defaultChecked />
-          <label htmlFor="list-price">List Price</label>
+          <div class="price-type-group">
+            <input
+              type="radio"
+              id="list-price"
+              name="price-type"
+              defaultChecked
+            />
+            <label htmlFor="list-price">List Price</label>
           </div>
           <div class="price-type-group">
-          <input type="radio" id="monthly-payment" name="price-type" />
-          <label htmlFor="monthly-payment">Monthly Payment</label>
+            <input type="radio" id="monthly-payment" name="price-type" />
+            <label htmlFor="monthly-payment">Monthly Payment</label>
           </div>
         </div>
       </div>
       <div className="filter-options">
         <h4>Beds</h4>
         <div className="bed-options">
-          {['Any', '1+', '2+', '3+', '4+', '5+'].map((option) => (
+          {["Any", "1+", "2+", "3+", "4+", "5+"].map((option) => (
             <button
               key={option}
               onClick={() => setBeds(option)}
-              className={beds === option ? 'active' : ''}
+              className={beds === option ? "active" : ""}
             >
               {option}
             </button>
@@ -76,11 +81,11 @@ const FilterCard = ({ onFilter }) => {
       <div className="filter-options">
         <h4>Bathrooms</h4>
         <div className="bath-options">
-          {['Any', '1+', '2+', '3+', '4+'].map((option) => (
+          {["Any", "1+", "2+", "3+", "4+"].map((option) => (
             <button
               key={option}
               onClick={() => setBaths(option)}
-              className={baths === option ? 'active' : ''}
+              className={baths === option ? "active" : ""}
             >
               {option}
             </button>

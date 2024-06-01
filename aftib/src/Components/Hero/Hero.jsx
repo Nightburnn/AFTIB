@@ -1,40 +1,46 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
-import './Hero.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import {
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Autoplay,
+} from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import "./Hero.css";
 
 const slides = [
   {
     id: 1,
-    bgClass: 'bg-image1',
-    titleTop: 'VGC, Lagos',
-    zip: '78345',
-    titleNumber: '204',
-    title: 'Haris Drive, VGC, Lekki',
-    price: '$ 12.000'
+    bgClass: "bg-image1",
+    titleTop: "VGC, Lagos",
+    zip: "78345",
+    titleNumber: "204",
+    title: "Haris Drive, VGC, Lekki",
+    price: "$ 12.000",
   },
   {
     id: 2,
-    bgClass: 'bg-image2',
-    titleTop: 'VGC, Lagos',
-    zip: '78345',
-    titleNumber: '204',
-    title: 'Haris Drive, VGC, Lekki,',
-    price: '$ 12.000'
+    bgClass: "bg-image2",
+    titleTop: "VGC, Lagos",
+    zip: "78345",
+    titleNumber: "204",
+    title: "Haris Drive, VGC, Lekki,",
+    price: "$ 12.000",
   },
   {
     id: 3,
-    bgClass: 'bg-image3',
-    titleTop: 'VGC, Lagos',
-    zip: '78345',
-    titleNumber: '204',
-    title: 'Haris Drive, VGC, Lekki',
-    price: '$ 12.000'
+    bgClass: "bg-image3",
+    titleTop: "VGC, Lagos",
+    zip: "78345",
+    titleNumber: "204",
+    title: "Haris Drive, VGC, Lekki",
+    price: "$ 12.000",
   },
 ];
 
@@ -43,13 +49,12 @@ const Hero = () => {
     <div className="intro intro-carousel position-relative overflow-hidden">
       <Swiper
         modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
-       
         slidesPerView={1}
         pagination={{ clickable: true }}
         autoplay={{ delay: 3000 }}
-        loop={true}       
+        loop={true}
       >
-        {slides.map(slide => (
+        {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
             <div className={`carousel-item-a intro-item ${slide.bgClass}`}>
               <div className="overlay overlay-a"></div>
@@ -64,10 +69,17 @@ const Hero = () => {
                             <br /> {slide.zip}
                           </p>
                           <h1 className="intro-title mb-4">
-                            <span className="color-b">{slide.titleNumber} </span>{slide.title}
+                            <span className="color-b">
+                              {slide.titleNumber}{" "}
+                            </span>
+                            {slide.title}
                           </h1>
                           <p className="intro-subtitle intro-price">
-                            <Link><span className="price-a">rent | {slide.price}</span></Link>
+                            <Link>
+                              <span className="price-a">
+                                rent | {slide.price}
+                              </span>
+                            </Link>
                           </p>
                         </div>
                       </div>

@@ -44,7 +44,7 @@ const Landing = () => {
 
             <p>Find your place with immersive photos and exclusive listings.</p>
 
-            <Link className='enter'>
+            <Link className='enter' to="buy">
            Buy
             </Link>
            </div>
@@ -57,7 +57,7 @@ const Landing = () => {
             <h4>Sell a home</h4>
 
             <p>Find your place with immersive photos and exclusive listings.</p>
-            <Link className='enter'>
+            <Link className='enter' to="/sell">
            Sell
             </Link>
            
@@ -72,7 +72,7 @@ const Landing = () => {
 
             <p>Find your place with immersive photos and exclusive listings.</p>
 
-            <Link className='enter'>
+            <Link className='enter' to="/rent">
            Rent
             </Link>
            </div>

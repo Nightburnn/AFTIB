@@ -33,7 +33,7 @@
     opacity: 1;
   }
 
-  /* Adjust the chatbox scrollbar */
+  
 .chatbot :where(.chatbox, textarea)::-webkit-scrollbar {
     width: 6px;
   }

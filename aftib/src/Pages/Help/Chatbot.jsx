@@ -2,21 +2,31 @@ import React, { useState, useEffect, useRef } from 'react';
 import './Chatbot.css';
 
 const Chatbot = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState([
-    { type: 'incoming', text: 'Hi there 👋\nHow can I help you today?' }
-  ]);
+  const saveStateToLocalStorage = (state) => {
+    localStorage.setItem('chatbotState', JSON.stringify(state));
+  };
+
+  const loadStateFromLocalStorage = () => {
+    const state = localStorage.getItem('chatbotState');
+    return state ? JSON.parse(state) : { isOpen: false, messages: [{ type: 'incoming', text: 'Hi there 👋\nHow can I help you today?' }] };
+  };
+
+  const initialState = loadStateFromLocalStorage();
+  const [isOpen, setIsOpen] = useState(initialState.isOpen);
+  const [messages, setMessages] = useState(initialState.messages);
   const [input, setInput] = useState('');
   const chatboxRef = useRef(null);
   const chatInputRef = useRef(null);
-
-  const API_KEY = "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"; // Replace with your API key
 
   useEffect(() => {
     if (chatboxRef.current) {
       chatboxRef.current.scrollTop = chatboxRef.current.scrollHeight;
     }
   }, [messages]);
+
+  useEffect(() => {
+    saveStateToLocalStorage({ isOpen, messages });
+  }, [isOpen, messages]);
 
   const toggleChatbot = () => {
     document.body.classList.toggle('show-chatbot');
@@ -26,7 +36,7 @@ const Chatbot = () => {
   const handleInputChange = (event) => {
     setInput(event.target.value);
     chatInputRef.current.style.height = 'auto';
-    chatInputRef.current.style.height = `${Math.min(event.target.scrollHeight, 180)}px`; // Limit height
+    chatInputRef.current.style.height = `${Math.min(event.target.scrollHeight, 180)}px`; 
   };
 
   const sendMessage = () => {
@@ -53,7 +63,7 @@ const Chatbot = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${API_KEY}`
+        'Authorization': `Bearer ${API_URL}`
       },
       body: JSON.stringify({
         model: 'gpt-3.5-turbo',
@@ -65,14 +75,14 @@ const Chatbot = () => {
       if (data.choices && data.choices.length > 0 && data.choices[0].message) {
         setMessages((prevMessages) => {
           const updatedMessages = [...prevMessages];
-          updatedMessages.pop(); // Remove "Thinking..." message
+          updatedMessages.pop(); 
           updatedMessages.push({ type: 'incoming', text: data.choices[0].message.content.trim() });
           return updatedMessages;
         });
       } else {
         setMessages((prevMessages) => {
           const updatedMessages = [...prevMessages];
-          updatedMessages.pop(); // Remove "Thinking..." message
+          updatedMessages.pop();
           updatedMessages.push({ type: 'incoming', text: 'Oops! I couldn\'t generate a response. Please try again.' });
           return updatedMessages;
         });
@@ -81,7 +91,7 @@ const Chatbot = () => {
     .catch(() => {
       setMessages((prevMessages) => {
         const updatedMessages = [...prevMessages];
-        updatedMessages.pop(); // Remove "Thinking..." message
+        updatedMessages.pop(); 
         updatedMessages.push({ type: 'incoming', text: 'Oops! Something went wrong. Please try again.' });
         return updatedMessages;
       });
