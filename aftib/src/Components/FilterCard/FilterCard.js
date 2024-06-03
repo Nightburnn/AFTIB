@@ -6,6 +6,7 @@ const FilterCard = ({ onFilter }) => {
   const [maxPrice, setMaxPrice] = useState("");
   const [beds, setBeds] = useState("Any");
   const [baths, setBaths] = useState("Any");
+  const [activeFilter, setActiveFilter] = useState("Featured"); // State for active filter button
 
   const handleFilter = () => {
     onFilter({ minPrice, maxPrice, beds, baths });
@@ -22,9 +23,24 @@ const FilterCard = ({ onFilter }) => {
   return (
     <div className="filter-card">
       <div className="filter-buttons">
-        <button className="filter-button active">Featured</button>
-        <button className="filter-button">Buy</button>
-        <button className="filter-button">Rent</button>
+        <button
+          className={`filter-button ${activeFilter === "Featured" ? "active" : ""}`}
+          onClick={() => setActiveFilter("Featured")}
+        >
+          Featured
+        </button>
+        <button
+          className={`filter-button ${activeFilter === "Buy" ? "active" : ""}`}
+          onClick={() => setActiveFilter("Buy")}
+        >
+          Buy
+        </button>
+        <button
+          className={`filter-button ${activeFilter === "Rent" ? "active" : ""}`}
+          onClick={() => setActiveFilter("Rent")}
+        >
+          Rent
+        </button>
       </div>
       <div className="price-range">
         <h4>Price Range</h4>
@@ -49,7 +65,7 @@ const FilterCard = ({ onFilter }) => {
           </div>
         </div>
         <div className="price-type">
-          <div class="price-type-group">
+          <div className="price-type-group">
             <input
               type="radio"
               id="list-price"
@@ -58,7 +74,7 @@ const FilterCard = ({ onFilter }) => {
             />
             <label htmlFor="list-price">List Price</label>
           </div>
-          <div class="price-type-group">
+          <div className="price-type-group">
             <input type="radio" id="monthly-payment" name="price-type" />
             <label htmlFor="monthly-payment">Monthly Payment</label>
           </div>

@@ -174,10 +174,17 @@
   .price-inputs div {
     margin-right: 0;
     margin-bottom: 8px;
+    width: 100%;
   }
 
   .bed-options,
   .bath-options {
     justify-content: space-between;
   }
+
+  .bed-options button, .bath-options button {
+    margin-right: 1px;
+  
 }
+}
+

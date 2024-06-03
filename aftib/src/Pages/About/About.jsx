@@ -2,6 +2,11 @@ import React from 'react';
 import { Navigation, Pagination, A11y } from 'swiper/modules';
 import prev from '../../assets/images/prev.svg';
 import next from '../../assets/images/next.svg';
+import about1 from '../../assets/images/about1.png'
+import about2 from '../../assets/images/about2.png'
+import about3 from '../../assets/images/about3.png'
+import about4 from '../../assets/images/about4.png'
+import about5 from '../../assets/images/about5.png'
 import './About.css';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -11,6 +16,8 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+
+
 
 const About = () => {
   return (
@@ -63,86 +70,97 @@ const About = () => {
           </div>
         </div>
 
-        <div className="row mt-5 abouttwo">
-          <h4>Browse our diverse selection of homes</h4>
-          <div class="col-lg-3 col-md-">
-                                <div class="property-item rounded overflow-hidden">
-                                    <div class="position-relative overflow-hidden">
-                                        <a href=""><img class="img-fluid" src="img/property-1.jpg" alt=""/></a>
-                                        <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Sell</div>
-                                        <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">Appartment</div>
-                                    </div>
-                                    <div class="p-4 pb-0">
-                                        <h5 class="text-primary mb-3">$12,345</h5>
-                                        <a class="d-block h5 mb-2" href="">Golden Urban House For Sell</a>
-                                        <p><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Street, New York, USA</p>
-                                    </div>
-                                    <div class="d-flex border-top">
-                                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-ruler-combined text-primary me-2"></i>1000 Sqft</small>
-                                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                                        <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2 Bath</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-4">
-                                <div class="property-item rounded overflow-hidden">
-                                    <div class="position-relative overflow-hidden">
-                                        <a href=""><img class="img-fluid" src="img/property-2.jpg" alt=""/></a>
-                                        <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Rent</div>
-                                        <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">Villa</div>
-                                    </div>
-                                    <div class="p-4 pb-0">
-                                        <h5 class="text-primary mb-3">$12,345</h5>
-                                        <a class="d-block h5 mb-2" href="">Golden Urban House For Sell</a>
-                                        <p><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Street, New York, USA</p>
-                                    </div>
-                                    <div class="d-flex border-top">
-                                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-ruler-combined text-primary me-2"></i>1000 Sqft</small>
-                                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                                        <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2 Bath</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-4">
-                                <div class="property-item rounded overflow-hidden">
-                                    <div class="position-relative overflow-hidden">
-                                        <a href=""><img class="img-fluid" src="img/property-3.jpg" alt=""/></a>
-                                        <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Sell</div>
-                                        <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">Office</div>
-                                    </div>
-                                    <div class="p-4 pb-0">
-                                        <h5 class="text-primary mb-3">$12,345</h5>
-                                        <a class="d-block h5 mb-2" href="">Golden Urban House For Sell</a>
-                                        <p><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Street, New York, USA</p>
-                                    </div>
-                                    <div class="d-flex border-top">
-                                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-ruler-combined text-primary me-2"></i>1000 Sqft</small>
-                                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                                        <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2 Bath</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-4">
-                                <div class="property-item rounded overflow-hidden">
-                                    <div class="position-relative overflow-hidden">
-                                        <a href=""><img class="img-fluid" src="img/property-4.jpg" alt=""/></a>
-                                        <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Rent</div>
-                                        <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">Building</div>
-                                    </div>
-                                    <div class="p-4 pb-0">
-                                        <h5 class="text-primary mb-3">$12,345</h5>
-                                        <a class="d-block h5 mb-2" href="">Golden Urban House For Sell</a>
-                                        <p><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Street, New York, USA</p>
-                                    </div>
-                                    <div class="d-flex border-top">
-                                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-ruler-combined text-primary me-2"></i>1000 Sqft</small>
-                                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                                        <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2 Bath</small>
-                                    </div>
-                                </div>
-                            </div>
-        </div>
+     
       </section>
+
+      <div className="container about-mission">
+      <div className="row my-5">
+        <div className="col-md-6">
+          <h2 className="text-center">Our Mission</h2>
+          <p className='text-center'>
+          To provide exceptional real estate services with integrity, expertise, and dedication, ensuring our clients achieve their property goals through innovative solutions and personalized attention.
+          </p>
+        </div>
+        <div className="col-md-6">
+          <h2 className="text-center">Our Vision</h2>
+          <p className='text-center'>
+          To be the leading real estate agency, renowned for setting industry standards in service excellence, fostering sustainable growth, and building lasting relationships with our clients and communities.
+          </p>
+        </div>
+      </div>
+
+
+
+      
+      </div>
+
+      <div className="container about-service"><h3 className='text-center'>Our Services</h3>
+        <div className="row justify-center aboutservice">
+          
+          <div className="col-md-3">
+          <img src={about1} alt="About Us" className="img-fluid" />
+        </div>
+        <div className="col-md-9 align-center">
+          <h2 className="mb-1">Real Estate consultancy</h2>
+          <p>
+          We are the premier destination for acquiring rapidly appreciating land at competitive prices. Our mission is to provide exceptional quality through our property development services. Aftib comprehensive offerings include:
+As one of the leading and most esteemed real estate consultants in the country, we pride
+ourselves on delivering professional services within the real estate sector. Our extensive 
+specialization and expertise in both residential and commercial projects distinguish us as one of the most sought-after and highly recommended real estate consultancies in the region.
+          </p>
+        </div>
+        </div>
+
+        <div className="row justify-center aboutservice mt-5">
+        <div className="col-md-9 align-center">
+          <h2 className="mb-1">Property Development</h2>
+          <p>
+          We are the foremost destination for those seeking rapidly developing land at competitive prices. Our commitment is to provide unparalleled quality through our comprehensive property development services. We pride ourselves on offering exceptional value, ensuring that each client receives the best possible experience and outcomes. Our extensive expertise in the real estate market allows us to deliver tailored solutions that meet the unique needs of our clients, making us a trusted partner in your property investment journey.
+          </p>
+        </div>
+        <div className="col-md-3">
+          <img src={about2} alt="About Us" className="img-fluid" />
+        </div>
+        </div>
+
+        <div className="row justify-center aboutservice mt-5">
+          <div className="col-md-3">
+          <img src={about3} alt="About Us" className="img-fluid" />
+        </div>
+        <div className="col-md-9 align-center">
+          <h2 className="mb-1">Land Surveying</h2>
+          <p>
+          We offer a wide range of land and engineering surveying services for both public and private sectors. Our expertise includes Topographical Land Surveys, Building Elevations and Plans, and Boundary Surveys. We ensure the authenticity and security of your land properties, giving you peace of mind for the present and future.
+          </p>
+        </div>
+        </div>
+
+        <div className="row justify-center aboutservice mt-5">
+        <div className="col-md-9 align-center">
+          <h2 className="mb-1">Real Estate Management</h2>
+          <p>
+          Your business with us is managed by highly qualified and experienced real estate professionals, including estate surveyors and valuers, all supported by a skilled and efficient administrative and technical team. This comprehensive support ensures the acquisition, oversight, and maintenance of your real estate properties' value.
+Together Everyone Achieves More. Looking for tested and trusted experts to manage your real estate property? Our specialists are here to help you maintain and enhance the value of your investments.
+          </p>
+        </div>
+        <div className="col-md-3">
+          <img src={about4} alt="About Us" className="img-fluid" />
+        </div>
+        </div>
+
+        <div className="row justify-center aboutservice mt-5">
+          <div className="col-md-3">
+          <img src={about5} alt="About Us" className="img-fluid" />
+        </div>
+        <div className="col-md-9 align-center">
+          <h2 className="mb-1">Property Sales</h2>
+          <p>
+          Real estate agencies assist clients in selling residential, commercial, and land properties. Services include property valuation, marketing and advertising, conducting open houses, negotiating offers, and managing the closing process to ensure a smooth transaction.
+          </p>
+        </div>
+        </div>
+
+      </div>
     </main>
   );
 };

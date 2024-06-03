@@ -14,10 +14,10 @@ footer ul{
 
 
 footer ul li{
-  margin-bottom: 20px;
+  margin-bottom: 4px;
   text-align: start;
   margin-left: -30px;
-  font-size: 15px;
+  font-size: 14px;
 font-family: 'Lato';
 font-weight: 600;
 }
@@ -29,13 +29,17 @@ a{
 footer h4{
   text-align: left;
   margin-bottom: 10px;
+  font-size: 1.5rem;
+    font-weight: 600;
 }
 
 footer hr{
-  border: 3px black solid;
+  border: 1px black solid;
   border-radius: 10px;
 }
-
+footer p{
+  font-size: 14px;
+}
 
 footer i{
   margin-right: 20px;
@@ -52,6 +56,9 @@ footer .socials{
 }
 
 @media (max-width: 760px) {
+  footer{
+    margin: 10px;
+  }
   .copy{
     margin-top: 10px;
   }
@@ -69,5 +76,21 @@ footer .socials{
       font-size: 12px;
     font-weight: 400;
     }
+    footer h4{
+      white-space: nowrap;
+      font-size: 1rem;
+        font-weight: 600;
+    } 
+
+    footer p{
+      font-size: 13px;
+    }
 }
+
+/*@media (max-width: 330px) {
+  footer h4{
+
+    white-space: wrap;
+  }
+}*/
 
