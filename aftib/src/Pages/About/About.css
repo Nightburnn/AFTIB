@@ -83,7 +83,7 @@
   margin-top: -90px;
 }
 
-/*
+
 .swiper-pagination {
   position: relative;
   text-align: center;
@@ -103,7 +103,19 @@
   background: white;
   width: 19px;
   height: 19px;
-}*/
+  opacity: 1;
+}
+
+
+
+.swiper-pagination-bullet:hover,
+.swiper-pagination-bullet-active {
+  background-color: #4517fb;
+  opacity: 0.7;
+}
+
+
+
 
 @media (max-width: 760px) {
   .bg-image {

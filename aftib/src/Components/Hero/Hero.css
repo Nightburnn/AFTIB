@@ -100,34 +100,4 @@
   text-decoration: none;
 }
 
-.swiper-pagination {
-  position: absolute;
-  width: 100%;
-  text-align: center;
-  z-index: 10;
-}
 
-.swiper-pagination-fraction,
-.swiper-pagination-custom,
-.swiper-horizontal > .swiper-pagination-bullets,
-.swiper-pagination-bullets.swiper-pagination-horizontal {
-  bottom: var(--swiper-pagination-bottom, 60px);
-}
-
-.swiper-pagination-bullet {
-  border-radius: 10px;
-  border-color: transparent;
-  padding: 0.5rem 0.8rem;
-  opacity: 1;
-  background-color: aliceblue;
-}
-
-.swiper-pagination-bullet:hover,
-.swiper-pagination-bullet-active {
-  background-color: blue;
-  opacity: 0.6;
-}
-
-.swiper-pagination-bullet span {
-  font-size: 1.2rem;
-}
