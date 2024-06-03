@@ -85,6 +85,7 @@
   padding-bottom: 20px;
   display: flex;
   position: relative;
+  margin-bottom: 80px;
 }
 
 
@@ -341,6 +342,7 @@
 @media (max-width: 767px) {
   .registerS {
     flex-direction: column;
+    margin-bottom: 0;
   }
 
   .r-form {

@@ -35,12 +35,16 @@ const Signup = () => {
       signupType: 'emailAndPassword'
     };
 
+    console.log('Signup data:', signupData);
+
     try {
       const response = await axios.post('http://localhost:8080/auth/signup', signupData, {
         headers: {
           'Content-Type': 'application/json'
         }
       });
+
+      console.log('Response:', response);
 
       const data = response.data;
 
@@ -62,7 +66,8 @@ const Signup = () => {
     } catch (error) {
       let errorMessage = 'An error occurred. Please try again later.';
       if (error.response) {
-        errorMessage = error.response.data.message || errorMessage;
+        errorMessage = error.response.data.error || errorMessage;
+        console.error('Error response data:', error.response.data);
       }
       Swal.fire({
         title: 'Error!',

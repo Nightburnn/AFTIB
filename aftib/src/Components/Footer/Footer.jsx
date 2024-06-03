@@ -77,7 +77,7 @@ const Footer = () => {
         </div>
         <hr />
         <div className="row">
-          <div className="col-12 col-md-6  ">
+          <div className="col-lg-8 col-md-6  ">
             <h5>Aftib Nigeria</h5>
             <p>
               Explore the fastest-growing real estate market in Nigeria with our
@@ -89,33 +89,8 @@ const Footer = () => {
               process
             </p>
           </div>
-          <div className="col-6 col-md-3 ">
-            <h4>Company</h4>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/about">About Us</Link>
-              </li>
-              <li>
-                <Link to="/buy">Buy</Link>
-              </li>
-              <li>
-                <Link to="/sell">Sell</Link>
-              </li>
-              <li>
-                <Link to="/rent">Rent</Link>
-              </li>
-              <li>
-                <Link to="/agent-finder">Agent Finder</Link>
-              </li>
-              <li>
-                <Link to="/help">Help</Link>
-              </li>
-            </ul>
-          </div>
-          <div className="col-6 col-md-3 text-end ps-5">
+        
+          <div className="col-12 col-md-3 text-end ps-3 discover">
             <h4>Discover</h4>
             <ul>
               <li>

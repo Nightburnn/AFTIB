@@ -41,12 +41,17 @@
 font-size: 30px;
 font-family: 'Moul';
 font-weight: 400;
-text-align: start;
+text-align: left;
+margin-left: 60px;
 margin-bottom: 10px;
     }
 
     @media (max-width: 390px) {
         .ii{
             margin-bottom: 20px;
+        }
+
+        .agent-title{
+            margin-left: 0;
         }
     }
