@@ -1,8 +1,9 @@
+
+
 export const propertyData = [
   {
     id: 1,
-    image:
-      "https://images.ctfassets.net/abyiu1tn7a0f/3vTBvQw6GEDHsymU7JL0HB/db64167a9e8e62d3c3577632a99eb394/fully-detached-apartments-for-sale-vgc.jpg",
+    image: `${process.env.PUBLIC_URL}/images/p1.png`,
     label: "For Rent",
     type: "Apartment",
     price: "$12,345",
@@ -16,7 +17,7 @@ export const propertyData = [
   {
     id: 2,
     image:
-      "https://images.ctfassets.net/abyiu1tn7a0f/3vTBvQw6GEDHsymU7JL0HB/db64167a9e8e62d3c3577632a99eb394/fully-detached-apartments-for-sale-vgc.jpg",
+      `${process.env.PUBLIC_URL}/images/buy1.png`,
     label: "For Rent",
     type: "Apartment",
     price: "$12,345",
@@ -29,8 +30,7 @@ export const propertyData = [
 
   {
     id: 3,
-    image:
-      "https://images.ctfassets.net/abyiu1tn7a0f/3vTBvQw6GEDHsymU7JL0HB/db64167a9e8e62d3c3577632a99eb394/fully-detached-apartments-for-sale-vgc.jpg",
+    image: `${process.env.PUBLIC_URL}/images/buy2.png`,
     label: "For Rent",
     type: "Apartment",
     price: "$12,345",
@@ -43,8 +43,7 @@ export const propertyData = [
 
   {
     id: 4,
-    image:
-      "https://images.ctfassets.net/abyiu1tn7a0f/3vTBvQw6GEDHsymU7JL0HB/db64167a9e8e62d3c3577632a99eb394/fully-detached-apartments-for-sale-vgc.jpg",
+    image: `${process.env.PUBLIC_URL}/images/buy3.png`,
     label: "For Rent",
     type: "Apartment",
     price: "$12,345",
@@ -60,7 +59,7 @@ export const buyData = [
   {
     id: 1,
     image:
-      "https://images.ctfassets.net/abyiu1tn7a0f/3vTBvQw6GEDHsymU7JL0HB/db64167a9e8e62d3c3577632a99eb394/fully-detached-apartments-for-sale-vgc.jpg",
+      `${process.env.PUBLIC_URL}/images/buy4.png`,
     label: "Buy",
     type: "Apartment",
     price: "$12,345",

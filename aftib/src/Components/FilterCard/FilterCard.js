@@ -48,7 +48,7 @@ const FilterCard = ({ onFilter }) => {
           <div>
             <label htmlFor="min-price">Minimum</label>
             <input
-              type="number"
+              type="text"
               id="min-price"
               value={minPrice}
               onChange={(e) => setMinPrice(e.target.value)}
@@ -57,7 +57,7 @@ const FilterCard = ({ onFilter }) => {
           <div>
             <label htmlFor="max-price">Maximum</label>
             <input
-              type="number"
+              type="text"
               id="max-price"
               value={maxPrice}
               onChange={(e) => setMaxPrice(e.target.value)}

@@ -14,6 +14,12 @@
     font-weight: 400;
 }
 
+.error-text {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
 
 .lsubtitle span{
     color: #FF000F;

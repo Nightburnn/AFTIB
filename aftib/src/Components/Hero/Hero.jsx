@@ -63,23 +63,29 @@ const Hero = () => {
                     <div className="row">
                       <div className="col-lg-8">
                         <div className="intro-body">
-                          <p className="intro-title-top">
-                            {slide.titleTop}
-                            <br /> {slide.zip}
-                          </p>
-                          <h1 className="intro-title mb-4">
-                            <span className="color-b">
-                              {slide.titleNumber}{" "}
-                            </span>
-                            {slide.title}
-                          </h1>
-                          <p className="intro-subtitle intro-price">
-                            <Link>
-                              <span className="price-a">
-                                rent | {slide.price}
-                              </span>
-                            </Link>
-                          </p>
+                          <div className="d-flex justify-content-between align-items-center">
+                            <div>
+                              <p className="intro-title-top">
+                                {slide.titleTop}
+                                <br /> {slide.zip}
+                              </p>
+                              <h1 className="intro-title mb-4">
+                                <span className="color-b">
+                                  {slide.titleNumber}{" "}
+                                </span>
+                                {slide.title}
+                              </h1>
+                              <p className="intro-subtitle intro-price">
+                                <Link>
+                                  <span className="price-a">
+                                    rent | {slide.price}
+                                  </span>
+                                </Link>
+                              </p>
+                            </div>
+                            <div>                     
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>

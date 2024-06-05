@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
-import Swal from 'sweetalert2';
 import apple from '../../assets/images/apple.png';
 import facebook from '../../assets/images/facebook.png';
 import google from '../../assets/images/google.png';
@@ -10,9 +9,17 @@ import './Login.css';
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
 
-    const handleEmailChange = (event) => setEmail(event.target.value);
-    const handlePasswordChange = (event) => setPassword(event.target.value);
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
+        setEmailError(''); 
+    };
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+        setPasswordError(''); 
+    };
 
     const location = useLocation();
 
@@ -29,35 +36,36 @@ const Login = () => {
             const data = response.data;
 
             if (data.success) {
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'You have successfully logged in.',
-                    icon: 'success',
-                    confirmButtonText: 'OK'
-                });
+               
+                console.log('Success!', 'You have successfully logged in.');
             } else {
-                Swal.fire({
-                    title: 'Error!',
-                    text: data.message || 'Login failed. Please check your email and password.',
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                });
+                if (data.error === 'EMAIL_NOT_REGISTERED') {
+                    setEmailError('Email is not registered.');
+                } else if (data.error === 'INCORRECT_PASSWORD') {
+                    setPasswordError('Password is incorrect.');
+                } else {
+                    setEmailError('Login failed. Please check your email and password.');
+                }
             }
         } catch (error) {
             let errorMessage = 'An error occurred. Please try again later.';
             if (error.response) {
                 if (error.response.status === 401) {
-                    errorMessage = 'Unauthorized. Please check your email and password.';
+                    if (error.response.data.error === 'EMAIL_NOT_REGISTERED') {
+                        setEmailError('Email is not registered.');
+                    } else if (error.response.data.error === 'INCORRECT_PASSWORD') {
+                        setPasswordError('Password is incorrect.');
+                    } else {
+                        errorMessage = 'Unauthorized. Please check your email and password.';
+                        setEmailError(errorMessage);
+                    }
                 } else {
                     errorMessage = error.response.data.message || errorMessage;
+                    setEmailError(errorMessage);
                 }
+            } else {
+                setEmailError(errorMessage);
             }
-            Swal.fire({
-                title: 'Error!',
-                text: errorMessage,
-                icon: 'error',
-                confirmButtonText: 'OK'
-            });
             console.error('Login error:', error);
         }
     };
@@ -87,10 +95,12 @@ const Login = () => {
                                     <div className="email r-sign">
                                         <label htmlFor="email">Email</label>
                                         <input type="email" id="email" value={email} onChange={handleEmailChange} required />
+                                        {emailError && <p className="error-text">{emailError}</p>}
                                     </div>
                                     <div className="password r-sign">
                                         <label htmlFor="password">Password</label>
                                         <input type="password" id="password" value={password} onChange={handlePasswordChange} required />
+                                        {passwordError && <p className="error-text">{passwordError}</p>}
                                     </div>
                                     <Link>
                                         <p className='text-end lforgot'>Forgot password ?</p>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './Signup.css';
 import axios from 'axios';
-import Swal from 'sweetalert2';
 import apple from '../../assets/images/apple.png';
 import facebook from '../../assets/images/facebook.png';
 import google from '../../assets/images/google.png';
@@ -14,28 +13,79 @@ const Signup = () => {
   const [mobile, setMobile] = useState('');
   const [countryCode, setCountryCode] = useState('+234');
   const [password, setPassword] = useState('');
+  const [accountTypeError, setAccountTypeError] = useState('');
+  const [nameError, setNameError] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [generalError, setGeneralError] = useState('');
 
-  const handleChange = (event) => setAccountType(event.target.value);
-  const handleNameChange = (event) => setName(event.target.value);
-  const handleEmailChange = (event) => setEmail(event.target.value);
-  const handleMobileChange = (event) => setMobile(event.target.value);
-  const handleCountryCodeChange = (event) => setCountryCode(event.target.value);
-  const handlePasswordChange = (event) => setPassword(event.target.value);
+  const handleChange = (event) => {
+    setAccountType(event.target.value);
+    setAccountTypeError(''); 
+  };
+
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+    setNameError(''); 
+  };
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+    setEmailError(''); 
+    setGeneralError(''); 
+  };
+
+  const handleMobileChange = (event) => {
+    setMobile(event.target.value);
+    // add mobile validation if needed
+  };
+
+  const handleCountryCodeChange = (event) => {
+    setCountryCode(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+    setPasswordError('');
+  };
 
   const location = useLocation();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    let valid = true;
+
+    if (accountType === '' || accountType === 'null') {
+      setAccountTypeError('Please select a valid account type.');
+      valid = false;
+    }
+    if (name.trim() === '') {
+      setNameError('Please enter your name.');
+      valid = false;
+    }
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      setEmailError('Please enter a valid email address.');
+      valid = false;
+    }
+    if (password.length < 6) {
+      setPasswordError('Password must be at least 8 characters long.');
+      valid = false;
+    }
+
+    if (!valid) {
+      return;
+    }
+
     const mobileNumber = `${countryCode}${mobile}`;
     const signupData = {
       email,
       password,
       mobileNumber,
       name,
+      accountType,
       signupType: 'emailAndPassword'
     };
-
-    console.log('Signup data:', signupData);
 
     try {
       const response = await axios.post('http://localhost:8080/auth/signup', signupData, {
@@ -44,37 +94,24 @@ const Signup = () => {
         }
       });
 
-      console.log('Response:', response);
-
       const data = response.data;
 
       if (data.success) {
-        Swal.fire({
-          title: 'Success!',
-          text: 'You have successfully signed up.',
-          icon: 'success',
-          confirmButtonText: 'OK'
-        });
+       
+        window.location.href = '/login';
       } else {
-        Swal.fire({
-          title: 'Error!',
-          text: data.message || 'Signup failed. Please check your details.',
-          icon: 'error',
-          confirmButtonText: 'OK'
-        });
+        setGeneralError(data.message || 'Signup failed. Please check your details.');
       }
     } catch (error) {
       let errorMessage = 'An error occurred. Please try again later.';
       if (error.response) {
-        errorMessage = error.response.data.error || errorMessage;
-        console.error('Error response data:', error.response.data);
+        if (error.response.data.error === 'Email already exists') {
+          setEmailError('Email already exists. Please use a different email.');
+        } else {
+          errorMessage = error.response.data.error || errorMessage;
+          setGeneralError(errorMessage);
+        }
       }
-      Swal.fire({
-        title: 'Error!',
-        text: errorMessage,
-        icon: 'error',
-        confirmButtonText: 'OK'
-      });
       console.error('Signup error:', error);
     }
   };
@@ -110,16 +147,20 @@ const Signup = () => {
                       <option value="Agent">Agent</option>
                       <option value="Property-Owner">Property Owner</option>
                     </select>
+                    {accountTypeError && <p className="error-text">{accountTypeError}</p>}
                   </div>
 
                   <div className="name r-sign">
                     <label htmlFor="name">Name</label>
                     <input type="text" id="name" value={name} onChange={handleNameChange} required />
+                    {nameError && <p className="error-text">{nameError}</p>}
                   </div>
 
                   <div className="email r-sign">
                     <label htmlFor="email">Email</label>
                     <input type="email" id="email" value={email} onChange={handleEmailChange} required />
+                    {emailError && <p className="error-text">{emailError}</p>}
+                    {generalError && <p className="error-text">{generalError}</p>}
                   </div>
 
                   <div className="mobile r-sign">
@@ -152,11 +193,12 @@ const Signup = () => {
                   <div className="password r-sign">
                     <label htmlFor="password">Password</label>
                     <input type="password" id="password" value={password} onChange={handlePasswordChange} required />
+                    {passwordError && <p className="error-text">{passwordError}</p>}
                   </div>
 
                   <div className="r-btn">
                     <button type="submit" className="rsubmit">Submit</button>
-                  </div>
+                  </div>                  
                 </form>
               </div>
 

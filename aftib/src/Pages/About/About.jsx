@@ -95,12 +95,12 @@ const About = () => {
       </div>
 
       <div className="container about-service"><h3 className='text-center'>Our Services</h3>
-        <div className="row justify-center aboutservice">
+        <div className="row justify-center aboutservice text1">
           
           <div className="col-md-3">
           <img src={about1} alt="About Us" className="img-fluid" />
         </div>
-        <div className="col-md-9 align-center">
+        <div className="col-md-9 align-center ">
           <h2 className="mb-1">Real Estate consultancy</h2>
           <p>
           We are the premier destination for acquiring rapidly appreciating land at competitive prices. Our mission is to provide exceptional quality through our property development services. Aftib comprehensive offerings include:
@@ -111,7 +111,7 @@ specialization and expertise in both residential and commercial projects disting
         </div>
         </div>
 
-        <div className="row justify-center aboutservice mt-5">
+        <div className="row justify-center aboutservice text1 mt-5">
         <div className="col-md-9 align-center">
           <h2 className="mb-1">Property Development</h2>
           <p>
@@ -123,11 +123,11 @@ specialization and expertise in both residential and commercial projects disting
         </div>
         </div>
 
-        <div className="row justify-center aboutservice mt-5">
+        <div className="row justify-center aboutservice text1 mt-5">
           <div className="col-md-3">
           <img src={about3} alt="About Us" className="img-fluid" />
         </div>
-        <div className="col-md-9 align-center">
+        <div className="col-md-9 align-center ">
           <h2 className="mb-1">Land Surveying</h2>
           <p>
           We offer a wide range of land and engineering surveying services for both public and private sectors. Our expertise includes Topographical Land Surveys, Building Elevations and Plans, and Boundary Surveys. We ensure the authenticity and security of your land properties, giving you peace of mind for the present and future.
@@ -135,8 +135,8 @@ specialization and expertise in both residential and commercial projects disting
         </div>
         </div>
 
-        <div className="row justify-center aboutservice mt-5">
-        <div className="col-md-9 align-center">
+        <div className="row justify-center aboutservice text1 mt-5">
+        <div className="col-md-9 align-center ">
           <h2 className="mb-1">Real Estate Management</h2>
           <p>
           Your business with us is managed by highly qualified and experienced real estate professionals, including estate surveyors and valuers, all supported by a skilled and efficient administrative and technical team. This comprehensive support ensures the acquisition, oversight, and maintenance of your real estate properties' value.
@@ -148,7 +148,7 @@ Together Everyone Achieves More. Looking for tested and trusted experts to manag
         </div>
         </div>
 
-        <div className="row justify-center aboutservice mt-5">
+        <div className="row justify-center aboutservice text1 mt-5">
           <div className="col-md-3">
           <img src={about5} alt="About Us" className="img-fluid" />
         </div>
