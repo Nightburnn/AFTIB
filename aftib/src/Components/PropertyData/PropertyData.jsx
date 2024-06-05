@@ -72,9 +72,8 @@ export const buyData = [
 
   {
     id: 2,
-    image:
-      "https://images.ctfassets.net/abyiu1tn7a0f/3vTBvQw6GEDHsymU7JL0HB/db64167a9e8e62d3c3577632a99eb394/fully-detached-apartments-for-sale-vgc.jpg",
-    label: "Buy",
+    image: `${process.env.PUBLIC_URL}/images/buy1.png`,
+        label: "Buy",
     type: "Apartment",
     price: "$12,345",
     title: "Golden Urban House For Sell",
@@ -86,8 +85,7 @@ export const buyData = [
 
   {
     id: 3,
-    image:
-      "https://images.ctfassets.net/abyiu1tn7a0f/3vTBvQw6GEDHsymU7JL0HB/db64167a9e8e62d3c3577632a99eb394/fully-detached-apartments-for-sale-vgc.jpg",
+    image: `${process.env.PUBLIC_URL}/images/buy3.png`,
     label: "Buy",
     type: "Apartment",
     price: "$12,345",
@@ -100,8 +98,7 @@ export const buyData = [
 
   {
     id: 4,
-    image:
-      "https://images.ctfassets.net/abyiu1tn7a0f/3vTBvQw6GEDHsymU7JL0HB/db64167a9e8e62d3c3577632a99eb394/fully-detached-apartments-for-sale-vgc.jpg",
+    image: `${process.env.PUBLIC_URL}/images/buy2.png`,
     label: "Buy",
     type: "Apartment",
     price: "$12,345",

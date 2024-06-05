@@ -1,29 +1,16 @@
 import React, { useState } from 'react';
-import { propertyData } from '../../Components/PropertyData/PropertyData';
 import { buyData } from '../../Components/PropertyData/PropertyData';
 import FilterCard from '../../Components/FilterCard/FilterCard';
 import './Buy.css';
 import { Link } from 'react-router-dom';
 
 const Buy = () => {
-  const [activeTab, setActiveTab] = useState('tab-2');
-  const [filteredProperties, setFilteredProperties] = useState(propertyData);
-
-  const handleTabChange = (tabId) => {
-    setActiveTab(tabId);
-    if (tabId === 'tab-1') {
-      setFilteredProperties(propertyData);
-    } else if (tabId === 'tab-2') {
-      setFilteredProperties(buyData);
-    } else if (tabId === 'tab-3') {
-      setFilteredProperties(propertyData);
-    }
-  };
+  const [filteredProperties, setFilteredProperties] = useState(buyData);
 
   const handleFilter = (filters) => {
     const { minPrice, maxPrice, beds, baths } = filters;
     setFilteredProperties(
-      propertyData.filter((property) => {
+      buyData.filter((property) => {
         return (
           (!minPrice || property.price >= minPrice) &&
           (!maxPrice || property.price <= maxPrice) &&
@@ -58,46 +45,16 @@ const Buy = () => {
       <div className="container-xxl py-5">
         <div className="container">
           <div className="row g-0 gx-5 align-items-end">
-          <div className="col-lg-6">
-                            <div className="text-start mx-auto mb-5 d-flex filter">
-                                <p className='me-3'><i className="bi bi-funnel-fill"></i>Filter</p>
-                                <span id='filterNum'>6 Results Found!</span>
-                            </div>
-                        </div>
-                     
+            <div className="col-lg-6">
+              <div className="text-start mx-auto mb-5 d-flex filter">
+                <p className='me-3'><i className="bi bi-funnel-fill"></i>Filter</p>
+                <span id='filterNum'>6 Results Found!</span>
+              </div>
+            </div>
           </div>
 
           <div className="tab-content">
-            <div id="tab-1" className={`tab-pane fade ${activeTab === 'tab-1' ? 'show active' : ''}`} >
-              <div className="row g-4">
-                {filteredProperties.map(property => (
-                  <div key={property.id} className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div className="property-item rounded overflow-hidden">
-                      <div className="position-relative overflow-hidden">
-                        <Link to=""><img className="img-fluid" src={property.image} alt="" /></Link>
-                        <div className="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">{property.label}</div>
-                        <div className="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">{property.type}</div>
-                      </div>
-                      <div className="p-4 pb-0">
-                        <h5 className="text-primary mb-3">{property.price}</h5>
-                        <Link className="d-block h5 mb-2" to="">{property.title}</Link>
-                        <p><i className="fa fa-map-marker-alt text-primary me-2"></i>{property.location}</p>
-                      </div>
-                      <div className="d-flex border-top">
-                        <small className="flex-fill text-center border-end py-2">{property.sqft}</small>
-                        <small className="flex-fill text-center border-end py-2">{property.beds}</small>
-                        <small className="flex-fill text-center py-2">{property.baths}</small>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-                <div className="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
-                  <Link className="btn btn-primary py-3 px-5" to="">Browse More Property</Link>
-                </div>
-              </div>
-            </div>
-
-            <div id="tab-2" className={`tab-pane fade ${activeTab === 'tab-2' ? 'show active' : ''}`}>
+            <div id="tab-2" className={`tab-pane fade show active`}>
               <div className="row g-4">
                 {filteredProperties.map(buy => (
                   <div key={buy.id} className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -116,35 +73,6 @@ const Buy = () => {
                         <small className="flex-fill text-center border-end py-2">{buy.sqft}</small>
                         <small className="flex-fill text-center border-end py-2">{buy.beds}</small>
                         <small className="flex-fill text-center py-2">{buy.baths}</small>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-                <div className="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
-                  <Link className="btn btn-primary py-3 px-5" to="">Browse More Property</Link>
-                </div>
-              </div>
-            </div>
-
-            <div id="tab-3" className={`tab-pane fade ${activeTab === 'tab-3' ? 'show active' : ''}`}>
-              <div className="row g-4">
-                {filteredProperties.map(property => (
-                  <div key={property.id} className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div className="property-item rounded overflow-hidden">
-                      <div className="position-relative overflow-hidden">
-                        <Link to=""><img className="img-fluid" src={property.image} alt="" /></Link>
-                        <div className="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">{property.label}</div>
-                        <div className="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">{property.type}</div>
-                      </div>
-                      <div className="p-4 pb-0">
-                        <h5 className="text-primary mb-3">{property.price}</h5>
-                        <Link className="d-block h5 mb-2" to="">{property.title}</Link>
-                        <p><i className="fa fa-map-marker-alt text-primary me-2"></i>{property.location}</p>
-                      </div>
-                      <div className="d-flex border-top">
-                        <small className="flex-fill text-center border-end py-2">{property.sqft}</small>
-                        <small className="flex-fill text-center border-end py-2">{property.beds}</small>
-                        <small className="flex-fill text-center py-2">{property.baths}</small>
                       </div>
                     </div>
                   </div>
