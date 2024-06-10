@@ -134,7 +134,8 @@ const Footer = () => {
             </div>
           </div>
           <div className="col text-center align-item-end copy">
-            ©Aftib - 2024
+            <strong>
+             ©Aftib Real Estate</strong> - 2024
           </div>
           <div className="col align-item-end ">
             <img src={logo} alt="" width={80} />

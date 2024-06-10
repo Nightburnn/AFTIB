@@ -10,45 +10,111 @@
 .home-title {
  margin-top: 40px;
   text-align: left;
+  background-color: #2b3772;
+  width: 100%;
+padding: 20px;
+border-radius: 10px;
+position: relative;
+
 }
 
 
-
-
-.home-title h5{
-  color: #373737;
-font-size: 27px;
-font-family: 'Lato';
-font-weight: 900;
-margin-bottom: 20px;
+.dropdown {
+  position: relative;
 }
 
-.home-title p{
-  color: rgba(33, 33, 33, 0.797);
-font-size: 23px;
-font-family: 'League Spartan';
-font-weight: 400;
-margin-bottom: 3px;
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  top: 100%;
+  left: 0; 
+  width: 100%; 
 }
 
-.homeBtn {
 
-  border: 2px solid #4517FBCC;
-  color: #4517FB;
-font-size: 20px;
-font-family: 'League Spartan';
-font-weight: 800;
-border-radius: 15px;
-padding-top: 5px;
-padding-bottom: 5px;
-padding-left: 20px;
-padding-right: 20px;
+.dropdown .btn {
+  color: #FFFFFF; 
+  font-family: Arial, sans-serif; 
+  font-size: 16px; 
 }
 
-.homeBtn:hover{
-  background-color: #4517FB;
+.dropdown .btn:hover {
+  color: #fff; 
+}
+
+.dropdown .dropdown-menu .dropdown-item {
+  color: #333; 
+  font-family: Arial, sans-serif; 
+  font-size: 16px;
+}
+
+.dropdown .dropdown-menu .dropdown-item:hover {
+  color: #007bff; 
+}
+
+.options {
+  border-bottom: 1px solid #fff;
+  flex-wrap: wrap;
+}
+
+.option {
+  font-size: 18px;
+  color: #FFFFFF;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.option:hover,
+.option.selected {
+
+  border-bottom: 5px solid #007bff;
+  border-radius: 5px;
+  font-weight: bold;
+ 
+}
+
+
+.dropdown-menu.show {
+  display: block;
   color: #FFFFFF;
 }
+.input-group {
+  display: flex;
+  width: 100%;
+}
+
+.input-group .form-control {
+  border-right: 0;
+  flex: 1;
+}
+
+.input-group-append .btn {
+  border-left: 0;
+  background-color: #FFFFFF;
+  border: none;
+  border-radius: 1px;
+  padding: 10px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.grid-template-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+
+.min{
+  justify-content: space-evenly;
+  color: #FFFFFF;
+}
+
+
 
 
 
@@ -70,6 +136,38 @@ img {
   margin: 0 auto;
 }
 
+
+@media (max-width: 768px) {
+  .d-grid.grid-template-columns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  
+
+  .dropdown .btn {
+    margin-bottom: 10px;
+  }
+
+  .options {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  .option {
+    flex: 1 0 auto;
+    padding: 10px 5px;
+    text-align: center;
+  }
+
+ 
+  .dropdown .dropdown-menu a {
+    white-space: normal;
+  }
+}
+
 @media (max-width: 767.98px) {
  .homecard .col-lg-6 {
     flex: 0 0 100%;
@@ -78,17 +176,11 @@ img {
   }
 
   .home-title {
-    margin-bottom: 0;
+    margin-bottom: 40px;
   }
 
-  .homeBtn {
-   margin-bottom: 40px;
-  }
 
- 
-  .home-title h5{
-    margin-bottom: 5px;
-  }
+
   
 .home-title {
   margin-top: 10px;

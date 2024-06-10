@@ -4,9 +4,12 @@ import axios from 'axios';
 import apple from '../../assets/images/apple.png';
 import facebook from '../../assets/images/facebook.png';
 import google from '../../assets/images/google.png';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../AuthContext';
 
 const Signup = () => {
+  const { login } = useAuth();
+  const navigate = useNavigate();
   const [accountType, setAccountType] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -21,23 +24,22 @@ const Signup = () => {
 
   const handleChange = (event) => {
     setAccountType(event.target.value);
-    setAccountTypeError(''); 
+    setAccountTypeError('');
   };
 
   const handleNameChange = (event) => {
     setName(event.target.value);
-    setNameError(''); 
+    setNameError('');
   };
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
-    setEmailError(''); 
-    setGeneralError(''); 
+    setEmailError('');
+    setGeneralError('');
   };
 
   const handleMobileChange = (event) => {
     setMobile(event.target.value);
-    // add mobile validation if needed
   };
 
   const handleCountryCodeChange = (event) => {
@@ -68,7 +70,7 @@ const Signup = () => {
       setEmailError('Please enter a valid email address.');
       valid = false;
     }
-    if (password.length < 6) {
+    if (password.length < 8) { 
       setPasswordError('Password must be at least 8 characters long.');
       valid = false;
     }
@@ -80,11 +82,13 @@ const Signup = () => {
     const mobileNumber = `${countryCode}${mobile}`;
     const signupData = {
       email,
-      password,
+      hash: password, 
+      signupType: 'emailAndPassword',
       mobileNumber,
       name,
-      accountType,
-      signupType: 'emailAndPassword'
+      userId: '', 
+      verified: false, 
+      accountType
     };
 
     try {
@@ -97,8 +101,8 @@ const Signup = () => {
       const data = response.data;
 
       if (data.success) {
-       
-        window.location.href = '/login';
+        login(data.user); 
+        navigate('/'); 
       } else {
         setGeneralError(data.message || 'Signup failed. Please check your details.');
       }
@@ -123,7 +127,7 @@ const Signup = () => {
           <h4>Register with us to get your account ready</h4>
           <ul>
             <Link to="/sign">
-              <li className={location.pathname === '/sign' ? 'active' : ''}>Sign in</li>
+              <li className={location.pathname === '/sign' ? 'active' : ''}>Register</li>
             </Link>
             <Link to="/login">
               <li className={location.pathname === '/login' ? 'active' : ''}>Login</li>

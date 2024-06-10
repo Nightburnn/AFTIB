@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
 import "./Header.css";
-
+import { useAuth } from "../../AuthContext";
 const Header = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const { isLoggedIn, user, logout } = useAuth();
 
   const handleMobileNavClick = () => {
     setIsNavOpen(!isNavOpen);
@@ -12,6 +13,11 @@ const Header = () => {
 
   const handleNavLinkClick = () => {
     setIsNavOpen(false);
+  };
+
+  const handleLogout = () => {
+    logout();
+    handleNavLinkClick();
   };
 
   return (
@@ -109,11 +115,31 @@ const Header = () => {
                     Help
                   </NavLink>
                 </li>
-                <li className=" ">
-                  <NavLink to="/sign" onClick={handleNavLinkClick}>
-                    <button className="sign-in">Sign in</button>
-                  </NavLink>
-                </li>
+                {isLoggedIn ? (
+                  <>
+                    <li className="nav-item">
+                      <NavLink
+                        className="nav-link"
+                        to="/profile"
+                        activeclassname="active"
+                        onClick={handleNavLinkClick}
+                      >
+                        {user.name}
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <button className="nav-link logout-button" onClick={handleLogout}>
+                        Logout
+                      </button>
+                    </li>
+                  </>
+                ) : (
+                  <li className="">
+                    <NavLink to="/login" onClick={handleNavLinkClick}>
+                      <button className="sign-in">Login</button>
+                    </NavLink>
+                  </li>
+                )}
               </ul>
             </div>
           </div>

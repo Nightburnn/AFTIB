@@ -12,12 +12,15 @@ import Help from './Pages/Help/Help';
 import Footer from './Components/Footer/Footer';
 import Signup from './Pages/Signup/Signup';
 import Login from './Pages/Login/Login';
+import { AuthProvider } from './AuthContext';
+import ProfilePage from './PostPages/Account/ProfilePage';
 
 
 
 function App() {
   return (
-    <Router>
+    <AuthProvider>
+        <Router>
    <Header/>
     <Routes>
       <Route  path="/" Component={Landing}/>
@@ -29,9 +32,12 @@ function App() {
       <Route  path='/help' Component={Help}/>
       <Route path='/sign' Component={Signup}/>
       <Route path='/login' Component={Login}/>
+      <Route path='/profile' Component={ProfilePage}/>
       </Routes>
 <Footer/>
   </Router>
+    </AuthProvider>
+  
   );
 }
 
