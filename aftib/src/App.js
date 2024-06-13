@@ -14,6 +14,7 @@ import Signup from './Pages/Signup/Signup';
 import Login from './Pages/Login/Login';
 import { AuthProvider } from './AuthContext';
 import ProfilePage from './PostPages/Account/ProfilePage';
+import SingleAgentSection from './Pages/Agent/SingleAgentSection';
 
 
 
@@ -33,6 +34,7 @@ function App() {
       <Route path='/sign' Component={Signup}/>
       <Route path='/login' Component={Login}/>
       <Route path='/profile' Component={ProfilePage}/>
+      <Route path="/agent/:id" component={SingleAgentSection} />
       </Routes>
 <Footer/>
   </Router>

@@ -112,15 +112,16 @@ specialization and expertise in both residential and commercial projects disting
         </div>
 
         <div className="row justify-center aboutservice text1 mt-5">
+        <div className="col-md-3">
+          <img src={about2} alt="About Us" className="img-fluid" />
+        </div>
         <div className="col-md-9 align-center">
           <h2 className="mb-1">Property Development</h2>
           <p>
           We are the foremost destination for those seeking rapidly developing land at competitive prices. Our commitment is to provide unparalleled quality through our comprehensive property development services. We pride ourselves on offering exceptional value, ensuring that each client receives the best possible experience and outcomes. Our extensive expertise in the real estate market allows us to deliver tailored solutions that meet the unique needs of our clients, making us a trusted partner in your property investment journey.
           </p>
         </div>
-        <div className="col-md-3">
-          <img src={about2} alt="About Us" className="img-fluid" />
-        </div>
+       
         </div>
 
         <div className="row justify-center aboutservice text1 mt-5">
@@ -136,6 +137,9 @@ specialization and expertise in both residential and commercial projects disting
         </div>
 
         <div className="row justify-center aboutservice text1 mt-5">
+        <div className="col-md-3">
+          <img src={about4} alt="About Us" className="img-fluid" />
+        </div>
         <div className="col-md-9 align-center ">
           <h2 className="mb-1">Real Estate Management</h2>
           <p>
@@ -143,9 +147,7 @@ specialization and expertise in both residential and commercial projects disting
 Together Everyone Achieves More. Looking for tested and trusted experts to manage your real estate property? Our specialists are here to help you maintain and enhance the value of your investments.
           </p>
         </div>
-        <div className="col-md-3">
-          <img src={about4} alt="About Us" className="img-fluid" />
-        </div>
+        
         </div>
 
         <div className="row justify-center aboutservice text1 mt-5">

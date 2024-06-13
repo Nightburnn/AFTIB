@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import './Signup.css';
 import axios from 'axios';
 import apple from '../../assets/images/apple.png';
 import facebook from '../../assets/images/facebook.png';
 import google from '../../assets/images/google.png';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../AuthContext';
+import './Signup.css';
 
 const Signup = () => {
   const { login } = useAuth();
@@ -18,9 +18,9 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   const [accountTypeError, setAccountTypeError] = useState('');
   const [nameError, setNameError] = useState('');
-  const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [generalError, setGeneralError] = useState('');
+  const [serverError, setServerError] = useState('');
 
   const handleChange = (event) => {
     setAccountType(event.target.value);
@@ -34,8 +34,6 @@ const Signup = () => {
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
-    setEmailError('');
-    setGeneralError('');
   };
 
   const handleMobileChange = (event) => {
@@ -66,10 +64,6 @@ const Signup = () => {
       setNameError('Please enter your name.');
       valid = false;
     }
-    if (!/\S+@\S+\.\S+/.test(email)) {
-      setEmailError('Please enter a valid email address.');
-      valid = false;
-    }
     if (password.length < 8) { 
       setPasswordError('Password must be at least 8 characters long.');
       valid = false;
@@ -82,17 +76,15 @@ const Signup = () => {
     const mobileNumber = `${countryCode}${mobile}`;
     const signupData = {
       email,
-      hash: password, 
+      password,  // removed hashing for simplicity
       signupType: 'emailAndPassword',
       mobileNumber,
       name,
-      userId: '', 
-      verified: false, 
       accountType
     };
 
     try {
-      const response = await axios.post('http://localhost:8080/auth/signup', signupData, {
+      const response = await axios.post('https://aftib-6o3h.onrender.com/auth/signup', signupData, {
         headers: {
           'Content-Type': 'application/json'
         }
@@ -101,20 +93,18 @@ const Signup = () => {
       const data = response.data;
 
       if (data.success) {
-        login(data.user); 
-        navigate('/'); 
+        login(data.user);
+        navigate('/');
       } else {
         setGeneralError(data.message || 'Signup failed. Please check your details.');
       }
     } catch (error) {
       let errorMessage = 'An error occurred. Please try again later.';
       if (error.response) {
-        if (error.response.data.error === 'Email already exists') {
-          setEmailError('Email already exists. Please use a different email.');
-        } else {
-          errorMessage = error.response.data.error || errorMessage;
-          setGeneralError(errorMessage);
-        }
+        errorMessage = error.response.data.error || errorMessage;
+        setGeneralError(errorMessage);
+      } else {
+        setServerError('The server is currently down. Please try again later.');
       }
       console.error('Signup error:', error);
     }
@@ -130,7 +120,7 @@ const Signup = () => {
               <li className={location.pathname === '/sign' ? 'active' : ''}>Register</li>
             </Link>
             <Link to="/login">
-              <li className={location.pathname === '/login' ? 'active' : ''}>Login</li>
+              <li className={location.pathname === '/login' ? 'active' : ''}>Sign In</li>
             </Link>
           </ul>
         </div>
@@ -163,7 +153,6 @@ const Signup = () => {
                   <div className="email r-sign">
                     <label htmlFor="email">Email</label>
                     <input type="email" id="email" value={email} onChange={handleEmailChange} required />
-                    {emailError && <p className="error-text">{emailError}</p>}
                     {generalError && <p className="error-text">{generalError}</p>}
                   </div>
 
@@ -202,6 +191,8 @@ const Signup = () => {
 
                   <div className="r-btn">
                     <button type="submit" className="rsubmit">Submit</button>
+                    
+                    {serverError && <p className="error-text">{serverError}</p>}
                   </div>                  
                 </form>
               </div>

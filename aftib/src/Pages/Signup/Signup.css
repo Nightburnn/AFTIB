@@ -78,7 +78,6 @@
   width: 100%;
   border: 1px #c0b6b6 solid;
   border-radius: 15px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   background: #FFF;
   height: 100%;
   padding-top: 20px;
@@ -153,6 +152,8 @@
   padding-bottom: 10px;
   border: 1px #C4C4C4 solid;
   border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .r-form .account select {
@@ -161,6 +162,8 @@
   padding-bottom: 10px;
   border: 1px #C4C4C4 solid;
   border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .r-btn {

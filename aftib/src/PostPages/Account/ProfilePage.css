@@ -4,9 +4,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: none;
+   
   }
   
   .profile-details {
@@ -30,20 +29,140 @@
   
   .profile-info h2 {
     margin: 0;
-    font-size: 1.5rem;
-    color: #333;
+    color: #000;
+    font-family: 'Lato';
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
   }
   
-  .logout-option button {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
+  .logout-option a {
+  text-decoration: none;
+  color: #000;
+font-family: "League Spartan";
+font-size: 20px;
+font-style: normal;
+font-weight: 600;
+   
   }
-  
-  .logout-option button:hover {
-    background-color: #d32f2f;
+  .power-off-icon {
+    color: #000; 
+    font-size: 20px; 
+    margin-right: 10px; 
   }
+  .logout-option a:hover, .power-off-icon:hover {
+   color: #dc3545;
+  }
+
+
+
   
+  @media (max-width: 768px) {
+    .profile-picture {
+      width: 70px;
+      height: 70px;
+     
+      margin-right: 10px;
+    }
+    .profile-info h2 {
+      margin: 0;
+   
+      font-size: 19px;
+    
+     
+    }
+
+    .power-off-icon {
+     
+      font-size: 18px; 
+      margin-right: 5px; 
+    }
+
+    .logout-option a {
+      
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+       
+      }
+
+   
+  }
+
+
+  /*********here******/
+  .nav-link{
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    padding-bottom: 0;
+    margin-bottom: -10px;
+  }
+  .profile-content {
+    background-color: #F5F4F4;
+    padding: 1rem;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  .icon {
+    margin-right: -10px;
+    font-size: 20px;
+  }
+
+
+.profileNav  .nav-item.active .nav-link {
+    background-color: #F5F4F4;
+    border-radius: 0;
+    color: #4517FB;
+padding-left: 20px;
+padding-right: 20px;
+padding-bottom: 10px;
+padding-top: 10px;
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+  }
+
+
+.profileNav ul{
+  padding-left: 40px;
+  padding-right: 40px;
+  text-align: center;
+}
+
+.profileNav ul li a{
+  color: black;
+font-size: 20px;
+font-family: 'League Spartan';
+font-weight: 600;
+}
+
+.icon{
+  margin-right: 10px;
+
+}
+
+
+.mobile-dropdown {
+  display: none;
+ width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border: none;
+  
+  
+  background-color: transparent;
+  text-align: start;
+}
+
+/* Mobile Styles */
+@media (max-width: 989px) {
+  .desktop-menu {
+    display: none;
+  }
+
+  .mobile-dropdown {
+    display: block;
+  }
+}

@@ -31,16 +31,21 @@ const Login = () => {
     event.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8080/auth/login', { email, password }, {
+      const response = await axios.post('https://aftib-6o3h.onrender.com/auth/login', { email, password }, {
         headers: {
           'Content-Type': 'application/json'
+          
         }
       });
 
       const data = response.data;
+     
+        console.log(response.data);
+    
 
       if (data.token) {
-        login(data);
+        login(data.user); 
+        console.log("User data:", data.user);
         navigate('/');
       } else {
         setEmailError('Login failed. Please check your email and password.');
@@ -70,13 +75,13 @@ const Login = () => {
     <>
       <div className="row rrow">
         <div className="rhead">
-          <h4>Welcome</h4>
+          <h4 className='ps-4'>Welcome</h4>
           <ul>
             <Link to="/sign">
               <li className={location.pathname === '/sign' ? 'active' : ''}>Register</li>
             </Link>
             <Link to="/login">
-              <li className={location.pathname === '/login' ? 'active' : ''}>Login</li>
+              <li className={location.pathname === '/login' ? 'active' : ''}>Sign In</li>
             </Link>
           </ul>
         </div>
@@ -102,7 +107,7 @@ const Login = () => {
                     <p className="text-end lforgot">Forgot password ?</p>
                   </Link>
                   <div className="l-btn mb-4">
-                    <button type="submit" className="rsubmit">Login</button>
+                    <button type="submit" className="rsubmit">Sign In</button>
                   </div>
                   <p className="lsubtitle text-center mt-4">
                     By registering you accept our <span>Terms of use</span> and <span>Privacy</span> and agree that we

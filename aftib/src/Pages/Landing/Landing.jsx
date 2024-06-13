@@ -61,7 +61,7 @@ const Landing = () => {
     <>
     <Hero/>
 
-<section className="homecard mt-5">
+<section className="homecard mt-3">
 <div className="container">
   <div className="row">
     <div className="col">
@@ -83,7 +83,7 @@ const Landing = () => {
           <input
             type="text"
             className="form-control"
-            placeholder="Search"
+            placeholder="Search Location"
             aria-label="Search"
           />
           <div className="input-group-append">

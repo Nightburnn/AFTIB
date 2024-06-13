@@ -2,6 +2,7 @@ import React from 'react'
 import agent from '../../assets/images/agent.png'
 import { Link } from 'react-router-dom'
 import './Agent.css'
+import AgentsSection from './AgentsSection'
 const Agent = () => {
   return (
     <> 
@@ -17,7 +18,7 @@ const Agent = () => {
                             </div>
                             <div className="col-md-4">
                                 <select className="form-select border-0 py-3">
-                                    <option selected>Agent Name</option>
+                                    <option selected>Property Type</option>
                                     <option value="1">Property Type 1</option>
                                     <option value="2">Property Type 2</option>
                                     <option value="3">Property Type 3</option>
@@ -61,8 +62,7 @@ const Agent = () => {
             </div>
         </div>
 
-
-
+    <AgentsSection/>
    </main>
     </>
   

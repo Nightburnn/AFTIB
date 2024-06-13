@@ -10,7 +10,7 @@
 .home-title {
  margin-top: 40px;
   text-align: left;
-  background-color: #2b3772;
+  background-color: rgb(13, 34, 139);
   width: 100%;
 padding: 20px;
 border-radius: 10px;
@@ -129,7 +129,7 @@ position: relative;
   text-align: left; 
 }
 
-img {
+ img {
   max-width: 100%;
   height: auto;
   display: block;

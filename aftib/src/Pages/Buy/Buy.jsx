@@ -1,24 +1,27 @@
 import React, { useState } from 'react';
-import { buyData } from '../../Components/PropertyData/PropertyData';
 import FilterCard from '../../Components/FilterCard/FilterCard';
 import './Buy.css';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Buy = () => {
-  const [filteredProperties, setFilteredProperties] = useState(buyData);
+  const [filteredProperties, setFilteredProperties] = useState([]);
+  const [location, setLocation] = useState('');
+  const [searchClicked, setSearchClicked] = useState(false);
 
   const handleFilter = (filters) => {
-    const { minPrice, maxPrice, beds, baths } = filters;
-    setFilteredProperties(
-      buyData.filter((property) => {
-        return (
-          (!minPrice || property.price >= minPrice) &&
-          (!maxPrice || property.price <= maxPrice) &&
-          (beds === 'Any' || property.beds >= parseInt(beds)) &&
-          (baths === 'Any' || property.baths >= parseInt(baths))
-        );
-      })
-    );
+    // Filter logic...
+  };
+
+  const handleSearch = async (e) => {
+    e.preventDefault(); // Prevent default form submission
+    setSearchClicked(true);
+    try {
+      const response = await axios.get(`https://aftib-6o3h.onrender.com/listing/searchListings?location=${location}`);
+      setFilteredProperties(response.data);
+    } catch (error) {
+      console.error('Error fetching listings:', error);
+    }
   };
 
   return (
@@ -27,11 +30,16 @@ const Buy = () => {
         <div className="pListing">
           <h2>Property Listing</h2>
           <div className="p-item">
-            <form action="#" className="plisting-head me-3">
-              <input type="search" placeholder="Search for apartment based on location" />
+            <form onSubmit={handleSearch} className="plisting-head me-3">
+              <input 
+                type="text" 
+                placeholder="Search for apartment based on location" 
+                value={location} 
+                onChange={(e) => setLocation(e.target.value)} 
+              />
               <button type="submit">Search</button>
             </form>
-            <button className='p-btn'>Search</button>
+            <button className='p-btn' onClick={handleSearch}>Search</button>
           </div>
         </div>
       </div>
@@ -46,40 +54,39 @@ const Buy = () => {
         <div className="container">
           <div className="row g-0 gx-5 align-items-end">
             <div className="col-lg-6">
-              <div className="text-start mx-auto mb-5 d-flex filter">
-                <p className='me-3'><i className="bi bi-funnel-fill"></i>Filter</p>
-                <span id='filterNum'>6 Results Found!</span>
-              </div>
+            {searchClicked && (
+                <div className="text-start mx-auto mb-5 d-flex filter">
+                  <p className='me-3'><i className="bi bi-funnel-fill"></i>Filter</p>
+                  <span id='filterNum'>{filteredProperties.length} Results Found!</span>
+                </div>
+              )}
             </div>
           </div>
 
           <div className="tab-content">
             <div id="tab-2" className={`tab-pane fade show active`}>
               <div className="row g-4">
-                {filteredProperties.map(buy => (
-                  <div key={buy.id} className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                {filteredProperties.map(property => (
+                  <div key={property._id} className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div className="property-item rounded overflow-hidden">
                       <div className="position-relative overflow-hidden">
-                        <Link to=""><img className="img-fluid" src={buy.image} alt="" /></Link>
-                        <div className="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">{buy.label}</div>
-                        <div className="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">{buy.type}</div>
+                        <Link to=""><img className="img-fluid" src={property.images[0]} alt="" /></Link>
+                        <div className="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">{property.title}</div>
+                        <div className="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">{property.propertyType}</div>
                       </div>
                       <div className="p-4 pb-0">
-                        <h5 className="text-primary mb-3">{buy.price}</h5>
-                        <Link className="d-block h5 mb-2" to="">{buy.title}</Link>
-                        <p><i className="fa fa-map-marker-alt text-primary me-2"></i>{buy.location}</p>
+                        <h5 className="text-primary mb-3">{property.price}</h5>
+                        <Link className="d-block h5 mb-2" to="">{property.title}</Link>
+                        <p><i className="fa fa-map-marker-alt text-primary me-2"></i>{property.location}</p>
                       </div>
                       <div className="d-flex border-top">
-                        <small className="flex-fill text-center border-end py-2">{buy.sqft}</small>
-                        <small className="flex-fill text-center border-end py-2">{buy.beds}</small>
-                        <small className="flex-fill text-center py-2">{buy.baths}</small>
+                        <small className="flex-fill text-center border-end py-2">{property.size}</small>
+                        <small className="flex-fill text-center border-end py-2">{property.bedrooms} Beds</small>
+                        <small className="flex-fill text-center py-2">{property.bathrooms} Baths</small>
                       </div>
                     </div>
                   </div>
                 ))}
-                <div className="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
-                  <Link className="btn btn-primary py-3 px-5" to="">Browse More Property</Link>
-                </div>
               </div>
             </div>
           </div>

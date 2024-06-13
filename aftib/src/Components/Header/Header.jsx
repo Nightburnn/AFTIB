@@ -1,12 +1,15 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
+import profile from '../../assets/images/profile.png';
 import "./Header.css";
 import { useAuth } from "../../AuthContext";
+import { IoMdArrowDropdown } from "react-icons/io";
+
 const Header = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
-  const { isLoggedIn, user, logout } = useAuth();
-
+  const { isLoggedIn, logout, user } = useAuth(); 
+  console.log("User:", user);
   const handleMobileNavClick = () => {
     setIsNavOpen(!isNavOpen);
   };
@@ -20,12 +23,22 @@ const Header = () => {
     handleNavLinkClick();
   };
 
+  useEffect(() => {
+    const dropdowns = document.querySelectorAll('.dropdown-toggle');
+    dropdowns.forEach(dropdown => {
+      dropdown.addEventListener('click', function() {
+        const dropdownMenu = this.nextElementSibling;
+        dropdownMenu.classList.toggle('show');
+      });
+    });
+  }, []);
+
   return (
     <header className="header_section">
       <div className="container-fluid">
         <nav className="navbar navbar-expand-lg custom_nav-container">
           <NavLink className="navbar-brand" to="/" onClick={handleNavLinkClick}>
-            <img src={logo} alt="" width={80}/>
+            <img src={logo} alt="" width={80} />
           </NavLink>
           <button
             className={`navbar-toggler ${isNavOpen ? "active" : ""}`}
@@ -43,13 +56,13 @@ const Header = () => {
             id="navbarSupportedContent"
           >
             <div className="ml-auto d-flex flex-column flex-lg-row align-items-center">
-              <ul className="navbar-nav">
+            <ul className="navbar-nav">
                 <li className="nav-item">
                   <NavLink
-                    exact="true"
+                    exact={true}
                     className="nav-link"
                     to="/"
-                    activeclassname="active"
+                    activeClassName="active"
                     onClick={handleNavLinkClick}
                   >
                     Home
@@ -59,7 +72,7 @@ const Header = () => {
                   <NavLink
                     className="nav-link"
                     to="/about"
-                    activeclassname="active"
+                    activeClassName="active"
                     onClick={handleNavLinkClick}
                   >
                     About us
@@ -69,7 +82,7 @@ const Header = () => {
                   <NavLink
                     className="nav-link"
                     to="/buy"
-                    activeclassname="active"
+                    activeClassName="active"
                     onClick={handleNavLinkClick}
                   >
                     Buy
@@ -79,7 +92,7 @@ const Header = () => {
                   <NavLink
                     className="nav-link"
                     to="/sell"
-                    activeclassname="active"
+                    activeClassName="active"
                     onClick={handleNavLinkClick}
                   >
                     Sell
@@ -89,7 +102,7 @@ const Header = () => {
                   <NavLink
                     className="nav-link"
                     to="/rent"
-                    activeclassname="active"
+                    activeClassName="active"
                     onClick={handleNavLinkClick}
                   >
                     Rent
@@ -99,7 +112,7 @@ const Header = () => {
                   <NavLink
                     className="nav-link"
                     to="/agent-finder"
-                    activeclassname="active"
+                    activeClassName="active"
                     onClick={handleNavLinkClick}
                   >
                     Agent finder
@@ -109,34 +122,83 @@ const Header = () => {
                   <NavLink
                     className="nav-link"
                     to="/help"
-                    activeclassname="active"
+                    activeClassName="active"
                     onClick={handleNavLinkClick}
                   >
                     Help
                   </NavLink>
                 </li>
-                {isLoggedIn ? (
-                  <>
-                    <li className="nav-item">
-                      <NavLink
-                        className="nav-link"
-                        to="/profile"
-                        activeclassname="active"
-                        onClick={handleNavLinkClick}
-                      >
-                        {user.name}
-                      </NavLink>
-                    </li>
-                    <li className="nav-item">
-                      <button className="nav-link logout-button" onClick={handleLogout}>
-                        Logout
-                      </button>
-                    </li>
-                  </>
-                ) : (
+              </ul>
+              <ul className="navbar-nav">
+                {isLoggedIn && user && ( 
+                  <li className="nav-item dropdown profile-dropdown-toggle">
+                    <img
+                      src={profile}
+                      alt="Profile"
+                      className="profile-image"
+                    />
+                    <Link
+                      className="nav-link dropdown-toggle"
+                      href="#"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      {user.name} <IoMdArrowDropdown className="drop" />
+                    </Link>
+                    <ul className="dropdown-menu">
+                      <li>
+                        <NavLink
+                          className="dropdown-item"
+                          to="/profile#user"
+                          onClick={handleNavLinkClick}
+                        >
+                          Profile
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          className="dropdown-item"
+                          to="/profile#settings"
+                          onClick={handleNavLinkClick}
+                        >
+                          Settings
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          className="dropdown-item"
+                          to="/profile#agent"
+                          onClick={handleNavLinkClick}
+                        >
+                          Agent
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          className="dropdown-item"
+                          to="/profile#help"
+                          onClick={handleNavLinkClick}
+                        >
+                          Help
+                        </NavLink>
+                      </li>
+                      <div className="dropdown-divider"></div>
+                      <li>
+                        <button
+                          className="dropdown-item"
+                          onClick={handleLogout}
+                        >
+                          Logout
+                        </button>
+                      </li>
+                    </ul>
+                  </li>
+                )}
+                {!isLoggedIn && (
                   <li className="">
                     <NavLink to="/login" onClick={handleNavLinkClick}>
-                      <button className="sign-in">Login</button>
+                      <button className="sign-in">Sign In</button>
                     </NavLink>
                   </li>
                 )}
