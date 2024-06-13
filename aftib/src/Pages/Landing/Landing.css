@@ -10,7 +10,7 @@
 .home-title {
  margin-top: 40px;
   text-align: left;
-  background-color: rgb(13, 34, 139);
+  background-color: #4517FB;
   width: 100%;
 padding: 20px;
 border-radius: 10px;
@@ -294,7 +294,7 @@ font-weight: 400;
 }
 
 .landingicon{
-  background-color: #6A46FC;
+  background-color: #4517FB;
  padding-top: 10px;
  padding-bottom: 10px;
  padding-left: 30px;

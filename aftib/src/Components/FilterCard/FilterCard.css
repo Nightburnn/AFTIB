@@ -34,7 +34,7 @@
 }
 
 .filter-button.active {
-  background-color: #0d6efd;
+  background-color: #4517FB;
   color: white;
 }
 
@@ -114,7 +114,7 @@
 
 .bed-options button.active,
 .bath-options button.active {
-  background-color: #0d6efd;
+  background-color: #4517FB;
   color: white;
 }
 
@@ -141,7 +141,7 @@
 }
 
 .apply-button {
-  background-color: #0d6efd;
+  background-color: #4517FB;
   color: white;
   font-size: 14px;
 }

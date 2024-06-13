@@ -7,7 +7,7 @@
 }
 
 .bg-image2 {
-  background-image: url("../../assets/images/about.png");
+  background-image: url("../../assets/images/abouthero.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -15,7 +15,7 @@
 }
 
 .bg-image3 {
-  background-image: url("../../assets/images/about.png");
+  background-image: url("../../assets/images/hero.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
