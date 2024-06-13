@@ -54,6 +54,13 @@ const Signup = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    // Clear previous error messages
+    setAccountTypeError('');
+    setNameError('');
+    setPasswordError('');
+    setGeneralError('');
+    setServerError('');
+
     let valid = true;
 
     if (accountType === '' || accountType === 'null') {
@@ -91,12 +98,13 @@ const Signup = () => {
       });
 
       const data = response.data;
+      console.log('Signup response:', data);  // Debugging log
 
-      if (data.success) {
+      if (data.token && data.user) {
         login(data.user);
         navigate('/');
       } else {
-        setGeneralError(data.message || 'Signup failed. Please check your details.');
+        setGeneralError('Signup failed. Please check your details.');
       }
     } catch (error) {
       let errorMessage = 'An error occurred. Please try again later.';

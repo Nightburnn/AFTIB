@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 import profile from '../../assets/images/profile.png';
 import User from './User';
 import Setting from './Setting';
+import AgentSetting from '../AgentPage/Setting';
+import AgentUser from '../AgentPage/User';
 import Agent from './Agent';
 import Help from './Help';
 import { useAuth } from '../../AuthContext';
@@ -18,6 +20,35 @@ const ProfilePage = () => {
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
+  };
+
+  // Function to render components based on account type
+  const renderBasedOnAccountType = () => {
+    if (user) {
+      switch (user.accountType) {
+        case 'Client':
+          return (
+            <>
+              {activeTab === 'user' && <User />}
+              {activeTab === 'settings' && <Setting />}
+              {activeTab === 'help' && <Help />}
+            </>
+          );
+        case 'Agent':
+          return (
+            <>
+            {activeTab === 'user' && <AgentUser />}
+              {activeTab === 'agent' && <Agent />}
+              {activeTab === 'settings' && <AgentSetting />}
+              {activeTab === 'help' && <Help />}
+            </>
+          );
+        // Add cases for other account types if needed
+        default:
+          return null;
+      }
+    }
+    return null; // Render nothing if user is not authenticated
   };
 
   return (
@@ -83,10 +114,7 @@ const ProfilePage = () => {
         </nav>
 
         <div className="profile-content">
-          {activeTab === 'user' && <User />}
-          {activeTab === 'settings' && <Setting />}
-          {activeTab === 'agent' && <Agent />}
-          {activeTab === 'help' && <Help />}
+          {renderBasedOnAccountType()}
         </div>
       </div>
     </div>

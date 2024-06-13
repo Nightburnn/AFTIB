@@ -131,7 +131,7 @@ const Header = () => {
               </ul>
               <ul className="navbar-nav">
                 {isLoggedIn && user && ( 
-                  <li className="nav-item dropdown profile-dropdown-toggle">
+                  <li className="nav-item dropdown profile-dropdown-toggle ">
                     <img
                       src={profile}
                       alt="Profile"

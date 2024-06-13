@@ -211,7 +211,7 @@ margin-right: -15px;
   font-size: 30px;
  margin: 0;
  color: #000;
- margin-left: -8px;
+ margin-left: 4px;
 }
 
 .dropdown-menu{
@@ -230,4 +230,10 @@ margin-right: -15px;
   color: #4517fb59;
   text-decoration: none;
   background-color: #fff; 
+}
+
+@media (max-width: 760px) {
+  .drop{
+    margin-left: 10px;
+  }
 }

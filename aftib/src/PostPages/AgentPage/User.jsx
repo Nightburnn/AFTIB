@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import './User.css';
+import '../Account/User.css';
 import { useAuth } from '../../AuthContext';
-const User = () => {
+
+
+const AgentUser = () => {
   const { user, login } = useAuth(); // Use useAuth hook to access user data and login function
   const [userProfile, setUserProfile] = useState(user || {}); // Initialize state with user from AuthContext
 
@@ -35,7 +37,7 @@ const User = () => {
     <div className="user-form-container">
       <form onSubmit={handleSave}>
         <div className="form-row">
-          <div className="form-group col-md-6">
+          <div className="form-group col-md-4">
             <label htmlFor="fullName">Full Name</label>
             <input
               type="text"
@@ -46,7 +48,7 @@ const User = () => {
               onChange={handleChange}
             />
           </div>
-          <div className="form-group col-md-6">
+          <div className="form-group col-md-4">
             <label htmlFor="email">Email</label>
             <input
               type="email"
@@ -57,6 +59,20 @@ const User = () => {
               onChange={handleChange}
               disabled // Assuming email should not be editable in this form
             />
+          </div>
+
+
+          <div className="form-group col-md-4">
+            <label htmlFor="role">Role</label>
+            <select
+              id="role"
+              className="form-control"
+              value={userProfile.profession}
+              onChange={handleChange}
+            >
+              <option value="real">Real Estate Agent</option>
+              <option value="Disabled">Disabled</option>
+            </select>
           </div>
         </div>
 
@@ -123,6 +139,31 @@ const User = () => {
           </div>
         </div>
 
+        <div className="form-row">
+        <div className="form-group col-md-4">
+            <label htmlFor="landmark">Real Estate Agent License</label>
+            <input
+              type="text"
+              className="form-control"
+              id="landmark" // Assuming 'landmark' matches the key in user profile
+              placeholder="Landmark"
+              value={userProfile.landmark || ''}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group col-md-8">
+            <label htmlFor="address">License Number</label>
+            <input
+              type="text"
+              className="form-control"
+              id="address" // Assuming 'address' matches the key in user profile
+              placeholder="Address"
+              value={userProfile.address || ''}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+
         <div className="save">
           <button type="submit" className="btn btn-primary">
             Save and Continue
@@ -133,4 +174,4 @@ const User = () => {
   );
 };
 
-export default User;
+export default AgentUser;

@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
-import './Setting.css';
-import { Link } from 'react-router-dom';
-import { useAuth } from '../../AuthContext'; // Update the path to your AuthContext file
+import '.././Account/Setting.css';
+import { useAuth } from '../../AuthContext'; 
 
-const Setting = () => {
-  const { user } = useAuth(); // Fetch authenticated user from context
+const AgentSetting = () => {
+  const { user } = useAuth(); 
 
-  // Initialize settings state with default values
+ 
   const [settings, setSettings] = useState({
     accountType: user ? user.accountType : '',
     changePassword: '',
-    language: 'English', // Set default language to English
+    language: 'English', 
     country: '',
     state: '',
-    notification: 'On', // Set default notification to Email
-    location: 'Disabled', // Set default location to Disabled
+    notification: 'On', 
+    location: 'Disabled', 
+    profession: 'home'
   });
 
   // Handle changes in form inputs
@@ -135,6 +135,19 @@ const Setting = () => {
               <option value="Disabled">Disabled</option>
             </select>
           </div>
+
+          <div className="form-group col-md-4">
+            <label htmlFor="profession">Profession Category</label>
+            <select
+              id="profession"
+              className="form-control"
+              value={settings.profession}
+              onChange={handleChange}
+            >
+              <option value="home">Home Inspector</option>
+              <option value="Disabled">Disabled</option>
+            </select>
+          </div>
         </div>
 
         <div className="save">
@@ -147,4 +160,4 @@ const Setting = () => {
   );
 };
 
-export default Setting;
+export default AgentSetting;
