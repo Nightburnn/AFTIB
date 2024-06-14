@@ -34,17 +34,15 @@ const Login = () => {
       const response = await axios.post('https://aftib-6o3h.onrender.com/auth/login', { email, password }, {
         headers: {
           'Content-Type': 'application/json'
-          
         }
       });
 
       const data = response.data;
-     
-        console.log(response.data);
-    
+
+      console.log(response.data);
 
       if (data.token) {
-        login(data.user); 
+        login(data.user);
         console.log("User data:", data.user);
         navigate('/');
       } else {
@@ -61,13 +59,14 @@ const Login = () => {
           } else {
             setEmailError('Unauthorized. Please check your email and password.');
           }
+        } else if (error.response.status === 404) {
+          setEmailError('Email has not been Registered');
         } else {
-          setEmailError('An error occurred. Please try again later.');
+          console.error('An unexpected error occurred:', error.response);
         }
       } else {
-        setEmailError('An error occurred. Please try again later.');
+        console.error('An unexpected error occurred:', error);
       }
-      console.error('Login error:', error);
     }
   };
 
