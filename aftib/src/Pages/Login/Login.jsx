@@ -30,8 +30,11 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    // Normalize email to lowercase
+    const normalizedEmail = email.trim().toLowerCase();
+
     try {
-      const response = await axios.post('https://aftib-6o3h.onrender.com/auth/login', { email, password }, {
+      const response = await axios.post('https://aftib-6o3h.onrender.com/auth/login', { email: normalizedEmail, password }, {
         headers: {
           'Content-Type': 'application/json'
         }

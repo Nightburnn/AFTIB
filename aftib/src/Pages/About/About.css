@@ -1,4 +1,3 @@
-/* Ensure the parent container is positioned correctly */
 .bg-image {
   position: relative;
   background-image: url("../../assets/images/abouthero.png");
@@ -11,7 +10,7 @@
   flex-direction: column;
   justify-content: start;
   text-align: center;
-  overflow: hidden; /* Hide overflow */
+  overflow: hidden; 
 }
 
 .about-title {

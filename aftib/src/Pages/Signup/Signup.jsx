@@ -80,9 +80,11 @@ const Signup = () => {
       return;
     }
 
+    // Normalize email to lowercase
+    const normalizedEmail = email.trim().toLowerCase();
     const mobileNumber = `${countryCode}${mobile}`;
     const signupData = {
-      email,
+      email: normalizedEmail,
       password,  // removed hashing for simplicity
       signupType: 'emailAndPassword',
       mobileNumber,
