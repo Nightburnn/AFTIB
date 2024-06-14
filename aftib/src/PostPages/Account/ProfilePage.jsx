@@ -24,7 +24,7 @@ const ProfilePage = () => {
 
   // Function to render components based on account type
   const renderBasedOnAccountType = () => {
-    if (user) {
+    if (user && user.accountType) {
       switch (user.accountType) {
         case 'Client':
           return (
@@ -37,7 +37,7 @@ const ProfilePage = () => {
         case 'Agent':
           return (
             <>
-            {activeTab === 'user' && <AgentUser />}
+              {activeTab === 'user' && <AgentUser />}
               {activeTab === 'agent' && <Agent />}
               {activeTab === 'settings' && <AgentSetting />}
               {activeTab === 'help' && <Help />}
@@ -84,7 +84,7 @@ const ProfilePage = () => {
               <ul className="navbar-nav justify-content-between w-100 desktop-menu">
                 <li className={`nav-item ${activeTab === 'user' ? 'active' : ''}`}>
                   <a className="nav-link" href="#user" onClick={() => handleTabChange('user')}>
-                    <BsPersonFill className='icon'/>User
+                    <BsPersonFill className='icon'/>{user && user.accountType === 'Agent' ? 'Agent' : 'User'}
                   </a>
                 </li>
                 <li className={`nav-item ${activeTab === 'settings' ? 'active' : ''}`}>
@@ -94,7 +94,7 @@ const ProfilePage = () => {
                 </li>
                 <li className={`nav-item ${activeTab === 'agent' ? 'active' : ''}`}>
                   <a className="nav-link" href="#agent" onClick={() => handleTabChange('agent')}>
-                    <FaEnvelopesBulk className='icon'/>Your Agent
+                    <FaEnvelopesBulk className='icon'/>{user && user.accountType === 'Agent' ? 'Your Client' : 'Your Agent'}
                   </a>
                 </li>
                 <li className={`nav-item ${activeTab === 'help' ? 'active' : ''}`}>
@@ -104,9 +104,9 @@ const ProfilePage = () => {
                 </li>
               </ul>
               <select className="mobile-dropdown" value={activeTab} onChange={(e) => handleTabChange(e.target.value)}>
-                <option value="user">User</option>
+                <option value="user">{user && user.accountType === 'Agent' ? 'Agent' : 'User'}</option>
                 <option value="settings">Settings</option>
-                <option value="agent">Your Agent</option>
+                <option value="agent">{user && user.accountType === 'Agent' ? 'Your Client' : 'Your Agent'}</option>
                 <option value="help">Help</option>
               </select>
             </div>

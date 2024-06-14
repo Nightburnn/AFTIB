@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import '../Account/User.css';
 import { useAuth } from '../../AuthContext';
 
+const specialties = [
+  'Buyers Agent', 'Consulting', 'Insurance', 'Vacation', 'Staging',
+  'Relocation', 'Moving', 'Listing Agent', 'Property Management', 'Other'
+];
 
 const AgentUser = () => {
-  const { user, login } = useAuth(); // Use useAuth hook to access user data and login function
-  const [userProfile, setUserProfile] = useState(user || {}); // Initialize state with user from AuthContext
+  const { user, login } = useAuth();
+  const [userProfile, setUserProfile] = useState(user || {});
 
-  // Handle changes in form inputs
   const handleChange = (e) => {
     const { id, value } = e.target;
     setUserProfile((prevProfile) => ({
@@ -16,21 +19,25 @@ const AgentUser = () => {
     }));
   };
 
-  // Handle form submission (save changes)
+  const handleCheckboxChange = (e) => {
+    const { name, checked } = e.target;
+    setUserProfile((prevProfile) => ({
+      ...prevProfile,
+      specialties: {
+        ...prevProfile.specialties,
+        [name]: checked,
+      },
+    }));
+  };
+
   const handleSave = (e) => {
     e.preventDefault();
-    // Simulate saving changes - you can replace this with actual API call
     console.log('Saving user profile:', userProfile);
-    // Update userProfile state or send API request to save changes
-
-    // Assuming you have an API call to update user profile, you can update user context
-    // For simulation, update context directly
     login(userProfile);
   };
 
-  // Check if user is null or undefined before accessing user.name
   if (!user) {
-    return <div>Loading...</div>; // Replace with your loading indicator or logic
+    return <div>Loading...</div>;
   }
 
   return (
@@ -38,11 +45,11 @@ const AgentUser = () => {
       <form onSubmit={handleSave}>
         <div className="form-row">
           <div className="form-group col-md-4">
-            <label htmlFor="fullName">Full Name</label>
+            <label htmlFor="name">Full Name</label>
             <input
               type="text"
               className="form-control"
-              id="name" // Assuming 'name' matches the key in user profile
+              id="name"
               placeholder="Full Name"
               value={userProfile.name || ''}
               onChange={handleChange}
@@ -53,15 +60,13 @@ const AgentUser = () => {
             <input
               type="email"
               className="form-control"
-              id="email" // Assuming 'email' matches the key in user profile
+              id="email"
               placeholder="Email"
               value={userProfile.email || ''}
               onChange={handleChange}
-              disabled // Assuming email should not be editable in this form
+              disabled
             />
           </div>
-
-
           <div className="form-group col-md-4">
             <label htmlFor="role">Role</label>
             <select
@@ -82,16 +87,16 @@ const AgentUser = () => {
             <input
               type="text"
               className="form-control"
-              id="phoneNumber" // Assuming 'phoneNumber' matches the key in user profile
+              id="phoneNumber"
               placeholder="Phone Number"
-              value={userProfile.mobileNumber || ''}
+              value={userProfile.phoneNumber || ''}
               onChange={handleChange}
             />
           </div>
           <div className="form-group col-md-4">
             <label htmlFor="gender">Gender</label>
             <select
-              id="gender" // Assuming 'gender' matches the key in user profile
+              id="gender"
               className="form-control"
               value={userProfile.gender || ''}
               onChange={handleChange}
@@ -107,7 +112,7 @@ const AgentUser = () => {
             <input
               type="date"
               className="form-control"
-              id="dob" // Assuming 'dob' matches the key in user profile
+              id="dob"
               value={userProfile.dob || ''}
               onChange={handleChange}
             />
@@ -120,7 +125,7 @@ const AgentUser = () => {
             <input
               type="text"
               className="form-control"
-              id="address" // Assuming 'address' matches the key in user profile
+              id="address"
               placeholder="Address"
               value={userProfile.address || ''}
               onChange={handleChange}
@@ -131,7 +136,7 @@ const AgentUser = () => {
             <input
               type="text"
               className="form-control"
-              id="landmark" // Assuming 'landmark' matches the key in user profile
+              id="landmark"
               placeholder="Landmark"
               value={userProfile.landmark || ''}
               onChange={handleChange}
@@ -140,25 +145,100 @@ const AgentUser = () => {
         </div>
 
         <div className="form-row">
-        <div className="form-group col-md-4">
-            <label htmlFor="landmark">Real Estate Agent License</label>
+          <div className="form-group col-md-4">
+            <label htmlFor="license">Real Estate Agent License</label>
             <input
               type="text"
               className="form-control"
-              id="landmark" // Assuming 'landmark' matches the key in user profile
-              placeholder="Landmark"
-              value={userProfile.landmark || ''}
+              id="license"
+              placeholder="License"
+              value={userProfile.license || ''}
               onChange={handleChange}
             />
           </div>
-          <div className="form-group col-md-8">
-            <label htmlFor="address">License Number</label>
+          <div className="form-group col-md-4">
+            <label htmlFor="licenseNumber">License Number</label>
             <input
               type="text"
               className="form-control"
-              id="address" // Assuming 'address' matches the key in user profile
-              placeholder="Address"
-              value={userProfile.address || ''}
+              id="licenseNumber"
+              placeholder="License Number"
+              value={userProfile.licenseNumber || ''}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group col-md-4">
+            <label htmlFor="expdate">License Expiration Date</label>
+            <input
+              type="date"
+              className="form-control"
+              id="expdate"
+              value={userProfile.expdate || ''}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+
+        <div className="form-row">
+          <div className="form-group col-md-12 ">
+            <label>Agent Specialties</label>
+            <div className="specialties-grid mt-2">
+              {specialties.map((specialty, index) => (
+                <div className="form-check" key={index}>
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    name={specialty}
+                    id={specialty}
+                    checked={userProfile.specialties?.[specialty] || false}
+                    onChange={handleCheckboxChange}
+                  />
+                  <span className="form-check-label checkLabel" htmlFor={specialty}>
+                    {specialty}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="form-row">
+          <div className="form-group col-md-12 d-flex align-items-center">
+            <label htmlFor="facebook" className="col-form-label me-4">Facebook</label>
+            <input
+              type="text"
+              className="form-control"
+              id="facebook"
+              placeholder="Facebook Account"
+              value={userProfile.facebook || ''}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+
+        <div className="form-row">
+          <div className="form-group col-md-12 d-flex align-items-center">
+            <label htmlFor="instagram" className="col-form-label me-4">Instagram</label>
+            <input
+              type="text"
+              className="form-control"
+              id="instagram"
+              placeholder="Instagram Account"
+              value={userProfile.instagram || ''}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+
+        <div className="form-row">
+          <div className="form-group col-md-12 d-flex align-items-center">
+            <label htmlFor="twitter" className="col-form-label me-5">Twitter</label>
+            <input
+              type="text"
+              className="form-control"
+              id="twitter"
+              placeholder="Twitter Account"
+              value={userProfile.twitter || ''}
               onChange={handleChange}
             />
           </div>
