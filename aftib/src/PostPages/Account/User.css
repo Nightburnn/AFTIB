@@ -95,16 +95,16 @@ font-weight: 700;
 
   @media screen and (max-width: 768px) {
     .specialties-grid {
-      grid-template-columns: repeat(2, 1fr); /* Change to 2 columns for smaller screens */
-      gap: 5px; /* Reduce gap for smaller screens */
+      grid-template-columns: repeat(2, 1fr); 
+      gap: 5px; 
     }
   }
 
   @media screen and (max-width: 400px) {
     .specialties-grid {
-      grid-template-columns: repeat(1, 1fr); /* Single column layout for very small screens */
-      gap: 5px; /* Adjust gap as needed for smaller screens */
-      justify-items: start; /* Center align items */
+      grid-template-columns: repeat(1, 1fr); 
+      gap: 5px;
+      justify-items: start;
    align-items: center;
 
     }

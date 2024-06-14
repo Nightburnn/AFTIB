@@ -15,6 +15,7 @@ import Login from './Pages/Login/Login';
 import { AuthProvider } from './AuthContext';
 import ProfilePage from './PostPages/Account/ProfilePage';
 import SingleAgentSection from './Pages/Agent/SingleAgentSection';
+import User from './PostPages/Account/User';
 
 
 

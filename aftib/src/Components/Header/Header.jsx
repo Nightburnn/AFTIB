@@ -150,7 +150,7 @@ const Header = () => {
                       <li>
                         <NavLink
                           className="dropdown-item"
-                          to="/profile#user"
+                          to="/profile"
                           onClick={handleNavLinkClick}
                         >
                           Profile

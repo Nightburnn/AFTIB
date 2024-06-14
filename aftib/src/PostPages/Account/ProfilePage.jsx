@@ -20,8 +20,12 @@ const ProfilePage = () => {
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
+    // Optionally, scroll to the corresponding section
+    const element = document.getElementById(tab);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
-
   // Function to render components based on account type
   const renderBasedOnAccountType = () => {
     if (user && user.accountType) {
@@ -62,6 +66,7 @@ const ProfilePage = () => {
                   <img src={user.profilePicture} alt="Profile" />
                 ) : (
                   <img src={profile} alt="Default Profile" />
+                 
                 )}
               </div>
               <div className="profile-info">
@@ -83,24 +88,24 @@ const ProfilePage = () => {
             <div className="d-flex flex-grow-1 justify-content-end align-items-center" id="navbarSupportedContent">
               <ul className="navbar-nav justify-content-between w-100 desktop-menu">
                 <li className={`nav-item ${activeTab === 'user' ? 'active' : ''}`}>
-                  <a className="nav-link" href="#user" onClick={() => handleTabChange('user')}>
+                  <Link to="#user" className="nav-link"  onClick={() => handleTabChange('user')}>
                     <BsPersonFill className='icon'/>{user && user.accountType === 'Agent' ? 'Agent' : 'User'}
-                  </a>
+                  </Link>
                 </li>
                 <li className={`nav-item ${activeTab === 'settings' ? 'active' : ''}`}>
-                  <a className="nav-link" href="#settings" onClick={() => handleTabChange('settings')}>
+                  <Link className="nav-link" to="#settings" onClick={() => handleTabChange('settings')}>
                     <FaWrench className='icon'/>Settings
-                  </a>
+                  </Link>
                 </li>
                 <li className={`nav-item ${activeTab === 'agent' ? 'active' : ''}`}>
-                  <a className="nav-link" href="#agent" onClick={() => handleTabChange('agent')}>
+                  <Link className="nav-link" to="#agent" onClick={() => handleTabChange('agent')}>
                     <FaEnvelopesBulk className='icon'/>{user && user.accountType === 'Agent' ? 'Your Client' : 'Your Agent'}
-                  </a>
+                  </Link>
                 </li>
                 <li className={`nav-item ${activeTab === 'help' ? 'active' : ''}`}>
-                  <a className="nav-link" href="#help" onClick={() => handleTabChange('help')}>
+                  <Link className="nav-link" to="#help" onClick={() => handleTabChange('help')}>
                     <MdHelp className='icon'/>Help
-                  </a>
+                  </Link>
                 </li>
               </ul>
               <select className="mobile-dropdown" value={activeTab} onChange={(e) => handleTabChange(e.target.value)}>
