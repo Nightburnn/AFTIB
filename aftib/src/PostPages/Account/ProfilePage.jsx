@@ -10,7 +10,7 @@ import User from './User';
 import Setting from './Setting';
 import AgentSetting from '../AgentPage/Setting';
 import AgentUser from '../AgentPage/User';
-import UserAgent from "./UserAgent"
+import UserAgent from "./UserAgent";
 import Agent from './Agent';
 import Help from './Help';
 import { useAuth } from '../../AuthContext';
@@ -21,13 +21,12 @@ const ProfilePage = () => {
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
-    // Optionally, scroll to the corresponding section
     const element = document.getElementById(tab);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
-  // Function to render components based on account type
+
   const renderBasedOnAccountType = () => {
     if (user && user.accountType) {
       switch (user.accountType) {
@@ -49,12 +48,20 @@ const ProfilePage = () => {
               {activeTab === 'help' && <Help />}
             </>
           );
-        // Add cases for other account types if needed
+        case 'admin':
+          return (
+            <>
+              {activeTab === 'user' && <AgentUser />} 
+              {activeTab === 'agent' && <Agent />} 
+              {activeTab === 'settings' && <AgentSetting />} 
+              {activeTab === 'help' && <Help />}
+            </>
+          );
         default:
           return null;
       }
     }
-    return null; // Render nothing if user is not authenticated
+    return null;
   };
 
   return (
@@ -68,7 +75,6 @@ const ProfilePage = () => {
                   <img src={user.profilePicture} alt="Profile" />
                 ) : (
                   <img src={profile} alt="Default Profile" />
-                 
                 )}
               </div>
               <div className="profile-info">
@@ -79,7 +85,7 @@ const ProfilePage = () => {
           {user && (
             <div className="logout-option">
               <Link onClick={logout}>
-                <FaPowerOff className="power-off-icon"/> 
+                <FaPowerOff className="power-off-icon" />
                 Logout
               </Link>
             </div>
@@ -90,36 +96,39 @@ const ProfilePage = () => {
             <div className="d-flex flex-grow-1 justify-content-end align-items-center" id="navbarSupportedContent">
               <ul className="navbar-nav justify-content-between w-100 desktop-menu">
                 <li className={`nav-item ${activeTab === 'user' ? 'active' : ''}`}>
-                  <Link to="#user" className="nav-link"  onClick={() => handleTabChange('user')}>
-                    <BsPersonFill className='icon'/>{user && user.accountType === 'Agent' ? 'Agent' : 'User'}
+                  <Link to="#user" className="nav-link" onClick={() => handleTabChange('user')}>
+                    <BsPersonFill className='icon' />
+                    {user && user.accountType === 'Agent' ? 'Agent' : user && user.accountType === 'Admin' ? 'Admin' : 'User'}
                   </Link>
                 </li>
                 <li className={`nav-item ${activeTab === 'settings' ? 'active' : ''}`}>
                   <Link className="nav-link" to="#settings" onClick={() => handleTabChange('settings')}>
-                    <FaWrench className='icon'/>Settings
+                    <FaWrench className='icon' />
+                    Settings
                   </Link>
                 </li>
                 <li className={`nav-item ${activeTab === 'agent' ? 'active' : ''}`}>
                   <Link className="nav-link" to="#agent" onClick={() => handleTabChange('agent')}>
-                    <FaEnvelopesBulk className='icon'/>{user && user.accountType === 'Agent' ? 'Your Client' : 'Your Agent'}
+                    <FaEnvelopesBulk className='icon' />
+                    {user && user.accountType === 'Agent' ? 'Your Client' : user && user.accountType === 'Admin' ? 'Admin Settings' : 'Your Agent'}
                   </Link>
                 </li>
                 <li className={`nav-item ${activeTab === 'help' ? 'active' : ''}`}>
                   <Link className="nav-link" to="#help" onClick={() => handleTabChange('help')}>
-                    <MdHelp className='icon'/>Help
+                    <MdHelp className='icon' />
+                    Help
                   </Link>
                 </li>
               </ul>
               <select className="mobile-dropdown" value={activeTab} onChange={(e) => handleTabChange(e.target.value)}>
-                <option value="user">{user && user.accountType === 'Agent' ? 'Agent' : 'User'}</option>
+                <option value="user">{user && user.accountType === 'Agent' ? 'Agent' : user && user.accountType === 'admin' ? 'admin' : 'User'}</option>
                 <option value="settings">Settings</option>
-                <option value="agent">{user && user.accountType === 'Agent' ? 'Your Client' : 'Your Agent'}</option>
+                <option value="agent">{user && user.accountType === 'Agent' ? 'Your Client' : user && user.accountType === 'admin' ? 'Admin Settings' : 'Your Agent'}</option>
                 <option value="help">Help</option>
               </select>
             </div>
           </div>
         </nav>
-
         <div className="profile-content">
           {renderBasedOnAccountType()}
         </div>

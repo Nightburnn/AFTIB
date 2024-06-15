@@ -100,7 +100,7 @@ const Header = () => {
                         activeClassName="active"
                         onClick={handleNavLinkClick}
                       >
-                        Listing
+                        List
                       </NavLink>
                     </li>
                     <li className="nav-item">
@@ -111,6 +111,29 @@ const Header = () => {
                         onClick={handleNavLinkClick}
                       >
                         Inbox
+                      </NavLink>
+                    </li>
+                  </>
+                ) : isLoggedIn && user && user.accountType === 'admin' ? (
+                  <>
+                    <li className="nav-item">
+                      <NavLink
+                        className="nav-link"
+                        to="/admin-dashboard"
+                        activeClassName="active"
+                        onClick={handleNavLinkClick}
+                      >
+                        Dashboard
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink
+                        className="nav-link"
+                        to="/admin-users"
+                        activeClassName="active"
+                        onClick={handleNavLinkClick}
+                      >
+                        Manage Users
                       </NavLink>
                     </li>
                   </>
