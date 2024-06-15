@@ -30,7 +30,7 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Normalize email to lowercase
+   
     const normalizedEmail = email.trim().toLowerCase();
 
     try {

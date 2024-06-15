@@ -8,8 +8,8 @@ import { IoMdArrowDropdown } from "react-icons/io";
 
 const Header = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
-  const { isLoggedIn, logout, user } = useAuth(); 
-  console.log("User:", user);
+  const { isLoggedIn, logout, user } = useAuth();
+
   const handleMobileNavClick = () => {
     setIsNavOpen(!isNavOpen);
   };
@@ -33,6 +33,11 @@ const Header = () => {
     });
   }, []);
 
+  // Debugging logs
+  console.log("isLoggedIn:", isLoggedIn);
+  console.log("user:", user);
+  console.log("user.accountType:", user ? user.accountType : "No user");
+
   return (
     <header className="header_section">
       <div className="container-fluid">
@@ -50,13 +55,11 @@ const Header = () => {
             </span>
           </button>
           <div
-            className={`collapse navbar-collapse justify-content-end ${
-              isNavOpen ? "show" : ""
-            }`}
+            className={`collapse navbar-collapse justify-content-end ${isNavOpen ? "show" : ""}`}
             id="navbarSupportedContent"
           >
             <div className="ml-auto d-flex flex-column flex-lg-row align-items-center">
-            <ul className="navbar-nav">
+              <ul className="navbar-nav">
                 <li className="nav-item">
                   <NavLink
                     exact={true}
@@ -88,16 +91,53 @@ const Header = () => {
                     Buy
                   </NavLink>
                 </li>
-                <li className="nav-item">
-                  <NavLink
-                    className="nav-link"
-                    to="/sell"
-                    activeClassName="active"
-                    onClick={handleNavLinkClick}
-                  >
-                    Sell
-                  </NavLink>
-                </li>
+                {isLoggedIn && user && user.accountType === 'Agent' ? (
+                  <>
+                    <li className="nav-item">
+                      <NavLink
+                        className="nav-link"
+                        to="/list"
+                        activeClassName="active"
+                        onClick={handleNavLinkClick}
+                      >
+                        Listing
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink
+                        className="nav-link"
+                        to="/inbox"
+                        activeClassName="active"
+                        onClick={handleNavLinkClick}
+                      >
+                        Inbox
+                      </NavLink>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li className="nav-item">
+                      <NavLink
+                        className="nav-link"
+                        to="/sell"
+                        activeClassName="active"
+                        onClick={handleNavLinkClick}
+                      >
+                        Sell
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink
+                        className="nav-link"
+                        to="/agent-finder"
+                        activeClassName="active"
+                        onClick={handleNavLinkClick}
+                      >
+                        Agent finder
+                      </NavLink>
+                    </li>
+                  </>
+                )}
                 <li className="nav-item">
                   <NavLink
                     className="nav-link"
@@ -106,16 +146,6 @@ const Header = () => {
                     onClick={handleNavLinkClick}
                   >
                     Rent
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink
-                    className="nav-link"
-                    to="/agent-finder"
-                    activeClassName="active"
-                    onClick={handleNavLinkClick}
-                  >
-                    Agent finder
                   </NavLink>
                 </li>
                 <li className="nav-item">
@@ -130,7 +160,7 @@ const Header = () => {
                 </li>
               </ul>
               <ul className="navbar-nav">
-                {isLoggedIn && user && ( 
+                {isLoggedIn && user ? (
                   <li className="nav-item dropdown profile-dropdown-toggle ">
                     <img
                       src={profile}
@@ -194,8 +224,7 @@ const Header = () => {
                       </li>
                     </ul>
                   </li>
-                )}
-                {!isLoggedIn && (
+                ) : (
                   <li className="">
                     <NavLink to="/login" onClick={handleNavLinkClick}>
                       <button className="sign-in">Sign In</button>

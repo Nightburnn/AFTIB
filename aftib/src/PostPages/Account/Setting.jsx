@@ -1,23 +1,21 @@
 import React, { useState } from 'react';
 import './Setting.css';
-import { Link } from 'react-router-dom';
-import { useAuth } from '../../AuthContext'; // Update the path to your AuthContext file
-
+import { useAuth } from '../../AuthContext';
 const Setting = () => {
-  const { user } = useAuth(); // Fetch authenticated user from context
+  const { user } = useAuth(); 
 
-  // Initialize settings state with default values
+  
   const [settings, setSettings] = useState({
     accountType: user ? user.accountType : '',
     changePassword: '',
-    language: 'English', // Set default language to English
+    language: 'English', 
     country: '',
     state: '',
-    notification: 'On', // Set default notification to Email
-    location: 'Disabled', // Set default location to Disabled
+    notification: 'On', 
+    location: 'Disabled', 
   });
 
-  // Handle changes in form inputs
+
   const handleChange = (e) => {
     const { id, value } = e.target;
     setSettings((prevSettings) => ({
@@ -26,12 +24,10 @@ const Setting = () => {
     }));
   };
 
-  // Handle form submission (save changes)
+ 
   const handleSave = (e) => {
     e.preventDefault();
-    // Simulate saving changes - you can replace this with actual API call
     console.log('Saving settings:', settings);
-    // Update settings state or send API request to save changes
   };
 
   return (
