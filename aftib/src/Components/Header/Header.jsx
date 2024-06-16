@@ -100,7 +100,7 @@ const Header = () => {
                         activeClassName="active"
                         onClick={handleNavLinkClick}
                       >
-                        List
+                        Listing
                       </NavLink>
                     </li>
                     <li className="nav-item">

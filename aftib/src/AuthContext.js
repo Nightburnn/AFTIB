@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = (userData) => {
-    const { token, ...otherUserData } = userData;
+    const { token } = userData;
     setUser(userData);
     setCookie('authToken', token, { path: '/', maxAge: 3600 }); // Set cookie with token
   };

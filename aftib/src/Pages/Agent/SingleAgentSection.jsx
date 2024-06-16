@@ -75,7 +75,7 @@ const SingleAgentSection = () => {
                   <ul className="list-inline">
                     {agent.socials.map((social, index) => (
                       <li className="list-inline-item" key={index}>
-                        <a href="#" className="link-one">
+                        <a href="/" className="link-one">
                           <i className={social.icon} aria-hidden="true"></i>
                         </a>
                       </li>

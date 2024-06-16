@@ -15,7 +15,7 @@ import Login from './Pages/Login/Login';
 import { AuthProvider } from './AuthContext';
 import ProfilePage from './PostPages/Account/ProfilePage';
 import SingleAgentSection from './Pages/Agent/SingleAgentSection';
-import User from './PostPages/Account/User';
+import Inbox from './Pages/Inbox/Inbox';
 
 
 
@@ -35,6 +35,7 @@ function App() {
       <Route path='/sign' Component={Signup}/>
       <Route path='/login' Component={Login}/>
       <Route path='/profile' Component={ProfilePage}/>
+      <Route path='/inbox' Component={Inbox}/>
       <Route path="/agent/:id" component={SingleAgentSection} />
       </Routes>
 <Footer/>
