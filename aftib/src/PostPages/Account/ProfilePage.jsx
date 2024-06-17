@@ -14,7 +14,6 @@ import UserAgent from "./UserAgent";
 import Agent from './Agent';
 import Help from './Help';
 import { useAuth } from '../../AuthContext';
-import { Img } from 'react-image';
 
 const ProfilePage = () => {
   const [activeTab, setActiveTab] = useState('user');
@@ -28,10 +27,7 @@ const ProfilePage = () => {
     }
   };
 
-  const MyLoader = () => <div>Loading...</div>;
-
-  
-  const MyErrorComponent = () => <div>Error loading image.</div>;
+ 
 
   const renderBasedOnAccountType = () => {
     if (user && user.accountType) {
@@ -78,13 +74,11 @@ const ProfilePage = () => {
             <div className="profile-details">
               <div className="profile-picture">
                 {user.profilePicture ? (
-                  <Img src={user.profilePicture} alt="Profile"
-                  loader={<MyLoader />}
-                  unloader={<MyErrorComponent />} />
+                  <img src={user.profilePicture} alt="Profile"
+                  />
                 ) : (
-                  <Img src={profile} alt="Default Profile" 
-                  loader={<MyLoader />}
-                  unloader={<MyErrorComponent />}/>
+                  <img src={profile} alt="Default Profile" 
+                 />
                 )}
               </div>
               <div className="profile-info">

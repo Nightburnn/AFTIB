@@ -143,6 +143,7 @@ font-weight: 800;
 
 .filter{
   align-items: center;
+  display: flex;
 }
 
 .filter p{
@@ -156,6 +157,8 @@ padding-left: 10px;
 padding-right: 10px;
 padding-top: 5px;
 padding-bottom: 4px;
+white-space: nowrap;
+width: 100%;
 }
 
 .filter  i{
@@ -173,4 +176,94 @@ margin-top: -17px;
 font-family: 'Lato';
 font-size: 24px;
 font-weight: 800;
+white-space: nowrap;
+}
+
+.filter .clear{
+  white-space: nowrap;
+  border-radius: 10px;
+border: 2px solid #4517FB;
+background: #4517FB;
+color: #FFF;
+font-family: 'Lato';
+font-size: 17px;
+padding-left: 10px;
+padding-right: 10px;
+padding-top: 5px;
+padding-bottom: 4px;
+margin-top: -20px;
+margin-left: 40px;
+}
+
+
+@media (max-width: 491px) {
+  .filter{
+    display: block;
+  }
+
+  .filter .clear{
+    margin-top: -10px;
+    margin-left: 0;
+  }
+
+  .filter p{
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 364px) {
+  .filter{
+    display: block;
+  }
+
+  .filter .clear{
+    margin-top: -10px;
+    border-radius: 10px;
+    border: 2px solid #4517FB;
+    background: #4517FB;
+    color: #FFF;
+    font-family: 'Lato';
+    font-size: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 4px;
+    margin-right: 30px;
+    margin-left: 0;
+  }
+  
+
+  .filter p{
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 323px) {
+  .filter{
+    display: block;
+  }
+
+  .filter .clear{
+    margin-top: -10px;
+    border-radius: 10px;
+    border: 2px solid #4517FB;
+    background: #4517FB;
+    color: #FFF;
+    font-family: 'Lato';
+    font-size: 15px;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 5px;
+    padding-bottom: 4px;
+    margin-right: -6px;
+    margin-left: 0;
+  }
+  
+
+  .filter p{
+    width: 100%;
+    text-align: center;
+  }
 }
