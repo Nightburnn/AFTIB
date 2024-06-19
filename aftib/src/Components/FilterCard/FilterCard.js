@@ -21,7 +21,7 @@ function searchRequest({ location, priceRangeMin, priceRangeMax, monthlyPaymentM
     queryParams.push(createQuery('priceRange', `${priceRangeMin}-${priceRangeMax}`));
   }
 
-  queryParams.push(createQuery('salesType', salesType));
+  queryParams.push(createQuery('saleType', salesType));
   queryParams.push(createQuery('bedRooms', bedRooms !== 'Any' ? bedRooms.replace('+', '') : ''));
   queryParams.push(createQuery('bathRooms', bathRooms !== 'Any' ? bathRooms.replace('+', '') : ''));
 console.log({queryParams})
