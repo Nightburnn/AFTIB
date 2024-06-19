@@ -8,7 +8,7 @@
 }
 
 .home-title {
- margin-top: 40px;
+ margin-top: 5px;
   text-align: left;
   background-color: #4517FB;
   width: 100%;
@@ -17,7 +17,13 @@ border-radius: 10px;
 position: relative;
 
 }
-
+.home-inner {
+  font-size: 40px;
+  margin-bottom: 16px;
+  color: #000000;
+  font-weight: 700;
+  text-shadow: 1px 1px 4px #cacbce;
+}
 
 .dropdown {
   position: relative;

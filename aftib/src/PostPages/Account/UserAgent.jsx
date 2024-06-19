@@ -6,7 +6,7 @@ import UserAgent3 from '../../assets/images/UserAgent3.png'
 import UserAgent4 from '../../assets/images/UserAgent4.svg'
 function AgentPage() {
   return (
-    <div className="container">
+    <div className="container agentpage">
       <div className="row">
         <div className="col-md-4">
           <div className="card">

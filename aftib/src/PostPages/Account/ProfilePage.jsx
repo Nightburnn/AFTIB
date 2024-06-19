@@ -11,7 +11,7 @@ import Setting from './Setting';
 import AgentSetting from '../AgentPage/Setting';
 import AgentUser from '../AgentPage/User';
 import UserAgent from "./UserAgent";
-import Agent from './Agent';
+import Client from '../AgentPage/Client';
 import Help from './Help';
 import { useAuth } from '../../AuthContext';
 
@@ -45,7 +45,7 @@ const ProfilePage = () => {
           return (
             <>
               {activeTab === 'user' && <AgentUser />}
-              {activeTab === 'agent' && <Agent />}
+              {activeTab === 'agent' && <Client />}
               {activeTab === 'settings' && <AgentSetting />}
               {activeTab === 'help' && <Help />}
             </>
@@ -54,7 +54,7 @@ const ProfilePage = () => {
           return (
             <>
               {activeTab === 'user' && <AgentUser />} 
-              {activeTab === 'agent' && <Agent />} 
+             
               {activeTab === 'settings' && <AgentSetting />} 
               {activeTab === 'help' && <Help />}
             </>

@@ -65,6 +65,7 @@ const Landing = () => {
 <div className="container">
   <div className="row">
     <div className="col">
+      <h3 className='home-inner'>Find your next home</h3>
       <div className="home-title">
       <div className="d-flex justify-content-evenly mb-3 options">
         {['buy', 'rent', 'sell', 'land'].map((option) => (

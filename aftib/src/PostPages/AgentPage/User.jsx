@@ -89,7 +89,7 @@ const AgentUser = () => {
               className="form-control"
               id="phoneNumber"
               placeholder="Phone Number"
-              value={userProfile.phoneNumber || ''}
+              value={userProfile.mobileNumber || ''}
               onChange={handleChange}
             />
           </div>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listing Details</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Select CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css" rel="stylesheet">
+    <style>
+        .margin-top-15 { margin-top: 15px; }
+        .margin-top-60 { margin-top: 60px; }
+        .margin-top-xs-0 { margin-top: 0; }
+        .margin-top-xs-15 { margin-top: 15px; }
+        .main-input { width: 100%; padding: 10px; margin-bottom: 10px; }
+        .property-textarea { width: 100%; padding: 10px; height: 100px; }
+        .main-checkbox { margin-right: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="col-xs-12 col-md-6">
+            <h3 class="title-negative-margin">Listing details<span class="special-color">.</span></h3>
+            <div class="title-separator-primary"></div>
+            <div class="dark-col margin-top-60">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="btn-group bootstrap-select">
+                            <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" title="Property type:" aria-expanded="false">
+                                <span class="filter-option pull-left">Property type:</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span>
+                            </button>
+                            <select name="transaction2" class="bootstrap-select" title="Property type:" tabindex="-98">
+                                <option class="bs-title-option" value="">Property type:</option>
+                                <option>Apartment</option>
+                                <option>House</option>
+                                <option>Commercial</option>
+                                <option>Land</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 margin-top-xs-15">
+                        <div class="btn-group bootstrap-select dropup">
+                            <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" title="Transaction:" aria-expanded="false">
+                                <span class="filter-option pull-left">Transaction:</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span>
+                            </button>
+                            <select name="transaction2" class="bootstrap-select" title="Transaction:" tabindex="-98">
+                                <option class="bs-title-option" value="">Transaction:</option>
+                                <option>For sale</option>
+                                <option>For rent</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 margin-top-15">
+                        <input name="price" type="text" class="input-full main-input" placeholder="Price">
+                    </div>
+                    <div class="col-xs-12 col-sm-6 margin-top-15 margin-top-xs-0">
+                        <input name="area" type="text" class="input-full main-input" placeholder="Area">
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <input name="bedrooms" type="text" class="input-full main-input" placeholder="Bedrooms">
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <input name="bathrooms" type="text" class="input-full main-input" placeholder="Bathrooms">
+                    </div>
+                </div>
+                <textarea name="message" class="input-full main-input property-textarea" placeholder="Description"></textarea>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 margin-top-15">
+                        <input type="checkbox" id="c1" name="cc" class="main-checkbox">
+                        <label for="c1"><span></span>Air Conditioning</label><br>
+                        <input type="checkbox" id="c2" name="cc" class="main-checkbox">
+                        <label for="c2"><span></span>Internet</label><br>
+                        <input type="checkbox" id="c3" name="cc" class="main-checkbox">
+                        <label for="c3"><span></span>Cable TV</label><br>
+                        <input type="checkbox" id="c4" name="cc" class="main-checkbox">
+                        <label for="c4"><span></span>Balcony</label><br>
+                        <input type="checkbox" id="c5" name="cc" class="main-checkbox">
+                        <label for="c5"><span></span>Roof Terrace</label><br>
+                        <input type="checkbox" id="c6" name="cc" class="main-checkbox">
+                        <label for="c6"><span></span>Terrace</label>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 margin-top-15">
+                        <input type="checkbox" id="c7" name="cc" class="main-checkbox">
+                        <label for="c7"><span></span>Lift</label><br>
+                        <input type="checkbox" id="c8" name="cc" class="main-checkbox">
+                        <label for="c8"><span></span>Garage</label><br>
+                        <input type="checkbox" id="c9" name="cc" class="main-checkbox">
+                        <label for="c9"><span></span>Security</label><br>
+                        <input type="checkbox" id="c10" name="cc" class="main-checkbox">
+                        <label for="c10"><span></span>High Standard</label><br>
+                        <input type="checkbox" id="c11" name="cc" class="main-checkbox">
+                        <label for="c11"><span></span>City Centre</label><br>
+                        <input type="checkbox" id="c12" name="cc" class="main-checkbox">
+                        <label for="c12"><span></span>Furniture</label>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 margin-top-15">
+                        <input type="checkbox" id="c13" name="cc" class="main-checkbox">
+                        <label for="c13"><span></span>Another Option</label><br>
+                        <input type="checkbox" id="c14" name="cc" class="main-checkbox">
+                        <label for="c14"><span></span>Another Option</label><br>
+                        <input type="checkbox" id="c15" name="cc" class="main-checkbox">
+                        <label for="c15"><span></span>Another Option</label><br>
+                        <input type="checkbox" id="c16" name="cc" class="main-checkbox">
+                        <label for="c16"><span></span>Another Option</label><br>
+                        <input type="checkbox" id="c17" name="cc" class="main-checkbox">
+                        <label for="c17"><span></span>Another Option</label><br>
+                        <input type="checkbox" id="c18" name="cc" class="main-checkbox">
+                        <label for="c18"><span></span>Another Option</label>
+                    </div>
+                </div>
+            </div>				
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- Bootstrap Select JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script>
+</body>
+</html>

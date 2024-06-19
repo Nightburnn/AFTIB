@@ -131,7 +131,7 @@ const Buy = () => {
                 ))}
 
                 <div className="col-12 text-center mt-5 mb-5">
-                  <button className="btn btn-primary py-3 px-5" onClick={handleBrowseMore}>Browse More Property</button>
+                  <button className="btn x py-3 px-5" onClick={handleBrowseMore}>Browse More Property</button>
                 </div>
               </div>
             </div>

@@ -1,4 +1,4 @@
-.card {
+.agentpage .card {
     margin-top: 40px;
     background-color: transparent;
     outline: none;
@@ -6,18 +6,18 @@
   }
 
 
-  .card img {
+ .agentpage .card img {
     height: 300px;
   box-shadow: none;
     object-fit: contain;
   }
 
-.card p{
+.agentpage .card p{
     font-family: 'League Spartan';
     font-weight: 400;
     font-size: 17px;
 }
-  .card .btn{
+.agentpage  .card .btn{
     background-color: #4517FB;
     color: #fff;
   }

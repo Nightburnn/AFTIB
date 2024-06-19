@@ -1,0 +1,39 @@
+.noclient{
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    display: none;
+}
+
+.noclient img{
+    width: 280px;
+    margin-bottom: 40px;
+}
+
+.noclient h6{
+    margin: 0;
+    text-align: center;
+    font-weight: 400;
+    font-size: 14px;
+    font-family: 'Moul';
+    color: #373737;
+}
+
+.client-card .card img {
+    height: 200px;
+  box-shadow: none;
+    object-fit: contain;
+
+    margin: 0;
+  }
+
+  .client-card .card {
+    outline: none;
+    border: none;
+    margin-bottom: 40px;
+  }
+
+  .client-card  .card .btn{
+    background-color: #4517FB;
+    color: #fff;
+  }

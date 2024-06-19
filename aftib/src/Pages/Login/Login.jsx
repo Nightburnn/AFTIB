@@ -105,7 +105,7 @@ const Login = () => {
                     <input type="password" id="password" value={password} onChange={handlePasswordChange} required />
                     {passwordError && <p className="error-text">{passwordError}</p>}
                   </div>
-                  <Link>
+                  <Link to="/forgot">
                     <p className="text-end lforgot">Forgot password ?</p>
                   </Link>
                   <div className="l-btn mb-4">

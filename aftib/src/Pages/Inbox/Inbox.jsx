@@ -18,6 +18,7 @@ const Inbox = () => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
+  const [view, setView] = useState("users"); // "users", "chat", "profile"
   const fileInputRef = useRef(null);
 
   const handleSendMessage = () => {
@@ -32,6 +33,7 @@ const Inbox = () => {
     setMessages([
       { text: `Welcome to the chat with ${user.name}`, type: "received" },
     ]);
+    setView("chat");
   };
 
   const handleAttachmentClick = () => {
@@ -52,7 +54,8 @@ const Inbox = () => {
   return (
     <div className="container-fluid full-height mt-2">
       <div className="row full-height">
-        <div className="col-md-3 bluebox">
+        {/* User List Section */}
+        <div className={`col-md-3 bluebox ${view === "users" ? "" : "d-none d-md-block"}`}>
           <form action="" className="searchname">
             <input type="text" className="form-control" placeholder="Search..." />
           </form>
@@ -73,12 +76,19 @@ const Inbox = () => {
           </ul>
         </div>
 
-        <div className="col-md-6 conversation-section">
+        {/* Chat Section */}
+        <div className={`col-md-6 conversation-section ${view === "chat" ? "" : "d-none d-md-block"}`}>
+          {currentUser && (
+            <button className="btn btnlink" onClick={() => setView("users")}>
+              Back to Users
+            </button>
+          )}
           <div className="text-start">
-            <h2>{currentUser ? currentUser.name : "Select a User"}</h2>
+            <h2 onClick={() => setView("profile")} style={{ cursor: "pointer" }}>
+              {currentUser ? currentUser.name : "Select a User"}
+            </h2>
             <hr />
           </div>
-
           <div className="conversation-container">
             {messages.map((message, index) => (
               <div key={index} className={`message ${message.type}`}>
@@ -86,7 +96,6 @@ const Inbox = () => {
               </div>
             ))}
           </div>
-
           <form className="input-group mb-3 formstyle" onSubmit={(e) => e.preventDefault()}>
             <input
               type="text"
@@ -121,9 +130,13 @@ const Inbox = () => {
           )}
         </div>
 
-        <div className="col-md-3 profile-section">
+        {/* Profile Section */}
+        <div className={`col-md-3 profile-section ${view === "profile" ? "" : "d-none d-md-block"}`}>
           {currentUser ? (
             <div className="text-center">
+              <button className="btn btnlink" onClick={() => setView("chat")}>
+                Back to Chat
+              </button>
               <img
                 src={currentUser.profileImage}
                 alt="User Profile"
