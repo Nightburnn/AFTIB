@@ -6,7 +6,11 @@ function searchRequest({ location, priceRangeMin, priceRangeMax, monthlyPaymentM
   const endpoint = 'https://aftib-6o3h.onrender.com/listing/searchListings';
 
   // Create query parameters
-  const createQuery = (option, value) => value ? `${option}=${value}` : '';
+  const createQuery = (option, value) =>{
+    let bool  = !!value  && value !== '-';
+    console.log({bool,value})
+     return bool ? `${option}=${value}` : ''
+    };
   let queryParams = [];
   queryParams.push(createQuery('location', location));
 
@@ -20,9 +24,9 @@ function searchRequest({ location, priceRangeMin, priceRangeMax, monthlyPaymentM
   queryParams.push(createQuery('salesType', salesType));
   queryParams.push(createQuery('bedRooms', bedRooms !== 'Any' ? bedRooms.replace('+', '') : ''));
   queryParams.push(createQuery('bathRooms', bathRooms !== 'Any' ? bathRooms.replace('+', '') : ''));
-
+console.log({queryParams})
   // Filter unused queries
-  queryParams = queryParams.filter(param => param !== '');
+  queryParams = queryParams.filter(param => param !== ''  && param !== '-');
 
   // Build the full query string
   const queryString = queryParams.length ? `?${queryParams.join('&')}` : '';
