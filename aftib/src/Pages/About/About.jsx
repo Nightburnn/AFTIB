@@ -11,7 +11,7 @@ import './About.css';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
+
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -97,10 +97,10 @@ const About = () => {
       <div className="container about-service"><h3 className='text-center'>Our Services</h3>
         <div className="row justify-center aboutservice text1">
           
-          <div className="col-md-3">
+          <div className="col-md-4">
           <img src={about1} alt="About Us" className="img-fluid" />
         </div>
-        <div className="col-md-9 align-center mt-3">
+        <div className="col-md-8 align-center add">
           <h2 className="mb-1">Real Estate consultancy</h2>
           <p>
           We are the premier destination for acquiring rapidly appreciating land at competitive prices. Our mission is to provide exceptional quality through our property development services. Aftib comprehensive offerings include:
@@ -112,10 +112,10 @@ specialization and expertise in both residential and commercial projects disting
         </div>
 
         <div className="row justify-center aboutservice text1 mt-5">
-        <div className="col-md-3">
+        <div className="col-md-4">
           <img src={about2} alt="About Us" className="img-fluid" />
         </div>
-        <div className="col-md-9 align-center mt-3">
+        <div className="col-md-8 align-center add">
           <h2 className="mb-1">Property Development</h2>
           <p>
           We are the foremost destination for those seeking rapidly developing land at competitive prices. Our commitment is to provide unparalleled quality through our comprehensive property development services. We pride ourselves on offering exceptional value, ensuring that each client receives the best possible experience and outcomes. Our extensive expertise in the real estate market allows us to deliver tailored solutions that meet the unique needs of our clients, making us a trusted partner in your property investment journey.
@@ -125,10 +125,10 @@ specialization and expertise in both residential and commercial projects disting
         </div>
 
         <div className="row justify-center aboutservice text1 mt-5">
-          <div className="col-md-3">
+          <div className="col-md-4">
           <img src={about3} alt="About Us" className="img-fluid" />
         </div>
-        <div className="col-md-9 align-center mt-3">
+        <div className="col-md-8 align-center add">
           <h2 className="mb-1">Land Surveying</h2>
           <p>
           We offer a wide range of land and engineering surveying services for both public and private sectors. Our expertise includes Topographical Land Surveys, Building Elevations and Plans, and Boundary Surveys. We ensure the authenticity and security of your land properties, giving you peace of mind for the present and future.
@@ -137,10 +137,10 @@ specialization and expertise in both residential and commercial projects disting
         </div>
 
         <div className="row justify-center aboutservice text1 mt-5">
-        <div className="col-md-3">
+        <div className="col-md-4">
           <img src={about4} alt="About Us" className="img-fluid" />
         </div>
-        <div className="col-md-9 align-center mt-3">
+        <div className="col-md-8 align-center add">
           <h2 className="mb-1">Real Estate Management</h2>
           <p>
           Your business with us is managed by highly qualified and experienced real estate professionals, including estate surveyors and valuers, all supported by a skilled and efficient administrative and technical team. This comprehensive support ensures the acquisition, oversight, and maintenance of your real estate properties' value.
@@ -151,10 +151,10 @@ Together Everyone Achieves More. Looking for tested and trusted experts to manag
         </div>
 
         <div className="row justify-center aboutservice text1 mt-5">
-          <div className="col-md-3">
+          <div className="col-md-4">
           <img src={about5} alt="About Us" className="img-fluid" />
         </div>
-        <div className="col-md-9 align-center mt-3">
+        <div className="col-md-8 align-center add">
           <h2 className="mb-1">Property Sales</h2>
           <p>
           Real estate agencies assist clients in selling residential, commercial, and land properties. Services include property valuation, marketing and advertising, conducting open houses, negotiating offers, and managing the closing process to ensure a smooth transaction.

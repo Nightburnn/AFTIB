@@ -17,6 +17,7 @@ import ProfilePage from './PostPages/Account/ProfilePage';
 import SingleAgentSection from './Pages/Agent/SingleAgentSection';
 import Inbox from './Pages/Inbox/Inbox';
 import Forgot from './Pages/ForgetPassword/Forgot';
+import Listing from './Pages/Listing/Listing';
 
 
 
@@ -37,6 +38,7 @@ function App() {
       <Route path='/login' Component={Login}/>
       <Route path='/profile' Component={ProfilePage}/>
       <Route path='/inbox' Component={Inbox}/>
+      <Route path='/list' Component={Listing}/>
       <Route path='/forgot' Component={Forgot}/>
       <Route path="/agent/:id" component={SingleAgentSection} />
       </Routes>

@@ -1,0 +1,139 @@
+.listing-container{
+    background-color: #D9D9D980;
+    border-radius: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 40px;
+    padding-bottom: 30px;
+}
+
+.listing-gallery{
+    background-color: #D9D9D980;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.local-list{
+  background-color: #D9D9D980;
+  padding: 36px;
+  border-radius: 10px;
+}
+.map-container {
+  position: relative;
+  
+}
+
+/* Style the Leaflet controls */
+.leaflet-control {
+  z-index: 800; /* Ensure Leaflet controls are above other elements */
+}
+
+
+
+/* Adjust attribution control position */
+.leaflet-control-attribution {
+  z-index: 1;
+}
+.listbtn{
+  width: 30%;
+  background-color: #4517FB;
+  color: #fff;
+  margin-bottom: 30px;
+}
+
+.localbtn{
+  background-color: #4517FB;
+  color: #fff;
+  width: 100%;
+
+}
+
+.listing{
+    margin-bottom: 40px;
+}
+
+@media (max-width: 760px) {
+  .listbtn {
+    width: 60%;
+  }
+}
+
+.listing h2{
+    text-align: start;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #4517FB;
+    width: 40px;
+   
+    font-weight: 500;
+    font-family: 'League Spartan';
+}
+.listing-container input::placeholder {
+        color: rgb(0, 0, 0);
+        font-style: normal;
+        font-weight: normal;
+    }
+
+
+
+.dropzone {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #f8f9fa;
+    border: 2px dotted #4517FB;
+    cursor: pointer;
+    background-color: #f2f2f2;
+    padding: 50px;
+  }
+  
+  .preview {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    overflow-x: auto;
+  }
+
+.gallery-listing h2{
+    text-align: start;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #4517FB;
+    width: 40px;  
+    font-weight: 500;
+    font-family: 'League Spartan';
+}
+
+.local h2{
+  text-align: end;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #4517FB;
+    width: 40px;
+    font-weight: 500;
+    font-family: 'League Spartan';
+}
+.preview img {
+    max-width: 350px;
+    max-height: 300px;
+    object-fit: cover;
+    margin: 5px;
+  }
+  .placeholder-text {
+    color: black;
+    font-size: 30px;
+   
+  
+  }
+
+/* Media queries for mobile devices */
+@media (max-width: 768px) {
+  
+    .preview img {
+        max-width: 250px;
+        max-height: 200px;
+        
+      }
+    
+  }

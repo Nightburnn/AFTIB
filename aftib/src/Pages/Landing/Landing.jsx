@@ -59,12 +59,14 @@ const Landing = () => {
 
   return ( 
     <>
-    <Hero/>
+
+    <div className="hero-container">
+       <Hero/>
 
 <section className="homecard mt-3">
 <div className="container">
   <div className="row">
-    <div className="col">
+    <div className="col ">
       <h3 className='home-inner'>Find your next home</h3>
       <div className="home-title">
       <div className="d-flex justify-content-evenly mb-3 options">
@@ -79,7 +81,7 @@ const Landing = () => {
         ))}
       </div>
   
-      <form>
+      <form className='landing-form'>
         <div className="input-group mb-3">
           <input
             type="text"
@@ -132,6 +134,8 @@ const Landing = () => {
 </div>
 </section>
 
+    </div>
+   
 
     <section className="landingCard mt-5">
       <div className="container">
@@ -192,7 +196,7 @@ const Landing = () => {
                                     <h1 className="mb-4">Discover your ideal<br/>property effortlessly</h1>
                                     <p>Get in touch with leading real estate agents<br/>and agencies</p>
                                 </div>
-                                <Link href="#" className=" landingicon ">Find agents</Link>
+                                <Link href="#" className="landingicon">Find agents</Link>
                             </div>
                             <div className="col-lg-6">
                                 <img className="img-fluid w-100" src={agent} alt=""/>

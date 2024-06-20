@@ -1,28 +1,38 @@
-
+.hero-container {
+  position: relative;
+  margin-bottom: 190px;
+}
 
 .homecard {
+  position: absolute;
+  top: calc(90% - 50px); 
+  width: 100%;
+  z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+  margin-bottom: 140px;
+ 
 }
 
+
+
 .home-title {
- margin-top: 5px;
+  margin-top: 4px; 
   text-align: left;
   background-color: #4517FB;
   width: 100%;
-padding: 20px;
-border-radius: 10px;
-position: relative;
-
+  padding: 15px; 
+  border-radius: 30px; 
+  position: relative;
 }
+
 .home-inner {
-  font-size: 40px;
-  margin-bottom: 16px;
-  color: #000000;
+  font-size: 30px; 
+  margin-bottom: 12px;
+  color: #fef6f6;
   font-weight: 700;
-  text-shadow: 1px 1px 4px #cacbce;
 }
 
 .dropdown {
@@ -36,29 +46,28 @@ position: relative;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
   z-index: 1000;
   top: 100%;
-  left: 0; 
-  width: 100%; 
+  left: 0;
+  width: 100%;
 }
 
-
 .dropdown .btn {
-  color: #FFFFFF; 
-  font-family: Arial, sans-serif; 
-  font-size: 16px; 
+  color: #FFFFFF;
+  font-family: Arial, sans-serif;
+  font-size: 14px; 
 }
 
 .dropdown .btn:hover {
-  color: #fff; 
+  color: #fff;
 }
 
 .dropdown .dropdown-menu .dropdown-item {
-  color: #333; 
-  font-family: Arial, sans-serif; 
-  font-size: 16px;
+  color: #333;
+  font-family: Arial, sans-serif;
+  font-size: 14px; 
 }
 
 .dropdown .dropdown-menu .dropdown-item:hover {
-  color: #007bff; 
+  color: #007bff;
 }
 
 .options {
@@ -67,34 +76,33 @@ position: relative;
 }
 
 .option {
-  font-size: 18px;
+  font-size: 16px; 
   color: #FFFFFF;
-  padding: 10px 20px;
+  padding: 8px 18px; 
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .option:hover,
 .option.selected {
-
-  border-bottom: 5px solid #007bff;
-  border-radius: 5px;
+  border-bottom: 4px solid #007bff; 
+  border-radius: 4px; 
   font-weight: bold;
- 
 }
-
 
 .dropdown-menu.show {
   display: block;
   color: #FFFFFF;
 }
+
 .input-group {
   display: flex;
   width: 100%;
+
 }
 
 .input-group .form-control {
-  border-right: 0;
+  border-right: 10px;
   flex: 1;
 }
 
@@ -103,57 +111,48 @@ position: relative;
   background-color: #FFFFFF;
   border: none;
   border-radius: 1px;
-  padding: 10px;
-  padding-left: 40px;
-  padding-right: 40px;
+
+  padding: 8px; 
+  padding-left: 35px; 
+  padding-right: 35px; 
 }
 
 .grid-template-columns {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px; 
 }
 
-
-.min{
+.min {
   justify-content: space-evenly;
   color: #FFFFFF;
 }
-
-
-
-
-
-
 
 .homecard .col-lg-6 {
   flex: 0 0 50%;
   max-width: 50%;
   display: flex;
-  align-items: flex-start; 
+  align-items: flex-start;
   flex-direction: column;
-  text-align: left; 
+  text-align: left;
 }
 
- img {
+img {
   max-width: 100%;
   height: auto;
   display: block;
   margin: 0 auto;
 }
 
-
 @media (max-width: 768px) {
   .d-grid.grid-template-columns {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    gap: 8px; 
   }
 
-  
-
   .dropdown .btn {
-    margin-bottom: 10px;
+    margin-bottom: 8px; 
   }
 
   .options {
@@ -164,43 +163,37 @@ position: relative;
 
   .option {
     flex: 1 0 auto;
-    padding: 10px 5px;
+    padding: 8px 4px; 
     text-align: center;
   }
 
- 
   .dropdown .dropdown-menu a {
     white-space: normal;
   }
 }
 
 @media (max-width: 767.98px) {
- .homecard .col-lg-6 {
+  .homecard .col-lg-6 {
     flex: 0 0 100%;
     max-width: 100%;
-    align-items: center; 
+    align-items: center;
   }
 
   .home-title {
-    margin-bottom: 40px;
+    margin-bottom: 30px; 
   }
 
-
-
-  
-.home-title {
-  margin-top: 10px;
-   text-align: center;
- }
+  .home-title {
+    margin-top: 8px; 
+    text-align: center;
+  }
 }
-
-
 
 .landingCard img {
   width: 100%;
-  max-width: 200px;
+  max-width: 180px; 
   height: auto;
-  margin-bottom: 40px;
+  margin-bottom: 30px; 
 }
 
 .landingCard-item {
@@ -210,116 +203,118 @@ position: relative;
   justify-content: center;
   text-align: center;
   background-color: #FFFFFF;
-  padding: 10px;
-  border-radius: 15px;
+  padding: 8px; 
+  border-radius: 12px; 
   box-sizing: border-box;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  padding-top: 30px;
-  padding-bottom: 30px;
-  margin-left: 30px;
-  margin-right: 30px;
-  transition: transform 0.3s ease; 
+  padding-top: 25px; 
+  padding-bottom: 25px; 
+  margin-left: 25px; 
+  margin-right: 25px; 
+  transition: transform 0.3s ease;
 }
 
 .landingCard-item:hover {
-  transform: translateY(-5px); 
+  transform: translateY(-5px);
 }
 
 .enter {
   background-color: transparent;
-  border-radius: 20px;
-  border: 3px rgba(68.82, 23.33, 250.75, 0.80) solid;
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  border-radius: 18px; 
+  border: 2px rgba(68.82, 23.33, 250.75, 0.80) solid; 
+  padding-left: 25px; 
+  padding-right: 25px; 
+  padding-top: 8px; 
+  padding-bottom: 8px; 
   color: #4517FB;
-  font-size: 22px;
+  font-size: 20px; 
   font-family: 'League Spartan';
   font-weight: 700;
 }
 
-.enter:hover{
+.enter:hover {
   background-color: #4517FB;
   color: #FFFFFF;
 }
 
 .landingTopics h4 {
   color: black;
-  font-size: 25px;
+  font-size: 21px; 
   font-family: 'Moul';
   font-weight: 400;
-  margin-bottom: 20px;
+  margin-bottom: 18px; 
 }
 
 .landingTopics p {
   color: black;
-  font-size: 18px;
+  font-size: 15px; 
   font-family: 'League Spartan';
   font-weight: 400;
-  margin-bottom: 40px;
+  margin-bottom: 35px; 
 }
+
 
 .landingCard {
   margin: 0px;
   justify-content: center;
   background-color: #f0f0f0;
- width: 100%;
- padding: 20px;
+  width: 100%;
+  padding: 18px; 
 }
 
-
-.landingcontact{
+.landingcontact {
   background-color: #FFFFFF;
 }
 
 .col-lg-4 {
-  padding: 10px;
+  padding: 8px; 
 }
-.landingContact{
+
+.landingContact {
   background-color: #4517FB;
-  border-radius: 10px;
+  border-radius: 8px; 
 }
 
-.landingContact p{
+.landingContact p {
   color: white;
-font-size: 23px;
-font-family: 'League Spartan';
-font-weight: 400;
+  font-size: 21px; 
+  font-family: 'League Spartan';
+  font-weight: 400;
 }
 
-.landingContact h1{
+.landingContact h1 {
   color: white;
-font-size: 40px;
-font-family: 'Limelight';
-font-weight: 400;
+  font-size: 35px; 
+  font-family: 'Limelight';
+  font-weight: 400;
 }
 
-.landingContact img{
-  border-radius: 5px;
+.landingContact img {
+  border-radius: 4px; 
 }
 
-.landingicon{
+.landingicon {
   background-color: #4517FB;
- padding-top: 10px;
- padding-bottom: 10px;
- padding-left: 30px;
- padding-right: 30px;
- color: white;
-font-size: 20px;
-font-family: 'League Spartan';
-font-weight: 800;
-border-radius: 10px;
- border: 2px white solid;
+  padding-top: 8px; 
+  padding-bottom: 8px; 
+  padding-left: 25px; 
+  padding-right: 25px; 
+  color: white;
+  font-size: 18px; 
+  font-family: 'League Spartan';
+  font-weight: 800;
+  border-radius: 8px; 
+  border: 2px white solid; 
+  text-decoration: none;
 }
 
+.landingicon:hover {
+  background-color: #FFFFFF;
+  color: #4517FB;
+}
 
 @media (max-width: 390px) {
-  
-.landingContact h1{
-  
-font-size: 30px;
-
-}
-
+  .landingContact h1 {
+    font-size: 28px; 
+  }
 }
