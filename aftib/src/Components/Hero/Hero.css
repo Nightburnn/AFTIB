@@ -6,21 +6,6 @@
   background-position: center center;
 }
 
-.bg-image2 {
-  background-image: url("../../assets/images/abouthero.png");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: center center;
-}
-
-.bg-image3 {
-  background-image: url("../../assets/images/hero.png");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: center center;
-}
 
 .intro-carousel {
   height: 90vh;
@@ -101,3 +86,26 @@
 }
 
 
+
+@media (max-width: 792px) {
+  .intro-title {
+    font-size: 2rem;
+  }
+  
+  .intro-carousel {
+    height: 70vh;
+   
+  }
+
+  
+.intro-title-top {
+  font-size: 1rem;
+ 
+}
+
+
+  .intro-item {
+    height: 70vh;
+   
+  }
+}

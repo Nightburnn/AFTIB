@@ -149,7 +149,7 @@ const Signup = () => {
                       <option value="admin">Admin</option>
                       <option value="Client">Client</option>
                       <option value="Agent">Agent</option>
-                      <option value="Property-Owner">Property Owner</option>
+                     
                     </select>
                     {accountTypeError && <p className="error-text">{accountTypeError}</p>}
                   </div>
