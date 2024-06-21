@@ -207,7 +207,16 @@ padding-bottom: 4px;
 margin-top: -20px;
 margin-left: 40px;
 }
+.content{
+  margin-right: 60px;
+  }
 
+
+  @media (max-width: 765px) {
+    .content{
+      margin-right: 0;
+      }
+  }
 
 @media (max-width: 491px) {
   .filter{
@@ -223,6 +232,8 @@ margin-left: 40px;
     width: 100%;
     text-align: center;
   }
+
+  
 }
 
 @media (max-width: 364px) {
@@ -285,3 +296,4 @@ margin-left: 40px;
   background-color: #4517FB;
   color: #FFF;
 }
+

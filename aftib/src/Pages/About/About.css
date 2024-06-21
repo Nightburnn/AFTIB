@@ -47,7 +47,7 @@
 .swiper-content-bg p {
   text-align: center;
   color: #ffffff;
-  font-size: 18px;
+  font-size: 23px;
   font-family: "Lato";
   font-weight: 700;
   word-wrap: break-word;
@@ -137,8 +137,9 @@
 }
 
 .add{
-  margin-top: 48px;
+  margin-top: 30px;
 }
+
 
 @media (max-width: 885px) {
   .bg-image {
@@ -222,7 +223,7 @@
 .aboutservice h2 {
   color: #212121;
   font-family: "League Spartan";
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 800;
 }
 

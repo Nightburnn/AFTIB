@@ -7,8 +7,10 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
-  max-width: 300px;
-  margin-top: 54px; /* Moves the filter card downwards */
+
+  margin-top: 54px;
+  /* Moves the filter card downwards */
+
 }
 
 /* Button styles */
@@ -41,7 +43,8 @@
 .price-range,
 .filter-options {
   margin-bottom: 16px;
-  font-size: 14px; /* Reduced font size */
+  font-size: 14px;
+  /* Reduced font size */
 }
 
 .price-inputs {
@@ -70,7 +73,8 @@
   padding: 8px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  font-size: 14px; /* Reduced font size */
+  font-size: 14px;
+  /* Reduced font size */
 }
 
 .price-type {
@@ -84,23 +88,26 @@
 }
 
 .price-type-group {
-  margin-right: 16px; /* Space between radio button groups */
+  margin-right: 16px;
+  /* Space between radio button groups */
 }
 
 
-.filter-options input{
-width: 100%;
-padding: 6px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
+.filter-options input {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
 }
+
 .bed-options,
 .bath-options,
 .home-type-options {
   display: flex;
   flex-wrap: wrap;
-  font-size: 14px; /* Reduced font size */
+  font-size: 14px;
+  /* Reduced font size */
 }
 
 .bed-options button,
@@ -163,7 +170,8 @@ padding: 6px;
   .filter-card {
     max-width: 100%;
     float: none;
-    margin-top: 0; /* Remove margin-top for mobile view */
+    margin-top: 0;
+    /* Remove margin-top for mobile view */
   }
 
   .filter-buttons {
@@ -190,9 +198,9 @@ padding: 6px;
     justify-content: space-between;
   }
 
-  .bed-options button, .bath-options button {
+  .bed-options button,
+  .bath-options button {
     margin-right: 1px;
-  
-}
-}
 
+  }
+}

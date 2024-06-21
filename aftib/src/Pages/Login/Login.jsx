@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import apple from '../../assets/images/apple.png';
@@ -8,7 +8,7 @@ import './Login.css';
 import { useAuth } from '../../AuthContext';
 
 const Login = () => {
-  const { login } = useAuth();
+  const { login, isLoggedIn } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -27,10 +27,15 @@ const Login = () => {
 
   const location = useLocation();
 
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/');
+    }
+  }, [isLoggedIn, navigate]);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-   
     const normalizedEmail = email.trim().toLowerCase();
 
     try {
@@ -45,9 +50,10 @@ const Login = () => {
       console.log(response.data);
 
       if (data.token) {
+        window.localStorage.setItem('accessToken', data.token);
+        window.localStorage.setItem('user', JSON.stringify(data.user));
+        console.log('Stored token and user in local storage:', data.token, data.user);
         login(data.user);
-        console.log("User data:", data.user);
-        navigate('/');
       } else {
         setEmailError('Login failed. Please check your email and password.');
       }
