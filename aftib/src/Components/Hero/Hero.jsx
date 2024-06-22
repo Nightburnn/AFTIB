@@ -20,7 +20,8 @@ const slides = [
     bgClass: "bg-image1",
    
     titleNumber: "Buy.",
-    title: "Rent. Sell. Agent.",
+    title: "Rent.",
+    word: "Sell. Agent."
    
   },
  
@@ -54,6 +55,10 @@ const Hero = () => {
                                 </span>
                                 {slide.title}
                               </h1>
+                              <h1 className="intro-title">
+                                {slide.word}
+                              </h1>
+                            
                             
                             </div>
                             <div>                     
