@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './Components/Header/Header';
+import Chatbot from './Pages/Help/Chatbot';
 import Landing from './Pages/Landing/Landing';
 import About from './Pages/About/About';
 import Buy from './Pages/Buy/Buy';
@@ -42,6 +43,7 @@ function App() {
       <Route path='/forgot' Component={Forgot}/>
       <Route path="/agent/:id" component={SingleAgentSection} />
       </Routes>
+      <Chatbot/>
 <Footer/>
   </Router>
     </AuthProvider>

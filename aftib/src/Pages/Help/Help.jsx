@@ -4,7 +4,7 @@ import help1 from '../../assets/images/help1.png'
 import help2 from '../../assets/images/help2.png'
 import help3 from '../../assets/images/help3.png'
 import { Link } from 'react-router-dom';
-import Chatbot from './Chatbot';
+
 
 const Help = () => {
   return (
@@ -85,7 +85,7 @@ const Help = () => {
       </section>
 
 
-      <Chatbot/>
+
     </main>
   );
 };

@@ -134,9 +134,8 @@ const Landing = () => {
 
       <div className="container exp">
       <h1 className="text-start">Explore homes on Aftib</h1>
-      <p className="text-muted">Explore homes for sale, authentic neighborhood photos, resident reviews, and local insights to discover the perfect fit for you.</p>
       
-      <div className="row mt-4">
+      <div className="row">
         <div className="col-md-4 mb-4">
           <div className="card ">
             <img src={exp1} className="card-img-top" alt="Card1" />
@@ -187,7 +186,6 @@ GRA Phase 3 and Peter Odili Road.</p>
 
     <div className="container sel">
       <h1 className="text-start">Select Category</h1>
-      <p className="text-muted">Explore diverse properties tailored to your needs: Find your perfect match with us today.</p>
 
       <div className="row">
         <div className="col-md-4 mb-4">
@@ -228,48 +226,48 @@ GRA Phase 3 and Peter Odili Road.</p>
       </div>
     </div>
 
-      <section className="landingCard mt-5">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-4">
-              <div className="landingCard-item">
-                <img src={landingCard1} alt="" />
-                <div className="landingTopics">
-                  <h4>Buy a home</h4>
-                  <p>Find your place with immersive photos and exclusive listings.</p>
-                  <Link className='enter' to="buy">
-                    Buy
-                  </Link>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4">
-              <div className="landingCard-item">
-                <img src={landingCard2} alt="" />
-                <div className="landingTopics">
-                  <h4>Sell a home</h4>
-                  <p>Find your place with immersive photos and exclusive listings.</p>
-                  <Link className='enter' to="/sell">
-                    Sell
-                  </Link>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4">
-              <div className="landingCard-item">
-                <img src={landingCard3} alt="" />
-                <div className="landingTopics">
-                  <h4>Rent a home</h4>
-                  <p>Find your place with immersive photos and exclusive listings.</p>
-                  <Link className='enter' to="/rent">
-                    Rent
-                  </Link>
-                </div>
-              </div>
+    <section className="landingCard mt-5">
+  <div className="container-fluid ">
+    <div className="">     
+      <div className="row">
+        <div className="col-md-4 mb-4">
+          <div className="card landingCard-item">
+            <img src={landingCard1} className="card-img-top" alt="Card1" />
+            <div className="card-body landingTopics">
+              <h5 className="card-title">Buy a home</h5>
+              <p className="card-text">Find your place with immersive photos and exclusive listings.</p>
+              <Link className='enter' to="buy">Buy</Link>
             </div>
           </div>
         </div>
-      </section>
+
+        <div className="col-md-4 mb-4">
+          <div className="card landingCard-item">
+            <img src={landingCard2} className="card-img-top" alt="Card2" />
+            <div className="card-body landingTopics">
+              <h5 className="card-title">Sell a home</h5>
+              <p className="card-text">Find your place with immersive photos and exclusive listings.</p>
+              <Link className='enter' to="/sell">Sell</Link>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-md-4 mb-4">
+          <div className="card landingCard-item">
+            <img src={landingCard3} className="card-img-top" alt="Card3" />
+            <div className="card-body landingTopics">
+              <h5 className="card-title">Rent a home</h5>
+              <p className="card-text">Find your place with immersive photos and exclusive listings.</p>
+              <Link className='enter' to="/rent">Rent</Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 
      
 
