@@ -214,8 +214,8 @@ margin-right: -15px;
  margin-left: 4px;
 }
 
-.dropdown-menu{
-  margin-left: -50px;
+.header_section  .dropdown-menu{
+  margin-left: -10px;
 }
 
 .dropdown-item.active, .dropdown-item:active {

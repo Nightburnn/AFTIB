@@ -1,19 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Setting.css';
 import { useAuth } from '../../AuthContext';
-const Setting = () => {
-  const { user } = useAuth(); 
+import csc from 'countries-states-cities';
 
-  
+const Setting = () => {
+  const { user } = useAuth();
+
   const [settings, setSettings] = useState({
     accountType: user ? user.accountType : '',
     changePassword: '',
-    language: 'English', 
+    language: 'English',
     country: '',
     state: '',
-    notification: 'On', 
-    location: 'Disabled', 
+    notification: 'On',
+    location: 'Disabled',
   });
+
+  const [countries, setCountries] = useState([]);
+  const [states, setStates] = useState([]);
+
+  useEffect(() => {
+    const allCountries = csc.getAllCountries();
+    setCountries(allCountries);
+    console.log('All Countries:', allCountries);
+  }, []);
+
+  useEffect(() => {
+    if (settings.country) {
+      const countryId = countries.find(country => country.iso2 === settings.country)?.id;
+      if (countryId) {
+        const statesData = csc.getStatesOfCountry(countryId);
+        setStates(statesData);
+        console.log('States for Selected Country:', statesData);
+      }
+    }
+  }, [settings.country, countries]);
 
 
   const handleChange = (e) => {
@@ -24,10 +45,10 @@ const Setting = () => {
     }));
   };
 
- 
   const handleSave = (e) => {
     e.preventDefault();
     console.log('Saving settings:', settings);
+    // Add your save logic here
   };
 
   return (
@@ -43,7 +64,6 @@ const Setting = () => {
               onChange={handleChange}
             >
               <option value="">Choose...</option>
-              
               <option>Client</option>
               <option>Agent</option>
             </select>
@@ -81,12 +101,20 @@ const Setting = () => {
               id="country"
               className="form-control"
               value={settings.country}
-              onChange={handleChange}
+              onChange={(e) => {
+                handleChange(e);
+                setSettings((prevSettings) => ({
+                  ...prevSettings,
+                  state: '',
+                }));
+              }}
             >
               <option value="">Choose...</option>
-              <option>Nigeria</option>
-              <option>Canada</option>
-              <option>UK</option>
+              {countries.map((country) => (
+                <option key={country.iso2} value={country.iso2}>
+                  {country.name}
+                </option>
+              ))}
             </select>
           </div>
           <div className="form-group col-md-4">
@@ -98,9 +126,11 @@ const Setting = () => {
               onChange={handleChange}
             >
               <option value="">Choose...</option>
-              <option>California</option>
-              <option>New York</option>
-              <option>Texas</option>
+              {states.map((state) => (
+                <option key={state.id} value={state.id}>
+                  {state.name}
+                </option>
+              ))}
             </select>
           </div>
           <div className="form-group col-md-4">
@@ -111,9 +141,8 @@ const Setting = () => {
               value={settings.notification}
               onChange={handleChange}
             >
-              <option value="on">On</option>
-              <option value="off">Off</option>
-             
+              <option value="On">On</option>
+              <option value="Off">Off</option>
             </select>
           </div>
         </div>

@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '.././Account/Setting.css';
 import { useAuth } from '../../AuthContext'; 
+import csc from 'countries-states-cities';
+
 
 const AgentSetting = () => {
   const { user } = useAuth(); 
@@ -25,6 +27,28 @@ const AgentSetting = () => {
       [id]: value,
     }));
   };
+
+  const [countries, setCountries] = useState([]);
+  const [states, setStates] = useState([]);
+
+  useEffect(() => {
+    const allCountries = csc.getAllCountries();
+    setCountries(allCountries);
+    console.log('All Countries:', allCountries);
+  }, []);
+
+  useEffect(() => {
+    if (settings.country) {
+      const countryId = countries.find(country => country.iso2 === settings.country)?.id;
+      if (countryId) {
+        const statesData = csc.getStatesOfCountry(countryId);
+        setStates(statesData);
+        console.log('States for Selected Country:', statesData);
+      }
+    }
+  }, [settings.country, countries]);
+
+
 
   // Handle form submission (save changes)
   const handleSave = (e) => {
@@ -85,12 +109,20 @@ const AgentSetting = () => {
               id="country"
               className="form-control"
               value={settings.country}
-              onChange={handleChange}
+              onChange={(e) => {
+                handleChange(e);
+                setSettings((prevSettings) => ({
+                  ...prevSettings,
+                  state: '',
+                }));
+              }}
             >
               <option value="">Choose...</option>
-              <option>Nigeria</option>
-              <option>Canada</option>
-              <option>UK</option>
+              {countries.map((country) => (
+                <option key={country.iso2} value={country.iso2}>
+                  {country.name}
+                </option>
+              ))}
             </select>
           </div>
           <div className="form-group col-md-4">
@@ -102,9 +134,11 @@ const AgentSetting = () => {
               onChange={handleChange}
             >
               <option value="">Choose...</option>
-              <option>California</option>
-              <option>New York</option>
-              <option>Texas</option>
+              {states.map((state) => (
+                <option key={state.id} value={state.id}>
+                  {state.name}
+                </option>
+              ))}
             </select>
           </div>
           <div className="form-group col-md-4">
