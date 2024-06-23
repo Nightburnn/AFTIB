@@ -281,6 +281,13 @@ img {
 .exp, .sel{
   margin-top: 120px;
 }
+
+
+@media (max-width: 760px) {
+  .exp, .sel{
+    margin-top: 30px;
+  }
+}
 .exp h1, .sel h1{
   color: #0C0D0D;
 font-size: 39px;

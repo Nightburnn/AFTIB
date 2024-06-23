@@ -189,7 +189,7 @@ GRA Phase 3 and Peter Odili Road.</p>
       <h1 className="text-start">Select Category</h1>
       <p className="text-muted">Explore diverse properties tailored to your needs: Find your perfect match with us today.</p>
 
-      <div className="row mt-4">
+      <div className="row">
         <div className="col-md-4 mb-4">
           <div className="image-container">
             <img src={sel1} className="img-fluid" alt="sell" />
