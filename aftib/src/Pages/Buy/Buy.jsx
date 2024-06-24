@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import FilterCard from '../../Components/FilterCard/FilterCard';
 import './Buy.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { createSearchQuery, searchRequest } from '../../utils/createSearchQuery';
+import { PropertyCard } from '../../Components/PropertyCard';
 
 const Buy = () => {
+  const routeLocation = useLocation();
+  const queryParams = new URLSearchParams(routeLocation.search);
   const [properties, setProperties] = useState([]);
   const [filteredProperties, setFilteredProperties] = useState([]);
+  const [showResults,setShowResults] = useState(false)
   const [location, setLocation] = useState('');
   const [searchClicked, setSearchClicked] = useState(false);
   const [currentSection, setCurrentSection] = useState(1);
@@ -22,11 +27,35 @@ const Buy = () => {
         console.error('Error fetching default listings:', error);
       }
     };
-    fetchDefaultProperties();
-  }, [currentSection]);
+    fetchDefaultProperties()
+  }, [currentSection])
 
-  const handleFilter = (filters) => {
+  useEffect(()=>{
+    const location = queryParams.get('location');
+    const saleType = queryParams.get('saleType');
+    const propertyType = queryParams.get('propertyType');
+    const bedroom = queryParams.get('bedroom');
+    const bathroom = queryParams.get('bathroom');
+    const minPrice = queryParams.get('minPrice');
+    const maxPrice = queryParams.get('maxPrice');
+    const minMonthlyPayment = queryParams.get('minMonthlyPayment');
+    const maxMonthlyPayment = queryParams.get('maxMonthlyPayment'); 
+    const withSearch = queryParams.get('withSearch');
+    if(withSearch == 'yes'){
+      let query = createSearchQuery({location,saleType,propertyType,bedroom,bathroom,minPrice,maxPrice,minMonthlyPayment,maxMonthlyPayment})
+      console.log({query})
+      searchRequest(query).then(res=>{
+        setFilteredProperties(res.data)
+        console.log({response: res.data})
+        setShowResults(true)
+      }).catch(err=>{console.error(err.message)})
+    }
+  },[])
+  
+  const handleFilter = (results) => {
     // Filter logic...
+    setFilteredProperties(results)
+    setShowResults(true)
   };
 
   const handleSearch = async (e) => {
@@ -60,6 +89,7 @@ const Buy = () => {
   const handleClearSearch = () => {
     setLocation('');
     setSearchClicked(false);
+    setShowResults(false)
     setFilteredProperties([]);
   };
 
@@ -95,7 +125,7 @@ const Buy = () => {
         <div className="container">
           <div className="row g-0 gx-5 align-items-end">
             <div className="col-lg-6">
-              {searchClicked && (
+              {showResults && (
                 <div className="text-start mx-auto mb-5 filter">
                   <p className='me-3'><i className="bi bi-funnel-fill"></i>Filter</p>
                   <span id='filterNum'>{filteredProperties.length} Results Found!</span>
@@ -107,28 +137,17 @@ const Buy = () => {
 
           <div className="tab-content">
             <div id="tab-2" className={`tab-pane fade show active`}>
-              <div className="row g-4">
-                {propertiesToDisplay.map(property => (
-                  <div key={property._id} className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div className="property-item rounded overflow-hidden">
-                      <div className="position-relative overflow-hidden">
-                        <Link to=""><img className="img-fluid" src={property.images[0]} alt="" /></Link>
-                        <div className="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">{property.saleType}</div>
-                        <div className="bg-white rounded-top brandblue position-absolute start-0 bottom-0 mx-4 pt-1 px-3">{property.propertyType}</div>
-                      </div>
-                      <div className="p-4 pb-0">
-                        <h5 className="brandblue mb-3">{property.price}</h5>
-                        <Link className="d-block h5 mb-2" to="">{property.title}</Link>
-                        <p><i className="fa fa-map-marker-alt brandblue me-2"></i>{property.location}</p>
-                      </div>
-                      <div className="d-flex border-top">
-                        <small className="flex-fill text-center border-end py-2">{property.size} sqt</small>
-                        <small className="flex-fill text-center border-end py-2">{property.bedrooms} Beds</small>
-                        <small className="flex-fill text-center py-2">{property.bathrooms} Baths</small>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+              <div>
+              {showResults ? 
+                <div className="row g-4">
+                  <div>Showing Filtered Result</div>
+                  {filteredProperties.map(x=> <PropertyCard property={x} />)}
+                </div> : 
+                <div className="row g-4">
+                  <div>Showing the default properties</div>
+                  {properties.map(x=> <PropertyCard property={x} />)}
+                </div>
+            }
 
                 <div className="col-12 text-center mt-5 mb-5">
                   <button className="btn x py-3 px-5" onClick={handleBrowseMore}>Browse More Property</button>

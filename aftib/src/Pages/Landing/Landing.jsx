@@ -13,9 +13,13 @@ import sel3 from '../../assets/images/sel3.png';
 import agent from '../../assets/images/agent.png';
 import { LuMoveRight } from "react-icons/lu";
 import './Landing.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { transformSearchOptions } from '../../utils/createSearchQuery';
+
 
 const Landing = () => {
+  let navigate = useNavigate()
+  let [location,setLocation] = useState('')
   const [selectedOption, setSelectedOption] = useState('buy');
   const [dropdownSelections, setDropdownSelections] = useState({
     type: 'Type',
@@ -52,8 +56,20 @@ const Landing = () => {
     }));
   };
 
+  function navigateWithTransformedOptions(options) {
+    const transformedOptions = transformSearchOptions(options);
+    const queryParams = new URLSearchParams(transformedOptions).toString();
+    console.log(queryParams)
+    navigate(`/buy?${queryParams}&withSearch=yes`);
+  }
+
+  const findHome = () => {
+    // define all search parameters
+    navigateWithTransformedOptions({location,saleType: selectedOption,propertyType: dropdownSelections.type,...dropdownSelections})   
+  }
+
   const dropdownOptions = {
-    type: ['House', 'Apartment', 'Condo', 'Land', 'House', 'Apartment', 'Condo', 'Land'],
+    type: ['House', 'Apartment', 'Condo', 'Land'],
     bedroom: ['1 Bedroom', '2 Bedrooms', '3 Bedrooms', '4 Bedrooms', '5 Bedrooms', '6 Bedrooms', '7 Bedroom', '8 Bedrooms', '9 Bedrooms', '10 Bedrooms'],
     minPrice: ['50,000', '100,000', '200,000', '300,000', '400,000', '500,000', '600,000', '700,000', '800,000', '900,000', '1 million', '2 million',  '3 million'],
     maxPrice: ['500,000', '600,000', '700,000', '800,000', '900,000',  '1 million', '2 million', '3 million', '4 million', '5 million', '10 million', '15 million'],
@@ -92,9 +108,14 @@ const Landing = () => {
                         className="form-control"
                         placeholder="Search Location"
                         aria-label="Search"
+                        value={location}
+                        onChange={e=> setLocation(e.target.value)}
                       />
                     </div>
-                    <button className="btn btn-primary find ms-2">Find a home</button>
+                    <button className="btn btn-primary find ms-2" onClick={e=>{
+                      e.preventDefault()
+                      findHome()
+                    }}>Find a home</button>
                   </div>
 
                   <div className="d-flex flex-wrap dropdown-group">

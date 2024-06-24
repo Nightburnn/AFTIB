@@ -1,67 +1,31 @@
 import React, { useState } from 'react';
 import './FilterCard.css';
 import axios from 'axios';
+import { createSearchQuery, transformSearchOptions,searchRequest } from '../../utils/createSearchQuery';
 
-function searchRequest({ location, priceRangeMin, priceRangeMax, monthlyPaymentMin, monthlyPaymentMax, bedRooms, bathRooms, salesType }) {
-  const endpoint = 'https://aftib-6o3h.onrender.com/listing/searchListings';
-
-  // Create query parameters
-  const createQuery = (option, value) =>{
-    let bool  = !!value  && value !== '-';
-    console.log({bool,value})
-     return bool ? `${option}=${value}` : ''
-    };
-  let queryParams = [];
-  queryParams.push(createQuery('location', location));
-
-  // Include either price range or monthly payment range depending on salesType
-  if (salesType === 'rent') {
-    queryParams.push(createQuery('monthlyPaymentRange', `${monthlyPaymentMin}-${monthlyPaymentMax}`));
-  } else {
-    queryParams.push(createQuery('priceRange', `${priceRangeMin}-${priceRangeMax}`));
-  }
-
-  queryParams.push(createQuery('saleType', salesType));
-  queryParams.push(createQuery('bedRooms', bedRooms !== 'Any' ? bedRooms.replace('+', '') : ''));
-  queryParams.push(createQuery('bathRooms', bathRooms !== 'Any' ? bathRooms.replace('+', '') : ''));
-console.log({queryParams})
-  // Filter unused queries
-  queryParams = queryParams.filter(param => param !== ''  && param !== '-');
-
-  // Build the full query string
-  const queryString = queryParams.length ? `?${queryParams.join('&')}` : '';
-
-  console.log('Constructed Query String:', queryString); // Debugging log
-
-  // Send the request with axios
-  axios.get(`${endpoint}${queryString}`)
-    .then(response => {
-      console.log('Search results:', response.data);
-      if (response.data.listings) {
-        console.log('Number of listings:', response.data.listings.length);
-        console.log('Listings:', response.data.listings);
-      } else {
-        console.warn('No listings found in the response.');
-      }
-    })
-    .catch(error => {
-      console.error('There was an error with the search request:', error);
-    });
-}
 
 const FilterCard = ({ onFilter }) => {
   const [location, setLocation] = useState('');
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
-  const [monthlyPaymentMin, setMonthlyPaymentMin] = useState('');
-  const [monthlyPaymentMax, setMonthlyPaymentMax] = useState('');
   const [beds, setBeds] = useState('Any');
   const [baths, setBaths] = useState('Any');
-  const [activeFilter, setActiveFilter] = useState('Featured'); // State for active filter button
+  const [activeFilter, setActiveFilter] = useState('Buy'); // State for active filter button
 
   const handleFilter = () => {
-    const salesType = activeFilter.toLowerCase(); // Assuming 'Featured' is a type, adjust as needed
-    searchRequest({ 
+    const saleType = activeFilter.toLowerCase(); // Assuming 'Featured' is a type, adjust as needed
+    
+    console.log({minPrice,maxPrice})
+    let transformed = transformSearchOptions({location,saleType,propertyType: null,bedroom: beds, bathroom: baths, minPrice,maxPrice})
+    let query = createSearchQuery(transformed)
+    console.log({query})
+    searchRequest(query).then(res=>{
+      console.log("result",res.data)
+      onFilter(res.data)
+    }).catch(err=>{
+      console.error({error: err.message})
+    })
+   /* searchRequest({ 
       location, 
       priceRangeMin: minPrice, 
       priceRangeMax: maxPrice, 
@@ -70,15 +34,13 @@ const FilterCard = ({ onFilter }) => {
       bedRooms: beds, 
       bathRooms: baths, 
       salesType 
-    });
+    });*/
   };
 
   const resetFilters = () => {
     setLocation('');
     setMinPrice('');
     setMaxPrice('');
-    setMonthlyPaymentMin('');
-    setMonthlyPaymentMax('');
     setBeds('Any');
     setBaths('Any');
     setActiveFilter('Featured');
@@ -88,12 +50,6 @@ const FilterCard = ({ onFilter }) => {
   return (
     <div className="filter-card">
       <div className="filter-buttons">
-        <button
-          className={`filter-button ${activeFilter === 'Featured' ? 'active' : ''}`}
-          onClick={() => setActiveFilter('Featured')}
-        >
-          Featured
-        </button>
         <button
           className={`filter-button ${activeFilter === 'Buy' ? 'active' : ''}`}
           onClick={() => setActiveFilter('Buy')}
@@ -105,6 +61,12 @@ const FilterCard = ({ onFilter }) => {
           onClick={() => setActiveFilter('Rent')}
         >
           Rent
+        </button>      
+        <button
+          className={`filter-button ${activeFilter === 'Shortlet' ? 'active' : ''}`}
+          onClick={() => setActiveFilter('Shortlet')}
+        >
+          Shortlet
         </button>
       </div>
       <div className="price-range">
@@ -127,33 +89,6 @@ const FilterCard = ({ onFilter }) => {
               value={maxPrice}
               onChange={(e) => setMaxPrice(e.target.value)}
             />
-          </div>
-        </div>
-        <div className="price-type">
-          <div className="price-type-group">
-            <input
-              type="radio"
-              id="list-price"
-              name="price-type"
-              defaultChecked
-              onClick={() => {
-                setMonthlyPaymentMin('');
-                setMonthlyPaymentMax('');
-              }}
-            />
-            <label htmlFor="list-price">List Price</label>
-          </div>
-          <div className="price-type-group">
-            <input 
-              type="radio" 
-              id="monthly-payment" 
-              name="price-type"
-              onClick={() => {
-                setMinPrice('');
-                setMaxPrice('');
-              }}
-            />
-            <label htmlFor="monthly-payment">Monthly Payment</label>
           </div>
         </div>
       </div>
