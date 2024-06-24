@@ -2,7 +2,7 @@
 
 #mainSell {
   margin: 20px;
-  height: 70vh;
+ 
 }
 
 .sell {
@@ -37,7 +37,6 @@
   font-family: 'Lato';
   font-weight: 900;
 }
-
 .first-section {
   background-color: #4517FB;
   justify-content: space-between;
@@ -47,6 +46,7 @@
 .first-section img {
   width: 300px;
 }
+
 
 .first-section h1 {
   font-size: 30px;
