@@ -64,11 +64,11 @@ const Buy = () => {
       // If location is empty, do not proceed
       return;
     }
-    setSearchClicked(true);
     try {
       const response = await axios.get(`https://aftib-6o3h.onrender.com/listing/searchListings?location=${location}`);
       console.log('Fetched search results:', response.data); // Debugging line
       setFilteredProperties(response.data);
+      setShowResults(true)
     } catch (error) {
       console.error('Error fetching listings:', error);
     }
