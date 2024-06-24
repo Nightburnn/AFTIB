@@ -132,7 +132,9 @@ const Landing = () => {
         </div>
       </section>
 
-      <div className="container exp">
+
+<div className="landhome">
+   <div className="container-fluid exp">
       <h1 className="text-start">Explore homes on Aftib</h1>
       
       <div className="row">
@@ -182,9 +184,12 @@ GRA Phase 3 and Peter Odili Road.</p>
         </div>
       </div>
     </div>
+</div>
+     
 
 
-    <div className="container sel">
+<div className="landhome">
+  <div className="container-fluid sel">
       <h1 className="text-start">Select Category</h1>
 
       <div className="row">
@@ -225,8 +230,10 @@ GRA Phase 3 and Peter Odili Road.</p>
         </div>
       </div>
     </div>
+</div>
+    
 
-    <section className="landingCard mt-5">
+    <section className="landingCard landdd mt-5">
   <div className="container-fluid ">
     <div className="">     
       <div className="row">

@@ -243,7 +243,7 @@ img {
 .sel .image-container {
   position: relative;
   width: 100%;
-  height: 370px;
+  height: 300px;
   overflow: hidden;
   border-radius: 20px;
 }
@@ -281,20 +281,20 @@ img {
 
 .exp, .sel{
   margin-top: 50px;
+  
 }
 
-.sel{
-  margin-top: 50px;
-}
 
 @media (max-width: 760px) {
   .exp, .sel{
     margin-top: 30px;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 .exp h1, .sel h1{
   color: #0C0D0D;
-font-size: 29px;
+font-size: 40px;
 font-family: 'League Spartan';
 font-weight: 700;
 }
@@ -302,7 +302,6 @@ font-weight: 700;
 .exp p, .sel p{
   color: #0C0D0D;
 font-size: 15px;
-font-family: Open Sans;
 font-weight: 400;
 }
 
@@ -431,11 +430,40 @@ font-weight: 600;
 .landingCard {
   
   justify-content: center;
-  background-color: #f0f0f0;
+ 
   width: 100%;
   padding-top: 20px;
   padding-left: 35px;
   padding-right: 35px;
+  
+}
+
+.landdd{
+   background-color: #f0f0f0;
+}
+
+
+
+.landhome {
+  
+  justify-content: center;
+  width: 100%;
+  padding-top: 20px;
+  padding-left: 60px;
+  padding-right: 60px;
+  
+}
+
+@media (max-width: 768px) {
+  .landingCard {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .landhome{
+    padding-left: 0;
+    padding-right: 0;
+  }
   
 }
 
