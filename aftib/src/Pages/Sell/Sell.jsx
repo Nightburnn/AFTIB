@@ -146,7 +146,7 @@ const Sell = () => {
           </main>
         )}
 
-        <section className="d-flex flex-column flex-md-row p-5 align-items-center fourth">
+        <section className="d-flex flex-column flex-md-row p-5 align-items-center fourth container">
           <div className="col-md-6 mb-3 mb-md-0">
             <h2>Ready to get started?</h2>
             <p className="mt-3">We can connect you with an agent today who will help you understand your options for selling and answer all your questions.</p>

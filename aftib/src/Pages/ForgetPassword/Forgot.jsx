@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import apple from '../../assets/images/apple.png';
 import facebook from '../../assets/images/facebook.png';
 import google from '../../assets/images/google.png';
-import './Forgot.css'; 
+import './Forgot.css';
 
 const ForgotPassword = () => {
   const [isEmail, setIsEmail] = useState(true);
@@ -13,6 +13,7 @@ const ForgotPassword = () => {
   const [mobile, setMobile] = useState('');
   const [isVerificationStep, setIsVerificationStep] = useState(false);
   const [otp, setOtp] = useState(['', '', '', '']);
+  const otpRefs = useRef([]);
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -35,10 +36,19 @@ const ForgotPassword = () => {
   };
 
   const handleOtpChange = (index, value) => {
-    if (value.length <= 1) {
-      const newOtp = [...otp];
-      newOtp[index] = value;
-      setOtp(newOtp);
+    const newOtp = [...otp];
+    newOtp[index] = value;
+    setOtp(newOtp);
+    if (value.length === 1 && index < otpRefs.current.length - 1) {
+      otpRefs.current[index + 1].focus();
+    } else if (value === '' && index > 0) {
+      otpRefs.current[index - 1].focus();
+    }
+  };
+
+  const handleKeyDown = (index, event) => {
+    if (event.key === 'Backspace' && otp[index] === '' && index > 0) {
+      otpRefs.current[index - 1].focus();
     }
   };
 
@@ -60,7 +70,7 @@ const ForgotPassword = () => {
     <>
       <div className="row rrow">
         <div className="rhead">
-          <h4 className='ps-4'>Forgot Password?</h4>
+          <h4 className="ps-4">Forgot Password?</h4>
           <ul>
             <Link to="/sign">
               <li className={location.pathname === '/sign' ? 'active' : ''}>Register</li>
@@ -89,9 +99,11 @@ const ForgotPassword = () => {
                           type="text"
                           value={digit}
                           onChange={(e) => handleOtpChange(index, e.target.value)}
+                          onKeyDown={(e) => handleKeyDown(index, e)}
                           maxLength="1"
                           className="otp-input"
                           required
+                          ref={(el) => (otpRefs.current[index] = el)}
                         />
                       ))}
                     </div>
@@ -158,11 +170,7 @@ const ForgotPassword = () => {
                   <hr />
                   <div className="r-connect">
                     <p className="text-center rpara">Or connect with:</p>
-                    <div className="rimg">
-                      <Link>
-                        <img src={apple} alt="Apple" />
-                      </Link>
-                    </div>
+                    
                     <div className="rimg">
                       <Link>
                         <img src={facebook} alt="Facebook" />

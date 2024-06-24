@@ -213,11 +213,7 @@ const Signup = () => {
                   <h2>Welcome to AFTIB</h2>
                   <div className="r-connect">
                     <p className="text-center rpara">Or connect with:</p>
-                    <div className="rimg">
-                      <Link>
-                        <img src={apple} alt="Apple" />
-                      </Link>
-                    </div>
+                    
                     <div className="rimg">
                       <Link>
                         <img src={facebook} alt="Facebook" />
