@@ -19,7 +19,7 @@ const Listing = () => {
  
   let auth = useContext(AuthContext)
   console.log({auth})
-  let token = auth.token
+  let token = window.localStorage.getItem('accessToken')
   const [images, setImages] = useState([]);
   
   const [position, setPosition] = useState({ lat: 51.505, lng: -0.09 });
