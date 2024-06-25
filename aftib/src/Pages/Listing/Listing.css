@@ -7,6 +7,10 @@
     padding-bottom: 30px;
 }
 
+.listing-container input::placeholder, .listing-container textarea::placeholder {
+  color: rgb(163, 163, 163) !important;
+}
+
 .listing-gallery{
     background-color: #D9D9D980;
     padding: 30px;
