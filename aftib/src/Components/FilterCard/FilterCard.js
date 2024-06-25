@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './FilterCard.css';
-import axios from 'axios';
 import { createSearchQuery, transformSearchOptions,searchRequest } from '../../utils/createSearchQuery';
 
 

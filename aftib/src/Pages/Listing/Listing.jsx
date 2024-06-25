@@ -16,13 +16,61 @@ const Listing = () => {
   const [images, setImages] = useState([]);
   
   const [position, setPosition] = useState({ lat: 51.505, lng: -0.09 });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  }
+
+    const [formValues, setFormValues] = useState({
+      title: '',
+      description: '',
+      saleType: '',
+      propertyType: '',
+      size: '',
+      bedrooms: '',
+      bathrooms: '',
+      estate: '',
+      yearBuilt: '',
+      price: '',
+      monthlyRentPayment: '',
+      location: '',
+      state: '',
+      LGA: '',
+      ownerName: '',
+      ownerPhone: '',
+      ownerEmail: '',
+      availableFrom: '',
+      virtualTour: '',
+      neighborhood: '',
+      propertyStatus: '',
+      energyRating: '',
+      nearbySchools: '',
+      transportation: '',
+      floorNumber: '',
+      agentName: '',
+      agentPhone: '',
+      agentEmail: ''
+    });
+  
 
   const checkboxes = [
-    'Option 1', 'Option 2', 'Option 3',
-    'Option 4', 'Option 5', 'Option 6',
-    'Option 7', 'Option 8', 'Option 9'
+    'Garage', 'Garden', 'Balcony',
+    'Pets Allowed', 'Furnished', 'Option 6'
   ];
 
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({
+      ...formValues,
+      [name]: value
+    });
+  };
+
+  
+
+
+
+  
   const handleDrop = (event) => {
     event.preventDefault();
     const files = Array.from(event.dataTransfer.files);
@@ -54,6 +102,7 @@ const Listing = () => {
       }
     });
 
+    
     return (
       <Marker
         draggable={true}
@@ -79,82 +128,182 @@ const Listing = () => {
   return (
     <div className="container mt-5">
       <div className="row">
-        <div className="col-md-6 listing">
-          <h2>Listing</h2>
-          <div className="listing-container">
-            <div className="form-group row mb-3">
-              <div className="col-sm-6 mb-2">
-                <select className="form-control">
-                  <option>Property Type</option>
-                  <option>Type 1</option>
-                  <option>Type 2</option>
-                  <option>Type 3</option>
-                </select>
-              </div>
-              <div className="col-sm-6">
-                <input type="text" className="form-control" placeholder="Sqt" />
-              </div>
-            </div>
-            <div className="form-group row mb-3">
-              <div className="col-sm-6 mb-2">
-                <select className="form-control">
-                  <option>Bedroom</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                </select>
-              </div>
-              <div className="col-sm-6">
-                <select className="form-control">
-                  <option>Bathroom</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                </select>
-              </div>
-            </div>
-    
-            <div className="form-group mb-3">
-              <label className="col-form-label">Price Range</label>
-              <div className="row">
-                <div className="col-sm-6 mb-2">
-                  <input type="text" className="form-control" placeholder="Min" />
-                </div>
-                <div className="col-sm-6">
-                  <input type="text" className="form-control" placeholder="Max" />
-                </div>
-              </div>
-            </div>
+      <div className="col-md-6 listing">
+      <h2>Listing</h2>
+      <form onSubmit={handleSubmit} className="listing-container">
+        <div className="form-group row mb-3">
+          <div className="col-sm-6 mb-2">
+            <input type="text" className="form-control" placeholder="Title" name="title" id="title" value={formValues.title} onChange={handleChange} />
+          </div>
+          <div className="col-sm-6">
+            <select className="form-control" name="saleType" id="saleType" value={formValues.saleType} onChange={handleChange}>
+              <option>Sale Type</option>
+              <option>Sale</option>
+              <option>Rent</option>
+            </select>
+          </div>
+        </div>
 
-            <div className="form-group mb-3">
-              <label className="col-form-label">Location</label>
-              <div className="row">
-                <div className="col-sm-12 mb-2">
-                  <input type="text" className="form-control" placeholder="Location" />
-                </div>
-                
-              </div>
+        <div className="form-group row mb-3">
+          <div className="col-sm-6 mb-2">
+            <select className="form-control" name="propertyType" id="propertyType" value={formValues.propertyType} onChange={handleChange}>
+              <option>Property Type</option>
+              <option>Apartment</option>
+              <option>House</option>
+              <option>Land</option>
+              <option>Villa</option>
+              <option>Duplex</option>
+            </select>
+          </div>
+          <div className="col-sm-6">
+            <input type="text" className="form-control" placeholder="Size of (sqt)" name="size" id="size" value={formValues.size} onChange={handleChange} />
+          </div>
+        </div>
+
+        <div className="form-group row mb-3">
+          <div className="col-sm-6 mb-2">
+            <select className="form-control" name="bedrooms" id="bedrooms" value={formValues.bedrooms} onChange={handleChange}>
+              <option>Bedroom</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+            </select>
+          </div>
+          <div className="col-sm-6">
+            <select className="form-control" name="bathrooms" id="bathrooms" value={formValues.bathrooms} onChange={handleChange}>
+              <option>Bathroom</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="form-group row mb-3">
+          <div className="col-sm-6 mb-2">
+            <input type="text" className="form-control" placeholder="Estate" name="estate" id="estate" value={formValues.estate} onChange={handleChange} />
+          </div>
+          <div className="col-sm-6">
+            <input type="text" className="form-control" placeholder="Year built" name="yearBuilt" id="yearBuilt" value={formValues.yearBuilt} onChange={handleChange} />
+          </div>
+        </div>
+
+        <div className="form-group mb-3">
+          <label className="col-form-label">Price Range</label>
+          <div className="row">
+            <div className="col-sm-6 mb-2">
+              <input type="text" className="form-control" placeholder="Price" name="price" id="price" value={formValues.price} onChange={handleChange} />
             </div>
-           
-            <div className="form-group mb-3">
-              <label>Description</label>
-              <textarea className="form-control" rows="4"></textarea>
-            </div>
-          
-            <div className="form-group">
-              <div className="row">
-                {checkboxes.map((option, index) => (
-                  <div className="col-6 col-sm-4 mb-2" key={index}>
-                    <div className="form-check">
-                      <input className="form-check-input" type="checkbox" id={`checkbox${index}`} />
-                      <label className="form-check-label" htmlFor={`checkbox${index}`}>{option}</label>
-                    </div>
-                  </div>
-                ))}
-              </div>
+            <div className="col-sm-6">
+              <input type="text" className="form-control" placeholder="Monthly Rent Payment" name="monthlyRentPayment" id="monthlyRentPayment" value={formValues.monthlyRentPayment} onChange={handleChange} />
             </div>
           </div>
         </div>
+
+        <div className="form-group mb-3">
+          <label className="col-form-label">Location</label>
+          <div className="row">
+            <div className="col-sm-12 mb-2">
+              <input type="text" className="form-control" placeholder="Location" name="location" id="location" value={formValues.location} onChange={handleChange} />
+            </div>
+            <div className="col-sm-6 mb-2">
+              <input type="text" className="form-control" placeholder="State" name="state" id="state" value={formValues.state} onChange={handleChange} />
+            </div>
+            <div className="col-sm-6">
+              <input type="text" className="form-control" placeholder="LGA" name="LGA" id="LGA" value={formValues.LGA} onChange={handleChange} />
+            </div>
+          </div>
+        </div>
+
+        <div className="form-group mb-3">
+          <label className="col-form-label">Owner's Contact</label>
+          <div className="row">
+            <div className="col-sm-6 mb-2">
+              <input type="text" className="form-control" placeholder="Name" name="ownerName" id="ownerName" value={formValues.ownerName} onChange={handleChange} />
+            </div>
+            <div className="col-sm-6">
+              <input type="text" className="form-control" placeholder="Phone" name="ownerPhone" id="ownerPhone" value={formValues.ownerPhone} onChange={handleChange} />
+            </div>
+            <div className="col-sm-6 mb-2">
+              <input type="text" className="form-control" placeholder="Email" name="ownerEmail" id="ownerEmail" value={formValues.ownerEmail} onChange={handleChange} />
+            </div>
+            <div className="col-sm-6">
+              <input type="text" className="form-control" placeholder="Available From" name="availableFrom" id="availableFrom" value={formValues.availableFrom} onChange={handleChange} />
+            </div>
+          </div>
+        </div>
+
+        <div className="form-group mb-3">
+          <label className="col-form-label">Others</label>
+          <div className="row">
+            <div className="col-sm-12 mb-2">
+              <input type="url" className="form-control" placeholder="Virtual Tour URL" name="virtualTour" id="virtualTour" value={formValues.virtualTour} onChange={handleChange} />
+            </div>
+            <div className="col-sm-6 mb-2">
+              <input type="text" className="form-control" placeholder="Neighborhood" name="neighborhood" id="neighborhood" value={formValues.neighborhood} onChange={handleChange} />
+            </div>
+            <div className="col-sm-6">
+              <input type="text" className="form-control" placeholder="Property Status" name="propertyStatus" id="propertyStatus" value={formValues.propertyStatus} onChange={handleChange} />
+            </div>
+          </div>
+        </div>
+
+        <div className="form-group mb-3">
+          <div className="row">
+            <div className="col-sm-6 mb-2">
+              <input type="text" className="form-control" placeholder="Energy Rating" name="energyRating" id="energyRating" value={formValues.energyRating} onChange={handleChange} />
+            </div>
+            <div className="col-sm-6">
+              <input type="text" className="form-control" placeholder="Nearby Schools" name="nearbySchools" id="nearbySchools" value={formValues.nearbySchools} onChange={handleChange} />
+            </div>
+            <div className="col-sm-6 mb-2">
+              <input type="text" className="form-control" placeholder="Transportation" name="transportation" id="transportation" value={formValues.transportation} onChange={handleChange} />
+            </div>
+            <div className="col-sm-6">
+              <input type="text" className="form-control" placeholder="Floor Number" name="floorNumber" id="floorNumber" value={formValues.floorNumber} onChange={handleChange} />
+            </div>
+          </div>
+        </div>
+
+        <div className="form-group mb-3">
+          <label className="col-form-label">Admin's Contact</label>
+          <div className="row">
+            <div className="col-sm-6 mb-2">
+              <input type="text" className="form-control" placeholder="Name" name="agentName" id="agentName" value={formValues.agentName} onChange={handleChange} />
+            </div>
+            <div className="col-sm-6">
+              <input type="text" className="form-control" placeholder="Phone" name="agentPhone" id="agentPhone" value={formValues.agentPhone} onChange={handleChange} />
+            </div>
+            <div className="col-sm-6 mb-2">
+              <input type="text" className="form-control" placeholder="Email" name="agentEmail" id="agentEmail" value={formValues.agentEmail} onChange={handleChange} />
+            </div>
+            <div className="col-sm-6">
+              <input type="text" className="form-control" placeholder="Available From" name="agentAvailableFrom" id="agentAvailableFrom" value={formValues.agentAvailableFrom} onChange={handleChange} />
+            </div>
+          </div>
+        </div>
+
+        <div className="form-group mb-3">
+          <label>Description</label>
+          <textarea className="form-control" rows="4" name="description" id="description" value={formValues.description} onChange={handleChange}></textarea>
+        </div>
+
+        <div className="form-group">
+          <div className="row">
+            {checkboxes.map((option, index) => (
+              <div className="col-6 col-sm-4 mb-2" key={index}>
+                <div className="form-check">
+                  <input className="form-check-input" type="checkbox" id={`checkbox${index}`} />
+                  <label className="form-check-label" htmlFor={`checkbox${index}`}>{option}</label>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        
+      </form>
+    </div>
        
         <div className="col-md-6 local">
           <h2>Localization</h2>

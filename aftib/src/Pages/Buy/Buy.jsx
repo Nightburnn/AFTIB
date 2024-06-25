@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import FilterCard from '../../Components/FilterCard/FilterCard';
 import './Buy.css';
-import { Link, useLocation } from 'react-router-dom';
+import {  useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { createSearchQuery, searchRequest } from '../../utils/createSearchQuery';
 import { PropertyCard } from '../../Components/PropertyCard';
