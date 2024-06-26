@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import useScrollToTop from './useScrollToTop'; // Ensure the path is correct
 import Header from './Components/Header/Header';
 import Chatbot from './Pages/Help/Chatbot';
 import Landing from './Pages/Landing/Landing';
@@ -25,40 +26,43 @@ import Dashboard from './PostPages/Admin/Dashboard/Dashboard';
 import ManageUser from './PostPages/Admin/ManageUser/ManageUser';
 import Index from './Components/PropertyDetails';
 
-
-
 function App() {
   return (
     <AuthProvider>
-        <Router>
-   <Header/>
-    <Routes>
-      <Route  path="/" Component={Landing}/>
-      <Route path='/about' Component={About}/>
-      <Route  path='/buy' Component={Buy}/>
-      <Route  path='/sell' Component={Sell}/>
-      <Route  path='/rent' Component={Rent}/>
-      <Route  path='/agent-finder' Component={Agent}/>
-      <Route  path='/help' Component={Help}/>
-      <Route path='/sign' Component={Signup}/>
-      <Route path='/login' Component={Login}/>
-      <Route path="/admin-profile" Component={AdminProfile}/>
-      <Route path='/profile' Component={ProfilePage}/>
-      <Route path='/inbox' Component={Inbox}/>
-      <Route path='/admin-dashboard' Component={Dashboard}/>
-      <Route path='/admin-users' Component={ManageUser}/>
-      <Route path='/list' Component={Listing}/>
-      <Route path='/review' Component={ListingReview}/>
-      <Route path='/pd' Component={Index}/>
-     <Route path='/forgot' Component={Forgot}/>
-      <Route path='/agent/:id' Component={SingleAgentSection} />
-      </Routes>
-      <Chatbot/>
-<Footer/>
-  </Router>
+      <Router>
+        <ScrollToTop />
+        <Header />
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/buy" element={<Buy />} />
+          <Route path="/sell" element={<Sell />} />
+          <Route path="/rent" element={<Rent />} />
+          <Route path="/agent-finder" element={<Agent />} />
+          <Route path="/help" element={<Help />} />
+          <Route path="/sign" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/admin-profile" element={<AdminProfile />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/inbox" element={<Inbox />} />
+          <Route path="/admin-dashboard" element={<Dashboard />} />
+          <Route path="/admin-users" element={<ManageUser />} />
+          <Route path="/list" element={<Listing />} />
+          <Route path="/review" element={<ListingReview />} />
+          <Route path="/pd" element={<Index />} />
+          <Route path="/forgot" element={<Forgot />} />
+          <Route path="/agent/:id" element={<SingleAgentSection />} />
+        </Routes>
+        <Chatbot />
+        <Footer />
+      </Router>
     </AuthProvider>
-  
   );
+}
+
+function ScrollToTop() {
+  useScrollToTop();
+  return null;
 }
 
 export default App;

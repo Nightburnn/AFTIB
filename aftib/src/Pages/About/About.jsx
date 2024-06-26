@@ -103,7 +103,7 @@ const About = () => {
         <div className="col-md-8 align-center add">
           <h2 className="mb-1">Real Estate Management</h2>
           <p>
-          Your business with us is managed by highly qualified and experienced real estate professionals, including estate surveyors and valuers, supported by a skilled and efficient administrative and technical team. This comprehensive support ensures the acquisition, oversight, and maintenance of your real estate properties' value. Our specialists are here to help you maintain and enhance the value of your investments. </p>
+          Your business with us is managed by highly qualified and experienced real estate professionals,  supported by a skilled and efficient administrative and technical team. This comprehensive support ensures the maintenance of your real estate properties's value.</p>
         </div>
         </div>
 
@@ -114,7 +114,7 @@ const About = () => {
         <div className="col-md-8 align-center add">
           <h2 className="mb-1">Property Development</h2>
           <p>
-          We are the foremost destination for those seeking rapidly developing land at competitive prices. Our commitment is to provide unparalleled quality through our comprehensive property development services. We ensure each client receives the best possible experience and outcomes by delivering tailored solutions that meet their unique needs. This makes us a trusted partner in your property investment journey. </p>
+          We are the foremost destination for those seeking rapidly developing land at competitive prices. Our commitment is to provide unparalleled quality through our comprehensive property development services. We ensure each client receives the best possible experience and outcomes. </p>
         </div>
        
         </div>
@@ -137,9 +137,7 @@ const About = () => {
         <div className="col-md-8 align-center add">
           <h2 className="mb-1">Real Estate Management</h2>
           <p>
-          Your business with us is managed by highly qualified and experienced real estate professionals, including estate surveyors and valuers, all supported by a skilled and efficient administrative and technical team. This comprehensive support ensures the acquisition, oversight, and maintenance of your real estate properties' value.
-Together Everyone Achieves More. Looking for tested and trusted experts to manage your real estate property? Our specialists are here to help you maintain and enhance the value of your investments.
-          </p>
+          Your business with us is managed by highly qualified and experienced real estate professionals, supported by a skilled and efficient administrative and technical team. This comprehensive support ensures the maintenance of your real estate properties's value.    </p>
         </div>
         
         </div>

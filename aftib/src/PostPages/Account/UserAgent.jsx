@@ -15,7 +15,7 @@ function AgentPage() {
               <p className="card-text"><strong>Location:</strong> Abuja, Nigeria</p>
               <p className="card-text"><strong>Experience:</strong> 2 years</p>
               <p className="card-text"><strong>Specialization:</strong> First-time home buyer</p>
-              <button className="btn w-100">Subscribe</button>
+              <button className="btn w-100">Chat</button>
             </div>
           </div>
         </div>
@@ -26,7 +26,7 @@ function AgentPage() {
               <p className="card-text"><strong>Location:</strong> Abuja, Nigeria</p>
               <p className="card-text"><strong>Experience:</strong> 2 years</p>
               <p className="card-text"><strong>Specialization:</strong> First-time home buyer</p>
-              <button className="btn w-100">Subscribe</button>
+              <button className="btn w-100">Chat</button>
             </div>
           </div>
         </div>
@@ -37,7 +37,7 @@ function AgentPage() {
               <p className="card-text"><strong>Location:</strong> Abuja, Nigeria</p>
               <p className="card-text"><strong>Experience:</strong> 2 years</p>
               <p className="card-text"><strong>Specialization:</strong> First-time home buyer</p>
-              <button className="btn  w-100">Subscribe</button>
+              <button className="btn  w-100">Chat</button>
             </div>
           </div>
         </div>
