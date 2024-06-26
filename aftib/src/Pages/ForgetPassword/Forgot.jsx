@@ -4,12 +4,16 @@ import apple from '../../assets/images/apple.png';
 import facebook from '../../assets/images/facebook.png';
 import google from '../../assets/images/google.png';
 import './Forgot.css';
+import { sendForgotPasswordForEmail,sendVerifyOtp } from '../../utils/forgotPasswordRequest';
+// when handling the form submissions use this functions.
+// use let sendOtp = await sendForgotPasswordForEmail(email). if there is no issue it should return the response data, same with the other function.
+// then when the user clicks verify otp, do let verifyOtp = await sendVerifyOtp(email,otp)
 
 const ForgotPassword = () => {
   const [isEmail, setIsEmail] = useState(true);
   const [inputValue, setInputValue] = useState('');
-  const [error, setError] = useState('');
   const [countryCode, setCountryCode] = useState('+234');
+  const [error, setError] = useState('');
   const [mobile, setMobile] = useState('');
   const [isVerificationStep, setIsVerificationStep] = useState(false);
   const [otp, setOtp] = useState(['', '', '', '']);
@@ -160,8 +164,9 @@ const ForgotPassword = () => {
                     </button>
                   </div>
                   <p className="lsubtitle text-center mt-4">
-                    By registering you accept our <span>Terms of use</span> and <span>Privacy</span> and agree that we
-                    and our selected partners may contact you with relevant offers and services.
+                    If you need help in resolving this issue, contact our customer support via <a href='mailto:support@aftib.com'>support@aftib.com</a>
+                    <br />
+                    <span>Terms of use</span> and <span>Privacy</span> 
                   </p>
                 </form>
               </div>
