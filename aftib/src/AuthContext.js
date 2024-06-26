@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { setCookie, getCookie, removeCookie } from "./Cookie"; 
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
 export const useAuth = () => {
   return useContext(AuthContext);
@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
   const login = (userData) => {
     const { token } = userData;
     setUser(userData);
-    setCookie('authToken', token, { path: '/', maxAge: 3600 }); // Set cookie with token
+    setCookie('authToken', token, { path: '/', maxAge: 3600000 }); // Set cookie with token
     window.localStorage.setItem('user', JSON.stringify(userData)); // Set local storage with user data
   };
 
