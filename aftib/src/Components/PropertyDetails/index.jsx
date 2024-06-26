@@ -52,7 +52,7 @@ const Index = () => {
     
       const summary = [
         { label: "Property ID:", value: "1134" },
-        { label: "Location:", value: "Chicago, IL 606543 Chicago, IL 606543" },
+        { label: "Location:", value: "Chicago, IL 606543" },
         { label: "Property Type:", value: "House" },
         { label: "Status:", value: "Sale" },
         { label: "Area:", value: "340m²" },
@@ -62,8 +62,9 @@ const Index = () => {
       ];
     
   return (
-   <div className="container">
+   <div className="container mt-5"><h2 className="mb-3">Three bedroom apartment</h2>
      <div className="galleryContainer">
+      
       <div className="gallery">
         {images.map(image => (
           <React.Fragment key={image.id}>

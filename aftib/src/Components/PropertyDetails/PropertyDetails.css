@@ -3,6 +3,11 @@
   flex-direction: column;
   align-items: center;
 }
+.galleryContainer h2{
+  text-align: left;
+}
+
+
 
 .galleryContainer .gallery {
   display: flex;
