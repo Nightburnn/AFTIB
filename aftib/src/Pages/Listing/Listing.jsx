@@ -7,6 +7,7 @@ import {nigerianStateData} from './data'
 import { checkRequiredData } from '../../utils/processListing';
 import axios from 'axios';
 import { AuthContext } from '../../AuthContext';
+import { Link } from 'react-router-dom';
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -122,7 +123,7 @@ const Listing = () => {
     console.log({token,validate,requestBody})
     if(!validate.valid) return;
     try {
-      let addListing = await axios.post('http://127.0.0.1:8080/listing/addListing',JSON.stringify(requestBody),{
+      let addListing = await axios.post('https://aftib-6o3h.onrender.com/listing/addListing',JSON.stringify(requestBody),{
       headers: {
         'Content-Type': 'application/json',
         "Authorization": `Bearer ${token}`
@@ -496,7 +497,7 @@ const Listing = () => {
           </div>
       </div>
       <div className="row justify-content-center">
-        <button className="btn listbtn  mt-3" onClick={submitForm}>Submit</button>
+        <button className="btn listbtn  mt-3" onClick={submitForm}><Link to="/review" className='listbtn'>Submit </Link></button>
       </div>
     </div>
   );
