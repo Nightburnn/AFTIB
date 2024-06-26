@@ -1,0 +1,132 @@
+.lreview .card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+  }
+  .move{
+    margin-left: 10px;
+  }
+
+
+  .prev{
+background-color: #4517FB;
+outline: none;
+border: none;
+color: #fff;
+  }
+
+
+  .warning{
+    background-color: #ffc107;
+    outline: none;
+    border: none;
+color: #000; 
+  }
+
+.danger{
+    background-color: #dc3545;
+    outline: none;
+    border: none;
+    color: #fff;
+}
+
+.info{
+background-color: #dc3545;
+outline: none;
+border: none;
+color: #000;
+}
+
+
+.btn-success{
+    background-color: #4517FB;
+    outline: none;
+    border: none;
+}
+  .lreview .carousel-image {
+    border-radius: 10px;
+    max-height: 150px;
+    object-fit: cover;
+  }
+  
+  .lreview .carousel-controls {
+    margin-top: 5px;
+  }
+  
+  .lreview .button-group .btn {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+  }
+  
+  .lreview .card-title {
+    font-size: 1rem;
+    margin-top: -30px;
+    
+  }
+  
+  .lreview .card-text {
+    font-size: 0.85rem;
+  }
+  
+  .btn-success {
+    display: block;
+    margin: 0 auto;
+    width: fit-content;
+  }
+  
+  .carousel-controls .btn {
+    margin: 0 5px;
+  }
+  
+  .button-group .btn {
+    margin: 0 5px;
+  }
+  
+  .modal .modal-dialog {
+    max-width: 500px;
+  }
+  
+  .modal .modal-body img {
+    max-height: 200px;
+    object-fit: cover;
+  }
+  
+  /* Media Queries for Mobile View */
+  @media (max-width: 768px) {
+    .lreview .card-body {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .move{
+        margin-left: 0;
+        margin-top: 30px;
+      }
+    .lreview .carousel-controls {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  
+    .lreview .card-title,
+    .lreview .card-text {
+      text-align: center;
+    }
+  
+    .lreview .ml-md-3 {
+      margin-left: 0 !important;
+    }
+  
+    .lreview .mt-md-0 {
+      margin-top: 1rem !important;
+    }
+  
+    .lreview .button-group {
+      justify-content: center;
+      margin-top: 10px;
+    }
+  
+    .lreview .button-group .btn {
+      margin: 5px 2px;
+    }
+  }
+  

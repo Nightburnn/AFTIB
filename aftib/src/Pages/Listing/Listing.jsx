@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import './Listing.css';
 import L from 'leaflet';
+import { Link } from 'react-router-dom';
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -126,11 +127,11 @@ const Listing = () => {
   };
 
   return (
-    <div className="container mt-5">
+    <form onSubmit={handleSubmit} className="container mt-5">
       <div className="row">
       <div className="col-md-6 listing">
       <h2>Listing</h2>
-      <form onSubmit={handleSubmit} className="listing-container">
+      <div className="listing-container">
         <div className="form-group row mb-3">
           <div className="col-sm-6 mb-2">
             <input type="text" className="form-control" placeholder="Title" name="title" id="title" value={formValues.title} onChange={handleChange} />
@@ -302,7 +303,7 @@ const Listing = () => {
         </div>
 
         
-      </form>
+      </div>
     </div>
        
         <div className="col-md-6 local">
@@ -387,9 +388,12 @@ const Listing = () => {
           </div>
       </div>
       <div className="row justify-content-center">
-        <button className="btn listbtn  mt-3">Submit</button>
+        
+        <button className="btn listbtn  mt-3"><Link to="/review" className='text-white'>Submit</Link></button>
+        
+       
       </div>
-    </div>
+    </form>
   );
 };
 

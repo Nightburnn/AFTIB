@@ -19,6 +19,8 @@ import SingleAgentSection from './Pages/Agent/SingleAgentSection';
 import Inbox from './Pages/Inbox/Inbox';
 import Forgot from './Pages/ForgetPassword/Forgot';
 import Listing from './Pages/Listing/Listing';
+import ListingReview from './Pages/Listing/ListingReview';
+import AdminProfile from './PostPages/Admin/AdminProfile';
 
 
 
@@ -37,11 +39,13 @@ function App() {
       <Route  path='/help' Component={Help}/>
       <Route path='/sign' Component={Signup}/>
       <Route path='/login' Component={Login}/>
+      <Route path="/admin-profile" Component={AdminProfile}/>
       <Route path='/profile' Component={ProfilePage}/>
       <Route path='/inbox' Component={Inbox}/>
       <Route path='/list' Component={Listing}/>
-      <Route path='/forgot' Component={Forgot}/>
-      <Route path="/agent/:id" component={SingleAgentSection} />
+      <Route path='/review' Component={ListingReview}/>
+     <Route path='/forgot' Component={Forgot}/>
+      <Route path='/agent/:id' Component={SingleAgentSection} />
       </Routes>
       <Chatbot/>
 <Footer/>

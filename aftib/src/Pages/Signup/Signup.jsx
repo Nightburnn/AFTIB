@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import apple from '../../assets/images/apple.png';
 import facebook from '../../assets/images/facebook.png';
 import google from '../../assets/images/google.png';
 import { Link, useLocation, useNavigate } from 'react-router-dom';

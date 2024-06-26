@@ -1,0 +1,170 @@
+
+  .first-section {
+    background-color: #4517fb;
+    justify-content: space-between;
+    padding: 25px 20px 0 25px;
+  }
+  
+  .first-section img {
+    width: 300px;
+  }
+  
+  .first-section h1 {
+    font-size: 30px;
+    font-weight: 800;
+  }
+  
+  .first-section p {
+    font-size: 20px;
+  }
+  
+  .second-section .card {
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.19);
+    border-top: none;
+  }
+  
+  .second-section .card-body {
+    padding-top: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    height: 250px;
+  }
+  
+  .second-section .card-title {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  
+  .second-section p {
+    font-size: 15px;
+    font-weight: 400;
+  }
+  
+  @media (max-width: 768px) {
+    .secondcard {
+      margin-top: 30px;
+    }
+  
+    .first-section h1 {
+      font-size: 25px;
+    }
+  
+    .first-section p {
+      font-size: 18px;
+    }
+  
+    .second-section .card-title {
+      font-size: 18px;
+    }
+  
+    .second-section p {
+      font-size: 13px;
+    }
+  }
+  
+  .third-section span {
+    color: #000;
+  }
+  
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    display: none;
+  }
+  
+  .carousel-control-prev,
+  .carousel-control-next {
+    background: none; /* To remove any default button styles */
+    border: none;
+    outline: none;
+  }
+  
+  .carousel-control-prev:disabled,
+  .carousel-control-next:disabled {
+    display: none;
+  }
+  
+  .carousel-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .carousel {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .carousel-control-prev,
+  .carousel-control-next {
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .carousel-control-prev {
+    margin-right: 50px; /* Adjust space between button and carousel as needed */
+  }
+  
+  .carousel-control-next {
+    margin-left: 10px; /* Adjust space between button and carousel as needed */
+  }
+  
+  .carousel-control-prev:disabled,
+  .carousel-control-next:disabled {
+    display: none;
+  }
+  
+  .carousel-inner {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+  }
+  
+  .carousel-inner .card {
+    flex: 0 0 auto;
+  }
+  
+  .first-section {
+    padding: 5rem 0;
+  }
+  
+  .second-section,
+  .third-section,
+  #mainSell {
+    padding: 5rem 0;
+  }
+  
+  .view .btn {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    background-color: #4517fb;
+    color: #fff;
+  }
+  
+  .fourth .btn {
+    background-color: #4517fb;
+    color: #fff;
+  }
+  
+  .arrow {
+    color: #000;
+  }
+  .house-d {
+    display: grid;
+  }
+  @media screen and (min-width: 900px) {
+    .house-d {
+      grid-template-columns: repeat(8, 1fr);
+    }
+  }

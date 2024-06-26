@@ -50,15 +50,7 @@ const ProfilePage = () => {
               {activeTab === 'help' && <Help />}
             </>
           );
-        case 'admin':
-          return (
-            <>
-              {activeTab === 'user' && <AgentUser />} 
-             
-              {activeTab === 'settings' && <AgentSetting />} 
-              {activeTab === 'help' && <Help />}
-            </>
-          );
+       
         default:
           return null;
       }

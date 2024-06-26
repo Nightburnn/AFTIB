@@ -9,7 +9,6 @@ import why2 from '../../assets/images/why2.png';
 import why3 from '../../assets/images/why3.png';
 import sh3 from '../../assets/images/sh3.png';
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
-import { Link } from 'react-router-dom';
 import './Sell.css';
 
 const Sell = () => {

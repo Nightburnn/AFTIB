@@ -10,6 +10,12 @@ const Header = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const { isLoggedIn, logout, user } = useAuth();
 
+  // Debugging logs
+  console.log("Header Component Rendered");
+  console.log("isLoggedIn:", isLoggedIn);
+  console.log("user:", user);
+  console.log("user.accountType:", user ? user.accountType : "No user");
+
   const handleMobileNavClick = () => {
     setIsNavOpen(!isNavOpen);
   };
@@ -32,11 +38,6 @@ const Header = () => {
       });
     });
   }, []);
-
-  // Debugging logs
-  console.log("isLoggedIn:", isLoggedIn);
-  console.log("user:", user);
-  console.log("user.accountType:", user ? user.accountType : "No user");
 
   return (
     <header className="header_section">
@@ -200,42 +201,85 @@ const Header = () => {
                       {user.name} <IoMdArrowDropdown className="drop" />
                     </Link>
                     <ul className="dropdown-menu">
-                      <li>
-                        <NavLink
-                          className="dropdown-item"
-                          to="/profile"
-                          onClick={handleNavLinkClick}
-                        >
-                          Profile
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink
-                          className="dropdown-item"
-                          to="/profile#settings"
-                          onClick={handleNavLinkClick}
-                        >
-                          Settings
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink
-                          className="dropdown-item"
-                          to="/profile#agent"
-                          onClick={handleNavLinkClick}
-                        >
-                          Agent
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink
-                          className="dropdown-item"
-                          to="/profile#help"
-                          onClick={handleNavLinkClick}
-                        >
-                          Help
-                        </NavLink>
-                      </li>
+                      {user.accountType === 'admin' ? (
+                        <>
+                          <li>
+                            <NavLink
+                              className="dropdown-item"
+                              to="/admin-profile"
+                              onClick={handleNavLinkClick}
+                            >
+                           Profile
+                            </NavLink>
+                          </li>
+                          <li>
+                            <NavLink
+                              className="dropdown-item"
+                              to="/admin-profile#settings"
+                              onClick={handleNavLinkClick}
+                            >
+                         Manage User
+                            </NavLink>
+                          </li>
+                          <li>
+                            <NavLink
+                              className="dropdown-item"
+                              to="/admin-profile#settings"
+                              onClick={handleNavLinkClick}
+                            >
+                         Dashboard
+                            </NavLink>
+                          </li>
+                          <li>
+                            <NavLink
+                              className="dropdown-item"
+                              to="/admin-profile#settings"
+                              onClick={handleNavLinkClick}
+                            >
+                         Settings
+                            </NavLink>
+                          </li>
+                        </>
+                      ) : (
+                        <>
+                          <li>
+                            <NavLink
+                              className="dropdown-item"
+                              to="/profile"
+                              onClick={handleNavLinkClick}
+                            >
+                              Profile
+                            </NavLink>
+                          </li>
+                          <li>
+                            <NavLink
+                              className="dropdown-item"
+                              to="/profile#settings"
+                              onClick={handleNavLinkClick}
+                            >
+                              Settings
+                            </NavLink>
+                          </li>
+                          <li>
+                            <NavLink
+                              className="dropdown-item"
+                              to="/profile#agent"
+                              onClick={handleNavLinkClick}
+                            >
+                              Agent
+                            </NavLink>
+                          </li>
+                          <li>
+                            <NavLink
+                              className="dropdown-item"
+                              to="/profile#help"
+                              onClick={handleNavLinkClick}
+                            >
+                              Help
+                            </NavLink>
+                          </li>
+                        </>
+                      )}
                       <div className="dropdown-divider"></div>
                       <li>
                         <button

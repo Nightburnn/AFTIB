@@ -277,7 +277,9 @@
 
 }
 
-
+.r-connect{
+  margin-top: -50px;
+}
 
 .rimg img {
   width: 400px;
@@ -360,6 +362,10 @@
     margin-left: 5px;
   }
 
+  .r-connect{
+    margin-top: 0;
+  }
+  
   .rsubtitle {
     margin-left: 10px;
     margin-right: 10px;
