@@ -13,7 +13,6 @@ export function checkRequiredData (listingData) {
         return failed;
     }
     for (let each of requiredInputs){
-        console.log('each',each,listingData[each])
         if(listingData[each] == ''){
             failed.message = `${each} has not been added. Please check again`
             return failed;

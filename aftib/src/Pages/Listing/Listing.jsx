@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useRef } from 'react';
 import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import './Listing.css';
@@ -6,7 +6,6 @@ import L from 'leaflet';
 import {nigerianStateData} from './data'
 import { checkRequiredData } from '../../utils/processListing';
 import axios from 'axios';
-import { AuthContext } from '../../AuthContext';
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -16,10 +15,8 @@ L.Icon.Default.mergeOptions({
 });
 
 const Listing = () => {
- 
-  let auth = useContext(AuthContext)
-  console.log({auth})
   let token = window.localStorage.getItem('accessToken')
+  let imageInput = useRef(null)
   const [images, setImages] = useState([]);
   
   const [position, setPosition] = useState({ lat: 51.505, lng: -0.09 });
@@ -101,10 +98,9 @@ const Listing = () => {
   const removeImage = (index) => {
     const filteredImages = images.filter((_, i) => i !== index);
     setImages(filteredImages);
-  };
+  }
 
   async function submitForm(){
-    console.log('submitting form data',{formValues,checks})
     // this function only checks the required values and make sure that they have been filled
     let validate = checkRequiredData({...formValues})
     // run validation for the phone numbers and the emails
@@ -119,17 +115,32 @@ const Listing = () => {
       ...checks,
       ...formValues
     }
-    console.log({token,validate,requestBody})
     if(!validate.valid) return;
     try {
       let addListing = await axios.post('http://127.0.0.1:8080/listing/addListing',JSON.stringify(requestBody),{
-      headers: {
-        'Content-Type': 'application/json',
-        "Authorization": `Bearer ${token}`
-      }
-    })
-    let addImages
-    console.log({addListing})
+        headers: {
+          'Content-Type': 'application/json',
+          "Authorization": `Bearer ${token}`
+        }
+      })
+      console.log({res: addListing.data})
+        const formData = new FormData();
+        let files = imageInput.current.files
+        if(files.length > 0){
+        // Create a FormData object
+          for (let i = 0; i < files.length; i++) {
+            formData.append('files', files[i])
+          }
+        }
+      // Make an Axios POST request to the add listing image endpoint
+      const result = await axios.put(`http://127.0.0.1:8080/listing/addListingImages/${addListing.data.listingId}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "Authorization": `Bearer ${token}`
+          // Include any other headers you need, such as authorization
+        }
+      })
+      console.log("Images uploaded successfully", result.data)
     }
     catch(err){
       console.error(err.message)
@@ -456,7 +467,9 @@ const Listing = () => {
           <div className="form-group mt-4">
             <h2>Gallery</h2>
             <div className="listing-gallery">
-              
+              <form id="uploadForm">
+                  <input ref={imageInput} type="file" id="fileInput" name="files" multiple />
+              </form>
               <div
                 className="dropzone text-center"
                 onDrop={handleDrop}
