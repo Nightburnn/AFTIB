@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './listreview.css';
 import sh1 from '../../assets/images/sh1.png';
 import sh2 from '../../assets/images/sh2.png';
-import PropertyDetails from '../../Components/PropertyDetails';
 
 const ListingReview = () => {
   const [listing, setListing] = useState({
@@ -143,7 +142,7 @@ const ListingReview = () => {
       )}
 
 
-      <PropertyDetails/>
+   
     </div>
   );
 };

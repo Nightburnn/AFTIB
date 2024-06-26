@@ -1,212 +1,143 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { FaCheck, FaTimes } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import sell from "../../assets/images/sell.png";
-import sell1 from "../../assets/images/sell1.png";
-import sell3 from "../../assets/images/sell3.png";
-import sh1 from "../../assets/images/sh1.png";
-import sh2 from "../../assets/images/sh2.png";
-import sh3 from "../../assets/images/sh3.png";
-import './PropertyDetails.css';
+import React, { useState } from 'react';
+import './PropertyDetails.css'
+import sh1 from '../../assets/images/sh1.png';
+import sh2 from '../../assets/images/sh2.png';
+import sh3 from '../../assets/images/sh3.png';
 
-export default function PropertyDetails() {
-  const { id } = useParams();
-  const [houseDetails, setHouseDetails] = useState(null);
 
-  const convertDate = (timeEpoch) => {
-    const date = new Date(timeEpoch);
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-    const year = date.getFullYear();
-    return `${month}/${day}/${year}`;
-  };
+const Index = () => {
 
-  useEffect(() => {
-    // Dummy data
-    const dummyData = [
-      {
-        _id: "1",
-        images: [sell, sell1, sell3],
-        title: "Beautiful Family House",
-        location: "123 Main St, Springfield",
-        furnished: true,
-        listingDate: 1627849200000,
-        size: 2400,
-        bedrooms: 4,
-        bathrooms: 3,
-        ownersContact: {
-          phone: "555-1234"
-        },
-        price: "$350,000",
-        description: "A beautiful family house located in the heart of the city.",
-        balcony: true,
-        garage: true,
-        Security: true,
-        Internet: true,
-        lift: false,
-        Cabletv: true,
-        AC: true,
-        RoofTerrace: false
-      },
-      {
-        _id: "2",
-        images: [sh1, sh2, sh3],
-        title: "Modern Apartment",
-        location: "456 Elm St, Metropolis",
-        furnished: false,
-        listingDate: 1627849200000,
-        size: 1200,
-        bedrooms: 2,
-        bathrooms: 1,
-        ownersContact: {
-          phone: "555-5678"
-        },
-        price: "$220,000",
-        description: "A modern apartment with all the amenities you need.",
-        balcony: false,
-        garage: false,
-        Security: true,
-        Internet: true,
-        lift: true,
-        Cabletv: false,
-        AC: true,
-        RoofTerrace: true
-      }
-    ];
+  const [selectedImage, setSelectedImage] = useState('c1');
 
-    const sellDetails = dummyData.find((list) => list._id === id) || dummyData[0];
-    setHouseDetails(sellDetails);
-  }, [id]);
+  const images = [
+    { id: 'c1', src: sh1, alt: 'Image 1' },
+    { id: 'c2', src: sh2, alt: 'Image 2' },
+    { id: 'c3', src: sh3, alt: 'Image 3' },
+  ];
 
-  if (!houseDetails) {
-    return <div>Not loading</div>;
-  }
+  const descriptions = [
+    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the when an printer took a galley of type and scrambled it to make.",
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the when an printer took a galley of type and scrambled it to make." ];
 
+
+      const contactInfo = {
+        name: "Anabella Geller",
+        imgSrc: sh1,
+        description: "Nulla porttitor accumsan tincidunt. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim.",
+        details: [
+          { label: "Phone:", value: "(222) 4568932" },
+          { label: "Mobile:", value: "777 287 378 737" },
+          { label: "Email:", value: "annabella@example.com" },
+          { label: "Skype:", value: "Annabela.ge" }
+        ],
+        socials: [
+          { href: "#", className: "bi bi-facebook", ariaLabel: "Facebook" },
+          { href: "#", className: "bi bi-twitter", ariaLabel: "Twitter" },
+          { href: "#", className: "bi bi-instagram", ariaLabel: "Instagram" },
+          { href: "#", className: "bi bi-linkedin", ariaLabel: "LinkedIn" }
+        ]
+      };
+    
   return (
-    <div>
-      <div className="container">
-        <section className="text-center p-5 second-section">
-          <div>
-            <h2 className="text-start mb-2">listed properties</h2>
-            <section className="d-flex flex-column flex-md-row p-5 align-items-center fourth">
-              <div className="col-md-6">
-                <img
-                  src={houseDetails.images[0]}
-                  alt="Description"
-                  className="img-fluid"
-                  width={500}
-                />
+   <div className="container">
+     <div className="galleryContainer">
+      <div className="gallery">
+        {images.map(image => (
+          <React.Fragment key={image.id}>
+            <input
+              type="radio"
+              name="controls"
+              id={image.id}
+              checked={selectedImage === image.id}
+              onChange={() => setSelectedImage(image.id)}
+            />
+            <img className="galleryImage" src={image.src} alt={image.alt} />
+          </React.Fragment>
+        ))}
+      </div>
+      <div className="thumbnails">
+        {images.map(image => (
+          <label className="thumbnailImage" key={image.id} htmlFor={image.id}>
+            <img src={image.src} className="img-responsive" alt={image.alt} />
+          </label>
+        ))}
+      </div>
+
+      <div className="column contentwithphoto-text mt-4">
+        <h3>Description</h3>
+        {descriptions.map((description, index) => (
+          <p key={index}>{description}</p>
+        ))}
+      </div>
+
+      <div className="col-md-12">
+        <div className="row section-t3">
+          <div className="col-sm-12">
+            <div className="title-box-d">
+              <h3 className="title-d">Contact Agent</h3>
+            </div>
+          </div>
+        </div>
+        <div className="row contact-agent-row">
+          <div className="col-md-6 col-lg-4">
+            <img src={contactInfo.imgSrc} alt="" className="img-fluid agent-img" />
+          </div>
+          <div className="col-md-6 col-lg-4">
+            <div className="property-agent">
+              <h4 className="title-agent">{contactInfo.name}</h4>
+              <p className="color-text-a">{contactInfo.description}</p>
+              <ul className="list-unstyled">
+                {contactInfo.details.map((detail, index) => (
+                  <li className="d-flex justify-content-between" key={index}>
+                    <strong>{detail.label}</strong>
+                    <span className="color-text-a">{detail.value}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="socials-a">
+                <ul className="list-inline">
+                  {contactInfo.socials.map((social, index) => (
+                    <li className="list-inline-item" key={index}>
+                      <a href={social.href}>
+                        <i className={social.className} aria-hidden="true" aria-label={social.ariaLabel}></i>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <div className="col-md-6 mb-3 mb-md-0">
-                <h2>{houseDetails.title}</h2>
-                <p className="mt-3">{houseDetails.location}</p>
-                <span className="mt-3">
-                  {houseDetails.furnished ? "Furnished" : "Not Furnished"}
-                </span>
-                <p className="mt-3">{convertDate(houseDetails.listingDate)}</p>
-                <div className="d-flex border-top">
-                  <small className="flex-fill text-center border-end py-2">
-                    {houseDetails.size} sqt
-                  </small>
-                  <small className="flex-fill text-center border-end py-2">
-                    {houseDetails.bedrooms} Beds
-                  </small>
-                  <small className="flex-fill text-center py-2">
-                    {houseDetails.bathrooms} Baths
-                  </small>
+            </div>
+          </div>
+          <div className="col-md-12 col-lg-4">
+            <div className="property-contact">
+              <form className="form-a">
+                <div className="row">
+                  <div className="col-md-12 mb-1">
+                    <div className="form-group">
+                      <input type="text" className="form-control form-control-lg form-control-a" id="inputName" placeholder="Name *" required />
+                    </div>
+                  </div>
+                  <div className="col-md-12 mb-1">
+                    <div className="form-group">
+                      <input type="email" className="form-control form-control-lg form-control-a" id="inputEmail1" placeholder="Email *" required />
+                    </div>
+                  </div>
+                  <div className="col-md-12 mb-1">
+                    <div className="form-group">
+                      <textarea id="textMessage" className="form-control" placeholder="Comment *" name="message" cols="45" rows="8" required></textarea>
+                    </div>
+                  </div>
+                  <div className="col-md-12 mt-3">
+                    <button type="submit" className="btn btn-a">Send Message</button>
+                  </div>
                 </div>
-                <p className="mt-3">{houseDetails.ownersContact.phone}</p>
-                <p className="mt-3">{houseDetails.price}</p>
-                <Link to="/sell">
-                  <button className="btn mt-3" style={{ width: "200px" }}>
-                    Back
-                  </button>
-                </Link>
+              </form>
               </div>
-            </section>
+              </div>
           </div>
-          <div className="container my-5 border border-1 border-dark">
-            <div>
-              <p className="text-justify">{houseDetails.description}</p>
-            </div>
-            <div className="house-d">
-              {houseDetails.balcony ? (
-                <p>
-                  <FaCheck /> Balcony
-                </p>
-              ) : (
-                <p>
-                  <FaTimes /> Balcony
-                </p>
-              )}
-              {houseDetails.garage ? (
-                <p>
-                  <FaCheck /> Garage
-                </p>
-              ) : (
-                <p>
-                  <FaTimes /> Garage
-                </p>
-              )}
-              {houseDetails.Security ? (
-                <p>
-                  <FaCheck /> Security
-                </p>
-              ) : (
-                <p>
-                  <FaTimes /> Security
-                </p>
-              )}
-              {houseDetails.Internet ? (
-                <p>
-                  <FaCheck /> Internet
-                </p>
-              ) : (
-                <p>
-                  <FaTimes /> Internet
-                </p>
-              )}
-              {houseDetails.lift ? (
-                <p>
-                  <FaCheck /> Lift
-                </p>
-              ) : (
-                <p>
-                  <FaTimes /> Lift
-                </p>
-              )}
-              {houseDetails.Cabletv ? (
-                <p>
-                  <FaCheck /> Cable TV
-                </p>
-              ) : (
-                <p>
-                  <FaTimes /> Cable TV
-                </p>
-              )}
-              {houseDetails.AC ? (
-                <p>
-                  <FaCheck /> Air Conditioning
-                </p>
-              ) : (
-                <p>
-                  <FaTimes /> Air Conditioning
-                </p>
-              )}
-              {houseDetails.RoofTerrace ? (
-                <p>
-                  <FaCheck /> Roof Terrace
-                </p>
-              ) : (
-                <p>
-                  <FaTimes /> Roof Terrace
-                </p>
-              )}
-            </div>
-          </div>
-        </section>
+        </div>
       </div>
     </div>
-  );
+  )
 }
+
+export default Index
