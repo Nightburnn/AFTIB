@@ -120,21 +120,21 @@ const Header = () => {
                     <li className="nav-item">
                       <NavLink
                         className="nav-link"
-                        to="/admin-dashboard"
+                        to="/list"
                         activeClassName="active"
                         onClick={handleNavLinkClick}
                       >
-                        Dashboard
+                        Listing
                       </NavLink>
                     </li>
                     <li className="nav-item">
                       <NavLink
                         className="nav-link"
-                        to="/admin-users"
+                        to="/inbox"
                         activeClassName="active"
                         onClick={handleNavLinkClick}
                       >
-                        Manage Users
+Inbox
                       </NavLink>
                     </li>
                   </>

@@ -33,10 +33,33 @@ const Index = () => {
         socials: [
           { href: "#", className: "bi bi-facebook", ariaLabel: "Facebook" },
           { href: "#", className: "bi bi-twitter", ariaLabel: "Twitter" },
-          { href: "#", className: "bi bi-instagram", ariaLabel: "Instagram" },
+          { href: "#", className: "bi bi-instagram", ariaLabel: "Instagrasm" },
           { href: "#", className: "bi bi-linkedin", ariaLabel: "LinkedIn" }
         ]
       };
+    
+      const amenities = [
+        "Balcony",
+        "Outdoor Kitchen",
+        "Cable Tv",
+        "Deck",
+        "Tennis Courts",
+        "Internet",
+        "Parking",
+        "Sun Room",
+        "Concrete Flooring"
+      ];
+    
+      const summary = [
+        { label: "Property ID:", value: "1134" },
+        { label: "Location:", value: "Chicago, IL 606543 Chicago, IL 606543" },
+        { label: "Property Type:", value: "House" },
+        { label: "Status:", value: "Sale" },
+        { label: "Area:", value: "340m²" },
+        { label: "Beds:", value: "4" },
+        { label: "Baths:", value: "2" },
+        { label: "Garage:", value: "1" }
+      ];
     
   return (
    <div className="container">
@@ -70,11 +93,48 @@ const Index = () => {
         ))}
       </div>
 
-      <div className="col-md-12">
+      <div className="row section-md-t3 justify-content-between amenities-summary-section">
+  <div className="col-md-7 col-lg-7 amenities-section">
+    <div className="title-box-d section-t3">
+      <h3 className="title-a">Amenities</h3>
+    </div>
+    <div className="amenities-list color-text-a">
+      <ul className="list-a no-margin d-flex flex-wrap-nowrap">
+        {amenities.map((amenity, index) => (
+          <li key={index}>{amenity}</li>
+        ))}
+      </ul>
+    </div>
+
+    <div className="amenities-list color-text-a mt-3">
+      <h2>Additional Information</h2>
+    </div>
+  </div>
+  <div className="col-md-4 col-lg-4 summary-section">
+    <div className="property-summary">
+      <div className="title-box-d section-t4">
+        <h3 className="title-a">Quick Summary</h3>
+      </div>
+      <div className="summary-list">
+        <ul className="list">
+          {summary.map((item, index) => (
+            <li key={index} className="d-flex justify-content-between">
+              <strong>{item.label}</strong>
+              <span>{item.value}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+      <div className="col-md-12 pagent">
         <div className="row section-t3">
           <div className="col-sm-12">
             <div className="title-box-d">
-              <h3 className="title-d">Contact Agent</h3>
+              <h3 className="title-a">Contact Agent</h3>
             </div>
           </div>
         </div>
@@ -121,12 +181,12 @@ const Index = () => {
                       <input type="email" className="form-control form-control-lg form-control-a" id="inputEmail1" placeholder="Email *" required />
                     </div>
                   </div>
-                  <div className="col-md-12 mb-1">
+                  <div className="col-md-12">
                     <div className="form-group">
                       <textarea id="textMessage" className="form-control" placeholder="Comment *" name="message" cols="45" rows="8" required></textarea>
                     </div>
                   </div>
-                  <div className="col-md-12 mt-3">
+                  <div className="col-md-12 mt-1">
                     <button type="submit" className="btn btn-a">Send Message</button>
                   </div>
                 </div>

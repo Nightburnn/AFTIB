@@ -21,6 +21,8 @@ import Forgot from './Pages/ForgetPassword/Forgot';
 import Listing from './Pages/Listing/Listing';
 import ListingReview from './Pages/Listing/ListingReview';
 import AdminProfile from './PostPages/Admin/AdminProfile';
+import Dashboard from './PostPages/Admin/Dashboard/Dashboard';
+import ManageUser from './PostPages/Admin/ManageUser/ManageUser';
 
 
 
@@ -42,6 +44,8 @@ function App() {
       <Route path="/admin-profile" Component={AdminProfile}/>
       <Route path='/profile' Component={ProfilePage}/>
       <Route path='/inbox' Component={Inbox}/>
+      <Route path='/admin-dashboard' Component={Dashboard}/>
+      <Route path='/admin-users' Component={ManageUser}/>
       <Route path='/list' Component={Listing}/>
       <Route path='/review' Component={ListingReview}/>
      <Route path='/forgot' Component={Forgot}/>

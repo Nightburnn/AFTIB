@@ -56,7 +56,7 @@ const Setting = () => {
       <form onSubmit={handleSave}>
         <div className="form-row">
           <div className="form-group col-md-4">
-            <label htmlFor="accountType">Switch Account Type</label>
+            <label htmlFor="accountType">Account Type</label>
             <select
               id="accountType"
               className="form-control"

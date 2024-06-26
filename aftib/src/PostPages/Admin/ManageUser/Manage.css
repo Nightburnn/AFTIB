@@ -1,0 +1,27 @@
+/* Add these styles to your CSS file */
+.media-dropdown .dropdown-menu {
+    width: 300px; /* Adjust as needed */
+  }
+  
+  .media-dropdown .media {
+    align-items: center;
+  }
+  
+  .media-dropdown .media img {
+    width: 60px; /* Adjust image size */
+  }
+  
+  .media-dropdown .media-body {
+    margin-left: 10px; /* Spacing between image and text */
+  }
+  
+  .star-icons i {
+    color: #FFD700; /* Gold color for stars */
+  }
+  
+  .btn-outline-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
