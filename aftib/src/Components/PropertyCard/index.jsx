@@ -16,7 +16,7 @@ export function PropertyCard (props) {
                     <Link className="d-block h5 mb-2" to="">{property.title}</Link>
                     <p className="text-start"><i className="fa fa-map-marker-alt brandblue me-2"></i>{property.location}</p>
                     <div className="text-center">
-                    <Link to={`/property/${property._id}`} className="btn blue mb-3" style={{ width: '100%' }}>View Details</Link>
+                    <Link to="/pd" className="btn blue mb-3" style={{ width: '100%' }}>View Details</Link>
                 </div>                </div>
                 <div className="d-flex border-top">
                     <small className="flex-fill text-center border-end py-2">{property.size} sqt</small>

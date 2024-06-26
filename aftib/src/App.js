@@ -23,6 +23,7 @@ import ListingReview from './Pages/Listing/ListingReview';
 import AdminProfile from './PostPages/Admin/AdminProfile';
 import Dashboard from './PostPages/Admin/Dashboard/Dashboard';
 import ManageUser from './PostPages/Admin/ManageUser/ManageUser';
+import Index from './Components/PropertyDetails';
 
 
 
@@ -48,6 +49,7 @@ function App() {
       <Route path='/admin-users' Component={ManageUser}/>
       <Route path='/list' Component={Listing}/>
       <Route path='/review' Component={ListingReview}/>
+      <Route path='/pd' Component={Index}/>
      <Route path='/forgot' Component={Forgot}/>
       <Route path='/agent/:id' Component={SingleAgentSection} />
       </Routes>

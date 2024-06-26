@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import FilterCard from '../../Components/FilterCard/FilterCard';
 import './Buy.css';
-import {  useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { createSearchQuery, searchRequest } from '../../utils/createSearchQuery';
 import { PropertyCard } from '../../Components/PropertyCard';
@@ -11,7 +11,7 @@ const Buy = () => {
   const queryParams = new URLSearchParams(routeLocation.search);
   const [properties, setProperties] = useState([]);
   const [filteredProperties, setFilteredProperties] = useState([]);
-  const [showResults,setShowResults] = useState(false)
+  const [showResults, setShowResults] = useState(false);
   const [location, setLocation] = useState('');
   const [searchClicked, setSearchClicked] = useState(false);
   const [currentSection, setCurrentSection] = useState(1);
@@ -27,10 +27,10 @@ const Buy = () => {
         console.error('Error fetching default listings:', error);
       }
     };
-    fetchDefaultProperties()
-  }, [currentSection])
+    fetchDefaultProperties();
+  }, [currentSection]);
 
-  useEffect(()=>{
+  useEffect(() => {
     const location = queryParams.get('location');
     const saleType = queryParams.get('saleType');
     const propertyType = queryParams.get('propertyType');
@@ -39,23 +39,25 @@ const Buy = () => {
     const minPrice = queryParams.get('minPrice');
     const maxPrice = queryParams.get('maxPrice');
     const minMonthlyPayment = queryParams.get('minMonthlyPayment');
-    const maxMonthlyPayment = queryParams.get('maxMonthlyPayment'); 
+    const maxMonthlyPayment = queryParams.get('maxMonthlyPayment');
     const withSearch = queryParams.get('withSearch');
-    if(withSearch == 'yes'){
-      let query = createSearchQuery({location,saleType,propertyType,bedroom,bathroom,minPrice,maxPrice,minMonthlyPayment,maxMonthlyPayment})
-      console.log({query})
-      searchRequest(query).then(res=>{
-        setFilteredProperties(res.data)
-        console.log({response: res.data})
-        setShowResults(true)
-      }).catch(err=>{console.error(err.message)})
+    if (withSearch === 'yes') {
+      let query = createSearchQuery({ location, saleType, propertyType, bedroom, bathroom, minPrice, maxPrice, minMonthlyPayment, maxMonthlyPayment });
+      console.log({ query });
+      searchRequest(query)
+        .then(res => {
+          setFilteredProperties(res.data);
+          console.log({ response: res.data });
+          setShowResults(true);
+        })
+        .catch(err => { console.error(err.message) });
     }
-  },[])
-  
+  }, []);
+
   const handleFilter = (results) => {
     // Filter logic...
-    setFilteredProperties(results)
-    setShowResults(true)
+    setFilteredProperties(results);
+    setShowResults(true);
   };
 
   const handleSearch = async (e) => {
@@ -68,7 +70,7 @@ const Buy = () => {
       const response = await axios.get(`https://aftib-6o3h.onrender.com/listing/searchListings?location=${location}`);
       console.log('Fetched search results:', response.data); // Debugging line
       setFilteredProperties(response.data);
-      setShowResults(true)
+      setShowResults(true);
     } catch (error) {
       console.error('Error fetching listings:', error);
     }
@@ -89,7 +91,7 @@ const Buy = () => {
   const handleClearSearch = () => {
     setLocation('');
     setSearchClicked(false);
-    setShowResults(false)
+    setShowResults(false);
     setFilteredProperties([]);
   };
 
@@ -102,11 +104,11 @@ const Buy = () => {
           <h2>Property Listing</h2>
           <div className="p-item">
             <form onSubmit={handleSearch} className="plisting-head me-3">
-              <input 
-                type="text" 
-                placeholder="Search for apartment based on location" 
-                value={location} 
-                onChange={(e) => setLocation(e.target.value)} 
+              <input
+                type="text"
+                placeholder="Search for apartment based on location"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
               />
               <button type="submit">Search</button>
             </form>
@@ -117,7 +119,9 @@ const Buy = () => {
 
       <div className="content">
         <div className="filter-container">
-          <FilterCard onFilter={handleFilter} />
+          {(properties.length > 0 || filteredProperties.length > 0) && (
+            <FilterCard onFilter={handleFilter} />
+          )}
         </div>
       </div>
 
@@ -138,16 +142,16 @@ const Buy = () => {
           <div className="tab-content">
             <div id="tab-2" className={`tab-pane fade show active`}>
               <div>
-              {showResults ? 
-                <div className="row g-4">
-                  <div>Showing Filtered Result</div>
-                  {filteredProperties.map(x=> <PropertyCard property={x} />)}
-                </div> : 
-                <div className="row g-4">
-                  <div>Showing the default properties</div>
-                  {properties.map(x=> <PropertyCard property={x} />)}
-                </div>
-            }
+                {showResults ?
+                  <div className="row g-4">
+                    <div>Showing Filtered Result</div>
+                    {filteredProperties.map(x => <PropertyCard property={x} />)}
+                  </div> :
+                  <div className="row g-4">
+                    <div>Showing the default properties</div>
+                    {properties.map(x => <PropertyCard property={x} />)}
+                  </div>
+                }
 
                 <div className="col-12 text-center mt-5 mb-5">
                   <button className="btn x py-3 px-5" onClick={handleBrowseMore}>Browse More Property</button>
