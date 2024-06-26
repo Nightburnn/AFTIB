@@ -119,7 +119,7 @@ const Listing = () => {
     }
     if(!validate.valid) return;
     try {
-      let addListing = await axios.post('http://127.0.0.1:8080/listing/addListing',JSON.stringify(requestBody),{
+      let addListing = await axios.post('https://aftib-6o3h.onrender.com/listing/addListing',JSON.stringify(requestBody),{
         headers: {
           'Content-Type': 'application/json',
           "Authorization": `Bearer ${token}`
@@ -135,7 +135,7 @@ const Listing = () => {
           }
         }
       // Make an Axios POST request to the add listing image endpoint
-      const result = await axios.put(`http://127.0.0.1:8080/listing/addListingImages/${addListing.data.listingId}`, formData, {
+      const result = await axios.put(`https://aftib-6o3h.onrender.com/listing/addListingImages/${addListing.data.listingId}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           "Authorization": `Bearer ${token}`

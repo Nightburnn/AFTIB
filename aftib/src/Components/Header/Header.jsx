@@ -215,7 +215,7 @@ Inbox
                           <li>
                             <NavLink
                               className="dropdown-item"
-                              to="/admin-profile#settings"
+                              to="admin-users"
                               onClick={handleNavLinkClick}
                             >
                          Manage User

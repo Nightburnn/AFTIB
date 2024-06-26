@@ -10,7 +10,6 @@ import why3 from '../../assets/images/why3.png';
 import sh3 from '../../assets/images/sh3.png';
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
 import './Sell.css';
-import PropertyDetails from '../../Components/PropertyDetails';
 const Sell = () => {
   const cards = [
     { title: 'Slider Card 1', text: 'This is a description for slider card 1.', image: sh1 },
@@ -116,7 +115,6 @@ const Sell = () => {
   </div>
 </section>
 
-<PropertyDetails/>
 
 
         {hasProperties ? (
