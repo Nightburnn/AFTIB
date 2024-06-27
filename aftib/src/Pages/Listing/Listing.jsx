@@ -19,9 +19,9 @@ L.Icon.Default.mergeOptions({
 const Listing = () => {
   let token = window.localStorage.getItem('accessToken')
   let imageInput = useRef(null)
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState([])
   
-  const [position, setPosition] = useState({ lat: 51.505, lng: -0.09 });
+  const [position, setPosition] = useState({lat: 6.447809299999999, lng: 3.4723495});
   const handleSubmit = (e) => {
     e.preventDefault();
   }
@@ -155,6 +155,7 @@ const Listing = () => {
         const marker = markerRef.current;
         if (marker != null) {
           setPosition(marker.getLatLng());
+          console.log({newPosition: marker.getLatLng()})
         }
       }
     });
@@ -178,7 +179,7 @@ const Listing = () => {
 
   const handleSearch = () => {
     setPosition({ lat: 52.52, lng: 13.405 });
-  };
+  }
 
   return (
     <div className="container mt-5">

@@ -5,8 +5,10 @@ import google from '../../assets/images/google.png';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../AuthContext';
 import './Signup.css';
+import {useLoading} from '../../Components/LoadingContext'
 
 const Signup = () => {
+  let { setLoading, setLoadingText } = useLoading()
   const { login } = useAuth();
   const navigate = useNavigate();
   const [accountType, setAccountType] = useState('');
@@ -92,22 +94,34 @@ const Signup = () => {
     };
 
     try {
+      setLoading(true)
       const response = await axios.post('https://aftib-6o3h.onrender.com/auth/signup', signupData, {
         headers: {
           'Content-Type': 'application/json'
         }
       });
-
+      setTimeout(()=>{
+        setLoading(false)
+      },2000)
       const data = response.data;
       console.log('Signup response:', data);  // Debugging log
 
       if (data.token && data.user) {
+        window.localStorage.setItem('accessToken',data.token)
         login(data.user);
-        navigate('/');
+        if(accountType == 'agent'){
+          navigate('/agent-registration')
+        }
+        else {
+          navigate('/')
+        }
       } else {
         setGeneralError('Signup failed. Please check your details.');
       }
-    } catch (error) {
+    } catch (error) {      
+      setTimeout(()=>{
+        setLoading(false)
+      },2000)
       let errorMessage = 'An error occurred. Please try again later.';
       if (error.response) {
         errorMessage = error.response.data.error || errorMessage;
@@ -146,8 +160,8 @@ const Signup = () => {
                     <select id="accountType" value={accountType} onChange={handleChange} required>
                       <option value="null">Select an account</option>
                       <option value="admin">Admin</option>
-                      <option value="Client">Client</option>
-                      <option value="Agent">Agent</option>
+                      <option value="client">Client</option>
+                      <option value="agent">Agent</option>
                      
                     </select>
                     {accountTypeError && <p className="error-text">{accountTypeError}</p>}

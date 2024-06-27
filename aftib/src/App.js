@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { LoadingContextProvider } from './Components/LoadingContext';
 import useScrollToTop from './useScrollToTop';
 import Header from './Components/Header/Header';
 import Chatbot from './Pages/Help/Chatbot';
@@ -25,10 +26,40 @@ import AdminProfile from './PostPages/Admin/AdminProfile';
 import Dashboard from './PostPages/Admin/Dashboard/Dashboard';
 import ManageUser from './PostPages/Admin/ManageUser/ManageUser';
 import Index from './Components/PropertyDetails';
+import AgentRegistration from './Pages/AgentRegistration';
 
 function App() {
   return (
     <AuthProvider>
+      <LoadingContextProvider>
+      <Router>
+        <Header/>
+            <Routes>
+                <Route  path="/" Component={Landing}/>
+                <Route path='/about' Component={About}/>
+                <Route  path='/buy' Component={Buy}/>
+                <Route  path='/sell' Component={Sell}/>
+                <Route  path='/rent' Component={Rent}/>
+                <Route  path='/agent-finder' Component={Agent}/>
+                <Route  path='/help' Component={Help}/>
+                <Route path='/sign' Component={Signup}/>
+                <Route path='/login' Component={Login}/>
+                <Route path="/admin-profile" Component={AdminProfile}/>
+                <Route path='/profile' Component={ProfilePage}/>
+                <Route path='/inbox' Component={Inbox}/>
+                <Route path='/admin-dashboard' Component={Dashboard}/>
+                <Route path='/admin-users' Component={ManageUser}/>
+                <Route path='/list' Component={Listing}/>
+                <Route path='/review' Component={ListingReview}/>
+                <Route path='/pd' Component={Index}/>
+                <Route path='/forgot' Component={Forgot}/>
+                <Route path='/agent-registration' Component={AgentRegistration}/>
+                <Route path='/agent/:id' Component={SingleAgentSection} />
+            </Routes>
+            <Chatbot/>
+            <Footer/>
+        </Router>  
+        </LoadingContextProvider>
       <Router>
         <ScrollToTop />
         <Header />
