@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import useScrollToTop from './useScrollToTop'; // Ensure the path is correct
+import useScrollToTop from './useScrollToTop';
 import Header from './Components/Header/Header';
 import Chatbot from './Pages/Help/Chatbot';
 import Landing from './Pages/Landing/Landing';
