@@ -214,40 +214,37 @@ GRA Phase 3 and Peter Odili Road.</p>
       <h1 className="text-start">Select Category</h1>
 
       <div className="row">
-        <div className="col-md-4 mb-4">
+        <div className="col-md-4 mb-4"><Link href="#" className="text">
           <div className="image-container">
             <img src={sel1} className="img-fluid" alt="sell" />
             <div className="image-text">
               <h5 className="text-start">Urban</h5>
-              <Link href="#" className="text">
-                Take a look <span className="ms-2"><LuMoveRight className='text'/></span>
-              </Link>
+              
+                
+              
             </div>
-          </div>
+          </div></Link>
         </div>
 
-        <div className="col-md-4 mb-4">
+        <div className="col-md-4 mb-4"><Link href="#" className="text">
           <div className="image-container">
             <img src={sel2} className="img-fluid" alt="sell" />
             <div className="image-text">
               <h5 className="text-start">Rural</h5>
-              <Link href="#" className="text">
-                Take a look <span className="ms-2"><LuMoveRight className='text'/></span>
-              </Link>
+                           
             </div>
-          </div>
+          </div></Link>
         </div>
 
-        <div className="col-md-4 mb-4">
+        <div className="col-md-4 mb-4"><Link href="#" className="text">
           <div className="image-container">
             <img src={sel3} className="img-fluid" alt="sell" />
             <div className="image-text">
               <h5 className="text-start">Developing<br/>Areas</h5>
-              <Link href="#" className="text">
-                Take a look <span className="ms-2"><LuMoveRight className='text'/></span>
-              </Link>
+              
+              
             </div>
-          </div>
+          </div></Link>
         </div>
       </div>
     </div>

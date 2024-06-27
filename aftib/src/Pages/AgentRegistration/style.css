@@ -11,25 +11,25 @@
     background-color: #f9f9f9;
   }
   
-  .form-group {
+  .agent-registration-container .form-group {
     margin-bottom: 15px;
   }
   
-  .form-group label {
+  .agent-registration-container .form-group label {
     display: block;
     margin-bottom: 5px;
   }
   
-  .form-group input[type="text"],
-  .form-group input[type="date"],
-  .form-group input[type="file"] {
+  .agent-registration-container .form-group input[type="text"],
+  .agent-registration-container .form-group input[type="date"],
+  .agent-registration-container .form-group input[type="file"] {
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
   }
   
-  .image-preview {
+  .agent-registration-container .image-preview {
     margin-top: 10px;
     max-width: 100%;
     height: auto;
@@ -39,7 +39,7 @@
     display: block;
     width: 100%;
     padding: 10px;
-    background-color: #4CAF50;
+    background-color: #4517fb;
     color: white;
     border: none;
     border-radius: 4px;
@@ -47,6 +47,6 @@
   }
   
   button:hover {
-    background-color: #45a049;
+    background-color: #4517fb;
   }
   

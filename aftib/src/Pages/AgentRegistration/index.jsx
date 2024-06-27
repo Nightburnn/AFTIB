@@ -47,7 +47,7 @@ const AgentRegistration = () => {
         formData.append('nin', nin);
     
         try {
-          const response = await axios.post('http://127.0.0.1:8080/agentStatusRequest', formData, {
+          const response = await axios.post('https://aftib-6o3h.onrender.com/agentStatusRequest', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 Authorization: `Bearer ${token}`
@@ -91,6 +91,23 @@ const AgentRegistration = () => {
         />
       </div>
 
+
+      <div class="row">
+<div class="col-md-6">
+<div class="mb-3 ">
+<label for="" class="form-label">Contact Name *</label>
+<input class="form-control" name="name"  placeholder="e.g Musa Adamu (Name and Surname)" type="text" required="required"/>
+</div>
+</div>
+
+<div class="col-md-6">
+<div class="mb-3 ">
+<label for="" class="form-label">Business Name</label>
+<input class="form-control" name="businessName" value="" placeholder="e.g Properties Limited" type="text" required="required"/>
+</div>
+</div>
+
+</div>
       <div className="form-group">
         <label htmlFor="nin">NIN Number:</label>
         <input

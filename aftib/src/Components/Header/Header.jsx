@@ -153,11 +153,21 @@ Inbox
                     <li className="nav-item">
                       <NavLink
                         className="nav-link"
-                        to="/agent-finder"
+                        to="/rent"
                         activeClassName="active"
                         onClick={handleNavLinkClick}
                       >
-                        Agent finder
+                        Rent
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink
+                        className="nav-link"
+                        to="/short"
+                        activeClassName="active"
+                        onClick={handleNavLinkClick}
+                      >
+                        Short Let
                       </NavLink>
                     </li>
                   </>
@@ -165,11 +175,11 @@ Inbox
                 <li className="nav-item">
                   <NavLink
                     className="nav-link"
-                    to="/rent"
+                    to="/agent-finder"
                     activeClassName="active"
                     onClick={handleNavLinkClick}
                   >
-                    Rent
+                    Agent Finder
                   </NavLink>
                 </li>
                 <li className="nav-item">
@@ -182,6 +192,7 @@ Inbox
                     Help
                   </NavLink>
                 </li>
+                
               </ul>
               <ul className="navbar-nav">
                 {isLoggedIn && user ? (

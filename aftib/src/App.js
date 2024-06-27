@@ -16,6 +16,7 @@ import Footer from './Components/Footer/Footer';
 import Signup from './Pages/Signup/Signup';
 import Login from './Pages/Login/Login';
 import { AuthProvider } from './AuthContext';
+import HotelListing from './Pages/Hotel/HotelListing'
 import ProfilePage from './PostPages/Account/ProfilePage';
 import SingleAgentSection from './Pages/Agent/SingleAgentSection';
 import Inbox from './Pages/Inbox/Inbox';
@@ -27,12 +28,14 @@ import Dashboard from './PostPages/Admin/Dashboard/Dashboard';
 import ManageUser from './PostPages/Admin/ManageUser/ManageUser';
 import Index from './Components/PropertyDetails';
 import AgentRegistration from './Pages/AgentRegistration';
+import Shortlet from './Pages/ShortLet/ShortLet';
 
 function App() {
   return (
     <AuthProvider>
       <LoadingContextProvider>
       <Router>
+      <ScrollToTop />
         <Header/>
             <Routes>
                 <Route  path="/" Component={Landing}/>
@@ -52,41 +55,17 @@ function App() {
                 <Route path='/list' Component={Listing}/>
                 <Route path='/review' Component={ListingReview}/>
                 <Route path='/pd' Component={Index}/>
+                <Route path='/short' Component={Shortlet}/>
                 <Route path='/forgot' Component={Forgot}/>
                 <Route path='/agent-registration' Component={AgentRegistration}/>
                 <Route path='/agent/:id' Component={SingleAgentSection} />
+                <Route path='/hotellist' Component={HotelListing}/>
             </Routes>
             <Chatbot/>
             <Footer/>
         </Router>  
         </LoadingContextProvider>
-      <Router>
-        <ScrollToTop />
-        <Header />
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/buy" element={<Buy />} />
-          <Route path="/sell" element={<Sell />} />
-          <Route path="/rent" element={<Rent />} />
-          <Route path="/agent-finder" element={<Agent />} />
-          <Route path="/help" element={<Help />} />
-          <Route path="/sign" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/admin-profile" element={<AdminProfile />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/inbox" element={<Inbox />} />
-          <Route path="/admin-dashboard" element={<Dashboard />} />
-          <Route path="/admin-users" element={<ManageUser />} />
-          <Route path="/list" element={<Listing />} />
-          <Route path="/review" element={<ListingReview />} />
-          <Route path="/pd" element={<Index />} />
-          <Route path="/forgot" element={<Forgot />} />
-          <Route path="/agent/:id" element={<SingleAgentSection />} />
-        </Routes>
-        <Chatbot />
-        <Footer />
-      </Router>
+   
     </AuthProvider>
   );
 }

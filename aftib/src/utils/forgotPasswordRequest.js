@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export async function sendVerifyOtp(email, otp) {
   try {
-    const response = await axios.get(`http://localhost:8080/verify-otp/${email}/${otp}`);
+    const response = await axios.get(`https://aftib-6o3h.onrender.com/verify-otp/${email}/${otp}`);
     console.log('OTP verified:', response.data);
     return response.data; // You can return this data to use in the calling function
   } catch (error) {
@@ -14,7 +14,7 @@ export async function sendVerifyOtp(email, otp) {
 
 export async function sendForgotPasswordForEmail({email}) {
   try {
-    const response = await axios.get(`http://localhost:8080/send-forgotpassword-otp/${email}`);
+    const response = await axios.get(`https://aftib-6o3h.onrender.com/send-forgotpassword-otp/${email}`);
     console.log('Email sent:', response.data);
     return response.data; // You can return this data to use in the calling function
   } catch (error) {
