@@ -1,0 +1,64 @@
+.dash .container {
+    padding: 20px;
+    
+  }
+  
+ .dash .card {
+    border-radius: 10px;
+    background-color: #ecf3ff;
+    padding: 25px 25px 0 25px;
+    
+  }
+  
+  .dash h2 {
+    font-size: 1.3rem;
+    font-weight: bold;
+   
+
+    color: #000;
+  }
+  
+  .dash .card-body .icon {
+    font-size: 2rem;
+    width: 70px;
+    height: 70px;
+    background-color: #e7e7e7;
+    padding: 10px;
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  }
+  
+  .dash .card-body h3 {
+    margin: 0;
+  }
+  
+  .dash .card-body p {
+    margin: 0;
+    color: #7f7c7c;
+  }
+  
+  .dash .btn-block {
+    display: block;
+    width: 100%;
+  }
+  
+  .dash .mt-3 {
+    margin-top: 1rem;
+  }
+  
+  .dash .mr-3 {
+    margin-right: 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    
+ .dash .card {
+    border-radius: 10px;
+    background-color: #ecf3ff;
+    padding: 0;
+    
+  }
+  
+  }
