@@ -92,7 +92,7 @@ const Signup = () => {
     };
 
     try {
-      const response = await axios.post('https://aftib-6o3h.onrender.com/auth/signup', signupData, {
+      const response = await axios.post('http://localhost:8080/auth/signup', signupData, {
         headers: {
           'Content-Type': 'application/json'
         }

@@ -78,5 +78,5 @@ export function createSearchQuery (params) {
   }
 
   export async function searchRequest (query){
-    return axios.get(`https://aftib-6o3h.onrender.com/listing/searchListings?${query}`)
+    return axios.get(`http://localhost:8080/listing/searchListings?${query}`)
   }

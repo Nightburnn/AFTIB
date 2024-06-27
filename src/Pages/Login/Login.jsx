@@ -39,7 +39,7 @@ const Login = () => {
     const normalizedEmail = email.trim().toLowerCase();
 
     try {
-      const response = await axios.post('https://aftib-6o3h.onrender.com/auth/login', { email: normalizedEmail, password }, {
+      const response = await axios.post('http://localhost:8080/auth/login', { email: normalizedEmail, password }, {
         headers: {
           'Content-Type': 'application/json'
         }

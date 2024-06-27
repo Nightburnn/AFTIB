@@ -20,7 +20,7 @@ const Buy = () => {
     // Fetch default properties when component mounts
     const fetchDefaultProperties = async () => {
       try {
-        const response = await axios.get(`https://aftib-6o3h.onrender.com/listing/getListings/${currentSection}`);
+        const response = await axios.get(`http://localhost:8080/listing/getListings/${currentSection}`);
         console.log('Fetched default properties:', response.data.listings); // Debugging line
         setProperties(response.data.listings);
       } catch (error) {
@@ -67,7 +67,7 @@ const Buy = () => {
       return;
     }
     try {
-      const response = await axios.get(`https://aftib-6o3h.onrender.com/listing/searchListings?location=${location}`);
+      const response = await axios.get(`http://localhost:8080/listing/searchListings?location=${location}`);
       console.log('Fetched search results:', response.data); // Debugging line
       setFilteredProperties(response.data);
       setShowResults(true);
@@ -79,7 +79,7 @@ const Buy = () => {
   const handleBrowseMore = async () => {
     try {
       const nextSection = currentSection + 1;
-      const response = await axios.get(`https://aftib-6o3h.onrender.com/listing/getListings/${nextSection}`);
+      const response = await axios.get(`http://localhost:8080/listing/getListings/${nextSection}`);
       console.log('Fetched more properties:', response.data.listings); // Debugging line
       setProperties([...properties, ...response.data.listings]);
       setCurrentSection(nextSection);
