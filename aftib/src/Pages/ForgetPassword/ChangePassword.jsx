@@ -13,7 +13,7 @@ export function ChangePassword () {
     let navigate = useNavigate()
     const urlParams = new URLSearchParams(location.search.split('?')[1]);
 
-    const handleChange = async () =>{
+    const submit = async () =>{
         try {
             setLoading(true)
             let response = await changePassword(urlParams.get('email'),newPassword)
@@ -42,7 +42,7 @@ export function ChangePassword () {
             <div className="py-3">
                 <input value={newPassword} onChange={(e)=> setNewPassword(e.target.value)} />
             </div>
-            <button onClick={handleChange}>Confirm</button>
+            <button onClick={submit}>Confirm</button>
         </div>
     )   
 }
