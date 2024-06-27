@@ -27,3 +27,15 @@
     box-shadow: 0 0 5px rgba(0, 122, 255, 0.5); 
   }
   
+
+  .change-password-container input, .change-password-container button {
+    width: 300px;
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid gray;
+  }
+  .change-password-container button {
+    border: 0px;
+    background-color: blue;
+    color: white
+  }

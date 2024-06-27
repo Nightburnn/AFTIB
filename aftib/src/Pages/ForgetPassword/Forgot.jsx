@@ -4,43 +4,52 @@ import facebook from '../../assets/images/facebook.png';
 import google from '../../assets/images/google.png';
 import './Forgot.css';
 import { sendForgotPasswordForEmail,sendVerifyOtp } from '../../utils/forgotPasswordRequest';
+import { useLoading } from '../../Components/LoadingContext'
+import { Modal } from 'antd';
+import { useNavigate } from 'react-router-dom';
 // when handling the form submissions use this functions.
 // use let sendOtp = await sendForgotPasswordForEmail(email). if there is no issue it should return the response data, same with the other function.
 // then when the user clicks verify otp, do let verifyOtp = await sendVerifyOtp(email,otp)
 
 const ForgotPassword = () => {
-  const [isEmail, setIsEmail] = useState(true);
-  const [inputValue, setInputValue] = useState('');
-  const [countryCode, setCountryCode] = useState('+234');
-  const [error, setError] = useState('');
-  const [mobile, setMobile] = useState('');
-  const [isVerificationStep, setIsVerificationStep] = useState(false);
-  const [otp, setOtp] = useState(['', '', '', '']);
-  const otpRefs = useRef([]);
+  let [showModal,setShowModal] = useState(false)
+  let [modalTitle,setModalTitle] = useState('')
+  let [modalBody,setModalBody] = useState('')
+  let [mCancelText,setMCancelText] = useState('')
+  const [isEmail, setIsEmail] = useState(true)
+  const [inputValue, setInputValue] = useState('')
+  const [countryCode, setCountryCode] = useState('+234')
+  const [error, setError] = useState('')
+  const [mobile, setMobile] = useState('')
+  const [isVerificationStep, setIsVerificationStep] = useState(false)
+  const [otp, setOtp] = useState(['', '', '', ''])
+  const otpRefs = useRef([])
+  let {setLoading,setLoadingText} = useLoading()
+  let navigate = useNavigate()
 
   const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-    setError('');
+    setInputValue(event.target.value)
+    setError('')
   };
 
   const handleCountryCodeChange = (event) => {
-    setCountryCode(event.target.value);
+    setCountryCode(event.target.value)
   };
 
   const handleMobileChange = (event) => {
-    setMobile(event.target.value);
-  };
+    setMobile(event.target.value)
+  }
 
   const handleToggleInputType = () => {
-    setIsEmail(!isEmail);
-    setInputValue('');
-    setMobile('');
-    setError('');
-  };
+    setIsEmail(!isEmail)
+    setInputValue('')
+    setMobile('')
+    setError('')
+  }
 
   const handleOtpChange = (index, value) => {
-    const newOtp = [...otp];
-    newOtp[index] = value;
+    const newOtp = [...otp]
+    newOtp[index] = value
     setOtp(newOtp);
     if (value.length === 1 && index < otpRefs.current.length - 1) {
       otpRefs.current[index + 1].focus();
@@ -54,16 +63,58 @@ const ForgotPassword = () => {
       otpRefs.current[index - 1].focus();
     }
   };
-
-  const handleSubmit = (event) => {
+  const handleOk = () => {
+    setShowModal(false)
+  };
+  const handleCancel = () => {
+    setShowModal(false)
+  };
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (isVerificationStep) {
       // Handle OTP verification logic here
       console.log('OTP:', otp.join(''));
+      try {
+        setLoading(true);
+        setLoadingText(`Verifying OTP for ${inputValue}. Please Wait`)
+        let response = await sendVerifyOtp(inputValue,otp.join(''))
+        console.log(response.data)
+        navigate('/change-password?email='+inputValue)
+        setTimeout(()=>{
+          setLoading(false)
+          setLoadingText('')
+        }, 1000)
+      }
+      catch(err){
+
+      }
     } else {
       // Handle email or mobile submission logic here
       console.log(isEmail ? 'Email: ' : 'Mobile: ', isEmail ? inputValue : `${countryCode} ${mobile}`);
-      setIsVerificationStep(true);
+      if(isEmail){
+        try {
+          setLoading(true);
+          setLoadingText(`Sending OTP to your ${inputValue}. Please Wait`)
+            let response = await sendForgotPasswordForEmail(inputValue)
+            console.log(response.data)
+            setIsVerificationStep(true)
+            setTimeout(()=>{
+              setLoading(false)
+              setLoadingText('')
+            }, 1000)
+        }
+        catch(err){
+          setModalTitle('An Error Occured')
+          setModalBody(err.message)
+          setShowModal(true)
+        }
+      }
+      else {
+        setModalTitle('SMS Validation is currently down. Use email verification')
+        setModalBody('SMS is currently unavailable. Kindly use email to get your otp.')
+        setShowModal(true)
+        setIsEmail(true)
+      }
     }
   };
 
@@ -72,6 +123,9 @@ const ForgotPassword = () => {
   return (
     <>
       <div className="row rrow">
+      <Modal title={modalTitle} open={showModal} onOk={handleOk} onCancel={handleCancel} cancelText={mCancelText}>
+        <p>{modalBody}</p>
+      </Modal>
         <div className="rhead">
           <h4 className="ps-4">Forgot Password?</h4>
           <ul>

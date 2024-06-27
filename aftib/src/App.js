@@ -29,6 +29,7 @@ import ManageUser from './PostPages/Admin/ManageUser/ManageUser';
 import Index from './Components/PropertyDetails';
 import AgentRegistration from './Pages/AgentRegistration';
 import Shortlet from './Pages/ShortLet/ShortLet';
+import { ChangePassword } from './Pages/ForgetPassword/ChangePassword';
 
 function App() {
   return (
@@ -60,6 +61,7 @@ function App() {
                 <Route path='/agent-registration' Component={AgentRegistration}/>
                 <Route path='/agent/:id' Component={SingleAgentSection} />
                 <Route path='/hotellist' Component={HotelListing}/>
+                <Route path='/change-password' Component={ChangePassword}/>
             </Routes>
             <Chatbot/>
             <Footer/>
