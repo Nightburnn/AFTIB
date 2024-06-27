@@ -1,14 +1,36 @@
 .agent-registration-container {
     padding: 20px;
-    text-align: center;
+    text-align: start;
 }
 .agent-form {
-    max-width: 400px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
     background-color: #f9f9f9;
+  }
+  .personal-detail h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.agent-registration-container hr{
+  border: 1px solid#ccc;
+  
+}
+  .file-profile {
+    float: none !important;
+    display: block !important;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid 
+  #ccc;}
+
+    .file-link, .file-link a {
+      font-size: 18px;
+      margin-bottom: 3px;
   }
   
   .agent-registration-container .form-group {
