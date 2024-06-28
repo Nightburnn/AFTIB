@@ -51,7 +51,7 @@ const Approval = () => {
           If you are satisfied with the agent and have concluded your vetting, click the approval button. Note that by approving this user request, you grant this user the ability to use the agents feature of this website and post their listing.
         </p>
         <div className="text-center">
-          <button className="btn btn-primary approval-btn">Approve This Request</button>
+          <button className="btn blue approval-btn">Approve This Request</button>
         </div>
       </div>
     </div>

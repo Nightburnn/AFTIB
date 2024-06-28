@@ -62,9 +62,12 @@ function App() {
                 <Route path='/pd' Component={Index}/>
                 <Route path='/short' Component={Shortlet}/>
                 <Route path='/user-dashboard' Component={ClientDashboard}/>
+                <Route path='/agent-dashboard' Component={AgentDashboard}/>
                 <Route path='/forgot' Component={Forgot}/>
                 <Route path='/agent-registration' Component={AgentRegistration}/>
                 <Route path='/agent/:id' Component={SingleAgentSection} />
+                <Route path='/review-agent' Component={AgentReview} />
+                <Route path='/approve' Component={Approval} />
                 <Route path='/hotellist' Component={HotelListing}/>
                 <Route path='/change-password' Component={ChangePassword}/>
             </Routes>

@@ -38,7 +38,7 @@ const AgentReview = () => {
                   <h5>Agency Type:</h5>
                   <p>{agent.agency}</p>
                 </div>
-                <Link to={`/review/${agent.id}`} className="btn btn-primary btn-block">Review this prospect</Link>
+                <Link to="/approve" className="btn btn-primary btn-block">Review this prospect</Link>
               </div>
             </div>
           </div>
