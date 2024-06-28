@@ -70,6 +70,9 @@ function App() {
                 <Route path='/approve' Component={Approval} />
                 <Route path='/hotellist' Component={HotelListing}/>
                 <Route path='/change-password' Component={ChangePassword}/>
+                <Route path='/review-agent' Component={AgentReview}/>
+                <Route path='/review/:id' Component={Approval}/>
+                
             </Routes>
             <Chatbot/>
             <Footer/>
