@@ -33,6 +33,7 @@ import { ChangePassword } from './Pages/ForgetPassword/ChangePassword';
 import AgentReview from './PostPages/Admin/Dashboard/AgentReview/AgentReview';
 import Approval from './PostPages/Admin/AgentAproval/Approval';
 import AgentDashboard from './PostPages/AgentPage/AgentDashboard/AgentDashboard';
+import ClientDashboard from './PostPages/Client/ClientDashboard/ClientDashboard';
 
 function App() {
   return (
@@ -63,6 +64,7 @@ function App() {
                 <Route path='/review' Component={ListingReview}/>
                 <Route path='/pd' Component={Index}/>
                 <Route path='/short' Component={Shortlet}/>
+                <Route path='/user-dashboard' Component={ClientDashboard}/>
                 <Route path='/forgot' Component={Forgot}/>
                 <Route path='/agent-registration' Component={AgentRegistration}/>
                 <Route path='/agent/:id' Component={SingleAgentSection} />

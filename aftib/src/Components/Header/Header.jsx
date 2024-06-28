@@ -235,7 +235,7 @@ const Header = () => {
                           <li>
                             <NavLink
                               className="dropdown-item"
-                              to="/admin-profile#settings"
+                              to="/admin-dashboard"
                               onClick={handleNavLinkClick}
                             >
                               Dashboard
@@ -265,10 +265,10 @@ const Header = () => {
                           <li>
                             <NavLink
                               className="dropdown-item"
-                              to="/profile#settings"
+                              to="/User-dashboard"
                               onClick={handleNavLinkClick}
                             >
-                              Settings
+                             Dashboard
                             </NavLink>
                           </li>
                           <li>
@@ -287,6 +287,15 @@ const Header = () => {
                               onClick={handleNavLinkClick}
                             >
                               Help
+                            </NavLink>
+                          </li>
+                          <li>
+                            <NavLink
+                              className="dropdown-item"
+                              to="/profile#help"
+                              onClick={handleNavLinkClick}
+                            >
+                             Settings
                             </NavLink>
                           </li>
                         </>
