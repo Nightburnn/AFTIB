@@ -14,12 +14,12 @@
   }
   
   .section {
-    background-color: white;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
-    color: black;
+    background-color: transparent;
+    color: rgb(68, 68, 68);
     margin: 20px 0;
     padding: 20px 30px;
-    border: 1px solid #ccc;
+    border: 1px solid #bababa;
+    border-radius: 10px;
   }
   
   .profile img {
@@ -63,4 +63,6 @@
     border-radius: 5px;
     padding: 20px; 
   }
-  
+  .info-agent p {
+    margin: 20px 0px;
+  }

@@ -30,6 +30,8 @@ import Index from './Components/PropertyDetails';
 import AgentRegistration from './Pages/AgentRegistration';
 import Shortlet from './Pages/ShortLet/ShortLet';
 import { ChangePassword } from './Pages/ForgetPassword/ChangePassword';
+import AgentReview from './PostPages/Admin/Dashboard/AgentReview/AgentReview';
+import Approval from './PostPages/Admin/AgentAproval/Approval';
 
 function App() {
   return (
@@ -62,6 +64,9 @@ function App() {
                 <Route path='/agent/:id' Component={SingleAgentSection} />
                 <Route path='/hotellist' Component={HotelListing}/>
                 <Route path='/change-password' Component={ChangePassword}/>
+                <Route path='/review-agent' Component={AgentReview}/>
+                <Route path='/review/:id' Component={Approval}/>
+                
             </Routes>
             <Chatbot/>
             <Footer/>
