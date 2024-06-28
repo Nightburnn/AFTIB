@@ -1,8 +1,4 @@
 .dash .container {
-<<<<<<< HEAD
-  padding: 20px;
-}
-=======
     padding: 20px;
     
   }
@@ -31,8 +27,7 @@
   .dash h2 {
     font-size: 1.3rem;
     font-weight: bold;
-   
->>>>>>> 7ee083a02f059a6d28d53bbd03486ecf62b37f20
+  }
 
 .dash .card {
   border-radius: 10px;
