@@ -6,6 +6,7 @@ import facebook from '../../assets/images/facebook.png';
 import google from '../../assets/images/google.png';
 import './Login.css';
 import { useAuth } from '../../AuthContext';
+import {useLoading} from '../../Components/LoadingContext'
 
 const Login = () => {
   const { login, isLoggedIn } = useAuth();
@@ -14,6 +15,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  let {setLoading} = useLoading()
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -39,6 +41,7 @@ const Login = () => {
     const normalizedEmail = email.trim().toLowerCase();
 
     try {
+      setLoading(true)
       const response = await axios.post('https://aftib-6o3h.onrender.com/auth/login', { email: normalizedEmail, password }, {
         headers: {
           'Content-Type': 'application/json'
@@ -48,7 +51,7 @@ const Login = () => {
       const data = response.data;
 
       console.log(response.data);
-
+      setLoading(false)
       if (data.token) {
         window.localStorage.setItem('accessToken', data.token);
         window.localStorage.setItem('user', JSON.stringify(data.user));
@@ -58,6 +61,7 @@ const Login = () => {
         setEmailError('Login failed. Please check your email and password.');
       }
     } catch (error) {
+      setLoading(false)
       if (error.response) {
         const errorMessage = error.response.data.error;
         if (error.response.status === 401) {

@@ -53,9 +53,9 @@ const AgentRegistration = () => {
                 Authorization: `Bearer ${token}`
               }
           });
+            setLoadingText('')
             setLoading(false)
             setShowModal(true)
-            setLoadingText('')
             setModalTitle('Successfully submitted Request to become an agent at Aftib. Our Admin would reveiw your details')
             setModalBody('An email would be sent to you to notify you if it has been approved or requires modification.')
           console.log('Form Data:', response.data);
@@ -71,7 +71,7 @@ const AgentRegistration = () => {
       };
   return (
     <div className="agent-registration-container">
-        <Modal title={modalTitle} open={showModal} onOk={handleOk} onCancel={handleCancel} cancelText={'Try Again'}>
+      <Modal title={modalTitle} open={showModal} onOk={handleOk} onCancel={handleCancel} cancelText={'Try Again'}>
         <p>{modalBody}</p>
       </Modal>
       <h1 className='text-center'>Agent Registrations Form.</h1>

@@ -6,7 +6,12 @@ import {nigerianStateData} from '.././Listing/data'
 import { checkRequiredData } from '../../utils/processListing';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { validateRequiredHotelData, generateAddHotelReqBody, addNewHotel } from '../../utils/hotelUtils';
 
+import { useNavigate } from 'react-router-dom';
+import { useLoading } from '../../Components/LoadingContext';
+
+import { Modal } from 'antd';
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -17,54 +22,61 @@ L.Icon.Default.mergeOptions({
 
 const Listing = () => {
   let token = window.localStorage.getItem('accessToken')
-  let imageInput = useRef(null)
-  const [images, setImages] = useState([])
-  
+  let navigate = useNavigate()
+  let [showModal,setShowModal] = useState(false)
+  let [modalTitle,setModalTitle] = useState('')
+  let [modalBody,setModalBody] = useState('')
+  let { setLoading, setLoadingText } = useLoading()
   const [position, setPosition] = useState({lat: 6.447809299999999, lng: 3.4723495});
   const handleSubmit = (e) => {
     e.preventDefault();
   }
-
+  const [images, setImages] = useState([])
   const [formValues, setFormValues] = useState({
     name: '',
     description: '',
     address: '',
-    location: {
-        city: '',
-        state: '',
-        country: '',
-        zipCode: ''
-    },
-    contact: {
-        phone: '',
-        email: '',
-        website: ''
-    },
-    amenities: '',
-    rooms: '', // This could be an array, but to keep it simple, we'll start with an empty string
-    images: '',
-    ratings: '', // This could be an array, but to keep it simple, we'll start with an empty string
-    averageRating: '',
-    policies: '', // This could be an object, but to keep it simple, we'll start with an empty string
-    nearbyAttractions: '',
-    createdBy: ''
+    LGA: 'Aba North',
+    state: 'Abia',
+    phone: '',
+    email: '',
+    website: '',
 });
 
-const [checks, setChecks] = useState({
-    Pool: false,
-    Gym: false,
-    Spa: false,
-    'Free WiFi': false,
-    Parking: false
-});
-
-
-  const updateCheck = (option) => {
-    let bool = !checks[option]
-    let updated = {...checks,[option]: bool}
-    setChecks(updated)
-    console.log('updated', bool, updated)
+let [checks,setChecks] = useState(
+  {
+    spa: { displayTitle: "SPA", selected: false },
+    pool: { displayTitle: "Pool", selected: false },
+    gym: { displayTitle: "Gym", selected: false },
+    freeWifi: { displayTitle: "Free Wi-Fi", selected: false },
+    restaurant: { displayTitle: "Restaurant", selected: false },
+    bar: { displayTitle: "Bar", selected: false },
+    airConditioning: { displayTitle: "Air Conditioning", selected: false },
+    parking: { displayTitle: "Parking", selected: false },
+    roomService: { displayTitle: "Room Service", selected: false },
+    laundryService: { displayTitle: "Laundry Service", selected: false },
+    shuttleService: { displayTitle: "Shuttle Service", selected: false },
+    petFriendly: { displayTitle: "Pet Friendly", selected: false },
+    nonSmokingRooms: { displayTitle: "Non-Smoking Rooms", selected: false },
+    businessCenter: { displayTitle: "Business Center", selected: false },
+    meetingRooms: { displayTitle: "Meeting Rooms", selected: false },
+    familyRooms: { displayTitle: "Family Rooms", selected: false },
+    accessibleRooms: { displayTitle: "Accessible Rooms", selected: false },
+    breakfastIncluded: { displayTitle: "Breakfast Included", selected: false },
+    conciergeService: { displayTitle: "Concierge Service", selected: false },
+    luggageStorage: { displayTitle: "Luggage Storage", selected: false },
+    freeToiletries: { displayTitle: "Free Toiletries", selected: false },
+    hairDryer: { displayTitle: "Hair Dryer", selected: false },
+    tv: { displayTitle: "TV", selected: false },
+    minibar: { displayTitle: "Minibar", selected: false },
+    safe: { displayTitle: "Safe", selected: false },
+    balcony: { displayTitle: "Balcony", selected: false },
+    coffeeMaker: { displayTitle: "Coffee Maker", selected: false },
+    ironAndIroningBoard: { displayTitle: "Iron and Ironing Board", selected: false },
+    telephone: { displayTitle: "Telephone", selected: false },
+    heating: { displayTitle: "Heating", selected: false }
   }
+)
 
 
   const handleChange = (e) => {
@@ -74,6 +86,14 @@ const [checks, setChecks] = useState({
       [name]: value
     });
   };
+  
+  const updateCheck = (option) => {
+    let bool = !checks[option].selected
+    let updated = {...checks,[option]: {displayTitle: checks[option].displayTitle, selected: bool}}
+    setChecks(updated)
+    console.log('updated', bool, updated)
+  }
+
 
   const handleDrop = (event) => {
     event.preventDefault();
@@ -97,51 +117,38 @@ const [checks, setChecks] = useState({
   }
 
   async function submitForm(){
-    // this function only checks the required values and make sure that they have been filled
-    let validate = checkRequiredData({...formValues})
-    // run validation for the phone numbers and the emails
-    let requestBody = {
-      ownersContact: {
-        name: formValues.ownerName,phone: formValues.ownerPhone,email: formValues.ownerEmail
-      },
-      agentsContact: {
-        name: formValues.agentName,phone: formValues.agentPhone,email: formValues.agentEmail
-      },
-      petsAllowed: checks['Pets Allowed'],
-      ...checks,
-      ...formValues
-    }
-    if(!validate.valid) return;
-    try {
-      let addListing = await axios.post('https://aftib-6o3h.onrender.com/listing/addListing',JSON.stringify(requestBody),{
-        headers: {
-          'Content-Type': 'application/json',
-          "Authorization": `Bearer ${token}`
-        }
-      })
-      console.log({res: addListing.data})
-        const formData = new FormData();
-        let files = imageInput.current.files
-        if(files.length > 0){
-        // Create a FormData object
-          for (let i = 0; i < files.length; i++) {
-            formData.append('files', files[i])
-          }
-        }
-      // Make an Axios POST request to the add listing image endpoint
-      const result = await axios.put(`https://aftib-6o3h.onrender.com/listing/addListingImages/${addListing.data.listingId}`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          "Authorization": `Bearer ${token}`
-          // Include any other headers you need, such as authorization
-        }
-      })
-      console.log("Images uploaded successfully", result.data)
-    }
-    catch(err){
-      console.error(err.message)
+    let valid = validateRequiredHotelData(formValues)
+      console.log(valid.valid)
+    if(valid.valid){
+      let amenities;
+      amenities = Object.keys(checks).map(x=>{ return {[x]: checks[x].selected}})
+      let requestBody = generateAddHotelReqBody({formValues,amenities})
+      try {
+        setLoading(true);
+        let response = await addNewHotel(requestBody,token)
+        setShowModal(true)
+        setModalTitle('Successfully Added the hotel details.')
+        setModalBody('Your Hotel has been submitted to the admins. They would review it and get back to you within the next 1 - 24 hours. Thanks')
+        setLoading(false)
+        console.log({response:response.data})
+      }
+      catch(err){
+        setLoading(false)
+        setShowModal(true)
+        setModalTitle('Error Occured')
+        setModalBody(err.message)
+   
+        console.error(err.message)
+      }
     }
   }
+  const handleOk = () => {
+    setShowModal(false);
+    navigate('/agent-dashboard')
+  };
+  const handleCancel = () => {
+    setShowModal(false);
+  };
 
   function DraggableMarker() {
     const markerRef = useMapEvents({
@@ -177,10 +184,14 @@ const [checks, setChecks] = useState({
 
   return (
     <div className="container mt-5">
+      <Modal title={modalTitle} open={showModal} onOk={handleOk} onCancel={handleCancel} cancelText={'Try Again'}>
+        <p>{modalBody}</p>
+      </Modal>
       <div className="row">
       <div className="col-md-6 listing">
     <h2>Hotel</h2>
     <form onSubmit={handleSubmit} className="listing-container">
+      <h4 className='py-2'>Main Informations</h4>
         <div className="form-group mb-3">
             <label className='mb-1'>Hotel Name</label>
             <input type="text" className="form-control" placeholder="e.g., Z hotel" name="name" id="name" value={formValues.name} onChange={handleChange} />
@@ -194,73 +205,61 @@ const [checks, setChecks] = useState({
             <input type="text" className="form-control" placeholder="e.g., 23A, Ikori Street, OJB road, Agege, Lagos." name="address" id="address" value={formValues.address} onChange={handleChange} />
         </div>
         <div className="form-group row mb-3">
-            <div className="col-sm-6 mb-2">
-                <label className='mb-1'>City</label>
-                <input type="text" className="form-control" placeholder="City" name="city" id="city" value={formValues.location.city} onChange={handleChange} />
-            </div>
-            <div className="col-sm-6 mb-2">
+            <div className="col-sm-12 mb-2">
                 <label className='mb-1'>State</label>
-                <input type="text" className="form-control" placeholder="State" name="state" id="state" value={formValues.location.state} onChange={handleChange} />
+                <select className="form-control" name="state" id="state" value={formValues.state} onChange={handleChange}>
+              {Object.keys(nigerianStateData).map(x=>{
+                return (
+                  <option>{x}</option>
+                )
+              })}
+            </select>
             </div>
-            <div className="col-sm-6 mb-2">
-                <label className='mb-1'>Country</label>
-                <input type="text" className="form-control" placeholder="Country" name="country" id="country" value={formValues.location.country} onChange={handleChange} />
-            </div>
-            <div className="col-sm-6 mb-2">
-                <label className='mb-1'>Zip Code</label>
-                <input type="text" className="form-control" placeholder="Zip Code" name="zipCode" id="zipCode" value={formValues.location.zipCode} onChange={handleChange} />
+            <div className="col-sm-12 mb-2">
+                <label className="mb-1">Local Government Area</label>
+              <select className="form-control" name="LGA" id="LGA" value={formValues.LGA} onChange={handleChange}>
+                {nigerianStateData[formValues.state].map(x=>{
+                  return (
+                    <option>{x}</option>
+                  )
+                })}
+              </select>
             </div>
         </div>
         <div className="form-group row mb-3">
+        <h4 className='py-2'>Contact Section</h4>
             <div className="col-sm-6 mb-2">
                 <label className='mb-1'>Contact Phone</label>
-                <input type="text" className="form-control" placeholder="Phone" name="phone" id="phone" value={formValues.contact.phone} onChange={handleChange} />
+                <input type="text" className="form-control" placeholder="Phone" name="phone" id="phone" value={formValues.phone} onChange={handleChange} />
             </div>
             <div className="col-sm-6 mb-2">
                 <label className='mb-1'>Contact Email</label>
-                <input type="email" className="form-control" placeholder="Email" name="email" id="email" value={formValues.contact.email} onChange={handleChange} />
+                <input type="email" className="form-control" placeholder="Email" name="email" id="email" value={formValues.email} onChange={handleChange} />
             </div>
             <div className="col-sm-6 mb-2">
                 <label className='mb-1'>Website</label>
-                <input type="url" className="form-control" placeholder="Website URL" name="website" id="website" value={formValues.contact.website} onChange={handleChange} />
+                <input type="url" className="form-control" placeholder="Website URL" name="website" id="website" value={formValues.website} onChange={handleChange} />
             </div>
         </div>
+        <h4 className='py-2'>Extra Information</h4>
         <div className="form-group mb-3">
             <label className='mb-1'>Amenities</label>
-            <input type="text" className="form-control" placeholder="e.g., Pool, Gym, Spa" name="amenities" id="amenities" value={formValues.amenities} onChange={handleChange} />
+            <div className='row'>
+              {Object.keys(checks).map((option,index)=>{
+                return (
+                  <div className='py-1 px-3' key={index} style={{width: 'max-content'}}>
+                    <div className="form-check">
+                      <input className="form-check-input" checked={checks[option].selected} onChange={()=> updateCheck(option)} type="checkbox" id={`checkbox${index}`} />
+                      <label className="form-check-label" htmlFor={`checkbox${index}`}>{checks[option].displayTitle}</label>
+                    </div> 
+                  </div>
+                )
+              })}
+            </div>
         </div>
-        <div className="form-group mb-3">
-            <label className='mb-1'>Rooms</label>
-            <textarea className="form-control" placeholder="Room details in JSON format" rows="4" name="rooms" id="rooms" value={formValues.rooms} onChange={handleChange}></textarea>
-        </div>
-        <div className="form-group mb-3">
-            <label className='mb-1'>Images</label>
-            <input type="text" className="form-control" placeholder="URLs to images separated by commas" name="images" id="images" value={formValues.images} onChange={handleChange} />
-        </div>
-        <div className="form-group mb-3">
-            <label className='mb-1'>Ratings</label>
-            <textarea className="form-control" placeholder="Ratings in JSON format" rows="4" name="ratings" id="ratings" value={formValues.ratings} onChange={handleChange}></textarea>
-        </div>
-        <div className="form-group mb-3">
-            <label className='mb-1'>Average Rating</label>
-            <input type="number" className="form-control" placeholder="Average Rating" name="averageRating" id="averageRating" value={formValues.averageRating} onChange={handleChange} />
-        </div>
-        <div className="form-group mb-3">
-            <label className='mb-1'>Policies</label>
-            <textarea className="form-control" placeholder="Policies in JSON format" rows="4" name="policies" id="policies" value={formValues.policies} onChange={handleChange}></textarea>
-        </div>
-        <div className="form-group mb-3">
-            <label className='mb-1'>Nearby Attractions</label>
-            <input type="text" className="form-control" placeholder="Nearby attractions separated by commas" name="nearbyAttractions" id="nearbyAttractions" value={formValues.nearbyAttractions} onChange={handleChange} />
-        </div>
-        <div className="form-group mb-3">
-            <label className='mb-1'>Created By</label>
-            <input type="text" className="form-control" placeholder="User ID" name="createdBy" id="createdBy" value={formValues.createdBy} onChange={handleChange} />
-        </div>
+
     </form>
 </div>
-
-       
         <div className="col-md-6 local">
           <h2>Localization</h2>
           <div className="local-list">
@@ -273,9 +272,6 @@ const [checks, setChecks] = useState({
               <button className="btn localbtn " onClick={handleSearch}>Search</button>
               </div>
             </div>
-            
-           
-           
             <p>Or drag the marker to property position</p>
            
             <div className="map-container mb-3">
@@ -298,54 +294,10 @@ const [checks, setChecks] = useState({
             </div>
           </div>
         </div>
-        
-        <div className="col-xs-12 gallery-listing mb-3">
-          <div className="form-group mt-4">
-            <h2>Gallery</h2>
-            <div className="listing-gallery">
-              <form id="uploadForm">
-                  <input ref={imageInput} type="file" id="fileInput" name="files" multiple />
-              </form>
-              <div
-                className="dropzone text-center"
-                onDrop={handleDrop}
-                onDragOver={(e) => e.preventDefault()}
-                onClick={() => document.getElementById('fileUpload').click()}
-              >
-                
-                {images.length === 0 && (
-                  <div className="placeholder-text">Drag & drop files here…</div>
-                )}
-               
-                <div className="preview mt-3 d-flex flex-wrap justify-content-center">
-                  {images.map((image, index) => (
-                    <div key={index} className="p-2">
-                      <img src={image} alt={`Upload Preview ${index}`} className="img-thumbnail" />
-                     
-                      <button className="btn btn-sm btn-danger btn-remove" onClick={() => removeImage(index)}>x</button>
-                    </div>
-                  ))}
-                </div>
-              </div>
-           
-              <div className="mt-3">
-                <input
-                  type="file"
-                  id="fileUpload"
-                  className="form-control custom-input-file"
-                  onChange={handleFileSelect}
-                  multiple
-                  accept="image/*"
-                  style={{ display: 'none' }}
-                />
-              </div>
-            </div>
-          </div>
-       
-          </div>
+
       </div>
       <div className="row justify-content-center">
-        <button className="btn listbtn  mt-3" onClick={submitForm}><Link to="/review" className='listbtn'>Submit </Link></button>
+        <button className="btn listbtn  mt-3" onClick={submitForm}>Submit</button>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { useLoading } from '../../Components/LoadingContext'
 import { changePassword } from '../../utils/forgotPasswordRequest'
 import { useLocation, useNavigate } from 'react-router-dom'
-
+import { emailIsValid } from '../../utils/validateEmail'
 import { Modal } from 'antd';
 export function ChangePassword () {
     let [newPassword,setNewPassword] = useState('')
@@ -11,9 +11,13 @@ export function ChangePassword () {
     let {setLoading} = useLoading()
     let location = useLocation()
     let navigate = useNavigate()
-    const urlParams = new URLSearchParams(location.search.split('?')[1]);
-
+    const urlParams = new URLSearchParams(location.search.split('?')[1])
     const submit = async () =>{
+        if(newPassword.length < 8){
+            setShowModal(true)
+            setModalTitle('Your password should be 8 or more characters long')
+            return;
+        }
         try {
             setLoading(true)
             let response = await changePassword(urlParams.get('email'),newPassword)
