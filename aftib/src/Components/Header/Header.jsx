@@ -114,6 +114,7 @@ const Header = () => {
                         Inbox
                       </NavLink>
                     </li>
+                    
                   </>
                 ) : isLoggedIn && user && user.accountType === 'admin' ? (
                   <>
@@ -134,7 +135,7 @@ const Header = () => {
                         activeClassName="active"
                         onClick={handleNavLinkClick}
                       >
-Inbox
+                        Inbox
                       </NavLink>
                     </li>
                   </>
@@ -175,11 +176,11 @@ Inbox
                 <li className="nav-item">
                   <NavLink
                     className="nav-link"
-                    to="/agent-finder"
+                    to={isLoggedIn && user && user.accountType === 'Agent' ? "/agent-dashboard" : "/agent-finder"}
                     activeClassName="active"
                     onClick={handleNavLinkClick}
                   >
-                    Agent Finder
+                    {isLoggedIn && user && user.accountType === 'Agent' ? "Dashboard" : "Agent Finder"}
                   </NavLink>
                 </li>
                 <li className="nav-item">
@@ -192,11 +193,10 @@ Inbox
                     Help
                   </NavLink>
                 </li>
-                
               </ul>
               <ul className="navbar-nav">
                 {isLoggedIn && user ? (
-                  <li className="nav-item dropdown profile-dropdown-toggle ">
+                  <li className="nav-item dropdown profile-dropdown-toggle">
                     <img
                       src={profile}
                       alt="Profile"
@@ -220,7 +220,7 @@ Inbox
                               to="/admin-profile"
                               onClick={handleNavLinkClick}
                             >
-                           Profile
+                              Profile
                             </NavLink>
                           </li>
                           <li>
@@ -229,7 +229,7 @@ Inbox
                               to="admin-users"
                               onClick={handleNavLinkClick}
                             >
-                         Manage User
+                              Manage User
                             </NavLink>
                           </li>
                           <li>
@@ -238,7 +238,7 @@ Inbox
                               to="/admin-profile#settings"
                               onClick={handleNavLinkClick}
                             >
-                         Dashboard
+                              Dashboard
                             </NavLink>
                           </li>
                           <li>
@@ -247,7 +247,7 @@ Inbox
                               to="/admin-profile#settings"
                               onClick={handleNavLinkClick}
                             >
-                         Settings
+                              Settings
                             </NavLink>
                           </li>
                         </>

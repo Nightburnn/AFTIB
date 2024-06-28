@@ -10,6 +10,20 @@
     
   }
   
+  .white-container{
+    background-color: white;
+    padding: 7px;
+    border-radius: 10px;
+    color: #000;
+  }
+
+  .white-container h3{
+    font-size: 1.2rem;
+  }
+
+  .white-container .coor{
+    color: #4517fb;
+  }
   .dash h2 {
     font-size: 1.3rem;
     font-weight: bold;

@@ -30,6 +30,9 @@ import Index from './Components/PropertyDetails';
 import AgentRegistration from './Pages/AgentRegistration';
 import Shortlet from './Pages/ShortLet/ShortLet';
 import { ChangePassword } from './Pages/ForgetPassword/ChangePassword';
+import AgentReview from './PostPages/Admin/Dashboard/AgentReview/AgentReview';
+import Approval from './PostPages/Admin/AgentAproval/Approval';
+import AgentDashboard from './PostPages/AgentPage/AgentDashboard/AgentDashboard';
 
 function App() {
   return (
@@ -51,6 +54,9 @@ function App() {
                 <Route path="/admin-profile" Component={AdminProfile}/>
                 <Route path='/profile' Component={ProfilePage}/>
                 <Route path='/inbox' Component={Inbox}/>
+                <Route path='/approve' Component={Approval}/>
+                <Route path='/agent-dashboard' Component={AgentDashboard}/>
+                <Route path='/review-agent' Component={AgentReview}/>
                 <Route path='/admin-dashboard' Component={Dashboard}/>
                 <Route path='/admin-users' Component={ManageUser}/>
                 <Route path='/list' Component={Listing}/>
