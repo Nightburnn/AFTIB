@@ -1,74 +1,73 @@
 .agent-registration-container {
-    padding: 20px;
-    text-align: start;
+  padding: 20px;
+  text-align: start;
 }
 .agent-form {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #f9f9f9;
-  }
-  .personal-detail h3 {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+.personal-detail h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
 }
 
-.agent-registration-container hr{
+.agent-registration-container hr {
   border: 1px solid#ccc;
-  
 }
-  .file-profile {
-    float: none !important;
-    display: block !important;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid 
-  #ccc;}
+.file-profile {
+  float: none !important;
+  display: block !important;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+}
 
-    .file-link, .file-link a {
-      font-size: 18px;
-      margin-bottom: 3px;
-  }
-  
-  .agent-registration-container .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .agent-registration-container .form-group label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .agent-registration-container .form-group input[type="text"],
-  .agent-registration-container .form-group input[type="date"],
-  .agent-registration-container .form-group input[type="file"] {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .agent-registration-container .image-preview {
-    margin-top: 10px;
-    max-width: 100%;
-    height: auto;
-  }
-  
- .agent-registration-container button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #4517fb;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #4517fb;
-  }
-  
+.file-link,
+.file-link a {
+  font-size: 18px;
+  margin-bottom: 3px;
+}
+
+.agent-registration-container .form-group {
+  margin-bottom: 15px;
+}
+
+.agent-registration-container .form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.agent-registration-container .form-group input[type="text"],
+.agent-registration-container .form-group input[type="date"],
+.agent-registration-container .form-group input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.agent-registration-container .image-preview {
+  margin-top: 10px;
+  max-width: 100%;
+  height: auto;
+}
+
+.agent-registration-container button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #4517fb;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #4517fb;
+}

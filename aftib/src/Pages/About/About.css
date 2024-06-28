@@ -10,7 +10,7 @@
   flex-direction: column;
   justify-content: start;
   text-align: center;
-  overflow: hidden; 
+  overflow: hidden;
   transition: all 0.3s ease;
 }
 
@@ -64,14 +64,14 @@
   content: "";
 }
 
-
-.swiper-button-prev, .swiper-button-next {
+.swiper-button-prev,
+.swiper-button-next {
   transition: transform 0.3s ease;
 }
 
-
-.swiper-button-prev:hover, .swiper-button-next:hover {
-  transform: scale(1.1); 
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  transform: scale(1.1);
 }
 .swiper-button-prev::after,
 .swiper-button-next::after {
@@ -129,17 +129,14 @@
   transition: all 0.3s ease; /* Smooth transition for hover effects */
 }
 
-
-.text1{
+.text1 {
   background-color: #f1f0ee;
   padding: 10px;
-
 }
 
-.add{
+.add {
   margin-top: 30px;
 }
-
 
 @media (max-width: 885px) {
   .bg-image {
@@ -165,21 +162,19 @@
     font-size: 24px;
   }
   .swiper-pagination-bullet {
- 
     width: 15px;
     height: 15px;
-
   }
 
-  .add{
+  .add {
     margin-top: 16px;
   }
-  
+
   .swiper-button-next,
   .swiper-button-prev {
     display: none;
   }
-  .about-service h2{
+  .about-service h2 {
     margin-top: 13px;
   }
 }
@@ -187,8 +182,6 @@
 .aboutmain {
   background-color: #fff;
 }
-
-
 
 .about-mission h2 {
   color: #212121;
@@ -216,16 +209,13 @@
 .aboutservice {
   margin: 20px;
   margin-bottom: 40px;
-  
 }
-
 
 .aboutservice h2 {
   color: #212121;
   font-family: "League Spartan";
   font-size: 30px;
   font-weight: 800;
-  
 }
 
 .aboutservice p {
@@ -235,7 +225,4 @@
   font-style: normal;
   font-weight: 500;
   line-height: 30px;
-
 }
-
-

@@ -1,9 +1,9 @@
-import React from 'react';
-import './UserAgent.css'
-import UserAgent1 from '../../assets/images/userAgent1.png'
-import UserAgent2 from '../../assets/images/UserAgent2.png'
-import UserAgent3 from '../../assets/images/UserAgent3.png'
-import UserAgent4 from '../../assets/images/UserAgent4.svg'
+import React from "react";
+import "./UserAgent.css";
+import UserAgent1 from "../../assets/images/userAgent1.png";
+import UserAgent2 from "../../assets/images/UserAgent2.png";
+import UserAgent3 from "../../assets/images/UserAgent3.png";
+import UserAgent4 from "../../assets/images/UserAgent4.svg";
 function AgentPage() {
   return (
     <div className="container agentpage">
@@ -12,9 +12,15 @@ function AgentPage() {
           <div className="card">
             <img src={UserAgent1} className="card-img-top" alt="Agent" />
             <div className="card-body">
-              <p className="card-text"><strong>Location:</strong> Abuja, Nigeria</p>
-              <p className="card-text"><strong>Experience:</strong> 2 years</p>
-              <p className="card-text"><strong>Specialization:</strong> First-time home buyer</p>
+              <p className="card-text">
+                <strong>Location:</strong> Abuja, Nigeria
+              </p>
+              <p className="card-text">
+                <strong>Experience:</strong> 2 years
+              </p>
+              <p className="card-text">
+                <strong>Specialization:</strong> First-time home buyer
+              </p>
               <button className="btn w-100">Chat</button>
             </div>
           </div>
@@ -23,9 +29,15 @@ function AgentPage() {
           <div className="card">
             <img src={UserAgent2} className="card-img-top" alt="Agent" />
             <div className="card-body">
-              <p className="card-text"><strong>Location:</strong> Abuja, Nigeria</p>
-              <p className="card-text"><strong>Experience:</strong> 2 years</p>
-              <p className="card-text"><strong>Specialization:</strong> First-time home buyer</p>
+              <p className="card-text">
+                <strong>Location:</strong> Abuja, Nigeria
+              </p>
+              <p className="card-text">
+                <strong>Experience:</strong> 2 years
+              </p>
+              <p className="card-text">
+                <strong>Specialization:</strong> First-time home buyer
+              </p>
               <button className="btn w-100">Chat</button>
             </div>
           </div>
@@ -34,9 +46,15 @@ function AgentPage() {
           <div className="card">
             <img src={UserAgent3} className="card-img-top" alt="Agent" />
             <div className="card-body">
-              <p className="card-text"><strong>Location:</strong> Abuja, Nigeria</p>
-              <p className="card-text"><strong>Experience:</strong> 2 years</p>
-              <p className="card-text"><strong>Specialization:</strong> First-time home buyer</p>
+              <p className="card-text">
+                <strong>Location:</strong> Abuja, Nigeria
+              </p>
+              <p className="card-text">
+                <strong>Experience:</strong> 2 years
+              </p>
+              <p className="card-text">
+                <strong>Specialization:</strong> First-time home buyer
+              </p>
               <button className="btn  w-100">Chat</button>
             </div>
           </div>

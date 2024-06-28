@@ -1,22 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import '.././Account/Setting.css';
-import { useAuth } from '../../AuthContext'; 
-import csc from 'countries-states-cities';
-
+import React, { useState, useEffect } from "react";
+import ".././Account/Setting.css";
+import { useAuth } from "../../AuthContext";
+import csc from "countries-states-cities";
 
 const AgentSetting = () => {
-  const { user } = useAuth(); 
+  const { user } = useAuth();
 
- 
   const [settings, setSettings] = useState({
-    accountType: user ? user.accountType : '',
-    changePassword: '',
-    language: 'English', 
-    country: '',
-    state: '',
-    notification: 'On', 
-    location: 'Disabled', 
-    profession: 'home'
+    accountType: user ? user.accountType : "",
+    changePassword: "",
+    language: "English",
+    country: "",
+    state: "",
+    notification: "On",
+    location: "Disabled",
+    profession: "home",
   });
 
   // Handle changes in form inputs
@@ -34,27 +32,27 @@ const AgentSetting = () => {
   useEffect(() => {
     const allCountries = csc.getAllCountries();
     setCountries(allCountries);
-    console.log('All Countries:', allCountries);
+    console.log("All Countries:", allCountries);
   }, []);
 
   useEffect(() => {
     if (settings.country) {
-      const countryId = countries.find(country => country.iso2 === settings.country)?.id;
+      const countryId = countries.find(
+        (country) => country.iso2 === settings.country,
+      )?.id;
       if (countryId) {
         const statesData = csc.getStatesOfCountry(countryId);
         setStates(statesData);
-        console.log('States for Selected Country:', statesData);
+        console.log("States for Selected Country:", statesData);
       }
     }
   }, [settings.country, countries]);
-
-
 
   // Handle form submission (save changes)
   const handleSave = (e) => {
     e.preventDefault();
     // Simulate saving changes - you can replace this with actual API call
-    console.log('Saving settings:', settings);
+    console.log("Saving settings:", settings);
     // Update settings state or send API request to save changes
   };
 
@@ -71,7 +69,7 @@ const AgentSetting = () => {
               onChange={handleChange}
             >
               <option value="">Choose...</option>
-              
+
               <option>Client</option>
               <option>Agent</option>
             </select>
@@ -113,7 +111,7 @@ const AgentSetting = () => {
                 handleChange(e);
                 setSettings((prevSettings) => ({
                   ...prevSettings,
-                  state: '',
+                  state: "",
                 }));
               }}
             >
@@ -151,7 +149,6 @@ const AgentSetting = () => {
             >
               <option value="on">On</option>
               <option value="off">Off</option>
-             
             </select>
           </div>
         </div>

@@ -16,8 +16,8 @@
 
 .home-title {
   margin-top: 4px;
-  background-color: #E4DFF6;
-  border: 1px solid #B19CF4;
+  background-color: #e4dff6;
+  border: 1px solid #b19cf4;
   padding: 10px 30px 10px 40px;
   border-radius: 10px;
   align-items: center;
@@ -29,7 +29,7 @@
   font-size: 40px;
   margin-bottom: 10px;
   color: #000;
-  font-family: 'League Spartan';
+  font-family: "League Spartan";
   font-weight: 700;
 }
 
@@ -53,7 +53,7 @@
 .input-group-text {
   border: none;
   background-color: transparent;
-  color: #BEBEBE;
+  color: #bebebe;
 }
 
 .input-group .form-control {
@@ -65,7 +65,6 @@
   color: #000;
   font-family: Arial, sans-serif;
   font-size: 14px;
-  
 }
 
 .dropdown .btn:hover {
@@ -77,8 +76,7 @@
   color: #333;
   font-family: Arial, sans-serif;
   font-size: 14px;
-  white-space: wrap; 
- 
+  white-space: wrap;
 }
 
 .dropdown .dropdown-menu .dropdown-item:hover {
@@ -131,7 +129,7 @@
 
 .find {
   border-left: 0;
-  background-color: #4517FB;
+  background-color: #4517fb;
   border: none;
   color: #fff;
   border-radius: 10px;
@@ -259,7 +257,11 @@ img {
   bottom: 0;
   left: 0;
   color: white;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.80) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
   padding: 10px;
   border-radius: 5px;
   width: 100%;
@@ -273,44 +275,44 @@ img {
 .sel .image-text h5 {
   color: white;
   font-size: 30px;
-  font-family: 'League Spartan';
+  font-family: "League Spartan";
   font-weight: 600;
   margin-bottom: 20px;
 }
 
-
-.exp, .sel{
+.exp,
+.sel {
   margin-top: 50px;
-  
 }
 
-
 @media (max-width: 760px) {
-  .exp, .sel{
+  .exp,
+  .sel {
     margin-top: 30px;
     margin-left: 0;
     margin-right: 0;
   }
 }
-.exp h1, .sel h1{
-  color: #0C0D0D;
-font-size: 40px;
-font-family: 'League Spartan';
-font-weight: 700;
+.exp h1,
+.sel h1 {
+  color: #0c0d0d;
+  font-size: 40px;
+  font-family: "League Spartan";
+  font-weight: 700;
 }
 
-.exp p, .sel p{
-  color: #0C0D0D;
-font-size: 15px;
-font-weight: 400;
+.exp p,
+.sel p {
+  color: #0c0d0d;
+  font-size: 15px;
+  font-weight: 400;
 }
 
-.exp .card{
+.exp .card {
   display: flex;
   flex-direction: column;
   height: 100%;
   border-radius: 20px;
-  
 }
 
 .exp .card-body {
@@ -327,45 +329,41 @@ font-weight: 400;
 }
 
 .exp .card-title {
-    margin-top: 20px;
-    color: black;
-font-size: 20px;
-font-family: Open Sans;
-font-weight: 600;
-  }
+  margin-top: 20px;
+  color: black;
+  font-size: 20px;
+  font-family: Open Sans;
+  font-weight: 600;
+}
 
-  .exp .card-text {
-    margin-top: 20px;
-    flex-grow: 1;
-    color: black;
-font-size: 14px;
-font-family: Open Sans;
-font-weight: 400;
-  }
+.exp .card-text {
+  margin-top: 20px;
+  flex-grow: 1;
+  color: black;
+  font-size: 14px;
+  font-family: Open Sans;
+  font-weight: 400;
+}
 
+.exp .text {
+  color: #4617fb;
+  font-size: 14px;
+  font-family: "Open Sans";
+  font-weight: 600;
+}
 
- .exp .text{
-    color: #4617FB;
-font-size: 14px;
-font-family: 'Open Sans';
-font-weight: 600;
-  }
+.sel .text {
+  color: #fff;
+  font-size: 16px;
+  font-family: "Open Sans";
+  font-weight: 600;
+}
 
-  
-.sel  .text{
-    color: #FFF;
-font-size: 16px;
-font-family: 'Open Sans';
-font-weight: 600;
-  }
-
-
-  
 .landingCard img {
   width: 100%;
-  max-width: 180px; 
+  max-width: 180px;
   height: auto;
-  margin-bottom: 30px; 
+  margin-bottom: 30px;
 }
 
 .landingCard-item {
@@ -374,15 +372,15 @@ font-weight: 600;
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-color: #FFFFFF;
-  padding: 8px; 
-  border-radius: 12px; 
+  background-color: #ffffff;
+  padding: 8px;
+  border-radius: 12px;
   box-sizing: border-box;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  padding-top: 25px; 
-  padding-bottom: 25px; 
-  margin-left: 25px; 
-  margin-right: 25px; 
+  padding-top: 25px;
+  padding-bottom: 25px;
+  margin-left: 25px;
+  margin-right: 25px;
   height: 370px;
   transition: transform 0.3s ease;
 }
@@ -393,65 +391,58 @@ font-weight: 600;
 
 .enter {
   background-color: transparent;
-  border-radius: 18px; 
-  border: 2px rgba(68.82, 23.33, 250.75, 0.80) solid; 
-  padding-left: 25px; 
-  padding-right: 25px; 
-  padding-top: 8px; 
-  padding-bottom: 8px; 
-  color: #4517FB;
-  font-size: 20px; 
-  font-family: 'League Spartan';
+  border-radius: 18px;
+  border: 2px rgba(68.82, 23.33, 250.75, 0.8) solid;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  color: #4517fb;
+  font-size: 20px;
+  font-family: "League Spartan";
   font-weight: 700;
 }
 
 .enter:hover {
-  background-color: #4517FB;
-  color: #FFFFFF;
+  background-color: #4517fb;
+  color: #ffffff;
 }
 
 .landingTopics h4 {
   color: black;
-  font-size: 21px; 
-  font-family: 'Moul';
+  font-size: 21px;
+  font-family: "Moul";
   font-weight: 400;
-  margin-bottom: 18px; 
+  margin-bottom: 18px;
 }
 
 .landingTopics p {
   color: black;
-  font-size: 15px; 
-  font-family: 'League Spartan';
+  font-size: 15px;
+  font-family: "League Spartan";
   font-weight: 400;
-  margin-bottom: 35px; 
+  margin-bottom: 35px;
 }
 
-
 .landingCard {
-  
   justify-content: center;
- 
+
   width: 100%;
   padding-top: 20px;
   padding-left: 35px;
   padding-right: 35px;
-  
 }
 
-.landdd{
-   background-color: #f0f0f0;
+.landdd {
+  background-color: #f0f0f0;
 }
-
-
 
 .landhome {
-  
   justify-content: center;
   width: 100%;
   padding-top: 20px;
   padding-left: 60px;
   padding-right: 60px;
-  
 }
 
 @media (max-width: 768px) {
@@ -460,66 +451,65 @@ font-weight: 600;
     padding-right: 0;
   }
 
-  .landhome{
+  .landhome {
     padding-left: 0;
     padding-right: 0;
   }
-  
 }
 
 .landingcontact {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 
 .col-lg-4 {
-  padding: 8px; 
+  padding: 8px;
 }
 
 .landingContact {
-  background-color: #4517FB;
-  border-radius: 8px; 
+  background-color: #4517fb;
+  border-radius: 8px;
 }
 
 .landingContact p {
   color: white;
-  font-size: 21px; 
-  font-family: 'League Spartan';
+  font-size: 21px;
+  font-family: "League Spartan";
   font-weight: 400;
 }
 
 .landingContact h1 {
   color: white;
-  font-size: 35px; 
-  font-family: 'Limelight';
+  font-size: 35px;
+  font-family: "Limelight";
   font-weight: 400;
 }
 
 .landingContact img {
-  border-radius: 4px; 
+  border-radius: 4px;
 }
 
 .landingicon {
-  background-color: #4517FB;
-  padding-top: 8px; 
-  padding-bottom: 8px; 
-  padding-left: 25px; 
-  padding-right: 25px; 
+  background-color: #4517fb;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 25px;
+  padding-right: 25px;
   color: white;
-  font-size: 18px; 
-  font-family: 'League Spartan';
+  font-size: 18px;
+  font-family: "League Spartan";
   font-weight: 800;
-  border-radius: 8px; 
-  border: 2px white solid; 
+  border-radius: 8px;
+  border: 2px white solid;
   text-decoration: none;
 }
 
 .landingicon:hover {
-  background-color: #FFFFFF;
-  color: #4517FB;
+  background-color: #ffffff;
+  color: #4517fb;
 }
 
 @media (max-width: 390px) {
   .landingContact h1 {
-    font-size: 28px; 
+    font-size: 28px;
   }
 }

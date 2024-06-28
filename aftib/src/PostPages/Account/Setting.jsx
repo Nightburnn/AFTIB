@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import './Setting.css';
-import { useAuth } from '../../AuthContext';
-import csc from 'countries-states-cities';
+import React, { useState, useEffect } from "react";
+import "./Setting.css";
+import { useAuth } from "../../AuthContext";
+import csc from "countries-states-cities";
 
 const Setting = () => {
   const { user } = useAuth();
 
   const [settings, setSettings] = useState({
-    accountType: user ? user.accountType : '',
-    changePassword: '',
-    language: 'English',
-    country: '',
-    state: '',
-    notification: 'On',
-    location: 'Disabled',
+    accountType: user ? user.accountType : "",
+    changePassword: "",
+    language: "English",
+    country: "",
+    state: "",
+    notification: "On",
+    location: "Disabled",
   });
 
   const [countries, setCountries] = useState([]);
@@ -22,20 +22,21 @@ const Setting = () => {
   useEffect(() => {
     const allCountries = csc.getAllCountries();
     setCountries(allCountries);
-    console.log('All Countries:', allCountries);
+    console.log("All Countries:", allCountries);
   }, []);
 
   useEffect(() => {
     if (settings.country) {
-      const countryId = countries.find(country => country.iso2 === settings.country)?.id;
+      const countryId = countries.find(
+        (country) => country.iso2 === settings.country,
+      )?.id;
       if (countryId) {
         const statesData = csc.getStatesOfCountry(countryId);
         setStates(statesData);
-        console.log('States for Selected Country:', statesData);
+        console.log("States for Selected Country:", statesData);
       }
     }
   }, [settings.country, countries]);
-
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -47,7 +48,7 @@ const Setting = () => {
 
   const handleSave = (e) => {
     e.preventDefault();
-    console.log('Saving settings:', settings);
+    console.log("Saving settings:", settings);
     // Add your save logic here
   };
 
@@ -105,7 +106,7 @@ const Setting = () => {
                 handleChange(e);
                 setSettings((prevSettings) => ({
                   ...prevSettings,
-                  state: '',
+                  state: "",
                 }));
               }}
             >

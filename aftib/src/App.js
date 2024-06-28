@@ -55,9 +55,6 @@ function App() {
                 <Route path="/admin-profile" Component={AdminProfile}/>
                 <Route path='/profile' Component={ProfilePage}/>
                 <Route path='/inbox' Component={Inbox}/>
-                <Route path='/approve' Component={Approval}/>
-                <Route path='/agent-dashboard' Component={AgentDashboard}/>
-                <Route path='/review-agent' Component={AgentReview}/>
                 <Route path='/admin-dashboard' Component={Dashboard}/>
                 <Route path='/admin-users' Component={ManageUser}/>
                 <Route path='/list' Component={Listing}/>

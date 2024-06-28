@@ -1,10 +1,18 @@
-import React, { useState } from 'react';
-import '../Account/User.css';
-import { useAuth } from '../../AuthContext';
+import React, { useState } from "react";
+import "../Account/User.css";
+import { useAuth } from "../../AuthContext";
 
 const specialties = [
-  'Buyers Agent', 'Consulting', 'Insurance', 'Vacation', 'Staging',
-  'Relocation', 'Moving', 'Listing Agent', 'Property Management', 'Other'
+  "Buyers Agent",
+  "Consulting",
+  "Insurance",
+  "Vacation",
+  "Staging",
+  "Relocation",
+  "Moving",
+  "Listing Agent",
+  "Property Management",
+  "Other",
 ];
 
 const AgentUser = () => {
@@ -32,7 +40,7 @@ const AgentUser = () => {
 
   const handleSave = (e) => {
     e.preventDefault();
-    console.log('Saving user profile:', userProfile);
+    console.log("Saving user profile:", userProfile);
     login(userProfile);
   };
 
@@ -51,7 +59,7 @@ const AgentUser = () => {
               className="form-control"
               id="name"
               placeholder="Full Name"
-              value={userProfile.name || ''}
+              value={userProfile.name || ""}
               onChange={handleChange}
             />
           </div>
@@ -62,7 +70,7 @@ const AgentUser = () => {
               className="form-control"
               id="email"
               placeholder="Email"
-              value={userProfile.email || ''}
+              value={userProfile.email || ""}
               onChange={handleChange}
               disabled
             />
@@ -89,7 +97,7 @@ const AgentUser = () => {
               className="form-control"
               id="phoneNumber"
               placeholder="Phone Number"
-              value={userProfile.mobileNumber || ''}
+              value={userProfile.mobileNumber || ""}
               onChange={handleChange}
             />
           </div>
@@ -98,7 +106,7 @@ const AgentUser = () => {
             <select
               id="gender"
               className="form-control"
-              value={userProfile.gender || ''}
+              value={userProfile.gender || ""}
               onChange={handleChange}
             >
               <option value="">Choose...</option>
@@ -113,7 +121,7 @@ const AgentUser = () => {
               type="date"
               className="form-control"
               id="dob"
-              value={userProfile.dob || ''}
+              value={userProfile.dob || ""}
               onChange={handleChange}
             />
           </div>
@@ -127,7 +135,7 @@ const AgentUser = () => {
               className="form-control"
               id="address"
               placeholder="Address"
-              value={userProfile.address || ''}
+              value={userProfile.address || ""}
               onChange={handleChange}
             />
           </div>
@@ -138,7 +146,7 @@ const AgentUser = () => {
               className="form-control"
               id="landmark"
               placeholder="Landmark"
-              value={userProfile.landmark || ''}
+              value={userProfile.landmark || ""}
               onChange={handleChange}
             />
           </div>
@@ -152,7 +160,7 @@ const AgentUser = () => {
               className="form-control"
               id="license"
               placeholder="License"
-              value={userProfile.license || ''}
+              value={userProfile.license || ""}
               onChange={handleChange}
             />
           </div>
@@ -163,7 +171,7 @@ const AgentUser = () => {
               className="form-control"
               id="licenseNumber"
               placeholder="License Number"
-              value={userProfile.licenseNumber || ''}
+              value={userProfile.licenseNumber || ""}
               onChange={handleChange}
             />
           </div>
@@ -173,7 +181,7 @@ const AgentUser = () => {
               type="date"
               className="form-control"
               id="expdate"
-              value={userProfile.expdate || ''}
+              value={userProfile.expdate || ""}
               onChange={handleChange}
             />
           </div>
@@ -193,7 +201,10 @@ const AgentUser = () => {
                     checked={userProfile.specialties?.[specialty] || false}
                     onChange={handleCheckboxChange}
                   />
-                  <span className="form-check-label checkLabel" htmlFor={specialty}>
+                  <span
+                    className="form-check-label checkLabel"
+                    htmlFor={specialty}
+                  >
                     {specialty}
                   </span>
                 </div>
@@ -204,13 +215,15 @@ const AgentUser = () => {
 
         <div className="form-row">
           <div className="form-group col-md-12 d-flex align-items-center">
-            <label htmlFor="facebook" className="col-form-label me-4">Facebook</label>
+            <label htmlFor="facebook" className="col-form-label me-4">
+              Facebook
+            </label>
             <input
               type="text"
               className="form-control"
               id="facebook"
               placeholder="Facebook Account"
-              value={userProfile.facebook || ''}
+              value={userProfile.facebook || ""}
               onChange={handleChange}
             />
           </div>
@@ -218,13 +231,15 @@ const AgentUser = () => {
 
         <div className="form-row">
           <div className="form-group col-md-12 d-flex align-items-center">
-            <label htmlFor="instagram" className="col-form-label me-4">Instagram</label>
+            <label htmlFor="instagram" className="col-form-label me-4">
+              Instagram
+            </label>
             <input
               type="text"
               className="form-control"
               id="instagram"
               placeholder="Instagram Account"
-              value={userProfile.instagram || ''}
+              value={userProfile.instagram || ""}
               onChange={handleChange}
             />
           </div>
@@ -232,13 +247,15 @@ const AgentUser = () => {
 
         <div className="form-row">
           <div className="form-group col-md-12 d-flex align-items-center">
-            <label htmlFor="twitter" className="col-form-label me-5">Twitter</label>
+            <label htmlFor="twitter" className="col-form-label me-5">
+              Twitter
+            </label>
             <input
               type="text"
               className="form-control"
               id="twitter"
               placeholder="Twitter Account"
-              value={userProfile.twitter || ''}
+              value={userProfile.twitter || ""}
               onChange={handleChange}
             />
           </div>

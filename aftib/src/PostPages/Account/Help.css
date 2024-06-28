@@ -1,25 +1,24 @@
 .help-section {
-    padding: 2rem;
-  }
-  
-  .help-row {
-    margin-bottom: 40px;
-  }
-  
-  .help-link {
-    text-decoration: underline;
-    color: #007bff;
-   
-    margin-bottom:40px;
-  }
-  
-  .help-link:hover {
-    color: #0056b3;
-  }
-  
- @media (max-width:790px) {
-  .help-top{
+  padding: 2rem;
+}
+
+.help-row {
+  margin-bottom: 40px;
+}
+
+.help-link {
+  text-decoration: underline;
+  color: #007bff;
+
+  margin-bottom: 40px;
+}
+
+.help-link:hover {
+  color: #0056b3;
+}
+
+@media (max-width: 790px) {
+  .help-top {
     margin-top: 40px;
   }
- }
-  
+}

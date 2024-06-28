@@ -10,7 +10,6 @@
 
   margin-top: 54px;
   /* Moves the filter card downwards */
-
 }
 
 /* Button styles */
@@ -36,7 +35,7 @@
 }
 
 .filter-button.active {
-  background-color: #4517FB;
+  background-color: #4517fb;
   color: white;
 }
 
@@ -92,7 +91,6 @@
   /* Space between radio button groups */
 }
 
-
 .filter-options input {
   width: 100%;
   padding: 6px;
@@ -129,7 +127,7 @@
 
 .bed-options button.active,
 .bath-options button.active {
-  background-color: #4517FB;
+  background-color: #4517fb;
   color: white;
 }
 
@@ -156,7 +154,7 @@
 }
 
 .apply-button {
-  background-color: #4517FB;
+  background-color: #4517fb;
   color: white;
   font-size: 14px;
 }
@@ -201,6 +199,5 @@
   .bed-options button,
   .bath-options button {
     margin-right: 1px;
-
   }
 }

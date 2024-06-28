@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
-import './listreview.css';
-import sh1 from '../../assets/images/sh1.png';
-import sh2 from '../../assets/images/sh2.png';
+import React, { useState } from "react";
+import "./listreview.css";
+import sh1 from "../../assets/images/sh1.png";
+import sh2 from "../../assets/images/sh2.png";
 
 const ListingReview = () => {
   const [listing, setListing] = useState({
-    title: 'Sample Listing',
-    description: 'This is a sample listing description. This description is very long and should be truncated for better display.',
+    title: "Sample Listing",
+    description:
+      "This is a sample listing description. This description is very long and should be truncated for better display.",
     images: [
-      { src: sh1, desc: 'Image 1 Description' },
-      { src: sh2, desc: 'Image 2 Description' },
-      { src: 'image3.jpg', desc: 'Image 3 Description' },
-      { src: 'image4.jpg', desc: 'Image 4 Description' },
+      { src: sh1, desc: "Image 1 Description" },
+      { src: sh2, desc: "Image 2 Description" },
+      { src: "image3.jpg", desc: "Image 3 Description" },
+      { src: "image4.jpg", desc: "Image 4 Description" },
     ],
   });
   const [isPending, setIsPending] = useState(true);
@@ -19,25 +20,29 @@ const ListingReview = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleEdit = () => {
-    console.log('Editing listing...');
+    console.log("Editing listing...");
   };
 
   const handleCreateNew = () => {
-    console.log('Creating new listing...');
+    console.log("Creating new listing...");
   };
 
   const handleDelete = () => {
-    console.log('Deleting listing...');
+    console.log("Deleting listing...");
     setListing(null);
     setIsPending(false);
   };
 
   const handlePrevImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : listing.images.length - 1));
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex > 0 ? prevIndex - 1 : listing.images.length - 1,
+    );
   };
 
   const handleNextImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex < listing.images.length - 1 ? prevIndex + 1 : 0));
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex < listing.images.length - 1 ? prevIndex + 1 : 0,
+    );
   };
 
   const handleView = () => {
@@ -49,7 +54,9 @@ const ListingReview = () => {
   };
 
   const truncateDescription = (desc, maxLength) => {
-    return desc.length > maxLength ? `${desc.substring(0, maxLength)}...` : desc;
+    return desc.length > maxLength
+      ? `${desc.substring(0, maxLength)}...`
+      : desc;
   };
 
   if (!listing) {
@@ -70,23 +77,35 @@ const ListingReview = () => {
       <h2 className="text-center mb-4">Listing Review</h2>
       <div className="card">
         <div className="card-header blue text-white">
-          Listing Status: {isPending ? 'Pending' : 'Active'}
+          Listing Status: {isPending ? "Pending" : "Active"}
         </div>
         <div className="card-body d-flex align-items-center justify-content-between">
           <div className="d-flex flex-column align-items-center">
-            <img src={listing.images[currentImageIndex].src} alt="Listing Image" className="img-fluid carousel-image" />
+            <img
+              src={listing.images[currentImageIndex].src}
+              alt="Listing Image"
+              className="img-fluid carousel-image"
+            />
             <div className="carousel-controls text-center mt-2">
-              <button className="btn prev btn-sm mr-2" onClick={handlePrevImage}>
-                &laquo; 
+              <button
+                className="btn prev btn-sm mr-2"
+                onClick={handlePrevImage}
+              >
+                &laquo;
               </button>
-              <button className="btn prev btn-sm ml-2" onClick={handleNextImage}>
-                 &raquo;
+              <button
+                className="btn prev btn-sm ml-2"
+                onClick={handleNextImage}
+              >
+                &raquo;
               </button>
             </div>
           </div>
           <div className="ml-3 flex-grow-1 text-right move">
             <h5 className="card-title">{listing.title}</h5>
-            <p className="card-text">{truncateDescription(listing.description, 100)}</p>
+            <p className="card-text">
+              {truncateDescription(listing.description, 100)}
+            </p>
             <div className="button-group mt-2">
               <button className="btn warning btn-sm mr-2" onClick={handleEdit}>
                 Edit
@@ -111,7 +130,12 @@ const ListingReview = () => {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">Listing Details</h5>
-                <button type="button" className="close" onClick={handleCloseModal} aria-label="Close">
+                <button
+                  type="button"
+                  className="close"
+                  onClick={handleCloseModal}
+                  aria-label="Close"
+                >
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
@@ -119,20 +143,36 @@ const ListingReview = () => {
                 <h5>{listing.title}</h5>
                 <p>{listing.description}</p>
                 <div className="image-carousel">
-                  <img src={listing.images[currentImageIndex].src} alt="Listing Image" className="img-fluid" />
-                  <p className="mt-2 text-center">{listing.images[currentImageIndex].desc}</p>
+                  <img
+                    src={listing.images[currentImageIndex].src}
+                    alt="Listing Image"
+                    className="img-fluid"
+                  />
+                  <p className="mt-2 text-center">
+                    {listing.images[currentImageIndex].desc}
+                  </p>
                   <div className="carousel-controls text-center mt-2">
-                    <button className="btn btn-secondary btn-sm mr-2" onClick={handlePrevImage}>
+                    <button
+                      className="btn btn-secondary btn-sm mr-2"
+                      onClick={handlePrevImage}
+                    >
                       &laquo;
                     </button>
-                    <button className="btn btn-secondary btn-sm ml-2" onClick={handleNextImage}>
+                    <button
+                      className="btn btn-secondary btn-sm ml-2"
+                      onClick={handleNextImage}
+                    >
                       &raquo;
                     </button>
                   </div>
                 </div>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" onClick={handleCloseModal}>
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={handleCloseModal}
+                >
                   Close
                 </button>
               </div>
@@ -140,12 +180,8 @@ const ListingReview = () => {
           </div>
         </div>
       )}
-
-
-   
     </div>
   );
 };
 
 export default ListingReview;
-

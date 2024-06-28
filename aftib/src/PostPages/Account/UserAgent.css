@@ -1,52 +1,50 @@
 .agentpage .card {
-    margin-top: 40px;
-    background-color: transparent;
-    outline: none;
-    border: none;
-  }
-
-
- .agentpage .card img {
-    height: 300px;
-  box-shadow: none;
-    object-fit: contain;
-  }
-
-.agentpage .card p{
-    font-family: 'League Spartan';
-    font-weight: 400;
-    font-size: 17px;
+  margin-top: 40px;
+  background-color: transparent;
+  outline: none;
+  border: none;
 }
-.agentpage  .card .btn{
-    background-color: #4517FB;
-    color: #fff;
-  }
 
-  .register-section {
-    background-color: #4517FB;
-    color: white;
-    margin-top: 80px;
-    padding: 20px;
-    border-radius: 10px;
-  }
+.agentpage .card img {
+  height: 300px;
+  box-shadow: none;
+  object-fit: contain;
+}
 
-  .register-section h2{
-    text-align: left;
-    max-width: 370px;
-  }
+.agentpage .card p {
+  font-family: "League Spartan";
+  font-weight: 400;
+  font-size: 17px;
+}
+.agentpage .card .btn {
+  background-color: #4517fb;
+  color: #fff;
+}
+
+.register-section {
+  background-color: #4517fb;
+  color: white;
+  margin-top: 80px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.register-section h2 {
+  text-align: left;
+  max-width: 370px;
+}
+.register-section .btn {
+  width: 50%;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 360px) {
   .register-section .btn {
-    width: 50%;
+    width: 100%;
     margin-bottom: 20px;
   }
-  
-  @media (max-width: 360px) {
-    .register-section .btn {
-        width: 100%;
-        margin-bottom: 20px;
-      }
 
-      .register-section h2{
-        text-align: left;
-       
-      }
+  .register-section h2 {
+    text-align: left;
   }
+}

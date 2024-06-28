@@ -9,74 +9,90 @@ import axios from "axios";
 // maxPrice raw format 'Number' so to convert it to number, call Number('Number')
 // note if the type is rent, then the returned object should not have minPrice and maxPrice, instead the returned object should have minMonthlyPayment and maxMonthlyPaymen
 
-export function transformSearchOptions({ location, saleType, propertyType, bedroom, bathroom, minPrice, maxPrice }) {
-    // Transform saleType: 'Buy' should become 'Sale'
-    let transformedSaleType = saleType === 'buy' ? 'sale' : saleType;
-    
-    // Transform bedroom: extract the number from the string
-    let transformedBedroom = parseInt(bedroom);
-    if(Number.isNaN(transformedBedroom)){
-        transformedBedroom = 1
-    }
-    
-    // Transform bathroom: extract the number from the string
-    let transformedBathroom = parseInt(bathroom);
-    if(Number.isNaN(transformedBathroom)){
-        transformedBathroom = 1
-    }
-    // Transform minPrice and maxPrice if the saleType is not 'Rent'
-    if(minPrice.indexOf('million') !== -1) {
-        minPrice = parseInt(minPrice) * 1000000
-    }
-    else if(minPrice == ''){
-        minPrice = ''
-    }
-    else {
-        minPrice = Number(minPrice.split(',').join(''))
-    }
-    if(maxPrice.indexOf('million') !== -1) {
-        maxPrice = parseInt(maxPrice) * 1000000
-    }
-    else if(maxPrice == ''){
-        maxPrice = ''
-    }
-    else {
-        maxPrice = Number(maxPrice.split(',').join(''))
-    }
+export function transformSearchOptions({
+  location,
+  saleType,
+  propertyType,
+  bedroom,
+  bathroom,
+  minPrice,
+  maxPrice,
+}) {
+  // Transform saleType: 'Buy' should become 'Sale'
+  let transformedSaleType = saleType === "buy" ? "sale" : saleType;
 
-    // Build the transformed object
-    let transformedObject = {
-        location: location,
-        saleType: transformedSaleType,
-        propertyType: propertyType,
-        bedroom: transformedBedroom,
-        bathroom: transformedBathroom
-    }
+  // Transform bedroom: extract the number from the string
+  let transformedBedroom = parseInt(bedroom);
+  if (Number.isNaN(transformedBedroom)) {
+    transformedBedroom = 1;
+  }
 
-    // Include minPrice and maxPrice if not Rent
-    if (transformedSaleType !== 'rent') {
-        transformedObject.minPrice = minPrice;
-        transformedObject.maxPrice = maxPrice;
-    } else {
-        transformedObject.minMonthlyPayment = minPrice;
-        transformedObject.maxMonthlyPayment = maxPrice;
-    }
-    return transformedObject;
+  // Transform bathroom: extract the number from the string
+  let transformedBathroom = parseInt(bathroom);
+  if (Number.isNaN(transformedBathroom)) {
+    transformedBathroom = 1;
+  }
+  // Transform minPrice and maxPrice if the saleType is not 'Rent'
+  if (minPrice.indexOf("million") !== -1) {
+    minPrice = parseInt(minPrice) * 1000000;
+  } else if (minPrice == "") {
+    minPrice = "";
+  } else {
+    minPrice = Number(minPrice.split(",").join(""));
+  }
+  if (maxPrice.indexOf("million") !== -1) {
+    maxPrice = parseInt(maxPrice) * 1000000;
+  } else if (maxPrice == "") {
+    maxPrice = "";
+  } else {
+    maxPrice = Number(maxPrice.split(",").join(""));
+  }
+
+  // Build the transformed object
+  let transformedObject = {
+    location: location,
+    saleType: transformedSaleType,
+    propertyType: propertyType,
+    bedroom: transformedBedroom,
+    bathroom: transformedBathroom,
+  };
+
+  // Include minPrice and maxPrice if not Rent
+  if (transformedSaleType !== "rent") {
+    transformedObject.minPrice = minPrice;
+    transformedObject.maxPrice = maxPrice;
+  } else {
+    transformedObject.minMonthlyPayment = minPrice;
+    transformedObject.maxMonthlyPayment = maxPrice;
+  }
+  return transformedObject;
 }
 
-export function createSearchQuery (params) {
-    let {location,saleType,propertyType,bedroom,bathroom,minPrice,maxPrice,minMonthlyPayment,maxMonthlyPayment} = params
-    let queryArr = []
-    const createQuery = (option, value) =>{
-      let bool  = !!value && value !== 'NaN'
-       return bool ? `${option}=${value}` : null
-      };
-      for(let each of Object.keys(params)){
-        queryArr.push(createQuery(each,params[each]))
-      }
-      return queryArr.filter(x=> x ).join('&')
+export function createSearchQuery(params) {
+  let {
+    location,
+    saleType,
+    propertyType,
+    bedroom,
+    bathroom,
+    minPrice,
+    maxPrice,
+    minMonthlyPayment,
+    maxMonthlyPayment,
+  } = params;
+  let queryArr = [];
+  const createQuery = (option, value) => {
+    let bool = !!value && value !== "NaN";
+    return bool ? `${option}=${value}` : null;
+  };
+  for (let each of Object.keys(params)) {
+    queryArr.push(createQuery(each, params[each]));
   }
+  return queryArr.filter((x) => x).join("&");
+}
 
-  export async function searchRequest (query){
-    return axios.get(`https://aftib-6o3h.onrender.com/listing/searchListings?${query}`)
-  }
+export async function searchRequest(query) {
+  return axios.get(
+    `https://aftib-6o3h.onrender.com/listing/searchListings?${query}`,
+  );
+}

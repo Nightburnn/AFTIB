@@ -1,5 +1,5 @@
 .rhead {
-  background-color: #4517FB;
+  background-color: #4517fb;
   justify-content: space-between;
   align-items: center;
   display: flex;
@@ -10,7 +10,6 @@
 }
 
 .rrow {
-
   margin: 0;
   margin-top: 0;
 }
@@ -19,23 +18,21 @@
   display: flex;
   list-style: none;
   margin-right: 60px;
-
 }
 
 .rhead ul li {
   margin-left: 40px;
   color: white;
   font-size: 20px;
-  font-family: 'Lato';
+  font-family: "Lato";
   font-weight: 400;
   position: relative;
   cursor: pointer;
   transition: color 0.3s;
 }
 
-
 .rhead ul li::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 0;
   height: 7px;
@@ -57,20 +54,15 @@
 
 .rhead ul li.active {
   color: #fff;
-
 }
 
 .rhead h4 {
   margin-left: 30px;
   color: white;
   font-size: 20px;
-  font-family: 'Lato';
+  font-family: "Lato";
   font-weight: 400;
 }
-
-
-
-
 
 .registerS {
   justify-content: center;
@@ -78,7 +70,7 @@
   width: 100%;
   border: 1px #c0b6b6 solid;
   border-radius: 15px;
-  background: #FFF;
+  background: #fff;
   height: 100%;
   padding-top: 20px;
   padding-bottom: 20px;
@@ -87,19 +79,16 @@
   margin-bottom: 80px;
 }
 
-
 .register {
   margin-top: 20px;
 }
 
 .mobile .form-group {
-  border: 1px #C4C4C4 solid;
+  border: 1px #c4c4c4 solid;
   padding-top: 3px;
   padding-bottom: 3px;
   border-radius: 10px;
   width: 90%;
-
-
 }
 
 .mobile .form-group:focus {
@@ -142,15 +131,13 @@
   display: flex;
   flex-direction: column;
   border-right: 1px solid #ddd;
-
-
 }
 
 .r-form input {
   width: 90%;
   padding-top: 9px;
   padding-bottom: 10px;
-  border: 1px #C4C4C4 solid;
+  border: 1px #c4c4c4 solid;
   border-radius: 10px;
   padding-left: 10px;
   padding-right: 10px;
@@ -160,7 +147,7 @@
   width: 90%;
   padding-top: 9px;
   padding-bottom: 10px;
-  border: 1px #C4C4C4 solid;
+  border: 1px #c4c4c4 solid;
   border-radius: 10px;
   padding-left: 10px;
   padding-right: 10px;
@@ -172,9 +159,9 @@
 
 .rsubmit {
   border-radius: 10px;
-  border: 1px solid #4517FB;
-  background: #4517FB;
-  color: #FFF;
+  border: 1px solid #4517fb;
+  background: #4517fb;
+  color: #fff;
   font-family: Lato;
   font-size: 18px;
   font-style: normal;
@@ -185,7 +172,6 @@
   padding-left: 10px;
   width: 300px;
 }
-
 
 @media (max-width: 720px) {
   .r-form {
@@ -215,15 +201,12 @@
     margin-left: 0px;
   }
 
-
   .mobile .form-group {
-    border: 1px #C4C4C4 solid;
+    border: 1px #c4c4c4 solid;
     padding-top: 3px;
     padding-bottom: 3px;
     border-radius: 10px;
     width: 90%;
-
-
   }
 
   .mobile .form-group input {
@@ -233,7 +216,6 @@
     border: none;
   }
 }
-
 
 @media (max-width: 393px) {
   .r-form {
@@ -245,15 +227,12 @@
     margin-right: 0;
   }
 
-
   .mobile .form-group {
-    border: 1px #C4C4C4 solid;
+    border: 1px #c4c4c4 solid;
     padding-top: 3px;
     padding-bottom: 3px;
     border-radius: 10px;
     width: 90%;
-
-
   }
 
   .mobile .form-group input {
@@ -262,22 +241,16 @@
     margin-right: -60px;
     border: none;
   }
-
-
 }
-
 
 @media (max-width: 324px) {
   .r-btn {
     margin-left: 0;
     margin-right: 80px;
   }
-
-
-
 }
 
-.r-connect{
+.r-connect {
   margin-top: -50px;
 }
 
@@ -294,22 +267,20 @@
   align-items: center;
 }
 
-
 .rsubtitle span {
-  color: #FF000F;
+  color: #ff000f;
   font-size: 16px;
-  font-family: 'Lato';
+  font-family: "Lato";
   font-weight: 400;
 }
 
 .rsubtitle p {
   color: #717070;
   font-size: 16px;
-  font-family: 'Lato';
+  font-family: "Lato";
   font-weight: 400;
   text-align: center;
   width: 100%;
-
 }
 
 .rsubtitle {
@@ -321,9 +292,7 @@
 
 .rborder {
   margin-left: 40px;
-
 }
-
 
 .rborder h2 {
   text-align: center;
@@ -336,7 +305,7 @@
 .rpara {
   color: #717070;
   font-size: 18px;
-  font-family: 'Lato';
+  font-family: "Lato";
   font-weight: 400;
 }
 
@@ -362,10 +331,10 @@
     margin-left: 5px;
   }
 
-  .r-connect{
+  .r-connect {
     margin-top: 0;
   }
-  
+
   .rsubtitle {
     margin-left: 10px;
     margin-right: 10px;
@@ -411,25 +380,15 @@
     width: 100%;
   }
   .mobile .form-group {
-    
     width: 100%;
-  
-  
   }
 
   .rhead {
     display: block;
-
   }
-
-
-
-
 }
 
-
 @media (max-width: 321px) {
-
   .rhead ul {
     justify-content: space-between;
     margin-left: 0;
@@ -463,10 +422,6 @@
     width: 90%;
   }
   .mobile .form-group {
-    
     width: 90%;
-  
-  
   }
-
 }

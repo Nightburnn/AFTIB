@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
-import profile from '../../assets/images/profile.png';
+import profile from "../../assets/images/profile.png";
 import "./Header.css";
 import { useAuth } from "../../AuthContext";
 import { IoMdArrowDropdown } from "react-icons/io";
@@ -30,11 +30,11 @@ const Header = () => {
   };
 
   useEffect(() => {
-    const dropdowns = document.querySelectorAll('.dropdown-toggle');
-    dropdowns.forEach(dropdown => {
-      dropdown.addEventListener('click', function() {
+    const dropdowns = document.querySelectorAll(".dropdown-toggle");
+    dropdowns.forEach((dropdown) => {
+      dropdown.addEventListener("click", function () {
         const dropdownMenu = this.nextElementSibling;
-        dropdownMenu.classList.toggle('show');
+        dropdownMenu.classList.toggle("show");
       });
     });
   }, []);
@@ -92,7 +92,7 @@ const Header = () => {
                     Buy
                   </NavLink>
                 </li>
-                {isLoggedIn && user && user.accountType === 'Agent' ? (
+                {isLoggedIn && user && user.accountType === "Agent" ? (
                   <>
                     <li className="nav-item">
                       <NavLink
@@ -116,7 +116,7 @@ const Header = () => {
                     </li>
                     
                   </>
-                ) : isLoggedIn && user && user.accountType === 'admin' ? (
+                ) : isLoggedIn && user && user.accountType === "admin" ? (
                   <>
                     <li className="nav-item">
                       <NavLink
@@ -212,7 +212,7 @@ const Header = () => {
                       {user.name} <IoMdArrowDropdown className="drop" />
                     </Link>
                     <ul className="dropdown-menu">
-                      {user.accountType === 'admin' ? (
+                      {user.accountType === "admin" ? (
                         <>
                           <li>
                             <NavLink

@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { setCookie, getCookie, removeCookie } from "./Cookie"; 
+import React, { createContext, useContext, useState, useEffect } from "react";
+import { setCookie, getCookie, removeCookie } from "./Cookie";
 
 export const AuthContext = createContext();
 
@@ -12,8 +12,8 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     // Check for authentication token and user data on component mount
-    const token = getCookie('authToken');
-    const storedUser = JSON.parse(window.localStorage.getItem('user'));
+    const token = getCookie("authToken");
+    const storedUser = JSON.parse(window.localStorage.getItem("user"));
     if (token && storedUser) {
       setUser(storedUser);
     }
@@ -22,14 +22,14 @@ export const AuthProvider = ({ children }) => {
   const login = (userData) => {
     const { token } = userData;
     setUser(userData);
-    setCookie('authToken', token, { path: '/', maxAge: 3600000 }); // Set cookie with token
-    window.localStorage.setItem('user', JSON.stringify(userData)); // Set local storage with user data
+    setCookie("authToken", token, { path: "/", maxAge: 3600000 }); // Set cookie with token
+    window.localStorage.setItem("user", JSON.stringify(userData)); // Set local storage with user data
   };
 
   const logout = () => {
     setUser(null);
-    removeCookie('authToken'); // Remove cookie on logout
-    window.localStorage.removeItem('user'); // Remove local storage on logout
+    removeCookie("authToken"); // Remove cookie on logout
+    window.localStorage.removeItem("user"); // Remove local storage on logout
   };
 
   const value = {
@@ -39,9 +39,5 @@ export const AuthProvider = ({ children }) => {
     logout,
   };
 
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

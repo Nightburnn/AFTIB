@@ -1,9 +1,68 @@
-import React from 'react'
-import './Dash.css'
+import React from "react";
+import "./Dash.css";
 import { TfiPrinter } from "react-icons/tfi";
 import { Link } from 'react-router-dom';
 
 const approvalAndReviewData = [
+<<<<<<< HEAD
+  {
+    icon: <TfiPrinter />,
+    number: "2,345",
+    title: "Agent",
+    buttonText: "Review Request",
+  },
+  {
+    icon: <TfiPrinter />,
+    number: "2,345",
+    title: "New Listing Pending",
+    buttonText: "Review Listings",
+  },
+  {
+    icon: <TfiPrinter />,
+    number: "2,345",
+    title: "New Hotel Listing",
+    buttonText: "Review Hotels",
+  },
+  {
+    icon: <TfiPrinter />,
+    number: "2,345",
+    title: "Pending Transactions",
+    buttonText: "Review Request",
+  },
+];
+
+const statisticsAndInfoData = [
+  {
+    icon: <TfiPrinter />,
+    number: "2,345",
+    title: "Approved Agent",
+    buttonText: "View Data",
+  },
+  {
+    icon: <TfiPrinter />,
+    number: "2,345",
+    title: "Client Account",
+    buttonText: "View Data",
+  },
+  {
+    icon: <TfiPrinter />,
+    number: "2,345",
+    title: "Approved Listings",
+    buttonText: "View Data",
+  },
+  {
+    icon: <TfiPrinter />,
+    number: "2,345",
+    title: "Approved Hotels",
+    buttonText: "View Data",
+  },
+  {
+    icon: <TfiPrinter />,
+    number: "2,345",
+    title: "Concluded Transactions",
+    buttonText: "View Data",
+  },
+=======
   { icon: <TfiPrinter />, number: "2,345", title: "Agent", buttonText: "Review Request", link: "/review-agent" },
   { icon: <TfiPrinter />, number: "2,345", title: "New Listing Pending", buttonText: "Review Listings", link: "/review-listings" },
   { icon: <TfiPrinter />, number: "2,345", title: "New Hotel Listing", buttonText: "Review Hotels", link: "/review-hotels" },
@@ -16,6 +75,7 @@ const statisticsAndInfoData = [
   { icon: <TfiPrinter />, number: "2,345", title: "Approved Listings", buttonText: "View Data", link: "/view-approved-listings" },
   { icon: <TfiPrinter />, number: "2,345", title: "Approved Hotels", buttonText: "View Data", link: "/view-approved-hotels" },
   { icon: <TfiPrinter />, number: "2,345", title: "Concluded Transactions", buttonText: "View Data", link: "/view-concluded-transactions" },
+>>>>>>> 7ee083a02f059a6d28d53bbd03486ecf62b37f20
 ];
 
 const Dashboard = () => {
@@ -40,7 +100,13 @@ const Dashboard = () => {
                           <p>{item.title}</p>
                         </div>
                       </div>
+<<<<<<< HEAD
+                      <button className="btn blue btn-block mt-3">
+                        {item.buttonText}
+                      </button>
+=======
                       <Link to={item.link} className="btn blue btn-block mt-3">{item.buttonText}</Link>
+>>>>>>> 7ee083a02f059a6d28d53bbd03486ecf62b37f20
                     </div>
                   </div>
                 </div>
@@ -55,7 +121,11 @@ const Dashboard = () => {
           <div className="card-body">
             <div className="row">
               {statisticsAndInfoData.map((item, idx) => (
+<<<<<<< HEAD
+                <div className={`col-md-6 mb-4`} key={idx}>
+=======
                 <div className={`col-md-6 mb-4 ${idx === 4 ? "col-md-6" : ""}`} key={idx}>
+>>>>>>> 7ee083a02f059a6d28d53bbd03486ecf62b37f20
                   <div className="card text-dark bg-light h-100">
                     <div className="card-body">
                       <div className="d-flex align-items-center">
@@ -65,7 +135,13 @@ const Dashboard = () => {
                           <p>{item.title}</p>
                         </div>
                       </div>
+<<<<<<< HEAD
+                      <button className="btn blue btn-block mt-3">
+                        {item.buttonText}
+                      </button>
+=======
                       <Link to={item.link} className="btn blue btn-block mt-3">{item.buttonText}</Link>
+>>>>>>> 7ee083a02f059a6d28d53bbd03486ecf62b37f20
                     </div>
                   </div>
                 </div>
@@ -75,7 +151,7 @@ const Dashboard = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Dashboard;
