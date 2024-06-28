@@ -67,7 +67,7 @@ function App() {
                 <Route path='/agent-registration' Component={AgentRegistration}/>
                 <Route path='/agent/:id' Component={SingleAgentSection} />
                 <Route path='/review-agent' Component={AgentReview} />
-                <Route path='/approve' Component={Approval} />
+                <Route path='/approve/:id' Component={Approval} />
                 <Route path='/hotellist' Component={HotelListing}/>
                 <Route path='/change-password' Component={ChangePassword}/>
                 <Route path='/review-agent' Component={AgentReview}/>
