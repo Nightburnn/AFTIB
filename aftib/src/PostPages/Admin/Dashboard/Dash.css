@@ -1,6 +1,38 @@
 .dash .container {
+<<<<<<< HEAD
   padding: 20px;
 }
+=======
+    padding: 20px;
+    
+  }
+  
+ .dash .card {
+    border-radius: 10px;
+    background-color: #ecf3ff;
+    padding: 25px 25px 0 25px;
+    
+  }
+  
+  .white-container{
+    background-color: white;
+    padding: 7px;
+    border-radius: 10px;
+    color: #000;
+  }
+
+  .white-container h3{
+    font-size: 1.2rem;
+  }
+
+  .white-container .coor{
+    color: #4517fb;
+  }
+  .dash h2 {
+    font-size: 1.3rem;
+    font-weight: bold;
+   
+>>>>>>> 7ee083a02f059a6d28d53bbd03486ecf62b37f20
 
 .dash .card {
   border-radius: 10px;

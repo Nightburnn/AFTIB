@@ -4,7 +4,7 @@ import { useLoading } from "../../Components/LoadingContext";
 import { useNavigate } from "react-router-dom";
 import { Modal } from "antd";
 import { nigerianStateData } from ".././Listing/data";
-import { updateAgencyStatus, requestAgencyStatus, updateAgencyStatusIssuedId, updateAgencyStatusPassport} from "../../utils/adminOpsRequests";
+import { requestAgencyStatus, updateAgencyStatusIssuedId, updateAgencyStatusPassport} from "../../utils/adminOpsRequests";
 
 import axios from "axios";
 const AgentRegistration = () => {

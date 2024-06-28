@@ -114,6 +114,7 @@ const Header = () => {
                         Inbox
                       </NavLink>
                     </li>
+                    
                   </>
                 ) : isLoggedIn && user && user.accountType === "admin" ? (
                   <>
@@ -175,11 +176,11 @@ const Header = () => {
                 <li className="nav-item">
                   <NavLink
                     className="nav-link"
-                    to="/agent-finder"
+                    to={isLoggedIn && user && user.accountType === 'Agent' ? "/agent-dashboard" : "/agent-finder"}
                     activeClassName="active"
                     onClick={handleNavLinkClick}
                   >
-                    Agent Finder
+                    {isLoggedIn && user && user.accountType === 'Agent' ? "Dashboard" : "Agent Finder"}
                   </NavLink>
                 </li>
                 <li className="nav-item">
@@ -195,7 +196,7 @@ const Header = () => {
               </ul>
               <ul className="navbar-nav">
                 {isLoggedIn && user ? (
-                  <li className="nav-item dropdown profile-dropdown-toggle ">
+                  <li className="nav-item dropdown profile-dropdown-toggle">
                     <img
                       src={profile}
                       alt="Profile"
