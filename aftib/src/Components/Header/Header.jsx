@@ -120,11 +120,11 @@ const Header = () => {
                     <li className="nav-item">
                       <NavLink
                         className="nav-link"
-                        to="/list"
+                        to="/admin-dashboard"
                         activeClassName="active"
                         onClick={handleNavLinkClick}
                       >
-                        Listing
+                        Dashboard
                       </NavLink>
                     </li>
                     <li className="nav-item">
