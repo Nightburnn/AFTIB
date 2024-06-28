@@ -17,13 +17,11 @@ const slides = [
   {
     id: 1,
     bgClass: "bg-image1",
-   
+
     titleNumber: "Buy.",
     title: "Rent.",
-    word: "Sell. Agent."
-   
+    word: "Sell. Agent.",
   },
- 
 ];
 
 const Hero = () => {
@@ -47,21 +45,15 @@ const Hero = () => {
                         <div className="intro-body">
                           <div className="justify-content-start align-items-start">
                             <div>
-                              
                               <h1 className="intro-title">
                                 <span className="color-b">
                                   {slide.titleNumber}{" "}
                                 </span>
                                 {slide.title}
                               </h1>
-                              <h1 className="intro-title">
-                                {slide.word}
-                              </h1>
-                            
-                            
+                              <h1 className="intro-title">{slide.word}</h1>
                             </div>
-                            <div>                     
-                            </div>
+                            <div></div>
                           </div>
                         </div>
                       </div>

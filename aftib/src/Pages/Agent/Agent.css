@@ -1,57 +1,57 @@
-.agent{
-    padding: 15px;
+.agent {
+  padding: 15px;
 }
-.btn-custom{
-    color: #fff;
-    font-size: 20px;
-    font-weight: 600;
-    font-family: 'Lato';
-    font-weight: 900;
-    background-color: #4517FB;
-}
-
-.ii{
-    background-color: #4517FB;
-    color: #fff;
-}
-.btn:hover{
-    background-color: #4517fbf9;
-    color: #fff;
+.btn-custom {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: "Lato";
+  font-weight: 900;
+  background-color: #4517fb;
 }
 
-.contact{
-    border: 2px dashed rgba(0, 108, 185, 0.3);}
+.ii {
+  background-color: #4517fb;
+  color: #fff;
+}
+.btn:hover {
+  background-color: #4517fbf9;
+  color: #fff;
+}
 
-    .contact-icon{
-    padding-top: 1px;
-    padding-bottom: 1px;
-    font-size: 20px;
-    font-weight: 600;
-    font-family: 'Lato';
-    font-weight: 500;
-    }
+.contact {
+  border: 2px dashed rgba(0, 108, 185, 0.3);
+}
 
-    .contact-icon i{
-        margin-right: 9px;
-    }
+.contact-icon {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: "Lato";
+  font-weight: 500;
+}
 
+.contact-icon i {
+  margin-right: 9px;
+}
 
-    .agent-title{
-        color: rgba(55.25, 55.25, 55.25, 0.80);
-font-size: 30px;
-font-family: 'Moul';
-font-weight: 400;
-text-align: left;
-margin-left: 60px;
-margin-bottom: 10px;
-    }
+.agent-title {
+  color: rgba(55.25, 55.25, 55.25, 0.8);
+  font-size: 30px;
+  font-family: "Moul";
+  font-weight: 400;
+  text-align: left;
+  margin-left: 60px;
+  margin-bottom: 10px;
+}
 
-    @media (max-width: 390px) {
-        .ii{
-            margin-bottom: 20px;
-        }
+@media (max-width: 390px) {
+  .ii {
+    margin-bottom: 20px;
+  }
 
-        .agent-title{
-            margin-left: 0;
-        }
-    }
+  .agent-title {
+    margin-left: 0;
+  }
+}

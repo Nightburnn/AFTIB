@@ -1,6 +1,6 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import './AgentsSection.css'
+import React from "react";
+import { useParams } from "react-router-dom";
+import "./AgentsSection.css";
 
 const agents = [
   {
@@ -10,7 +10,8 @@ const agents = [
     img: "https://images.unsplash.com/photo-1627161683077-e34782c24d81?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGFnZW50c3xlbnwwfHwwfHx8MA%3D%3D",
     phone: "+54 356 945234",
     email: "agents@example.com",
-    description: "Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.",
+    description:
+      "Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.",
     socials: [
       { name: "facebook", icon: "bi bi-facebook" },
       { name: "twitter", icon: "bi bi-twitter" },
@@ -23,7 +24,7 @@ const agents = [
 
 const SingleAgentSection = () => {
   const { id } = useParams();
-  const agent = agents.find(agent => agent.id === parseInt(id));
+  const agent = agents.find((agent) => agent.id === parseInt(id));
 
   if (!agent) {
     return <div>Agent not found</div>;
@@ -40,7 +41,10 @@ const SingleAgentSection = () => {
             </div>
           </div>
           <div className="col-md-12 col-lg-4">
-            <nav aria-label="breadcrumb" className="breadcrumb-box d-flex justify-content-lg-end">
+            <nav
+              aria-label="breadcrumb"
+              className="breadcrumb-box d-flex justify-content-lg-end"
+            >
               <ol className="breadcrumb">
                 <li className="breadcrumb-item">
                   <a href="/">Home</a>
@@ -61,15 +65,17 @@ const SingleAgentSection = () => {
           <div className="col-md-4">
             <div className="card-box-d">
               <div className="card-img-d">
-                <img src={agent.img} alt="" className="img-d img-fluid"/>
+                <img src={agent.img} alt="" className="img-d img-fluid" />
               </div>
               <div className="card-body-d">
-                <p className="content-d color-text-a">
-                  {agent.description}
-                </p>
+                <p className="content-d color-text-a">{agent.description}</p>
                 <div className="info-agents color-a">
-                  <p><strong>Phone: </strong> {agent.phone}</p>
-                  <p><strong>Email: </strong> {agent.email}</p>
+                  <p>
+                    <strong>Phone: </strong> {agent.phone}
+                  </p>
+                  <p>
+                    <strong>Email: </strong> {agent.email}
+                  </p>
                 </div>
                 <div className="socials-footer d-flex justify-content-center">
                   <ul className="list-inline">

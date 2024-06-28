@@ -1,5 +1,3 @@
-
-
 export const propertyData = [
   {
     id: 1,
@@ -16,8 +14,7 @@ export const propertyData = [
 
   {
     id: 2,
-    image:
-      `${process.env.PUBLIC_URL}/images/buy1.png`,
+    image: `${process.env.PUBLIC_URL}/images/buy1.png`,
     label: "For Rent",
     type: "Apartment",
     price: "$12,345",
@@ -58,8 +55,7 @@ export const propertyData = [
 export const buyData = [
   {
     id: 1,
-    image:
-      `${process.env.PUBLIC_URL}/images/buy4.png`,
+    image: `${process.env.PUBLIC_URL}/images/buy4.png`,
     label: "Buy",
     type: "Apartment",
     price: "$12,345",
@@ -73,7 +69,7 @@ export const buyData = [
   {
     id: 2,
     image: `${process.env.PUBLIC_URL}/images/buy1.png`,
-        label: "Buy",
+    label: "Buy",
     type: "Apartment",
     price: "$12,345",
     title: "Golden Urban House For Sell",

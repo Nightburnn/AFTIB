@@ -1,30 +1,30 @@
-.listing-container{
-    background-color: #D9D9D980;
-    border-radius: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 40px;
-    padding-bottom: 30px;
+.listing-container {
+  background-color: #d9d9d980;
+  border-radius: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 40px;
+  padding-bottom: 30px;
 }
 
-.listing-container input::placeholder, .listing-container textarea::placeholder {
+.listing-container input::placeholder,
+.listing-container textarea::placeholder {
   color: rgb(163, 163, 163) !important;
 }
 
-.listing-gallery{
-    background-color: #D9D9D980;
-    padding: 30px;
-    border-radius: 10px;
+.listing-gallery {
+  background-color: #d9d9d980;
+  padding: 30px;
+  border-radius: 10px;
 }
 
-.local-list{
-  background-color: #D9D9D980;
+.local-list {
+  background-color: #d9d9d980;
   padding: 36px;
   border-radius: 10px;
 }
 .map-container {
   position: relative;
-  
 }
 
 .leaflet-bottom {
@@ -36,27 +36,25 @@
   z-index: 999;
 }
 
-
 /* Adjust attribution control position */
 .leaflet-control-attribution {
   z-index: 1;
 }
-.listbtn{
+.listbtn {
   width: 30%;
-  background-color: #4517FB;
+  background-color: #4517fb;
   color: #fff;
   margin-bottom: 30px;
 }
 
-.localbtn{
-  background-color: #4517FB;
+.localbtn {
+  background-color: #4517fb;
   color: #fff;
   width: 100%;
-
 }
 
-.listing{
-    margin-bottom: 40px;
+.listing {
+  margin-bottom: 40px;
 }
 
 @media (max-width: 760px) {
@@ -65,82 +63,74 @@
   }
 }
 
-.listing h2{
-    text-align: start;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #4517FB;
-    width: 40px;
-   
-    font-weight: 500;
-    font-family: 'League Spartan';
+.listing h2 {
+  text-align: start;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #4517fb;
+  width: 40px;
+
+  font-weight: 500;
+  font-family: "League Spartan";
 }
 .listing-container input::placeholder {
-        color: rgb(0, 0, 0);
-        font-style: normal;
-        font-weight: normal;
-    }
-
-
+  color: rgb(0, 0, 0);
+  font-style: normal;
+  font-weight: normal;
+}
 
 .dropzone {
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-color: #f8f9fa;
-    border: 2px dotted #4517FB;
-    cursor: pointer;
-    background-color: #f2f2f2;
-    padding: 50px;
-  }
-  
-  .preview {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    overflow-x: auto;
-  }
-
-.gallery-listing h2{
-    text-align: start;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #4517FB;
-    width: 40px;  
-    font-weight: 500;
-    font-family: 'League Spartan';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #f8f9fa;
+  border: 2px dotted #4517fb;
+  cursor: pointer;
+  background-color: #f2f2f2;
+  padding: 50px;
 }
 
-.local h2{
+.preview {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  overflow-x: auto;
+}
+
+.gallery-listing h2 {
+  text-align: start;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #4517fb;
+  width: 40px;
+  font-weight: 500;
+  font-family: "League Spartan";
+}
+
+.local h2 {
   text-align: end;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #4517FB;
-    width: 40px;
-    font-weight: 500;
-    font-family: 'League Spartan';
+  margin-bottom: 20px;
+  border-bottom: 2px solid #4517fb;
+  width: 40px;
+  font-weight: 500;
+  font-family: "League Spartan";
 }
 .preview img {
-    max-width: 350px;
-    max-height: 300px;
-    object-fit: cover;
-    margin: 5px;
-  }
-  .placeholder-text {
-    color: black;
-    font-size: 30px;
-   
-  
-  }
+  max-width: 350px;
+  max-height: 300px;
+  object-fit: cover;
+  margin: 5px;
+}
+.placeholder-text {
+  color: black;
+  font-size: 30px;
+}
 
 /* Media queries for mobile devices */
 @media (max-width: 768px) {
-  
-    .preview img {
-        max-width: 250px;
-        max-height: 200px;
-        
-      }
-    
+  .preview img {
+    max-width: 250px;
+    max-height: 200px;
   }
+}

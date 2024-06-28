@@ -1,41 +1,41 @@
 .fhead {
-    color: #717070;
-    font-size: 32px;
-    font-weight: 700;
-    margin-bottom: 10px; 
+  color: #717070;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
- .r-form .otp-inputs {
-    display: flex;
-    justify-content: space-evenly;
-    gap: 0; 
-  }
-  
- .r-form .otp-input {
-    width: 52px; 
-    height: 60px; 
-    text-align: center;
-    font-size: 18px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 20px;
-  }
-  
-  .otp-input:focus {
-    outline: none;
-    border-color: #007AFF; 
-    box-shadow: 0 0 5px rgba(0, 122, 255, 0.5); 
-  }
-  
+.r-form .otp-inputs {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 0;
+}
 
-  .change-password-container input, .change-password-container button {
-    width: 300px;
-    height: 50px;
-    border-radius: 10px;
-    border: 1px solid gray;
-  }
-  .change-password-container button {
-    border: 0px;
-    background-color: blue;
-    color: white
-  }
+.r-form .otp-input {
+  width: 52px;
+  height: 60px;
+  text-align: center;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.otp-input:focus {
+  outline: none;
+  border-color: #007aff;
+  box-shadow: 0 0 5px rgba(0, 122, 255, 0.5);
+}
+
+.change-password-container input,
+.change-password-container button {
+  width: 300px;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid gray;
+}
+.change-password-container button {
+  border: 0px;
+  background-color: blue;
+  color: white;
+}

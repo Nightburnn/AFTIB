@@ -1,119 +1,124 @@
-import React, { useState, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import facebook from '../../assets/images/facebook.png';
-import google from '../../assets/images/google.png';
-import './Forgot.css';
-import { sendForgotPasswordForEmail,sendVerifyOtp } from '../../utils/forgotPasswordRequest';
-import { useLoading } from '../../Components/LoadingContext'
-import { Modal } from 'antd';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useRef } from "react";
+import { Link, useLocation } from "react-router-dom";
+import facebook from "../../assets/images/facebook.png";
+import google from "../../assets/images/google.png";
+import "./Forgot.css";
+import {
+  sendForgotPasswordForEmail,
+  sendVerifyOtp,
+} from "../../utils/forgotPasswordRequest";
+import { useLoading } from "../../Components/LoadingContext";
+import { Modal } from "antd";
+import { useNavigate } from "react-router-dom";
 // when handling the form submissions use this functions.
 // use let sendOtp = await sendForgotPasswordForEmail(email). if there is no issue it should return the response data, same with the other function.
 // then when the user clicks verify otp, do let verifyOtp = await sendVerifyOtp(email,otp)
 
 const ForgotPassword = () => {
-  let [showModal,setShowModal] = useState(false)
-  let [modalTitle,setModalTitle] = useState('')
-  let [modalBody,setModalBody] = useState('')
-  let [mCancelText,setMCancelText] = useState('')
-  const [isEmail, setIsEmail] = useState(true)
-  const [inputValue, setInputValue] = useState('')
-  const [countryCode, setCountryCode] = useState('+234')
-  const [error, setError] = useState('')
-  const [mobile, setMobile] = useState('')
-  const [isVerificationStep, setIsVerificationStep] = useState(false)
-  const [otp, setOtp] = useState(['', '', '', ''])
-  const otpRefs = useRef([])
-  let {setLoading,setLoadingText} = useLoading()
-  let navigate = useNavigate()
+  let [showModal, setShowModal] = useState(false);
+  let [modalTitle, setModalTitle] = useState("");
+  let [modalBody, setModalBody] = useState("");
+  let [mCancelText, setMCancelText] = useState("");
+  const [isEmail, setIsEmail] = useState(true);
+  const [inputValue, setInputValue] = useState("");
+  const [countryCode, setCountryCode] = useState("+234");
+  const [error, setError] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [isVerificationStep, setIsVerificationStep] = useState(false);
+  const [otp, setOtp] = useState(["", "", "", ""]);
+  const otpRefs = useRef([]);
+  let { setLoading, setLoadingText } = useLoading();
+  let navigate = useNavigate();
 
   const handleInputChange = (event) => {
-    setInputValue(event.target.value)
-    setError('')
+    setInputValue(event.target.value);
+    setError("");
   };
 
   const handleCountryCodeChange = (event) => {
-    setCountryCode(event.target.value)
+    setCountryCode(event.target.value);
   };
 
   const handleMobileChange = (event) => {
-    setMobile(event.target.value)
-  }
+    setMobile(event.target.value);
+  };
 
   const handleToggleInputType = () => {
-    setIsEmail(!isEmail)
-    setInputValue('')
-    setMobile('')
-    setError('')
-  }
+    setIsEmail(!isEmail);
+    setInputValue("");
+    setMobile("");
+    setError("");
+  };
 
   const handleOtpChange = (index, value) => {
-    const newOtp = [...otp]
-    newOtp[index] = value
+    const newOtp = [...otp];
+    newOtp[index] = value;
     setOtp(newOtp);
     if (value.length === 1 && index < otpRefs.current.length - 1) {
       otpRefs.current[index + 1].focus();
-    } else if (value === '' && index > 0) {
+    } else if (value === "" && index > 0) {
       otpRefs.current[index - 1].focus();
     }
   };
 
   const handleKeyDown = (index, event) => {
-    if (event.key === 'Backspace' && otp[index] === '' && index > 0) {
+    if (event.key === "Backspace" && otp[index] === "" && index > 0) {
       otpRefs.current[index - 1].focus();
     }
   };
   const handleOk = () => {
-    setShowModal(false)
+    setShowModal(false);
   };
   const handleCancel = () => {
-    setShowModal(false)
+    setShowModal(false);
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (isVerificationStep) {
       // Handle OTP verification logic here
-      console.log('OTP:', otp.join(''));
+      console.log("OTP:", otp.join(""));
       try {
         setLoading(true);
-        setLoadingText(`Verifying OTP for ${inputValue}. Please Wait`)
-        let response = await sendVerifyOtp(inputValue,otp.join(''))
-        console.log(response.data)
-        navigate('/change-password?email='+inputValue)
-        setTimeout(()=>{
-          setLoading(false)
-          setLoadingText('')
-        }, 1000)
-      }
-      catch(err){
-
-      }
+        setLoadingText(`Verifying OTP for ${inputValue}. Please Wait`);
+        let response = await sendVerifyOtp(inputValue, otp.join(""));
+        console.log(response.data);
+        navigate("/change-password?email=" + inputValue);
+        setTimeout(() => {
+          setLoading(false);
+          setLoadingText("");
+        }, 1000);
+      } catch (err) {}
     } else {
       // Handle email or mobile submission logic here
-      console.log(isEmail ? 'Email: ' : 'Mobile: ', isEmail ? inputValue : `${countryCode} ${mobile}`);
-      if(isEmail){
+      console.log(
+        isEmail ? "Email: " : "Mobile: ",
+        isEmail ? inputValue : `${countryCode} ${mobile}`,
+      );
+      if (isEmail) {
         try {
           setLoading(true);
-          setLoadingText(`Sending OTP to your ${inputValue}. Please Wait`)
-            let response = await sendForgotPasswordForEmail(inputValue)
-            console.log(response.data)
-            setIsVerificationStep(true)
-            setTimeout(()=>{
-              setLoading(false)
-              setLoadingText('')
-            }, 1000)
+          setLoadingText(`Sending OTP to your ${inputValue}. Please Wait`);
+          let response = await sendForgotPasswordForEmail(inputValue);
+          console.log(response.data);
+          setIsVerificationStep(true);
+          setTimeout(() => {
+            setLoading(false);
+            setLoadingText("");
+          }, 1000);
+        } catch (err) {
+          setModalTitle("An Error Occured");
+          setModalBody(err.message);
+          setShowModal(true);
         }
-        catch(err){
-          setModalTitle('An Error Occured')
-          setModalBody(err.message)
-          setShowModal(true)
-        }
-      }
-      else {
-        setModalTitle('SMS Validation is currently down. Use email verification')
-        setModalBody('SMS is currently unavailable. Kindly use email to get your otp.')
-        setShowModal(true)
-        setIsEmail(true)
+      } else {
+        setModalTitle(
+          "SMS Validation is currently down. Use email verification",
+        );
+        setModalBody(
+          "SMS is currently unavailable. Kindly use email to get your otp.",
+        );
+        setShowModal(true);
+        setIsEmail(true);
       }
     }
   };
@@ -123,17 +128,27 @@ const ForgotPassword = () => {
   return (
     <>
       <div className="row rrow">
-      <Modal title={modalTitle} open={showModal} onOk={handleOk} onCancel={handleCancel} cancelText={mCancelText}>
-        <p>{modalBody}</p>
-      </Modal>
+        <Modal
+          title={modalTitle}
+          open={showModal}
+          onOk={handleOk}
+          onCancel={handleCancel}
+          cancelText={mCancelText}
+        >
+          <p>{modalBody}</p>
+        </Modal>
         <div className="rhead">
           <h4 className="ps-4">Forgot Password?</h4>
           <ul>
             <Link to="/sign">
-              <li className={location.pathname === '/sign' ? 'active' : ''}>Register</li>
+              <li className={location.pathname === "/sign" ? "active" : ""}>
+                Register
+              </li>
             </Link>
             <Link to="/login">
-              <li className={location.pathname === '/login' ? 'active' : ''}>Sign In</li>
+              <li className={location.pathname === "/login" ? "active" : ""}>
+                Sign In
+              </li>
             </Link>
           </ul>
         </div>
@@ -146,7 +161,9 @@ const ForgotPassword = () => {
                 <form className="r-form" onSubmit={handleSubmit}>
                   <h2 className="text-center fhead">Forgot Password?</h2>
                   <p className="text-center mb-4">
-                    {isVerificationStep ? 'Please enter the verification code' : `Enter the ${isEmail ? 'email' : 'mobile number'} address associated with your account`}
+                    {isVerificationStep
+                      ? "Please enter the verification code"
+                      : `Enter the ${isEmail ? "email" : "mobile number"} address associated with your account`}
                   </p>
                   {isVerificationStep ? (
                     <div className="otp-inputs">
@@ -155,7 +172,9 @@ const ForgotPassword = () => {
                           key={index}
                           type="text"
                           value={digit}
-                          onChange={(e) => handleOtpChange(index, e.target.value)}
+                          onChange={(e) =>
+                            handleOtpChange(index, e.target.value)
+                          }
                           onKeyDown={(e) => handleKeyDown(index, e)}
                           maxLength="1"
                           className="otp-input"
@@ -164,62 +183,70 @@ const ForgotPassword = () => {
                         />
                       ))}
                     </div>
+                  ) : isEmail ? (
+                    <div className="r-sign">
+                      <label htmlFor="email">Email</label>
+                      <input
+                        type="email"
+                        id="email"
+                        value={inputValue}
+                        onChange={handleInputChange}
+                        required
+                      />
+                      {error && <p className="error-text">{error}</p>}
+                    </div>
                   ) : (
-                    isEmail ? (
-                      <div className="r-sign">
-                        <label htmlFor="email">Email</label>
+                    <div className="mobile r-sign">
+                      <label htmlFor="num">Mobile</label>
+                      <div className="form-group mt-2 d-inline-block">
+                        <select
+                          className="border-end country-code px-2"
+                          value={countryCode}
+                          onChange={handleCountryCodeChange}
+                          required
+                        >
+                          <option value="+234">+234</option>
+                          <option value="+1">+1</option>
+                          <option value="+44">+44</option>
+                          <option value="+91">+91</option>
+                          <option value="+81">+81</option>
+                        </select>
                         <input
-                          type="email"
-                          id="email"
-                          value={inputValue}
-                          onChange={handleInputChange}
+                          type="text"
+                          className="form-control"
+                          id="ec-mobile-number"
+                          placeholder="91257888"
+                          value={mobile}
+                          onChange={handleMobileChange}
                           required
                         />
-                        {error && <p className="error-text">{error}</p>}
                       </div>
-                    ) : (
-                      <div className="mobile r-sign">
-                        <label htmlFor="num">Mobile</label>
-                        <div className="form-group mt-2 d-inline-block">
-                          <select
-                            className="border-end country-code px-2"
-                            value={countryCode}
-                            onChange={handleCountryCodeChange}
-                            required
-                          >
-                            <option value="+234">+234</option>
-                            <option value="+1">+1</option>
-                            <option value="+44">+44</option>
-                            <option value="+91">+91</option>
-                            <option value="+81">+81</option>
-                          </select>
-                          <input
-                            type="text"
-                            className="form-control"
-                            id="ec-mobile-number"
-                            placeholder="91257888"
-                            value={mobile}
-                            onChange={handleMobileChange}
-                            required
-                          />
-                        </div>
-                      </div>
-                    )
+                    </div>
                   )}
-                  <Link onClick={isVerificationStep ? undefined : handleToggleInputType}>
+                  <Link
+                    onClick={
+                      isVerificationStep ? undefined : handleToggleInputType
+                    }
+                  >
                     <p className="text-end lforgot">
-                      {isVerificationStep ? 'Resend code?' : 'Try another way?'}
+                      {isVerificationStep ? "Resend code?" : "Try another way?"}
                     </p>
                   </Link>
                   <div className="l-btn mb-4">
                     <button type="submit" className="rsubmit">
-                      {isVerificationStep ? (isEmail ? 'Verify my email' : 'Verify my phone') : 'Next'}
+                      {isVerificationStep
+                        ? isEmail
+                          ? "Verify my email"
+                          : "Verify my phone"
+                        : "Next"}
                     </button>
                   </div>
                   <p className="lsubtitle text-center mt-4">
-                    If you need help in resolving this issue, contact our customer support via <a href='mailto:support@aftib.com'>support@aftib.com</a>
+                    If you need help in resolving this issue, contact our
+                    customer support via{" "}
+                    <a href="mailto:support@aftib.com">support@aftib.com</a>
                     <br />
-                    <span>Terms of use</span> and <span>Privacy</span> 
+                    <span>Terms of use</span> and <span>Privacy</span>
                   </p>
                 </form>
               </div>
@@ -228,7 +255,7 @@ const ForgotPassword = () => {
                   <hr />
                   <div className="r-connect">
                     <p className="text-center rpara">Or connect with:</p>
-                    
+
                     <div className="rimg">
                       <Link>
                         <img src={facebook} alt="Facebook" />

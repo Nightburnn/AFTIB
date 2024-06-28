@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
-import profile from '../../assets/images/profile.png';
+import profile from "../../assets/images/profile.png";
 import "./Header.css";
 import { useAuth } from "../../AuthContext";
 import { IoMdArrowDropdown } from "react-icons/io";
@@ -30,11 +30,11 @@ const Header = () => {
   };
 
   useEffect(() => {
-    const dropdowns = document.querySelectorAll('.dropdown-toggle');
-    dropdowns.forEach(dropdown => {
-      dropdown.addEventListener('click', function() {
+    const dropdowns = document.querySelectorAll(".dropdown-toggle");
+    dropdowns.forEach((dropdown) => {
+      dropdown.addEventListener("click", function () {
         const dropdownMenu = this.nextElementSibling;
-        dropdownMenu.classList.toggle('show');
+        dropdownMenu.classList.toggle("show");
       });
     });
   }, []);
@@ -92,7 +92,7 @@ const Header = () => {
                     Buy
                   </NavLink>
                 </li>
-                {isLoggedIn && user && user.accountType === 'Agent' ? (
+                {isLoggedIn && user && user.accountType === "Agent" ? (
                   <>
                     <li className="nav-item">
                       <NavLink
@@ -115,7 +115,7 @@ const Header = () => {
                       </NavLink>
                     </li>
                   </>
-                ) : isLoggedIn && user && user.accountType === 'admin' ? (
+                ) : isLoggedIn && user && user.accountType === "admin" ? (
                   <>
                     <li className="nav-item">
                       <NavLink
@@ -134,7 +134,7 @@ const Header = () => {
                         activeClassName="active"
                         onClick={handleNavLinkClick}
                       >
-Inbox
+                        Inbox
                       </NavLink>
                     </li>
                   </>
@@ -192,7 +192,6 @@ Inbox
                     Help
                   </NavLink>
                 </li>
-                
               </ul>
               <ul className="navbar-nav">
                 {isLoggedIn && user ? (
@@ -212,7 +211,7 @@ Inbox
                       {user.name} <IoMdArrowDropdown className="drop" />
                     </Link>
                     <ul className="dropdown-menu">
-                      {user.accountType === 'admin' ? (
+                      {user.accountType === "admin" ? (
                         <>
                           <li>
                             <NavLink
@@ -220,7 +219,7 @@ Inbox
                               to="/admin-profile"
                               onClick={handleNavLinkClick}
                             >
-                           Profile
+                              Profile
                             </NavLink>
                           </li>
                           <li>
@@ -229,7 +228,7 @@ Inbox
                               to="admin-users"
                               onClick={handleNavLinkClick}
                             >
-                         Manage User
+                              Manage User
                             </NavLink>
                           </li>
                           <li>
@@ -238,7 +237,7 @@ Inbox
                               to="/admin-profile#settings"
                               onClick={handleNavLinkClick}
                             >
-                         Dashboard
+                              Dashboard
                             </NavLink>
                           </li>
                           <li>
@@ -247,7 +246,7 @@ Inbox
                               to="/admin-profile#settings"
                               onClick={handleNavLinkClick}
                             >
-                         Settings
+                              Settings
                             </NavLink>
                           </li>
                         </>

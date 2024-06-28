@@ -1,28 +1,33 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './AgentsSection.css'
+import React from "react";
+import { Link } from "react-router-dom";
+import "./AgentsSection.css";
 
 const AgentCard = ({ agent }) => (
   <div className="col-md-4">
     <div className="card-box-d">
       <div className="card-img-d">
-        <img src={agent.img} alt="" className="img-d img-fluid"/>
+        <img src={agent.img} alt="" className="img-d img-fluid" />
       </div>
       <div className="card-overlay card-overlay-hover">
         <div className="card-header-d">
           <div className="card-title-d align-self-center">
             <h3 className="title-d">
-              <Link to={`/agent/${agent.id}`} className="link-two">{agent.name}<br/> {agent.surname}</Link>
+              <Link to={`/agent/${agent.id}`} className="link-two">
+                {agent.name}
+                <br /> {agent.surname}
+              </Link>
             </h3>
           </div>
         </div>
         <div className="card-body-d">
-          <p className="content-d color-text-a">
-            {agent.description}
-          </p>
+          <p className="content-d color-text-a">{agent.description}</p>
           <div className="info-agents color-a">
-            <p><strong>Phone: </strong> {agent.phone}</p>
-            <p><strong>Email: </strong> {agent.email}</p>
+            <p>
+              <strong>Phone: </strong> {agent.phone}
+            </p>
+            <p>
+              <strong>Email: </strong> {agent.email}
+            </p>
           </div>
         </div>
         <div className="card-footer-d">

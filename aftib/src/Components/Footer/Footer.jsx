@@ -83,7 +83,13 @@ const Footer = () => {
               <div className="col-lg-8 col-md-6">
                 <h5>Aftib Nigeria</h5>
                 <p>
-                  Explore the fastest-growing real estate market in Nigeria with our expert services. By choosing us, you embark on a smooth and effortless journey to find your ideal property. Whether you are in search of homes, short-term rentals, apartments, or available land for sale and rent, our comprehensive support ensures a stress-free experience, making you feel comfortably at home throughout the process
+                  Explore the fastest-growing real estate market in Nigeria with
+                  our expert services. By choosing us, you embark on a smooth
+                  and effortless journey to find your ideal property. Whether
+                  you are in search of homes, short-term rentals, apartments, or
+                  available land for sale and rent, our comprehensive support
+                  ensures a stress-free experience, making you feel comfortably
+                  at home throughout the process
                 </p>
               </div>
               <div className="col-12 col-md-3 text-end ps-3 discover">

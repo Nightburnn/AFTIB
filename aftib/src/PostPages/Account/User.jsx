@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import './User.css';
-import { useAuth } from '../../AuthContext';
+import React, { useState } from "react";
+import "./User.css";
+import { useAuth } from "../../AuthContext";
 const User = () => {
   const { user, login } = useAuth(); // Use useAuth hook to access user data and login function
   const [userProfile, setUserProfile] = useState(user || {}); // Initialize state with user from AuthContext
@@ -18,7 +18,7 @@ const User = () => {
   const handleSave = (e) => {
     e.preventDefault();
     // Simulate saving changes - you can replace this with actual API call
-    console.log('Saving user profile:', userProfile);
+    console.log("Saving user profile:", userProfile);
     // Update userProfile state or send API request to save changes
 
     // Assuming you have an API call to update user profile, you can update user context
@@ -42,7 +42,7 @@ const User = () => {
               className="form-control"
               id="name" // Assuming 'name' matches the key in user profile
               placeholder="Full Name"
-              value={userProfile.name || ''}
+              value={userProfile.name || ""}
               onChange={handleChange}
             />
           </div>
@@ -53,7 +53,7 @@ const User = () => {
               className="form-control"
               id="email" // Assuming 'email' matches the key in user profile
               placeholder="Email"
-              value={userProfile.email || ''}
+              value={userProfile.email || ""}
               onChange={handleChange}
               disabled // Assuming email should not be editable in this form
             />
@@ -68,7 +68,7 @@ const User = () => {
               className="form-control"
               id="phoneNumber" // Assuming 'phoneNumber' matches the key in user profile
               placeholder="Phone Number"
-              value={userProfile.mobileNumber || ''}
+              value={userProfile.mobileNumber || ""}
               onChange={handleChange}
             />
           </div>
@@ -77,7 +77,7 @@ const User = () => {
             <select
               id="gender" // Assuming 'gender' matches the key in user profile
               className="form-control"
-              value={userProfile.gender || ''}
+              value={userProfile.gender || ""}
               onChange={handleChange}
             >
               <option value="">Choose...</option>
@@ -92,7 +92,7 @@ const User = () => {
               type="date"
               className="form-control"
               id="dob" // Assuming 'dob' matches the key in user profile
-              value={userProfile.dob || ''}
+              value={userProfile.dob || ""}
               onChange={handleChange}
             />
           </div>
@@ -106,7 +106,7 @@ const User = () => {
               className="form-control"
               id="address" // Assuming 'address' matches the key in user profile
               placeholder="Address"
-              value={userProfile.address || ''}
+              value={userProfile.address || ""}
               onChange={handleChange}
             />
           </div>
@@ -117,7 +117,7 @@ const User = () => {
               className="form-control"
               id="landmark" // Assuming 'landmark' matches the key in user profile
               placeholder="Landmark"
-              value={userProfile.landmark || ''}
+              value={userProfile.landmark || ""}
               onChange={handleChange}
             />
           </div>

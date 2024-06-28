@@ -1,30 +1,43 @@
-import React, { useState } from 'react';
-import './FilterCard.css';
-import { createSearchQuery, transformSearchOptions,searchRequest } from '../../utils/createSearchQuery';
-
+import React, { useState } from "react";
+import "./FilterCard.css";
+import {
+  createSearchQuery,
+  transformSearchOptions,
+  searchRequest,
+} from "../../utils/createSearchQuery";
 
 const FilterCard = ({ onFilter }) => {
-  const [location, setLocation] = useState('');
-  const [minPrice, setMinPrice] = useState('');
-  const [maxPrice, setMaxPrice] = useState('');
-  const [beds, setBeds] = useState('Any');
-  const [baths, setBaths] = useState('Any');
-  const [activeFilter, setActiveFilter] = useState('Buy'); // State for active filter button
+  const [location, setLocation] = useState("");
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+  const [beds, setBeds] = useState("Any");
+  const [baths, setBaths] = useState("Any");
+  const [activeFilter, setActiveFilter] = useState("Buy"); // State for active filter button
 
   const handleFilter = () => {
     const saleType = activeFilter.toLowerCase(); // Assuming 'Featured' is a type, adjust as needed
-    
-    console.log({minPrice,maxPrice})
-    let transformed = transformSearchOptions({location,saleType,propertyType: null,bedroom: beds, bathroom: baths, minPrice,maxPrice})
-    let query = createSearchQuery(transformed)
-    console.log({query})
-    searchRequest(query).then(res=>{
-      console.log("result",res.data)
-      onFilter(res.data)
-    }).catch(err=>{
-      console.error({error: err.message})
-    })
-   /* searchRequest({ 
+
+    console.log({ minPrice, maxPrice });
+    let transformed = transformSearchOptions({
+      location,
+      saleType,
+      propertyType: null,
+      bedroom: beds,
+      bathroom: baths,
+      minPrice,
+      maxPrice,
+    });
+    let query = createSearchQuery(transformed);
+    console.log({ query });
+    searchRequest(query)
+      .then((res) => {
+        console.log("result", res.data);
+        onFilter(res.data);
+      })
+      .catch((err) => {
+        console.error({ error: err.message });
+      });
+    /* searchRequest({ 
       location, 
       priceRangeMin: minPrice, 
       priceRangeMax: maxPrice, 
@@ -37,33 +50,33 @@ const FilterCard = ({ onFilter }) => {
   };
 
   const resetFilters = () => {
-    setLocation('');
-    setMinPrice('');
-    setMaxPrice('');
-    setBeds('Any');
-    setBaths('Any');
-    setActiveFilter('Featured');
-    onFilter({ minPrice: '', maxPrice: '', beds: 'Any', baths: 'Any' });
+    setLocation("");
+    setMinPrice("");
+    setMaxPrice("");
+    setBeds("Any");
+    setBaths("Any");
+    setActiveFilter("Featured");
+    onFilter({ minPrice: "", maxPrice: "", beds: "Any", baths: "Any" });
   };
 
   return (
     <div className="filter-card">
       <div className="filter-buttons">
         <button
-          className={`filter-button ${activeFilter === 'Buy' ? 'active' : ''}`}
-          onClick={() => setActiveFilter('Buy')}
+          className={`filter-button ${activeFilter === "Buy" ? "active" : ""}`}
+          onClick={() => setActiveFilter("Buy")}
         >
           Buy
         </button>
         <button
-          className={`filter-button ${activeFilter === 'Rent' ? 'active' : ''}`}
-          onClick={() => setActiveFilter('Rent')}
+          className={`filter-button ${activeFilter === "Rent" ? "active" : ""}`}
+          onClick={() => setActiveFilter("Rent")}
         >
           Rent
-        </button>      
+        </button>
         <button
-          className={`filter-button ${activeFilter === 'Shortlet' ? 'active' : ''}`}
-          onClick={() => setActiveFilter('Shortlet')}
+          className={`filter-button ${activeFilter === "Shortlet" ? "active" : ""}`}
+          onClick={() => setActiveFilter("Shortlet")}
         >
           Shortlet
         </button>
@@ -102,11 +115,11 @@ const FilterCard = ({ onFilter }) => {
       <div className="filter-options">
         <h4>Beds</h4>
         <div className="bed-options">
-          {['Any', '1+', '2+', '3+', '4+', '5+'].map((option) => (
+          {["Any", "1+", "2+", "3+", "4+", "5+"].map((option) => (
             <button
               key={option}
               onClick={() => setBeds(option)}
-              className={beds === option ? 'active' : ''}
+              className={beds === option ? "active" : ""}
             >
               {option}
             </button>
@@ -116,11 +129,11 @@ const FilterCard = ({ onFilter }) => {
       <div className="filter-options">
         <h4>Bathrooms</h4>
         <div className="bath-options">
-          {['Any', '1+', '2+', '3+', '4+'].map((option) => (
+          {["Any", "1+", "2+", "3+", "4+"].map((option) => (
             <button
               key={option}
               onClick={() => setBaths(option)}
-              className={baths === option ? 'active' : ''}
+              className={baths === option ? "active" : ""}
             >
               {option}
             </button>

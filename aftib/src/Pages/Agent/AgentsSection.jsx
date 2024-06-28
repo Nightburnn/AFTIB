@@ -1,7 +1,7 @@
-import React from 'react';
-import AgentCard from './AgentCard';
-import './AgentsSection.css'
-import { Link } from 'react-router-dom';
+import React from "react";
+import AgentCard from "./AgentCard";
+import "./AgentsSection.css";
+import { Link } from "react-router-dom";
 
 const agents = [
   {
@@ -11,7 +11,8 @@ const agents = [
     img: "https://images.unsplash.com/photo-1627161683077-e34782c24d81?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGFnZW50c3xlbnwwfHwwfHx8MA%3D%3D",
     phone: "+54 356 945234",
     email: "agents@example.com",
-    description: "Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.",
+    description:
+      "Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.",
     socials: [
       { name: "facebook", icon: "bi bi-facebook" },
       { name: "twitter", icon: "bi bi-twitter" },
@@ -26,7 +27,8 @@ const agents = [
     img: "https://images.unsplash.com/photo-1627161683077-e34782c24d81?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGFnZW50c3xlbnwwfHwwfHx8MA%3D%3D",
     phone: "+54 356 945234",
     email: "agents@example.com",
-    description: "Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.",
+    description:
+      "Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.",
     socials: [
       { name: "facebook", icon: "bi bi-facebook" },
       { name: "twitter", icon: "bi bi-twitter" },
@@ -41,7 +43,8 @@ const agents = [
     img: "https://images.unsplash.com/photo-1627161683077-e34782c24d81?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGFnZW50c3xlbnwwfHwwfHx8MA%3D%3D",
     phone: "+54 356 945234",
     email: "agents@example.com",
-    description: "Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.",
+    description:
+      "Sed porttitor lectus nibh, Cras ultricies ligula sed magna dictum porta two.",
     socials: [
       { name: "facebook", icon: "bi bi-facebook" },
       { name: "twitter", icon: "bi bi-twitter" },
@@ -61,7 +64,8 @@ const AgentsSection = () => (
               <h2 className="title-a">Best Agents</h2>
             </div>
             <div className="title-link">
-              <Link to="/all">All Agents
+              <Link to="/all">
+                All Agents
                 <span className="bi bi-chevron-right"></span>
               </Link>
             </div>
