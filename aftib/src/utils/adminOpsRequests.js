@@ -57,10 +57,11 @@ export const updateAgencyStatus = async (data, token) => {
 };
 
 // get pending agents request
-export const fetchRequests = async () => {
+export const fetchRequests = async (page = 1) => {
   try {
-    const response = await axios.get(API_BASE_URL+"/api/admin-ops/agency-requests");
+    const response = await axios.get(API_BASE_URL+"/api/admin-ops/agency-requests/"+page);
     console.log({response})
+    return response
   } catch (error) {
     console.error("Error fetching requests:", error);
     // Handle error state or notify user
@@ -76,9 +77,10 @@ export const approveRequest = async (requestId,token) => {
       }
     });
     console.log(response.data);
+    return response
     // Optionally update state or notify user of success
   } catch (error) {
-    console.error("Error approving request:", error);
+    console.error("Error approving request:", error)
     // Handle error state or notify user
   }
 };
