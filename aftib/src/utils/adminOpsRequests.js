@@ -57,27 +57,14 @@ export const updateAgencyStatus = async (data, token) => {
 };
 
 // get pending agents request
-export const fetchRequests = async () => {
+export const fetchRequests = async (page = 1) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/api/admin-ops/agency-requests`);
-    console.log(response.data); // Log the response to check its structure
-    return response.data;
+    const response = await axios.get(API_BASE_URL+"/api/admin-ops/agency-requests/"+page);
+    console.log({response})
+    return response
   } catch (error) {
     console.error("Error fetching requests:", error);
-    if (error.response) {
-      // The request was made and the server responded with a status code
-      // that falls out of the range of 2xx
-      console.error("Response data:", error.response.data);
-      console.error("Response status:", error.response.status);
-      console.error("Response headers:", error.response.headers);
-    } else if (error.request) {
-      // The request was made but no response was received
-      console.error("Request data:", error.request);
-    } else {
-      // Something happened in setting up the request that triggered an Error
-      console.error("Error message:", error.message);
-    }
-    throw error;
+    // Handle error state or notify user
   }
 };
 // function to approve request.
@@ -90,9 +77,10 @@ export const approveRequest = async (requestId,token) => {
       }
     });
     console.log(response.data);
+    return response
     // Optionally update state or notify user of success
   } catch (error) {
-    console.error("Error approving request:", error);
+    console.error("Error approving request:", error)
     // Handle error state or notify user
   }
 };
