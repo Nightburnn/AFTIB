@@ -34,6 +34,9 @@ import AgentReview from './PostPages/Admin/Dashboard/AgentReview/AgentReview';
 import Approval from './PostPages/Admin/AgentAproval/Approval';
 import AgentDashboard from './PostPages/AgentPage/AgentDashboard/AgentDashboard';
 import ClientDashboard from './PostPages/Client/ClientDashboard/ClientDashboard';
+import AgentListingReview from './PostPages/Admin/Dashboard/ListingReview/AgentListingReview';
+import HotelListingReview from './PostPages/Admin/Dashboard/HotelListingReview/HotelListingReview';
+import Alrdetails from './PostPages/Admin/Dashboard/ListingReview/Alrdetails';
 
 function App() {
   return (
@@ -62,8 +65,11 @@ function App() {
                 <Route path='/pd' Component={Index}/>
                 <Route path='/short' Component={Shortlet}/>
                 <Route path='/user-dashboard' Component={ClientDashboard}/>
+                <Route path='/review-listings' Component={AgentListingReview}/>
+                <Route path='/review-hotels' Component={HotelListingReview}/>
                 <Route path='/agent-dashboard' Component={AgentDashboard}/>
                 <Route path='/forgot' Component={Forgot}/>
+                <Route path='/alrdetails' Component={Alrdetails}/>
                 <Route path='/agent-registration' Component={AgentRegistration}/>
                 <Route path='/agent/:id' Component={SingleAgentSection} />
                 <Route path='/review-agent' Component={AgentReview} />

@@ -43,7 +43,7 @@ const AgentReview = () => {
       <div className="row mt-4">
         {Array.isArray(agents) && agents.length > 0 ? ( 
           agents.map(agent => (
-            <div className="col-md-4 mb-4" key={agent.id}>
+            <div className="col-md-6 mb-4" key={agent.id}>
               <div className="card text-center">
                 <div className="card-body">
                   <img
@@ -57,7 +57,7 @@ const AgentReview = () => {
                     <h5>Agency Type:</h5>
                     <p>{agent.agency}</p>
                   </div>
-                  <Link to={`/approve/${agent.id}`} className="btn btn-primary btn-block">Review this prospect</Link>
+                  <Link to={`/approve/${agent.id}`} className="btn blue btn-block">Review this prospect</Link>
                 </div>
               </div>
             </div>

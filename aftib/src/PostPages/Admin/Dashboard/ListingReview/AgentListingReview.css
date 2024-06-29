@@ -1,0 +1,59 @@
+
+  
+ .alr .card-body {
+    display: flex;
+    align-items: center;
+  }
+  
+ .alr .card-body img {
+    margin-right: 1rem;
+    width: 90px; /* Adjust the width to the desired size */
+    height: 90px; /* Adjust the height to the desired size */
+  }
+  
+ .alr .card-body div {
+    flex-grow: 1;
+  }
+  
+ .alr .btn-block {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+ .alr h1, .alr h3 {
+    margin-bottom: 1rem;
+  }
+  
+ 
+  
+  /* Base styles */
+.alr-image .d-flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.alr-image .alr-id {
+  margin: 0 10px 10px 0; /* Adjust spacing around images */
+}
+
+/* Larger screens: allow up to 3 images per row */
+@media (min-width: 768px) {
+ .alr-image .alr-id {
+    flex: 1 0 calc(33.333% - 10px); /* Adjust the percentage and margin to fit 3 images per row */
+  }
+}
+
+/* Mobile screens: stack images vertically */
+@media (max-width: 767px) {
+  .alr-image.d-flex {
+    flex-direction: column;
+    align-items: center;
+  }
+
+.alr-image  .alr-id {
+    margin: 10px 0; /* Adjust for vertical spacing */
+  }
+}
