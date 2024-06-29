@@ -250,7 +250,7 @@ const Landing = () => {
             </div>
 
             <div className="col-md-4 mb-4">
-              <div className="card " onClick={()=>{navigate("/buy?state=Lagos&withSearch=yes")}}>
+              <div className="card "  onClick={()=>{navigate("/buy?LGA=Port-Harcourt&withSearch=yes")}} >
                 <img src={exp3} className="card-img-top" alt="Card3" />
                 <div className="card-body">
                   <h5 className="card-title">Port Harcourt</h5>
@@ -259,7 +259,7 @@ const Landing = () => {
                     estates, offering serene luxury in neighborhoods like GRA
                     Phase 3 and Peter Odili Road.
                   </p>
-                  <Link onClick={()=>{navigate("/buy?state=Port Harcourt&withSearch=yes")}}  className="text">
+                  <Link className="text">
                     Take a look{" "}
                     <span className="ms-2">
                       <LuMoveRight className="text" />

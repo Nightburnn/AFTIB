@@ -47,6 +47,7 @@ const Buy = () => {
     const maxMonthlyPayment = queryParams.get("maxMonthlyPayment");
     const withSearch = queryParams.get("withSearch");
     const state = queryParams.get('state')
+    const LGA = queryParams.get('LGA')
     if (withSearch === "yes") {
       let query = createSearchQuery({
         location,
@@ -58,7 +59,8 @@ const Buy = () => {
         maxPrice,
         minMonthlyPayment,
         maxMonthlyPayment,
-        state
+        state,
+        LGA
       });
       console.log({ query });
       searchRequest(query)
