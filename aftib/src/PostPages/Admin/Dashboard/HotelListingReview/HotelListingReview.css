@@ -1,0 +1,26 @@
+
+  
+ .hlr .card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
+  
+ .hlr  .btn-block {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  
+ .hlr h1, .hlr h3 {
+    margin-bottom: 1rem;
+  }
+  
+ .hlr .card-title {
+    margin-bottom: 0.5rem;
+  }
+  
+ .hlr .card-text {
+    margin-bottom: 0.5rem;
+  }
+  

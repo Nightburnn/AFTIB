@@ -6,21 +6,21 @@
     height: 360px; /* Reduced height */
   }
 
-  .agency .agent {
+  .agent {
     background-color: #dae6ff;
     padding-left: 30px;
     padding-right: 30px;
   }
 
 
- .agency .agent h1{
+.agent h1{
     color: #161d2c;
     font-size: 1.8rem;
     font-weight: 500;
     margin-bottom: 10px;
   }
 
-  .agency .agent h3{
+  .agent h3{
     color: #4517fb;
     font-size: 1rem;
   }
