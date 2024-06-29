@@ -73,7 +73,7 @@ function App() {
                 <Route path='/agent-dashboard' Component={AgentDashboard}/>
                 <Route path='/forgot' Component={Forgot}/>
                 <Route path='/alrdetails' Component={Alrdetails}/>
-                <Route path='/hlrdetails' Component={Hlrdetails}/>
+                <Route path='/hlrdetails/:id' Component={Hlrdetails}/>
                 <Route path='/alrdetails/:id' Component={Alrdetails}/>
                 <Route path='/agent-registration' Component={AgentRegistration}/>
                 <Route path='/agent/:id' Component={SingleAgentSection} />
