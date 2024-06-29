@@ -37,6 +37,7 @@ import ClientDashboard from './PostPages/Client/ClientDashboard/ClientDashboard'
 import AgentListingReview from './PostPages/Admin/Dashboard/ListingReview/AgentListingReview';
 import HotelListingReview from './PostPages/Admin/Dashboard/HotelListingReview/HotelListingReview';
 import Alrdetails from './PostPages/Admin/Dashboard/ListingReview/Alrdetails';
+import Hlrdetails from './PostPages/Admin/Dashboard/HotelListingReview/Hlrdetails';
 
 function App() {
   return (
@@ -70,6 +71,7 @@ function App() {
                 <Route path='/agent-dashboard' Component={AgentDashboard}/>
                 <Route path='/forgot' Component={Forgot}/>
                 <Route path='/alrdetails' Component={Alrdetails}/>
+                <Route path='/hlrdetails' Component={Hlrdetails}/>
                 <Route path='/agent-registration' Component={AgentRegistration}/>
                 <Route path='/agent/:id' Component={SingleAgentSection} />
                 <Route path='/review-agent' Component={AgentReview} />
