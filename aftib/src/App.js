@@ -69,7 +69,7 @@ function App() {
                 <Route path='/review-hotels' Component={HotelListingReview}/>
                 <Route path='/agent-dashboard' Component={AgentDashboard}/>
                 <Route path='/forgot' Component={Forgot}/>
-                <Route path='/alrdetails' Component={Alrdetails}/>
+                <Route path='/alrdetails/:id' Component={Alrdetails}/>
                 <Route path='/agent-registration' Component={AgentRegistration}/>
                 <Route path='/agent/:id' Component={SingleAgentSection} />
                 <Route path='/review-agent' Component={AgentReview} />
