@@ -121,7 +121,7 @@ export const fetchListingById = async (id) => {
 export const approveListing = async (id, token) => {
     let url = `${API_BASE_URL}/listing/approveListing/${id}`
   try {
-    const response = await axios.post(url, {}, {
+    const response = await axios.put(url, {}, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

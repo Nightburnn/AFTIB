@@ -1,16 +1,17 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import { fetchListingById } from '../../../../utils/adminOpsRequests';
+import { fetchListingById, approveListing } from '../../../../utils/adminOpsRequests';
 import { useLoading } from '../../../../Components/LoadingContext';
 const Alrdetails = () => {
   const { id } = useParams();
   let token = window.localStorage.getItem("accessToken");
   let { setLoading, setLoadingText } = useLoading();
   const [listing,setListing] = useState({})
-  async function fetchListings(){
+  async function fetchListing(){
     try {
       setLoading(true)
       setLoadingText('Fetching Listing Information')
+      console.log(id)
       let response = await fetchListingById(id)
       console.log(response)
       setListing(response)
@@ -23,6 +24,25 @@ const Alrdetails = () => {
       setLoadingText('')
     }
   }
+  async function approve(){
+    try {
+      setLoading(true)
+      setLoadingText('Approving')
+      console.log(id)
+      let response = await approveListing(id,token)
+      console.log(response)
+    }
+    catch (err){
+      console.error(err.message)
+    }
+    finally {
+      setLoading(false)
+      setLoadingText('')
+    }
+  }
+  useEffect(()=>{
+    fetchListing();
+  },[])
   return (
    <div className="container mt-3">
     <div className="py-2 agent">
@@ -88,7 +108,7 @@ const Alrdetails = () => {
           If you are satisfied with the agent and have concluded your vetting, click the approval button. Note that by approving this user request, you grant this user the ability to use the agents feature of this website and post their listing.
         </p>
         <div className="text-center">
-          <button className="btn blue approval-btn">Approve This Request</button>
+          <button onClick={approve} className="btn blue approval-btn">Approve This Request</button>
         </div>
       </div>
     </div>
