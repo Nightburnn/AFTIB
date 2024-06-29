@@ -1,5 +1,6 @@
 import React from 'react';
 import './HotelListingReview.css'
+import { Link } from 'react-router-dom';
 
 const HotelListingReview = () => {
   const listings = [
@@ -29,7 +30,7 @@ const HotelListingReview = () => {
                 <p className="card-text"><strong>Agent:</strong> {listing.agent}</p>
               </div>
               <div className="px-3 pb-3">
-                <a href="#" className="btn blue btn-block">{listing.listedAs}</a>
+                <Link to="/hlrdetails" className="btn blue btn-block">{listing.listedAs}</Link>
               </div>
             </div>
           </div>
