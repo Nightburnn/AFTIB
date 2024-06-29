@@ -44,11 +44,12 @@
   }
   
   .gov-id {
-    border: 2px solid blue;
-    padding: 5px;
-    width: 600px; 
+    border: 2px solid #bdbdff;
+    padding: 10px;
+    width: 600px;
     height: auto;
-  }
+    border-radius: 5px;
+}
   
   .text-center {
     text-align: center;

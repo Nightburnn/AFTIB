@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "https://aftib-6o3h.onrender.com"; // adjust the base URL accordingly
+const API_BASE_URL = "http://127.0.0.1:8080"; // adjust the base URL accordingly
 
 // Initialize agent status request
 export const requestAgencyStatus = async (data, token) => {
@@ -57,9 +57,9 @@ export const updateAgencyStatus = async (data, token) => {
 };
 
 // get pending agents request
-export const fetchRequests = async (page = 1) => {
+export const fetchRequests = async () => {
   try {
-    const response = await axios.get(API_BASE_URL+"/api/admin-ops/agency-requests/"+page);
+    const response = await axios.get(`${API_BASE_URL}/agency-requests`);
     console.log({response})
     return response
   } catch (error) {
@@ -71,12 +71,11 @@ export const fetchRequests = async (page = 1) => {
 export const approveRequest = async (requestId,token) => {
   // id of the item to be approved.
   try {
-    const response = await axios.put(`${API_BASE_URL}/api/admin-ops/approve-agency-request/${requestId}`,{},{
+    const response = await axios.put(`${API_BASE_URL}/approve-agency-request/${requestId}`,{},{
       headers: {
         Authorization: `Bearer ${token}`
       }
-    });
-    console.log(response.data);
+    })
     return response
     // Optionally update state or notify user of success
   } catch (error) {
@@ -85,20 +84,47 @@ export const approveRequest = async (requestId,token) => {
   }
 };
 
-export const getAgencyRequestById = async (id, token) => {
+export const getAgencyRequestById = async (id) => {
+  let url = `${API_BASE_URL}/get-agency-request/${id}`
   try {
-    const response = await axios.get(`/admin-ops/get-agency-request/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return response.data;
+    const response = await axios.get(url);
+    return response;
   } catch (error) {
     console.error('Error fetching agency request:', error);
     throw error;
   }
 };
 
+export const fetchUnapprovedListings = async (token) => {
+    let url = `${API_BASE_URL}/unApprovedListings`
+  try {
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    return response.data
+  } catch (error) {
+    console.error('Error fetching unapproved listings:', error)
+    throw error;
+  }
+}
+
+
+export const approveListing = async (id, token) => {
+    let url = `${API_BASE_URL}/approveListing/${id}`
+  try {
+    const response = await axios.post(url, {}, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    return response.data;
+  } catch (error) {
+    console.error('Error approving listing:', error)
+    throw error
+  }
+};
 
 
 

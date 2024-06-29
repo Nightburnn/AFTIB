@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import "./listreview.css";
 import sh1 from "../../assets/images/sh1.png";
 import sh2 from "../../assets/images/sh2.png";
-
-const ListingReview = () => {
+import { fetchUnapprovedListings } from "../../utils/adminOpsRequests";
+import { useLoading } from "../../Components/LoadingContext";
+const ListingReview = () => {  
+  let token = window.localStorage.getItem("accessToken");
+  let { setLoading, setLoadingText } = useLoading();
+  let [unapprovedListings,setUnapprovedListings] = useState([])
   const [listing, setListing] = useState({
     title: "Sample Listing",
     description:
@@ -18,7 +22,22 @@ const ListingReview = () => {
   const [isPending, setIsPending] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  async function fetchListings(){
+    try {
+      setLoading(true)
+      setLoadingText('Fetching Agent Information')
+      let response = fetchUnapprovedListings()
+      console.log(response)
+      setUnapprovedListings(response)
+    }
+    catch (err){
+      console.error(err.message)
+    }
+    finally {
+      setLoading(false)
+      setLoadingText('')
+    }
+  }
   const handleEdit = () => {
     console.log("Editing listing...");
   };

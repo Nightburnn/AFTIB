@@ -1,28 +1,51 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getAgencyRequestById } from '../../../utils/adminOpsRequests'; 
+import { getAgencyRequestById,approveRequest } from '../../../utils/adminOpsRequests'; 
 import './Approval.css';
+import { useLoading } from '../../../Components/LoadingContext';
 
 const Approval = () => {
+  let token = window.localStorage.getItem("accessToken");
+  let {setLoading,setLoadingText}= useLoading()
   const { id } = useParams();
   const [agent, setAgent] = useState(null);
-
-  useEffect(() => {
     const fetchAgentRequest = async () => {
       try {
-        
-        const response = await getAgencyRequestById(id);
-        setAgent(response);
+        setLoading(true)
+        setLoadingText('Fetching Agent Information')
+        const response = await getAgencyRequestById(id)
+        console.log(response.data)
+        setAgent(response.data)
       } catch (error) {
-        console.error('Error fetching agent request:', error);
+        console.error('Error fetching agent request:', error)
+      }
+      finally {        
+        setLoading(false)
+        setLoadingText('')
       }
     };
+    const sendApproveRequest =async (id)=>{
+      setLoading(true)
+      setLoadingText('Approving User')
+      try {
+        let response = await approveRequest(id,token)
+        console.log(response.data)
+      }
+      catch(err) {
+        console.error(err.message)
+      }
+      finally {
+        setLoading(false)
+        setLoadingText('')
+      }
+    }
 
-    fetchAgentRequest();
+  useEffect(() => {
+    fetchAgentRequest(id);
   }, [id]);
 
   if (!agent) {
-    return <div>Loading...</div>;
+    return <div onClick={()=>{fetchAgentRequest(id)}}>Loading...</div>;
   }
 
   return (
@@ -33,7 +56,7 @@ const Approval = () => {
 
       <div className="section border profile-section">
         <div className="profile text-center">
-          <img src={agent.profilePic} className="rounded-circle" alt="Agent profile" />
+          <img src={agent.passport} className="rounded-circle" alt="Agent profile" />
           <h3>{agent.name}</h3>
         </div>
       </div>
@@ -43,11 +66,11 @@ const Approval = () => {
         <div className="info-agent">
           <p><strong>Business Name:</strong> {agent.businessName}</p>
           <p><strong>Agency Type:</strong> {agent.agencyType}</p>
-          <p><strong>Identification Type:</strong> {agent.identificationType}</p>
-          <p><strong>Identification Number:</strong> {agent.identificationNumber}</p>
+          <p><strong>Identification Type:</strong> {agent.agencyType === 'Company' ? 'CAC Number' : 'NIN Number'}</p>
+          <p><strong>{agent.agencyType === 'Company' ? 'CAC Number' : 'NIN Number'}:</strong> {agent.agencyType === 'Company' ? agent.CACRef : agent.ninNumber }</p>
           <p><strong>Office Address:</strong> {agent.officeAddress}</p>
           <p><strong>State:</strong> {agent.state}</p>
-          <p><strong>LGA:</strong> {agent.lga}</p>
+          <p><strong>LGA:</strong> {agent.LGA}</p>
           <p><strong>Phone Number:</strong> {agent.phoneNumber}</p>
           <p><strong>Whatsapp Number:</strong> {agent.whatsappNumber}</p>
           <p><strong>About the Agent / Organization:</strong> {agent.about}</p>
@@ -57,7 +80,7 @@ const Approval = () => {
       <div className="section border">
         <h2 className="text-center">Government Issued ID</h2>
         <div className="text-center">
-          <img src={agent.govIdImage} className="gov-id" alt="Government ID" />
+          <img src={agent.IssuedId} className="gov-id" alt="Government ID" />
         </div>
       </div>
 
@@ -74,7 +97,7 @@ const Approval = () => {
           If you are satisfied with the agent and have concluded your vetting, click the approval button. Note that by approving this user request, you grant this user the ability to use the agents feature of this website and post their listing.
         </p>
         <div className="text-center">
-          <button className="btn blue approval-btn">Approve This Request</button>
+          <button onClick={()=>{sendApproveRequest(agent._id)}} className="btn blue approval-btn">Approve This Request</button>
         </div>
       </div>
     </div>

@@ -6,7 +6,6 @@ import { Modal } from "antd";
 import { nigerianStateData } from ".././Listing/data";
 import { requestAgencyStatus, updateAgencyStatusIssuedId, updateAgencyStatusPassport} from "../../utils/adminOpsRequests";
 
-import axios from "axios";
 const AgentRegistration = () => {
   let token = window.localStorage.getItem("accessToken");
   let navigate = useNavigate();
@@ -50,24 +49,31 @@ const AgentRegistration = () => {
   const updateName = (e) => {
     setName(e.target.value);
   };
+
   const updateBusinessName = (e) => {
     setBusinessName(e.target.value);
   };
+
   const updatePhone = (e) => {
     setPhone(e.target.value);
   };
+
   const updateWhatsappNo = (e) => {
     setWhatsappNo(e.target.value);
   };
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
+
   const updateOfficeAddress = (e) => {
     setOfficeAddress(e.target.value);
   };
+
   const updateState = (e) => {
     setState(e.target.value);
   };
+  
   const updateLGA = (e) => {
     setLGA(e.target.value);
   };

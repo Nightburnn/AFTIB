@@ -7,13 +7,11 @@ const AgentReview = () => {
   const [agents, setAgents] = useState([]);
   const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(null); 
-
-  useEffect(() => {
-    const fetchAgentRequests = async () => {
+  const fetchAgentRequests = async () => {
       try {
-        const data = await fetchRequests();
-        console.log(data); 
-        setAgents(data); 
+        const response = await fetchRequests();
+        console.log(response.data); 
+        setAgents(response.data); 
       } catch (error) {
         console.error("Error fetching agent requests:", error);
         setError(error.message); 
@@ -21,7 +19,7 @@ const AgentReview = () => {
         setLoading(false); 
       }
     };
-
+  useEffect(() => {
     fetchAgentRequests();
   }, []);
 
@@ -39,7 +37,6 @@ const AgentReview = () => {
         <h1 className="text-center">Pending Agent Review</h1>
         <h3 className="text-center">Below are the list of agents request that are pending approval. Review them for approval.</h3>
       </div>
-
       <div className="row mt-4">
         {Array.isArray(agents) && agents.length > 0 ? ( 
           agents.map(agent => (
@@ -47,7 +44,7 @@ const AgentReview = () => {
               <div className="card text-center">
                 <div className="card-body">
                   <img
-                    src={agent.profilePic || "https://via.placeholder.com/150"} 
+                    src={agent.passport || "https://via.placeholder.com/150"} 
                     className="rounded-circle mb-3"
                     alt={`${agent.name}'s profile`}
                   />
@@ -57,7 +54,7 @@ const AgentReview = () => {
                     <h5>Agency Type:</h5>
                     <p>{agent.agency}</p>
                   </div>
-                  <Link to={`/approve/${agent.id}`} className="btn btn-primary btn-block">Review this prospect</Link>
+                  <Link to={`/approve/${agent._id}`} className="btn btn-primary btn-block">Review this prospect</Link>
                 </div>
               </div>
             </div>
