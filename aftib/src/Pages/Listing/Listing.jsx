@@ -21,6 +21,10 @@ const Listing = () => {
   let imageInput = useRef(null);
   const [images, setImages] = useState([]);
 
+  const [developmentStage,setDevelopmentStage] = useState('urban') 
+  function updateDevelopmentStage(e){
+    setDevelopmentStage(e.target.value)
+  }
   const [position, setPosition] = useState({
     lat: 6.447809299999999,
     lng: 3.4723495,
@@ -57,7 +61,7 @@ const Listing = () => {
     floorNumber: "",
     agentName: "",
     agentPhone: "",
-    agentEmail: "",
+    agentEmail: ""
   });
   const [checks, setChecks] = useState({
     Garage: false,
@@ -121,6 +125,7 @@ const Listing = () => {
         email: formValues.agentEmail,
       },
       petsAllowed: checks["Pets Allowed"],
+      developmentStage,
       ...checks,
       ...formValues,
     };
@@ -429,6 +434,47 @@ const Listing = () => {
                       />
                     </div>
                   ))}
+                  <div className="col-sm-12">
+                    <h3>Area Development Stage?</h3>
+                  <div class="form-group">
+                    <div style={{ marginBottom: "10px" }}>
+                      <label>
+                        <input
+                          type="radio"
+                          value="urban"
+                          checked={developmentStage === "urban"}
+                          onChange={updateDevelopmentStage}
+                          style={{ marginRight: "5px" }}
+                        />
+                        Urban
+                      </label>
+                    </div>
+                    <div style={{ marginBottom: "10px" }}>
+                      <label>
+                        <input
+                          type="radio"
+                          value="rural"
+                          checked={developmentStage === "rural"}
+                          onChange={updateDevelopmentStage}
+                          style={{ marginRight: "5px" }}
+                        />
+                        Rural
+                      </label>
+                    </div>
+                    <div style={{ marginBottom: "10px" }}>
+                      <label>
+                        <input
+                          type="radio"
+                          value="developing"
+                          checked={developmentStage === "developing"}
+                          onChange={updateDevelopmentStage}
+                          style={{ marginRight: "5px" }}
+                        />
+                        Developing
+                      </label>
+                    </div>
+                  </div>
+                  </div>
               </div>
             </div>
             <div className="form-group mb-3">

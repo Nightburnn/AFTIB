@@ -210,7 +210,7 @@ const Landing = () => {
 
           <div className="row">
             <div className="col-md-4 mb-4">
-              <div className="card ">
+              <div className="card " onClick={()=>{navigate("/buy?state=Lagos&withSearch=yes")}}>
                 <img src={exp1} className="card-img-top" alt="Card1" />
                 <div className="card-body">
                   <h5 className="card-title">Lagos</h5>
@@ -219,7 +219,7 @@ const Landing = () => {
                     waterfront living in neighborhoods like Victoria Island and
                     Ikoyi.
                   </p>
-                  <Link href="#" className="text">
+                  <Link    className="text">
                     Take a look{" "}
                     <span className="ms-2">
                       <LuMoveRight className="text" />
@@ -230,7 +230,7 @@ const Landing = () => {
             </div>
 
             <div className="col-md-4 mb-4">
-              <div className="card ">
+              <div className="card "  onClick={()=>{navigate("/buy?state=Abuja&withSearch=yes")}} >
                 <img src={exp2} className="card-img-top" alt="Card2" />
                 <div className="card-body">
                   <h5 className="card-title">Abuja</h5>
@@ -239,8 +239,8 @@ const Landing = () => {
                     elegance and upscale residences in areas like Asokoro and
                     Maitama.
                   </p>
-                  <Link href="#" className="text">
-                    Take a look{" "}
+                  <Link className="text">
+                    Take a look{""}
                     <span className="ms-2">
                       <LuMoveRight className="text" />
                     </span>
@@ -250,7 +250,7 @@ const Landing = () => {
             </div>
 
             <div className="col-md-4 mb-4">
-              <div className="card ">
+              <div className="card "  onClick={()=>{navigate("/buy?LGA=Port-Harcourt&withSearch=yes")}} >
                 <img src={exp3} className="card-img-top" alt="Card3" />
                 <div className="card-body">
                   <h5 className="card-title">Port Harcourt</h5>
@@ -259,7 +259,7 @@ const Landing = () => {
                     estates, offering serene luxury in neighborhoods like GRA
                     Phase 3 and Peter Odili Road.
                   </p>
-                  <Link href="#" className="text">
+                  <Link className="text">
                     Take a look{" "}
                     <span className="ms-2">
                       <LuMoveRight className="text" />
@@ -277,7 +277,7 @@ const Landing = () => {
           <h1 className="text-start">Select Category</h1>
 
           <div className="row">
-            <div className="col-md-4 mb-4">
+            <div className="col-md-4 mb-4" onClick={()=>{navigate("/buy?developmentStage=urban&withSearch=yes")}}>
               <Link href="#" className="text">
                 <div className="image-container">
                   <img src={sel1} className="img-fluid" alt="sell" />
@@ -288,7 +288,7 @@ const Landing = () => {
               </Link>
             </div>
 
-            <div className="col-md-4 mb-4">
+            <div className="col-md-4 mb-4" onClick={()=>{navigate("/buy?developmentStage=rural&withSearch=yes")}}>
               <Link href="#" className="text">
                 <div className="image-container">
                   <img src={sel2} className="img-fluid" alt="sell" />
@@ -299,7 +299,7 @@ const Landing = () => {
               </Link>
             </div>
 
-            <div className="col-md-4 mb-4">
+            <div className="col-md-4 mb-4" onClick={()=>{navigate("/buy?developmentStage=developing&withSearch=yes")}}>
               <Link href="#" className="text">
                 <div className="image-container">
                   <img src={sel3} className="img-fluid" alt="sell" />

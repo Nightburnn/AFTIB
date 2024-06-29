@@ -12,6 +12,7 @@ const HotelListingReview = () => {
   async function fetchData() {
     try {
       setLoading(true);
+      setLoadingText('Fetching Pending Hotels')
       const page = 1; // Replace with the actual page number if needed
       const retrieved = await fetchUnapprovedHotels(page);
       console.log("Retrieved hotels:", retrieved);
