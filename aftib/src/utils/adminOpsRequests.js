@@ -133,6 +133,44 @@ export const approveListing = async (id, token) => {
   }
 };
 
+export const fetchUnapprovedHotels = async (page = 1) => {
+  let url = `${API_BASE_URL}/hotels/unapproved/${page}`
+  try {
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching unapproved hotels:", error);
+    throw error;
+  }
+};
+export const approveHotel = async (hotelId, token) => {
+  try {
+    const response = await axios.put(
+      `${API_URL}/hotels/approve/${hotelId}`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error approving hotel:", error);
+    throw error;
+  }
+};
+
+// Fetch hotel by ID
+export const fetchHotelById = async (hotelId) => {
+  try {
+    const response = await axios.get(`${API_URL}/hotels/${hotelId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching hotel by ID:", error);
+    throw error;
+  }
+};
 
 
 
