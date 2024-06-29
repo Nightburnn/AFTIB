@@ -95,24 +95,31 @@ export const getAgencyRequestById = async (id) => {
   }
 };
 
-export const fetchUnapprovedListings = async (token) => {
-    let url = `${API_BASE_URL}/unApprovedListings`
+export const fetchUnapprovedListings = async () => {
+  let url = `${API_BASE_URL}/listing/unApprovedListings`
+try {
+  const response = await axios.get(url)
+  return response.data
+} catch (error) {
+  console.error('Error fetching unapproved listings:', error)
+  throw error;
+}
+}
+
+export const fetchListingById = async (id) => {
+  let url = `${API_BASE_URL}/listing/getListingById/${id}`
   try {
-    const response = await axios.get(url, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    const response = await axios.get(url)
     return response.data
   } catch (error) {
-    console.error('Error fetching unapproved listings:', error)
+    console.error('Error fetching listing:', error)
     throw error;
   }
 }
 
 
 export const approveListing = async (id, token) => {
-    let url = `${API_BASE_URL}/approveListing/${id}`
+    let url = `${API_BASE_URL}/listing/approveListing/${id}`
   try {
     const response = await axios.post(url, {}, {
       headers: {
