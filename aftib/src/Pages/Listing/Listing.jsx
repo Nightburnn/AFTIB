@@ -435,6 +435,7 @@ const Listing = () => {
                     </div>
                   ))}
                   <div className="col-sm-12">
+                    <h3>Area Development Stage?</h3>
                   <div class="form-group">
                     <div style={{ marginBottom: "10px" }}>
                       <label>
@@ -445,7 +446,7 @@ const Listing = () => {
                           onChange={updateDevelopmentStage}
                           style={{ marginRight: "5px" }}
                         />
-                        As a registered company.
+                        Urban
                       </label>
                     </div>
                     <div style={{ marginBottom: "10px" }}>
@@ -457,7 +458,7 @@ const Listing = () => {
                           onChange={updateDevelopmentStage}
                           style={{ marginRight: "5px" }}
                         />
-                        As an Individual
+                        Rural
                       </label>
                     </div>
                     <div style={{ marginBottom: "10px" }}>
@@ -469,7 +470,7 @@ const Listing = () => {
                           onChange={updateDevelopmentStage}
                           style={{ marginRight: "5px" }}
                         />
-                        As an Individual
+                        Developing
                       </label>
                     </div>
                   </div>
