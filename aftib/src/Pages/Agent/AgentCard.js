@@ -20,7 +20,7 @@ const AgentCard = ({ agent }) => (
           </div>
         </div>
         <div className="card-body-d">
-          <p className="content-d color-text-a">{agent.description}</p>
+          <p className="content-d text-white">{agent.description}</p>
           <div className="info-agents color-a">
             <p>
               <strong>Phone: </strong> {agent.phone}

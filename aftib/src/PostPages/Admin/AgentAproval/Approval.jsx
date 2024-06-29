@@ -71,8 +71,8 @@ const Approval = () => {
           <p><strong>Office Address:</strong> {agent.officeAddress}</p>
           <p><strong>State:</strong> {agent.state}</p>
           <p><strong>LGA:</strong> {agent.LGA}</p>
-          <p><strong>Phone Number:</strong> {agent.phoneNumber}</p>
-          <p><strong>Whatsapp Number:</strong> {agent.whatsappNumber}</p>
+          <p><strong>Phone Number:</strong> {agent.phone}</p>
+          <p><strong>Whatsapp Number:</strong> {agent.whatsappNo}</p>
           <p><strong>About the Agent / Organization:</strong> {agent.about}</p>
         </div>
       </div>

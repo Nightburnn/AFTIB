@@ -45,8 +45,10 @@ function App() {
       <LoadingContextProvider>
       <Router>
       <ScrollToTop />
-        <Header/>
-            <Routes>
+      <div className='app-wrapper'>
+         <Header/>
+         <main className="contenth">
+          <Routes>
                 <Route  path="/" Component={Landing}/>
                 <Route path='/about' Component={About}/>
                 <Route  path='/buy' Component={Buy}/>
@@ -81,8 +83,12 @@ function App() {
                 <Route path='/change-password' Component={ChangePassword}/>
                 <Route path='/review/:id' Component={Approval}/>
             </Routes>
+         </main>
+            
             <Chatbot/>
             <Footer/>
+      </div>
+       
         </Router>  
         </LoadingContextProvider>
    
