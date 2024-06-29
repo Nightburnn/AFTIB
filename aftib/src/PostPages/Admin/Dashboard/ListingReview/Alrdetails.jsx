@@ -39,14 +39,36 @@ const Alrdetails = () => {
 
         <div className="section border">
               <h2 className="text-center">Property Images</h2>
-                  <div className="text-center d-flex alr-image">
-                  <img src="https://via.placeholder.com/150" className="alr-id" alt="Government ID" />
- 
-                 <img src="https://via.placeholder.com/150" className="alr-id " alt="Government ID" />
-                 <img src="https://via.placeholder.com/150" className="alr-id" alt="Government ID" />
-                 <img src="https://via.placeholder.com/150" className="alr-id" alt="Government ID" />
-                  </div>
+              <div className="text-center d-flex alr-image-container">
+  <img src="https://via.placeholder.com/150" className="alr-id" alt="Government ID" />
+  <img src="https://via.placeholder.com/150" className="alr-id" alt="Government ID" />
+  <img src="https://via.placeholder.com/150" className="alr-id" alt="Government ID" />
+  <img src="https://via.placeholder.com/150" className="alr-id" alt="Government ID" />
+</div>
+
         </div>
+
+        <div className="section border">
+            <h2 className="text-center">Agent Information</h2>
+            <div className="info-agent">
+                <p className="text-center">This Apartment was listed by NameofAgent</p>
+                <div className="button-container">
+      <button className='btn blue'>View Agent Info</button>
+    </div>
+                    <h4 className="text-center mt-1">Notify this agent</h4>
+                <p className="text-center">Send an email to the user notifying them of any shortcomings or observations that might need to be changed or added in their request to be approved</p>
+            </div>
+        </div>
+
+        <div className="section border">
+        <h2 className="text-center">Approval Section</h2>
+        <p className="text-center">
+          If you are satisfied with the agent and have concluded your vetting, click the approval button. Note that by approving this user request, you grant this user the ability to use the agents feature of this website and post their listing.
+        </p>
+        <div className="text-center">
+          <button className="btn blue approval-btn">Approve This Request</button>
+        </div>
+      </div>
     </div>
     </div>
   )
