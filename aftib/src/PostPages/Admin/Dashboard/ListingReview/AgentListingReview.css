@@ -25,35 +25,43 @@
  .alr h1, .alr h3 {
     margin-bottom: 1rem;
   }
+  .alr-image-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px; /* Adjust the gap between images as needed */
+  }
   
- 
+  .alr-id {
+    flex: 1 1 30%; /* Make sure each image takes up roughly one-third of the container */
+    max-width: 30%; /* Ensure the images don't exceed one-third of the container width */
+    box-sizing: border-box;
+  }
   
-  /* Base styles */
-.alr-image .d-flex {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.alr-image .alr-id {
-  margin: 0 10px 10px 0; /* Adjust spacing around images */
-}
-
-/* Larger screens: allow up to 3 images per row */
-@media (min-width: 768px) {
- .alr-image .alr-id {
-    flex: 1 0 calc(33.333% - 10px); /* Adjust the percentage and margin to fit 3 images per row */
+  /* Media query to handle smaller screens */
+  @media (max-width: 1024px) {
+    .alr-id {
+      flex: 1 1 45%; /* Adjust width for smaller screens */
+      max-width: 45%; /* Ensure images don't exceed half of the container width */
+    }
   }
-}
-
-/* Mobile screens: stack images vertically */
-@media (max-width: 767px) {
-  .alr-image.d-flex {
-    flex-direction: column;
-    align-items: center;
+  
+  /* Media query to handle even smaller screens */
+  @media (max-width: 768px) {
+    .alr-id {
+      flex: 1 1 90%; /* Adjust width for even smaller screens */
+      max-width: 90%; /* Ensure images don't exceed full container width */
+    }
   }
+  
 
-.alr-image  .alr-id {
-    margin: 10px 0; /* Adjust for vertical spacing */
+  .button-container {
+    display: flex;
+    justify-content: center;
   }
-}
+  
+  .button-container .blue {
+    width: 400px; /* Adjust button width as needed */
+    text-align: center;
+    margin-bottom: 20px;
+  }
