@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { fetchListingById } from '../../../../utils/adminOpsRequests';
 import { useLoading } from '../../../../Components/LoadingContext';
@@ -7,10 +7,11 @@ const Alrdetails = () => {
   let token = window.localStorage.getItem("accessToken");
   let { setLoading, setLoadingText } = useLoading();
   const [listing,setListing] = useState({})
-  async function fetchListings(){
+  async function fetchListing(){
     try {
       setLoading(true)
       setLoadingText('Fetching Listing Information')
+      console.log(id)
       let response = await fetchListingById(id)
       console.log(response)
       setListing(response)
@@ -23,6 +24,9 @@ const Alrdetails = () => {
       setLoadingText('')
     }
   }
+  useEffect(()=>{
+    fetchListing();
+  },[])
   return (
    <div className="container mt-3">
     <div className="py-2 agent">
