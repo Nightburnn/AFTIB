@@ -1,6 +1,47 @@
-import React from 'react'
+import React,{useEffect, useState} from 'react'
+import { approveHotel, fetchHotelById } from '../../../../utils/adminOpsRequests';
+import { useLoading } from '../../../../Components/LoadingContext';
+import { useParams } from 'react-router-dom';
 
 const Hlrdetails = () => {
+  let token = window.localStorage.getItem("accessToken");
+  let {id} = useParams()
+  let { setLoading, setLoadingText } = useLoading();
+  const [hotel, setHotel] = useState(null);
+
+  async function getById () {
+    try {
+      setLoading(true)
+      setLoadingText('Getting hotel Information') // Replace with the actual hotel ID
+    const fetchedHotel = await fetchHotelById(id);
+    console.log({response: fetchedHotel})
+    setHotel(fetchedHotel);
+    }
+    catch(error){
+      console.error(error.message)
+    }
+    finally {
+      setLoading(false);
+    }
+  }
+  useEffect(()=>{
+    getById()
+  },[])
+
+  async function sendApproveRequest () {
+    try {
+      setLoading(true)
+      setLoadingText('Approving')// Replace with the actual hotel ID
+    const fetchedHotel = await approveHotel(id,token);
+    setHotel(fetchedHotel);
+    }
+    catch(error){
+      console.error(error.message)
+    }
+    finally {
+      setLoading(false);
+    }
+  }
   return (
     <div className="container mt-3">
     <div className="py-2 agent">
@@ -26,9 +67,6 @@ const Hlrdetails = () => {
                 <p><strong>Website:</strong>url.com </p>
               </div>
         </div>
-
-        
-
         <div className="section border">
             <h2 className="text-center">Agent Information</h2>
             <div className="info-agent">
@@ -47,7 +85,7 @@ const Hlrdetails = () => {
           If you are satisfied with the agent and have concluded your vetting, click the approval button. Note that by approving this user request, you grant this user the ability to use the agents feature of this website and post their listing.
         </p>
         <div className="text-center">
-          <button className="btn blue approval-btn">Approve This Request</button>
+          <button onClick={sendApproveRequest} className="btn blue approval-btn">Approve This Request</button>
         </div>
       </div>
     </div>

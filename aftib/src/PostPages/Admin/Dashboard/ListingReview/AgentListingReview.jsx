@@ -10,6 +10,7 @@ const AgentListingReview = () => {
   let token = window.localStorage.getItem("accessToken");
   let { setLoading, setLoadingText } = useLoading();
   let [unapprovedListings,setUnapprovedListings] = useState([])
+  
   async function fetchListings(){
     try {
       setLoading(true)

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "https://aftib-6o3h.onrender.com"; // adjust the base URL accordingly
+const API_BASE_URL = "http://localhost:8080"; // adjust the base URL accordingly
 
 // Initialize agent status request
 export const requestAgencyStatus = async (data, token) => {
@@ -146,7 +146,7 @@ export const fetchUnapprovedHotels = async (page = 1) => {
 export const approveHotel = async (hotelId, token) => {
   try {
     const response = await axios.put(
-      `${API_URL}/hotels/approve/${hotelId}`,
+      `${API_BASE_URL}/hotels/approve/${hotelId}`,
       {},
       {
         headers: {
@@ -164,7 +164,7 @@ export const approveHotel = async (hotelId, token) => {
 // Fetch hotel by ID
 export const fetchHotelById = async (hotelId) => {
   try {
-    const response = await axios.get(`${API_URL}/hotels/${hotelId}`);
+    const response = await axios.get(`${API_BASE_URL}/hotels/${hotelId}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching hotel by ID:", error);
