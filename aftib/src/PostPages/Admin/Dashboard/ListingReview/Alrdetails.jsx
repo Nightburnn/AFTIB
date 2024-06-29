@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import { fetchListingById } from '../../../../utils/adminOpsRequests';
+import { fetchListingById, approveListing } from '../../../../utils/adminOpsRequests';
 import { useLoading } from '../../../../Components/LoadingContext';
 const Alrdetails = () => {
   const { id } = useParams();
@@ -15,6 +15,22 @@ const Alrdetails = () => {
       let response = await fetchListingById(id)
       console.log(response)
       setListing(response)
+    }
+    catch (err){
+      console.error(err.message)
+    }
+    finally {
+      setLoading(false)
+      setLoadingText('')
+    }
+  }
+  async function approve(){
+    try {
+      setLoading(true)
+      setLoadingText('Approving')
+      console.log(id)
+      let response = await approveListing(id,token)
+      console.log(response)
     }
     catch (err){
       console.error(err.message)
@@ -92,7 +108,7 @@ const Alrdetails = () => {
           If you are satisfied with the agent and have concluded your vetting, click the approval button. Note that by approving this user request, you grant this user the ability to use the agents feature of this website and post their listing.
         </p>
         <div className="text-center">
-          <button className="btn blue approval-btn">Approve This Request</button>
+          <button onClick={approve} className="btn blue approval-btn">Approve This Request</button>
         </div>
       </div>
     </div>
