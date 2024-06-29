@@ -176,5 +176,14 @@ export const fetchHotelById = async (hotelId) => {
 };
 
 
-
+// fetch hotels approved 
+export const fetchApprovedHotels = async (page = 1) => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/hotels/getAll/${page}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching hotels:', error);
+    throw error;
+  }
+}
 

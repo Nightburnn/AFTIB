@@ -12,6 +12,7 @@ const HotelListingReview = () => {
   async function fetchData() {
     try {
       setLoading(true);
+      setLoadingText('Fetching Pending Hotels')
       const page = 1; // Replace with the actual page number if needed
       const retrieved = await fetchUnapprovedHotels(page);
       console.log("Retrieved hotels:", retrieved);
@@ -39,10 +40,9 @@ const HotelListingReview = () => {
             <div className="card h-100">
               <div className="card-body">
                 <h5 className="card-title">{hotel.name}</h5>
-                <p className="card-text"><strong>Agent:</strong> {hotel.agentName}</p>
+                <p className="card-text"><strong>Agent ID:</strong> {hotel.createdBy}</p>
               </div>
               <div className="px-3 pb-3">
-                <p>Replace 6672fe81c3acc4ab78e3c097 with {hotel._id}</p>
                 <Link to={`/hlrdetails/${hotel._id}`} className="btn blue btn-block">Review The Hotel</Link>
               </div>
             </div>
