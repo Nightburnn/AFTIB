@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:8080"; // adjust the base URL accordingly
+const API_BASE_URL = "https://aftib-6o3h.onrender.com"; // adjust the base URL accordingly
 
 // Initialize agent status request
 export const requestAgencyStatus = async (data, token) => {
@@ -120,13 +120,16 @@ export const fetchListingById = async (id) => {
 
 export const approveListing = async (id, token) => {
     let url = `${API_BASE_URL}/listing/approveListing/${id}`
+    
   try {
     const response = await axios.put(url, {}, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
+    
     return response.data;
+    
   } catch (error) {
     console.error('Error approving listing:', error)
     throw error

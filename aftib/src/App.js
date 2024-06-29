@@ -18,7 +18,6 @@ import Login from './Pages/Login/Login';
 import { AuthProvider } from './AuthContext';
 import HotelListing from './Pages/Hotel/HotelListing'
 import ProfilePage from './PostPages/Account/ProfilePage';
-import SingleAgentSection from './Pages/Agent/SingleAgentSection';
 import Inbox from './Pages/Inbox/Inbox';
 import Forgot from './Pages/ForgetPassword/Forgot';
 import Listing from './Pages/Listing/Listing';
@@ -38,6 +37,11 @@ import AgentListingReview from './PostPages/Admin/Dashboard/ListingReview/AgentL
 import HotelListingReview from './PostPages/Admin/Dashboard/HotelListingReview/HotelListingReview';
 import Alrdetails from './PostPages/Admin/Dashboard/ListingReview/Alrdetails';
 import Hlrdetails from './PostPages/Admin/Dashboard/HotelListingReview/Hlrdetails';
+import AllAgent from './Pages/Agent/AllAgent';
+import Vaa from './PostPages/Admin/Dashboard/ViewAgentApproved/Vaa';
+import Vaadetails from './PostPages/Admin/Dashboard/ViewAgentApproved/Vaadetails';
+import Val from './PostPages/Admin/Dashboard/ViewApprovedListing/Val';
+import Valdetails from './PostPages/Admin/Dashboard/ViewApprovedListing/Valdetails';
 
 function App() {
   return (
@@ -76,8 +80,12 @@ function App() {
                 <Route path='/hlrdetails/:id' Component={Hlrdetails}/>
                 <Route path='/alrdetails/:id' Component={Alrdetails}/>
                 <Route path='/agent-registration' Component={AgentRegistration}/>
-                <Route path='/agent/:id' Component={SingleAgentSection} />
+                <Route path='/all' Component={AllAgent}/>
                 <Route path='/review-agent' Component={AgentReview} />
+                <Route path='/view-approved-agent' Component={Vaa} />
+                <Route path='/vaadetails' Component={Vaadetails} />
+                <Route path='/view-approved-listings' Component={Val} />
+                <Route path='/valdetails' Component={Valdetails} />
                 <Route path='/approve/:id' Component={Approval} />
                 <Route path='/hotellist' Component={HotelListing}/>
                 <Route path='/change-password' Component={ChangePassword}/>
