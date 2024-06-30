@@ -4,10 +4,10 @@ import { TfiPrinter } from "react-icons/tfi";
 import { Link } from 'react-router-dom';
 
 const approvalAndReviewData = [
-  { icon: <TfiPrinter />, number: "2,345", title: "Approved Listing", buttonText: "Review Request", link: "/review-agent" },
-  { icon: <TfiPrinter />, number: "2,345", title: "Approved Hotel", buttonText: "Review Hotel", link: "/review-listings" },
-  { icon: <TfiPrinter />, number: "2,345", title: "Pending Listing", buttonText: "Review Request", link: "/review-hotels" },
-  { icon: <TfiPrinter />, number: "2,345", title: "Pending Hotel", buttonText: "Review Hotel", link: "/review-transactions" },
+  { icon: <TfiPrinter />, number: "2,345", title: "Approved Listing", buttonText: "Review Request", link: "/approved-list" },
+  { icon: <TfiPrinter />, number: "2,345", title: "Approved Hotel", buttonText: "Review Hotel", link: "/approved-hotel" },
+  { icon: <TfiPrinter />, number: "2,345", title: "Pending Listing", buttonText: "Review Request", link: "/pend-list" },
+  { icon: <TfiPrinter />, number: "2,345", title: "Pending Hotel", buttonText: "Review Hotel", link: "/pend-hotel" },
 ];
 
 const statisticsAndInfoData = [

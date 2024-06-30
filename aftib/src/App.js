@@ -50,6 +50,8 @@ import Vcadetails from './PostPages/Admin/Dashboard/ViewClientApproved/Vcadetail
 import Transaction from './PostPages/Admin/Dashboard/TranscationReview.jsx/Transcation';
 import Vha from './PostPages/Admin/Dashboard/ViewHotelApproved/Vha';
 import Vhadetails from './PostPages/Admin/Dashboard/ViewHotelApproved/Vhadetails';
+import Approvedhotelagent from './PostPages/AgentPage/AgentDashboard/HotelAgent/Approvedhotelagent';
+import Pendhotelagent from './PostPages/AgentPage/AgentDashboard/HotelAgent/Pendhotelagent';
 
 
 const faqData = [
@@ -229,6 +231,8 @@ function App() {
                 <Route path='/Vhadetails/:id' Component={Vhadetails} />
                 <Route path='/change-password' Component={ChangePassword}/>
                 <Route path='/review/:id' Component={Approval}/>
+                <Route path='/approved-hotel' Component={Approvedhotelagent}/>
+                <Route path='/pend-hotel' Component={Pendhotelagent}/>
             </Routes>
          </main>
             
