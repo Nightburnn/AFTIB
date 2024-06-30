@@ -40,6 +40,7 @@
 .leaflet-control-attribution {
   z-index: 1;
 }
+
 .listbtn {
   width: 30%;
   background-color: #4517fb;
@@ -56,6 +57,14 @@
 .listing {
   margin-bottom: 40px;
 }
+
+.previewImage{
+  border: 1px solid rgb(180, 180, 180);
+  border-radius: 10px;
+  padding: 10px;
+  max-height: 200px;
+}
+
 
 @media (max-width: 760px) {
   .listbtn {
