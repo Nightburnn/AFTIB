@@ -40,7 +40,7 @@ const HotelListingReview = () => {
             <div className="card h-100">
               <div className="card-body">
                 <h5 className="card-title">{hotel.name}</h5>
-                <p className="card-text"><strong>Agent ID:</strong> {hotel.createdBy}</p>
+                <p className="card-text"><strong>Agent:</strong> {hotel.createdBy}</p>
               </div>
               <div className="px-3 pb-3">
                 <Link to={`/hlrdetails/${hotel._id}`} className="btn blue btn-block">Review The Hotel</Link>

@@ -165,3 +165,26 @@
 .help {
   margin-bottom: 60px;
 }
+
+.autocomplete-suggestions {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  background-color: white;
+  color: #000;
+  border: 1px solid #ccc;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 999;
+  width: 40%;
+}
+
+.autocomplete-suggestions li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.autocomplete-suggestions li:hover {
+  background-color: #f0f0f0;
+}

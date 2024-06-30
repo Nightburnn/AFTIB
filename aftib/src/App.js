@@ -1,5 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import React, { useState} from 'react';
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { LoadingContextProvider } from './Components/LoadingContext';
 import useScrollToTop from './useScrollToTop';
@@ -19,6 +21,7 @@ import { AuthProvider } from './AuthContext';
 import HotelListing from './Pages/Hotel/HotelListing'
 import ProfilePage from './PostPages/Account/ProfilePage';
 import Inbox from './Pages/Inbox/Inbox';
+import FaqSection from './Pages/Help/FaqSection';
 import Forgot from './Pages/ForgetPassword/Forgot';
 import Listing from './Pages/Listing/Listing';
 import ListingReview from './Pages/Listing/ListingReview';
@@ -43,7 +46,132 @@ import Vaadetails from './PostPages/Admin/Dashboard/ViewAgentApproved/Vaadetails
 import Val from './PostPages/Admin/Dashboard/ViewApprovedListing/Val';
 import Valdetails from './PostPages/Admin/Dashboard/ViewApprovedListing/Valdetails';
 
+
+const faqData = [
+  {
+   
+    title: 'Getting started',
+    faqs: [
+      {
+        question: 'How do I create an account?',
+        answer: 'Answer. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      },
+      {
+        question: 'How can I reset my password?',
+        answer: 'Answer. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      },
+      {
+        question: 'How can I reset my password?',
+        answer: 'Answer. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      },
+      {
+        question: 'How can I reset my password?',
+        answer: 'Answer. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      },
+      {
+        question: 'How can I reset my password?',
+        answer: 'Answer. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      },
+    ],
+  },
+  {
+    
+    title: 'Account Management',
+    faqs: [
+      {
+        question: 'How do I update my profile information?',
+        answer: 'Answer. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      },
+      {
+        question: 'How do I close my account?',
+        answer: 'Answer. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      },
+      {
+        question: 'How can I change my email address?',
+        answer: 'Answer. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      },
+      {
+        question: 'How can I change my password?',
+        answer: 'Answer. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      },
+      {
+        question: 'How do I manage my notifications?',
+        answer: 'Answer. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      },
+      {
+        question: 'Can I have multiple accounts?',
+        answer: 'Answer. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      },
+      {
+        question: 'How do I unsubscribe from emails?',
+        answer: 'Answer. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      },
+    ],
+  },
+  {
+    title: 'Reporting',
+    faqs: [
+      {
+        question: 'How do I report a bug?',
+        answer: 'Answer. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      },
+      {
+        question: 'How do I report inappropriate content?',
+        answer: 'Answer. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      },
+      {
+        question: 'How can I provide feedback?',
+        answer: 'Answer. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      },
+      {
+        question: 'How do I report a security issue?',
+        answer: 'Answer. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      },
+      {
+        question: 'How do I report harassment or abuse?',
+        answer: 'Answer. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      },
+      {
+        question: 'How do I report a technical issue?',
+        answer: 'Answer. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      },
+      {
+        question: 'How do I report a copyright infringement?',
+        answer: 'Answer. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      },
+      {
+        question: 'How do I report a billing issue?',
+        answer: 'Answer. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      },
+      {
+        question: 'How do I report a violation of terms?',
+        answer: 'Answer. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      },
+      {
+        question: 'How do I report a privacy concern?',
+        answer: 'Answer. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      },
+      {
+        question: 'How do I report a scam or phishing attempt?',
+        answer: 'Answer. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      },
+      {
+        question: 'How do I report an error in the app?',
+        answer: 'Answer. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      },
+      {
+        question: 'How do I report a broken feature?',
+        answer: 'Answer. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      },
+    ],
+  },
+];
+
+
+
 function App() {
+  const [searchTerm, setSearchTerm] = useState('');
+  
   return (
     <AuthProvider>
       <LoadingContextProvider>
@@ -59,7 +187,7 @@ function App() {
                 <Route  path='/sell' Component={Sell}/>
                 <Route  path='/rent' Component={Rent}/>
                 <Route  path='/agent-finder' Component={Agent}/>
-                <Route  path='/help' Component={Help}/>
+                <Route  path='/help' element={<Help faqData={faqData} setSearchTerm={setSearchTerm} />}/>
                 <Route path='/sign' Component={Signup}/>
                 <Route path='/login' Component={Login}/>
                 <Route path="/admin-profile" Component={AdminProfile}/>
@@ -88,6 +216,8 @@ function App() {
                 <Route path='/valdetails' Component={Valdetails} />
                 <Route path='/approve/:id' Component={Approval} />
                 <Route path='/hotellist' Component={HotelListing}/>
+                <Route path='/faq/:id' element={<FaqSection searchTerm={searchTerm} faqData={faqData}  />}/>
+                
                 <Route path='/change-password' Component={ChangePassword}/>
                 <Route path='/review/:id' Component={Approval}/>
             </Routes>
