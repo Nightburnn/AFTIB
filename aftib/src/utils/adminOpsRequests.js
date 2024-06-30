@@ -1,5 +1,5 @@
 import axios from "axios";
-
+const localhostAddr = "http://127.0.0.1:8080"
 const API_BASE_URL = "https://aftib-6o3h.onrender.com"; // adjust the base URL accordingly
 
 // Initialize agent status request
@@ -57,9 +57,9 @@ export const updateAgencyStatus = async (data, token) => {
 };
 
 // get pending agents request
-export const fetchRequests = async () => {
+export const fetchUnapprovedAgents = async () => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/agency-requests`);
+    const response = await axios.get(`${API_BASE_URL}/get-unapproved-agency-requests`);
     console.log({response})
     return response
   } catch (error) {
@@ -67,6 +67,41 @@ export const fetchRequests = async () => {
     // Handle error state or notify user
   }
 };
+// get pending agents request
+export const fetchAapprovedAgents = async () => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/get-approved-agency-requests`);
+    console.log({response})
+    return response
+  } catch (error) {
+    console.error("Error fetching requests:", error);
+    // Handle error state or notify user
+  }
+};
+
+// search for agents
+export const searchForAgents = async ({state,lga,location}) => {
+  let query = []
+  if(state){
+    query.push(`state=${state}`)
+  }
+  if(lga){
+    query.push(`LGA=${lga}`)
+  }
+  if(address){
+    query.push(`address=${location}`)
+  }
+  query = query.join('&')
+  try {
+    const response = await axios.get(`${API_BASE_URL}/search-for-agent?${query}`);
+    console.log({response})
+    return response
+  } catch (error) {
+    console.error("Error fetching requests:", error);
+    // Handle error state or notify user
+  }
+};
+
 // function to approve request.
 export const approveRequest = async (requestId,token) => {
   // id of the item to be approved.
