@@ -5,14 +5,13 @@ import help2 from '../../assets/images/help2.png';
 import help3 from '../../assets/images/help3.png';
 import { Link } from 'react-router-dom';
 import FaqSection from './FaqSection';
-import { useParams } from 'react-router-dom';
 
 const Help = ({ faqData }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [autocompleteSuggestions, setAutocompleteSuggestions] = useState([]);
   const [filteredFaqs, setFilteredFaqs] = useState([]);
   const [showFaqSection, setShowFaqSection] = useState(false);
-  const { id } = useParams();
+  const [sectionTitle, setSectionTitle] = useState('');
 
   useEffect(() => {
     if (searchTerm && faqData) {
@@ -21,7 +20,7 @@ const Help = ({ faqData }) => {
 
       faqData.forEach((section) => {
         section.faqs.forEach((faq) => {
-          if (faq.question && faq.question.toLowerCase().includes(searchTerm.toLowerCase())) {
+          if (faq.question.toLowerCase().includes(searchTerm.toLowerCase())) {
             suggestions.push(faq.question);
             results.push(faq);
           }
@@ -49,23 +48,26 @@ const Help = ({ faqData }) => {
     setShowFaqSection(true);
   };
 
+  const handleLinkClick = (sectionIndex) => {
+    setFilteredFaqs(faqData[sectionIndex].faqs);
+    setSectionTitle(faqData[sectionIndex].title);
+    setShowFaqSection(true);
+  };
+
   const helpItems = [
     {
       title: 'Getting started',
       description: 'Get your account set up in just 5 simple steps',
-      faqLinkCount: 2,
       image: help1,
     },
     {
       title: 'Account Management',
       description: 'Manage your Account',
-      faqLinkCount: 7,
       image: help2,
     },
     {
       title: 'Reporting',
       description: 'Reporting issues',
-      faqLinkCount: 22,
       image: help3,
     },
   ];
@@ -114,7 +116,7 @@ const Help = ({ faqData }) => {
       </section>
 
       {showFaqSection && filteredFaqs.length > 0 ? (
-        <FaqSection searchTerm={searchTerm} faqData={filteredFaqs} />
+        <FaqSection searchTerm={searchTerm} faqData={filteredFaqs} sectionTitle={sectionTitle} />
       ) : (
         <section className="help mt-5">
           <div className="container">
@@ -126,9 +128,9 @@ const Help = ({ faqData }) => {
                     <div className="topics">
                       <h4>{item.title}</h4>
                       <p>{item.description}</p>
-                      <Link to={`/faq/${index}`} onClick={() => setFilteredFaqs(helpItems[index].faqs)}>
-  {item.faqLinkCount}  articles
-</Link>
+                      <Link to="#" onClick={() => handleLinkClick(index)}>
+                        {faqData[index].faqs.length} articles
+                      </Link>
                     </div>
                   </div>
                 </div>

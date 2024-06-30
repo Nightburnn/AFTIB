@@ -1,32 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import './Faq.css';
 
-const FaqSection = ({ searchTerm, faqData }) => {
-  const { id } = useParams(); // Get id from URL parameters
+const FaqSection = ({ searchTerm, faqData, sectionTitle }) => {
   const [filteredFaqs, setFilteredFaqs] = useState([]);
-  console.log(faqData);
 
   useEffect(() => {
     if (faqData.length > 0) {
-      let filteredItems = faqData; // Start with all faqData
+      let filteredItems = faqData;
 
-      // Filter based on searchTerm
       if (searchTerm) {
         filteredItems = faqData.filter(item =>
           item.question.toLowerCase().includes(searchTerm.toLowerCase())
         );
       }
 
-      // Optionally filter or process based on id
-      if (id) {
-        // Example: Filter based on id
-        filteredItems = filteredItems.filter(item => item.categoryId === id);
-      }
-
       setFilteredFaqs(filteredItems);
     }
-  }, [searchTerm, faqData, id]); // Add id to dependencies if needed
+  }, [searchTerm, faqData]);
 
   if (!faqData || faqData.length === 0) {
     return <div>No FAQs available</div>;
@@ -36,7 +26,7 @@ const FaqSection = ({ searchTerm, faqData }) => {
     <div className="container faq mt-3 mb-4">
       <div className="row">
         <div className="col-lg-8 offset-lg-2">
-          <h2 className="text-center faq-title">FAQs</h2>
+          <h2 className="text-center faq-title">{sectionTitle}</h2>
           <p className="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt dolorum natus explicabo</p>
           <div className="accordion" id="faqAccordion">
             {filteredFaqs.length > 0 ? (
