@@ -48,6 +48,8 @@ import Valdetails from './PostPages/Admin/Dashboard/ViewApprovedListing/Valdetai
 import Vca from './PostPages/Admin/Dashboard/ViewClientApproved/Vca';
 import Vcadetails from './PostPages/Admin/Dashboard/ViewClientApproved/Vcadetails';
 import Transaction from './PostPages/Admin/Dashboard/TranscationReview.jsx/Transcation';
+import Vha from './PostPages/Admin/Dashboard/ViewHotelApproved/Vha';
+import Vhadetails from './PostPages/Admin/Dashboard/ViewHotelApproved/Vhadetails';
 
 
 const faqData = [
@@ -223,6 +225,8 @@ function App() {
                 <Route path='/faq/:id' element={<FaqSection searchTerm={searchTerm} faqData={faqData}  />}/>
                 <Route path='/view-client-account' Component={Vca}/>
                 <Route path='/vcadetails' Component={Vcadetails} />
+                <Route path='/view-approved-hotels' Component={Vha}/>
+                <Route path='/Vhadetails/:id' Component={Vhadetails} />
                 <Route path='/change-password' Component={ChangePassword}/>
                 <Route path='/review/:id' Component={Approval}/>
             </Routes>

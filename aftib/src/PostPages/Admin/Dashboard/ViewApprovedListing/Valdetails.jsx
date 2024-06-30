@@ -1,39 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useLoading } from '../../../../Components/LoadingContext';
-
-// Dummy data for testing
-const dummyListing = {
-  _id: '1',
-  title: 'Beautiful Home in Suburbia',
-  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-  saleType: 'Sale',
-  propertyType: 'House',
-  size: 250,
-  bedrooms: 4,
-  bathrooms: 3,
-  estate: 'Lorem Estate',
-  yearBuilt: 2010,
-  monthlyRentPayment: '$2000',
-  location: 'Suburbia, City A',
-  state: 'State A',
-  LGA: 'Local Govt A',
-  agentContact: {
-    name: 'John Doe',
-    phone: '123-456-7890',
-    email: 'john.doe@example.com',
-  },
-  ownersContact: {
-    name: 'Jane Smith',
-    phone: '987-654-3210',
-    email: 'jane.smith@example.com',
-  },
-  images: [
-    'https://via.placeholder.com/300',
-    'https://via.placeholder.com/300',
-    'https://via.placeholder.com/300',
-  ],
-};
+import { fetchListingById } from '../../../../utils/adminOpsRequests';
 
 const Valdetails = () => {
   const { id } = useParams();
@@ -46,30 +14,10 @@ const Valdetails = () => {
       setLoading(true);
       setLoadingText('Fetching Listing Information');
       console.log('Fetching listing with ID:', id);
-      // Simulate API call delay for 1 second
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      // Replace with actual fetchListingById(id) when integrating with backend
-      // let response = await fetchListingById(id);
-      // console.log('Fetched listing:', response);
-      setListing(dummyListing); // Set the state to the dummy listing object
+      const fetchedListing = await fetchListingById(id);
+      setListing(fetchedListing);
     } catch (err) {
       console.error('Error fetching listing:', err.message);
-    } finally {
-      setLoading(false);
-      setLoadingText('');
-    }
-  }
-
-  async function approve() {
-    try {
-      setLoading(true);
-      setLoadingText('Approving');
-      console.log('Approving listing with ID:', id);
-      // Simulate approval action
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      console.log('Listing approved successfully');
-    } catch (err) {
-      console.error('Error approving listing:', err.message);
     } finally {
       setLoading(false);
       setLoadingText('');
@@ -144,7 +92,7 @@ const Valdetails = () => {
           Are you sure you want to delete this listing? This action cannot be undone.
           </p>
           <div className="text-center">
-            <button onClick={approve} className="btn danger approval-btn">Delete this Listing</button>
+            <button  className="btn danger approval-btn">Delete this Listing</button>
           </div>
         </div>
       </div>

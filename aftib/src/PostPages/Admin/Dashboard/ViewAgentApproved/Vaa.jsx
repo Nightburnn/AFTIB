@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchAapprovedAgents } from '../../../../utils/adminOpsRequests';
+import { useLoading } from '../../../../Components/LoadingContext';
 
 const ApprovedAgents = () => {
   const [agents, setAgents] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  let { setLoading, setLoadingText } = useLoading();
 
   const fetchAgentRequests = async () => {
     try {
+      setLoading(true);
+      setLoadingText('Fetching Approved Agents');
       const response = await fetchAapprovedAgents();
       console.log('Approved Agents Data:', response.data);
       setAgents(response.data);
@@ -17,16 +20,13 @@ const ApprovedAgents = () => {
       setError(error.message);
     } finally {
       setLoading(false);
+      setLoadingText('');
     }
   };
 
   useEffect(() => {
     fetchAgentRequests();
   }, []);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
 
   if (error) {
     return <div>Error: {error}</div>;

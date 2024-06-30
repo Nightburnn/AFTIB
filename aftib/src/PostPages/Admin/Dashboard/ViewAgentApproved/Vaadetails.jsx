@@ -1,23 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { getAgencyRequestById } from '../../../../utils/adminOpsRequests'; 
 import { useLoading } from '../../../../Components/LoadingContext';
-
-// Mock data for testing purposes
-const mockAgent = {
-  _id: '1',
-  name: 'John Doe',
-  businessName: 'Dafemutey',
-  agencyType: 'Individual',
-  CACRef: '',
-  ninNumber: '01234567',
-  officeAddress: 'Lagos',
-  state: 'Lagos',
-  LGA: 'Aba North',
-  phone: '8109558854',
-  whatsappNo: '864225785',
-  about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-  IssuedId: 'https://via.placeholder.com/300',
-};
 
 const Vaadetails = () => {
   let token = window.localStorage.getItem('accessToken');
@@ -25,36 +9,14 @@ const Vaadetails = () => {
   const { id } = useParams();
   const [agent, setAgent] = useState(null);
 
-  // Mock fetch agent request function
   const fetchAgentRequest = async (id) => {
     setLoading(true);
     setLoadingText('Fetching Agent Information');
     try {
-      // Simulate API call delay for 1 second
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      // Replace with actual getAgencyRequestById(id) when integrating with backend
-      // const response = await getAgencyRequestById(id);
-      // setAgent(response.data);
-      setAgent(mockAgent); // Set mock data
+      const response = await getAgencyRequestById(id);
+      setAgent(response.data);
     } catch (error) {
       console.error('Error fetching agent request:', error);
-    } finally {
-      setLoading(false);
-      setLoadingText('');
-    }
-  };
-
-  // Mock send approve request function
-  const sendApproveRequest = async (id) => {
-    setLoading(true);
-    setLoadingText('Approving User');
-    try {
-      // Replace with actual approveRequest(id, token) when integrating with backend
-      // let response = await approveRequest(id, token);
-      // console.log(response.data);
-      console.log('Agent approved:', mockAgent); // Log mock data
-    } catch (err) {
-      console.error(err.message);
     } finally {
       setLoading(false);
       setLoadingText('');
@@ -88,7 +50,7 @@ const Vaadetails = () => {
           <p><strong>Business Name:</strong> {agent.businessName}</p>
           <p><strong>Agency Type:</strong> {agent.agencyType}</p>
           <p><strong>Identification Type:</strong> {agent.agencyType === 'Company' ? 'CAC Number' : 'NIN Number'}</p>
-          <p><strong>{agent.agencyType === 'Company' ? 'CAC Number' : 'NIN Number'}:</strong> {agent.agencyType === 'Company' ? agent.CACRef : agent.ninNumber }</p>
+          <p><strong>{agent.agencyType === 'Company' ? 'CAC Number' : 'NIN Number'}:</strong> {agent.agencyType === 'Company' ? agent.CACRef : agent.ninNumber}</p>
           <p><strong>Office Address:</strong> {agent.officeAddress}</p>
           <p><strong>State:</strong> {agent.state}</p>
           <p><strong>LGA:</strong> {agent.LGA}</p>
@@ -108,21 +70,21 @@ const Vaadetails = () => {
       <div className="section border">
         <h2 className="text-center">Notify The User</h2>
         <p className="text-center">
-        This account has already been approved. You can contact the user if there are any updates or changes required.
+          This account has already been approved. You can contact the user if there are any updates or changes required.
         </p>
       </div>
 
       <div className="section border">
         <h2 className="text-center">Approval Section</h2>
         <p className="text-center">
-        Are you sure you want to Disable this agent? This action cannot be undone.
+          Are you sure you want to disable this agent? This action cannot be undone.
         </p>
         <div className="text-center">
-          <button onClick={() => { sendApproveRequest(agent._id) }} className="btn danger approval-btn">Disable this Agent</button>
+          <button  className="btn danger approval-btn">Disable this Agent</button>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default Vaadetails;
