@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchRequests } from '../../../../utils/adminOpsRequests'; 
+import { fetchUnapprovedAgents } from '../../../../utils/adminOpsRequests'; 
 import './AgentReview.css'; 
 
 const AgentReview = () => {
@@ -9,8 +9,7 @@ const AgentReview = () => {
   const [error, setError] = useState(null); 
   const fetchAgentRequests = async () => {
       try {
-        const response = await fetchRequests();
-        console.log(response.data); 
+        const response = await fetchUnapprovedAgents();
         setAgents(response.data); 
       } catch (error) {
         console.error("Error fetching agent requests:", error);
