@@ -2,6 +2,7 @@ import axios from "axios";
 const localhostAddr = "http://127.0.0.1:8080"
 const API_BASE_URL = "https://aftib-6o3h.onrender.com"; // adjust the base URL accordingly
 
+let token = window.localStorage.getItem('accessToken')
 // Initialize agent status request
 export const requestAgencyStatus = async (data, token) => {
   try {
@@ -88,7 +89,7 @@ export const searchForAgents = async ({state,lga,location}) => {
   if(lga){
     query.push(`LGA=${lga}`)
   }
-  if(address){
+  if(location){
     query.push(`address=${location}`)
   }
   query = query.join('&')
@@ -222,3 +223,18 @@ export const fetchApprovedHotels = async (page = 1) => {
   }
 }
 
+// get user data. pass the accesstoken
+export const getUserData = async ()=>{
+  try {
+    const response = await axios.get(`${API_BASE_URL}/auth/get-user`,{
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    console.log({response})
+    return response.data
+  }
+  catch(err){
+    throw err
+  }
+}
