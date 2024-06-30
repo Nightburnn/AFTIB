@@ -215,7 +215,7 @@ function App() {
                 <Route path='/all' Component={AllAgent}/>
                 <Route path='/review-agent' Component={AgentReview} />
                 <Route path='/view-approved-agent' Component={Vaa} />
-                <Route path='/vaadetails' Component={Vaadetails} />
+                <Route path='/vaadetails/:id' Component={Vaadetails} />
                 <Route path='/view-approved-listings' Component={Val} />
                 <Route path='/valdetails' Component={Valdetails} />
                 <Route path='/approve/:id' Component={Approval} />

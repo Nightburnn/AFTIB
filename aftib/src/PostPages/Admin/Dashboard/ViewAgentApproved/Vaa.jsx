@@ -1,38 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-// Replace with actual fetchRequests function when integrating with backend
-// import { fetchRequests } from '../../../../utils/adminOpsRequests';
+import { fetchAapprovedAgents } from '../../../../utils/adminOpsRequests';
 
-// Mock data for testing purposes
-const mockAgentRequests = [
-  {
-    _id: '1',
-    name: 'John Doe',
-    agency: 'Individual',
-    passport: 'https://via.placeholder.com/150',
-  },
-  {
-    _id: '2',
-    name: 'Jane Smith',
-    agency: 'Agency',
-    passport: 'https://via.placeholder.com/150',
-  },
-];
-
-const Vaa = () => {
+const ApprovedAgents = () => {
   const [agents, setAgents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Mock fetch agent requests function
   const fetchAgentRequests = async () => {
     try {
-      // Simulate API call delay for 1 second
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      // Replace with actual fetchRequests() when integrating with backend
-      // const response = await fetchRequests();
-      // setAgents(response.data);
-      setAgents(mockAgentRequests); // Set mock data
+      const response = await fetchAapprovedAgents();
+      console.log('Approved Agents Data:', response.data);
+      setAgents(response.data);
     } catch (error) {
       console.error('Error fetching agent requests:', error);
       setError(error.message);
@@ -56,10 +35,8 @@ const Vaa = () => {
   return (
     <div className="container agency">
       <div className="py-4 agent">
-        <h1 className="text-center">All Approved Agent</h1>
-        <h3 className="text-center">
-          Below are the list of approved agents.
-        </h3>
+        <h1 className="text-center">All Approved Agents</h1>
+        <h3 className="text-center">Below are the list of approved agents.</h3>
       </div>
       <div className="row mt-4">
         {Array.isArray(agents) && agents.length > 0 ? (
@@ -78,19 +55,19 @@ const Vaa = () => {
                     <h5>Agency Type:</h5>
                     <p>{agent.agency}</p>
                   </div>
-                  <Link to='/Vaadetails' className="btn blue btn-block">
-                  View Details
+                  <Link to={`/vaadetails/${agent._id}`} className="btn blue btn-block">
+                    View Details
                   </Link>
                 </div>
               </div>
             </div>
           ))
         ) : (
-          <div>No Approved agent.</div>
+          <div>No Approved Agents.</div>
         )}
       </div>
     </div>
   );
 };
 
-export default Vaa;
+export default ApprovedAgents;
