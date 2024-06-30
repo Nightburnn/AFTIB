@@ -1,6 +1,6 @@
 import axios from "axios";
-
-const API_BASE_URL = "http://127.0.0.1:8080"; // adjust the base URL accordingly
+const localhostAddr = "http://127.0.0.1:8080"
+const API_BASE_URL = "https://aftib-6o3h.onrender.com"; // adjust the base URL accordingly
 
 // Initialize agent status request
 export const requestAgencyStatus = async (data, token) => {
@@ -71,6 +71,29 @@ export const fetchUnapprovedAgents = async () => {
 export const fetchAapprovedAgents = async () => {
   try {
     const response = await axios.get(`${API_BASE_URL}/get-approved-agency-requests`);
+    console.log({response})
+    return response
+  } catch (error) {
+    console.error("Error fetching requests:", error);
+    // Handle error state or notify user
+  }
+};
+
+// search for agents
+export const searchForAgents = async ({state,lga,location}) => {
+  let query = []
+  if(state){
+    query.push(`state=${state}`)
+  }
+  if(lga){
+    query.push(`LGA=${lga}`)
+  }
+  if(address){
+    query.push(`address=${location}`)
+  }
+  query = query.join('&')
+  try {
+    const response = await axios.get(`${API_BASE_URL}/search-for-agent?${query}`);
     console.log({response})
     return response
   } catch (error) {
