@@ -20,6 +20,7 @@ const Listing = () => {
   let token = window.localStorage.getItem("accessToken");
   let imageInput = useRef(null);
   const [images, setImages] = useState([]);
+  const [previews,setPreviews] = useState([]);
 
   const [developmentStage,setDevelopmentStage] = useState('urban') 
   function updateDevelopmentStage(e){
@@ -31,6 +32,23 @@ const Listing = () => {
   });
   const handleSubmit = (e) => {
     e.preventDefault();
+  };
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const newImages = [...images, file];
+      const newPreviews = [...previews, URL.createObjectURL(file)];
+      setImages(newImages);
+      setPreviews(newPreviews);
+      imageInput.current.value = null;
+    }
+  };
+
+  const handleDeleteImage = (index) => {
+    const newImages = images.filter((_, i) => i !== index);
+    const newPreviews = previews.filter((_, i) => i !== index);
+    setImages(newImages);
+    setPreviews(newPreviews);
   };
 
   const [formValues, setFormValues] = useState({
@@ -83,14 +101,14 @@ const Listing = () => {
     setFormValues({
       ...formValues,
       [name]: value,
-    });
-  };
+    })
+  }
 
   const handleDrop = (event) => {
-    event.preventDefault();
-    const files = Array.from(event.dataTransfer.files);
-    uploadFiles(files);
-  };
+    event.preventDefault()
+    const files = Array.from(event.dataTransfer.files)
+    uploadFiles(files)
+  }
 
   const handleFileSelect = (event) => {
     const files = Array.from(event.target.files);
@@ -132,7 +150,7 @@ const Listing = () => {
     if (!validate.valid) return;
     try {
       let addListing = await axios.post(
-        "https://aftib-6o3h.onrender.com/listing/addListing",
+        "http://127.0.0.1:8080/listing/addListing",
         JSON.stringify(requestBody),
         {
           headers: {
@@ -143,7 +161,7 @@ const Listing = () => {
       );
       console.log({ res: addListing.data });
       const formData = new FormData();
-      let files = imageInput.current.files;
+      let files = images;
       if (files.length > 0) {
         // Create a FormData object
         for (let i = 0; i < files.length; i++) {
@@ -152,7 +170,7 @@ const Listing = () => {
       }
       // Make an Axios POST request to the add listing image endpoint
       const result = await axios.put(
-        `https://aftib-6o3h.onrender.com/listing/addListingImages/${addListing.data.listingId}`,
+        `http://127.0.0.1:8080/listing/addListingImages/${addListing.data.listingId}`,
         formData,
         {
           headers: {
@@ -780,68 +798,42 @@ const Listing = () => {
         <div className="col-xs-12 gallery-listing mb-3">
           <div className="form-group mt-4">
             <h2>Gallery</h2>
+            <p>Upload the images for the listings one after the other</p>
             <div className="listing-gallery">
-              <form id="uploadForm">
-                <input
-                  ref={imageInput}
-                  type="file"
-                  id="fileInput"
-                  name="files"
-                  multiple
-                />
-              </form>
-              <div
-                className="dropzone text-center"
-                onDrop={handleDrop}
-                onDragOver={(e) => e.preventDefault()}
-                onClick={() => document.getElementById("fileUpload").click()}
+            <form id="uploadForm">
+              <p><b>{images.length > 0? 'Upload Another One': ""}</b></p>
+              
+        <input
+          type="file"
+          id="fileInput"
+          placeholder="Add Image"
+          name="files"
+          onChange={handleImageUpload}
+          ref={imageInput}
+        />
+        <div className="my-5 row justify-content-center">
+          {previews.map((preview, index) => (
+            <div className="col-8 col-md-5 col-lg-4 position-relative" key={index}>
+              <img src={preview} alt={`preview-${index}`} className="img-fluid previewImage" />
+              <button
+                type="button"
+                className="btn btn-danger position-absolute top-0 end-0"
+                onClick={() => handleDeleteImage(index)}
               >
-                {images.length === 0 && (
-                  <div className="placeholder-text">
-                    Drag & drop files here…
-                  </div>
-                )}
+                Delete
+              </button>
+            </div>
+          ))}
+        </div>
+      </form>
 
-                <div className="preview mt-3 d-flex flex-wrap justify-content-center">
-                  {images.map((image, index) => (
-                    <div key={index} className="p-2">
-                      <img
-                        src={image}
-                        alt={`Upload Preview ${index}`}
-                        className="img-thumbnail"
-                      />
-
-                      <button
-                        className="btn btn-sm btn-danger btn-remove"
-                        onClick={() => removeImage(index)}
-                      >
-                        x
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mt-3">
-                <input
-                  type="file"
-                  id="fileUpload"
-                  className="form-control custom-input-file"
-                  onChange={handleFileSelect}
-                  multiple
-                  accept="image/*"
-                  style={{ display: "none" }}
-                />
-              </div>
             </div>
           </div>
         </div>
       </div>
       <div className="row justify-content-center">
         <button className="btn listbtn  mt-3" onClick={submitForm}>
-          <Link to="/review" className="listbtn">
-            Submit{" "}
-          </Link>
+            Submit
         </button>
       </div>
     </div>
