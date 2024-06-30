@@ -45,6 +45,9 @@ import Vaa from './PostPages/Admin/Dashboard/ViewAgentApproved/Vaa';
 import Vaadetails from './PostPages/Admin/Dashboard/ViewAgentApproved/Vaadetails';
 import Val from './PostPages/Admin/Dashboard/ViewApprovedListing/Val';
 import Valdetails from './PostPages/Admin/Dashboard/ViewApprovedListing/Valdetails';
+import Vca from './PostPages/Admin/Dashboard/ViewClientApproved/Vca';
+import Vcadetails from './PostPages/Admin/Dashboard/ViewClientApproved/Vcadetails';
+import Transaction from './PostPages/Admin/Dashboard/TranscationReview.jsx/Transcation';
 
 
 const faqData = [
@@ -203,6 +206,7 @@ function App() {
                 <Route path='/review-listings' Component={AgentListingReview}/>
                 <Route path='/review-hotels' Component={HotelListingReview}/>
                 <Route path='/agent-dashboard' Component={AgentDashboard}/>
+                <Route path='/review-transactions' Component={Transaction}/>
                 <Route path='/forgot' Component={Forgot}/>
                 <Route path='/alrdetails' Component={Alrdetails}/>
                 <Route path='/hlrdetails/:id' Component={Hlrdetails}/>
@@ -217,7 +221,8 @@ function App() {
                 <Route path='/approve/:id' Component={Approval} />
                 <Route path='/hotellist' Component={HotelListing}/>
                 <Route path='/faq/:id' element={<FaqSection searchTerm={searchTerm} faqData={faqData}  />}/>
-                
+                <Route path='/view-client-account' Component={Vca}/>
+                <Route path='/vcadetails' Component={Vcadetails} />
                 <Route path='/change-password' Component={ChangePassword}/>
                 <Route path='/review/:id' Component={Approval}/>
             </Routes>

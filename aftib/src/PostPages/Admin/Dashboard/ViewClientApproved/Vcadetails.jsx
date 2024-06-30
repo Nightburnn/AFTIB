@@ -19,7 +19,7 @@ const mockAgent = {
   IssuedId: 'https://via.placeholder.com/300',
 };
 
-const Vaadetails = () => {
+const Vcadetails = () => {
   let token = window.localStorage.getItem('accessToken');
   let { setLoading, setLoadingText } = useLoading();
   const { id } = useParams();
@@ -72,7 +72,7 @@ const Vaadetails = () => {
   return (
     <div className="container agent-detail">
       <div className="header">
-        <h1 className="text-center">Agent Review</h1>
+        <h1 className="text-center">Client</h1>
       </div>
 
       <div className="section border profile-section">
@@ -85,7 +85,7 @@ const Vaadetails = () => {
       <div className="section border">
         <h2 className="text-center">Informations</h2>
         <div className="info-agent">
-          <p><strong>Business Name:</strong> {agent.businessName}</p>
+          <p><strong>Client Name:</strong> {agent.businessName}</p>
           <p><strong>Agency Type:</strong> {agent.agencyType}</p>
           <p><strong>Identification Type:</strong> {agent.agencyType === 'Company' ? 'CAC Number' : 'NIN Number'}</p>
           <p><strong>{agent.agencyType === 'Company' ? 'CAC Number' : 'NIN Number'}:</strong> {agent.agencyType === 'Company' ? agent.CACRef : agent.ninNumber }</p>
@@ -98,12 +98,7 @@ const Vaadetails = () => {
         </div>
       </div>
 
-      <div className="section border">
-        <h2 className="text-center">Government Issued ID</h2>
-        <div className="text-center">
-          <img src={agent.IssuedId} className="gov-id" alt="Government ID" />
-        </div>
-      </div>
+     
 
       <div className="section border">
         <h2 className="text-center">Notify The User</h2>
@@ -115,14 +110,14 @@ const Vaadetails = () => {
       <div className="section border">
         <h2 className="text-center">Approval Section</h2>
         <p className="text-center">
-        Are you sure you want to Disable this agent? This action cannot be undone.
+        Are you sure you want to Disable this client? This action cannot be undone.
         </p>
         <div className="text-center">
-          <button onClick={() => { sendApproveRequest(agent._id) }} className="btn danger approval-btn">Disable this Agent</button>
+          <button onClick={() => { sendApproveRequest(agent._id) }} className="btn danger approval-btn">Disable this Client</button>
         </div>
       </div>
     </div>
   );
 }
 
-export default Vaadetails;
+export default Vcadetails;

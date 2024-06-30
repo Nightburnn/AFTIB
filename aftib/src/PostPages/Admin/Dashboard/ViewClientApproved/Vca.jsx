@@ -19,7 +19,7 @@ const mockAgentRequests = [
   },
 ];
 
-const Vaa = () => {
+const Vca = () => {
   const [agents, setAgents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -56,9 +56,9 @@ const Vaa = () => {
   return (
     <div className="container agency">
       <div className="py-4 agent">
-        <h1 className="text-center">All Approved Agent</h1>
+        <h1 className="text-center">All Clients</h1>
         <h3 className="text-center">
-          Below are the list of approved agents.
+          Below are the list of Client.
         </h3>
       </div>
       <div className="row mt-4">
@@ -78,7 +78,7 @@ const Vaa = () => {
                     <h5>Agency Type:</h5>
                     <p>{agent.agency}</p>
                   </div>
-                  <Link to='/Vaadetails' className="btn blue btn-block">
+                  <Link to='/Vcadetails' className="btn blue btn-block">
                   View Details
                   </Link>
                 </div>
@@ -86,11 +86,11 @@ const Vaa = () => {
             </div>
           ))
         ) : (
-          <div>No Approved agent.</div>
+          <div>No Client.</div>
         )}
       </div>
     </div>
   );
 };
 
-export default Vaa;
+export default Vca;
