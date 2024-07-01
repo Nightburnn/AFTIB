@@ -72,7 +72,7 @@ const Chatbot = () => {
     { keywords: ["greetings", "salutations", "hello", "hi", "hey"], response: "Hello! How can I help you today?" },
     { keywords: ["buy", "sell",  "rent", "shortlet"], response: "To Buy, rent, sell,or shortlet an aprtment go to Buy Page and scroll through various houses " },
     { keywords: ["assistance", "aid", "help", "support"], response: "I'm here to help! What do you need assistance with?" },
-    { keywords: ["signup", "register", "create", , "open"], response: "To create an account, go to the signup page and fill out the form with your details. Once you submit the form, you will receive a confirmation email." },
+    { keywords: ["signup", "register", "create", "open"], response: "To create an account, go to the signup page and fill out the form with your details. Once you submit the form, you will receive a confirmation email." },
     { keywords: ["forgot", "reset", "password"], response: "To reset your password, click on the 'Forgot Password' link on the login page and follow the instructions." },
     { keywords: ["edit", "modify", "update", "profile"], response: "To update your profile information, go to the profile settings page and make the necessary changes." },
     { keywords: ["modify", "change", "email"], response: "To change your email address, go to the account settings page and update your email information." },
