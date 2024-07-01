@@ -2,78 +2,39 @@ import React,{useState,useEffect} from "react";
 import "../../Admin/Dashboard/Dash.css";
 import { TfiPrinter } from "react-icons/tfi";
 import { Link, useNavigate } from "react-router-dom";
-import { getAgencyRequestByToken, getAgentDashboardData } from "../../../utils/adminOpsRequests";
-
-
-const approvalAndReviewData = [
-  {
-    icon: <TfiPrinter />,
-    number: "2,345",
-    title: "My Approved Listing",
-    buttonText: "Review Request",
-    link: "/agent/approvedlist",
-  },
-  {
-    icon: <TfiPrinter />,
-    number: "2,345",
-    title: "My Approved Hotel",
-    buttonText: "Review Hotel",
-    link: "/agent/approvedhotels",
-  },
-  {
-    icon: <TfiPrinter />,
-    number: "2,345",
-    title: "Pending Listing",
-    buttonText: "Review Request",
-    link: "/agent/pendinglist",
-  },
-  {
-    icon: <TfiPrinter />,
-    number: "2,345",
-    title: "Pending Hotel",
-    buttonText: "Review Hotel",
-    link: "/agent/pendinghotels",
-  },
-];
-
-const statisticsAndInfoData = [
-  {
-    icon: <TfiPrinter />,
-    number: "2,345",
-    title: "My Transaction",
-    buttonText: "View Data",
-    link: "/agent/transactions",
-  },
-  {
-    icon: <TfiPrinter />,
-    number: "2,345",
-    title: "My Property Sales",
-    buttonText: "View Data",
-    link: "/agent/propertysales",
-  },
-  {
-    icon: <TfiPrinter />,
-    number: "2,345",
-    title: "My Hotel Bookings",
-    buttonText: "View Data",
-    link: "/agent/hotelbookings",
-  },
-  {
-    icon: <TfiPrinter />,
-    number: "2,345",
-    title: "My Property Rentals",
-    buttonText: "View Data",
-    link: "/agent/propertyrentals",
-  },
-];
+import { getAgencyRequestByToken, getAgentDashboardData, getUserData } from "../../../utils/adminOpsRequests";
+import { useSelector, useDispatch } from "react-redux";
+import { updateUserData } from "../../../store/userSlice";
 
 const AgentDashboard = () => {
   let navigate = useNavigate()
   let [agentData,setAgentData] = useState({})
+  let [transactions, setTransactions] = useState([]);
+  let [sales,setSales] = useState([])
+  let [hotelbookings,setHotelBookings] = useState([])
+  let [rentals,setRentals] = useState([])
+  let [userData, setUserData] = useState(null);
   let [dashboardData,setDashboardData] = useState({})
   let [hotels,setHotel] = useState([])
   let [listings,setListings] = useState([])
   let [message, setMessage] = useState('')
+  let dispatch = useDispatch();
+  async function getData() {
+    try {
+      let data = await Promise.resolve(getUserData());
+      dispatch(updateUserData(data));
+      setHotelBookings(data.myHotelReservations);
+      setTransactions(data.myTransactions);
+      setSales(data.myPurchases);
+      setRentals(data.myRentals);
+      console.log({ data });
+    } catch (err) {
+      console.error({ error: err.message });
+    }
+  }
+  useEffect(() => {
+    getData();
+  }, []);
   const goToAgentRegistration = () =>{
     navigate('/agent-registration?edit=true')
   }
@@ -206,27 +167,70 @@ const AgentDashboard = () => {
           <h2 className="text-center">Statistics & Information</h2>
           <div className="card-body">
             <div className="row">
-              {statisticsAndInfoData.map((item, idx) => (
-                <div
-                  className={`col-md-6 mb-4 ${idx === 4 ? "col-md-6" : ""}`}
-                  key={idx}
-                >
+            <div className="col-md-6 mb-4">
                   <div className="card text-dark bg-light h-100">
                     <div className="card-body">
                       <div className="d-flex align-items-center">
-                        <div className="icon mr-3">{item.icon}</div>
+                        <div className="icon mr-3"><TfiPrinter /></div>
                         <div>
-                          <h3>{item.number}</h3>
-                          <p>{item.title}</p>
+                          <h3>{transactions.length}</h3>
+                          <p>My Transactions</p>
                         </div>
                       </div>
-                      <Link to={item.link} className="btn blue btn-block mt-3">
-                        {item.buttonText}
+                      <Link to={'/agent/transactions'} className="btn blue btn-block mt-3">
+                        View Transactions
                       </Link>
                     </div>
                   </div>
                 </div>
-              ))}
+            <div className="col-md-6 mb-4">
+                  <div className="card text-dark bg-light h-100">
+                    <div className="card-body">
+                      <div className="d-flex align-items-center">
+                        <div className="icon mr-3"><TfiPrinter /></div>
+                        <div>
+                          <h3>{sales.length}</h3>
+                          <p>My Property Sales</p>
+                        </div>
+                      </div>
+                      <Link to={'/agent/propertysales'} className="btn blue btn-block mt-3">
+                        View Sales Record
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+            <div className="col-md-6 mb-4">
+                  <div className="card text-dark bg-light h-100">
+                    <div className="card-body">
+                      <div className="d-flex align-items-center">
+                        <div className="icon mr-3"><TfiPrinter /></div>
+                        <div>
+                          <h3>{hotelbookings.length}</h3>
+                          <p>Hotel Bookings</p>
+                        </div>
+                      </div>
+                      <Link to={'/agent/hotelbookings'} className="btn blue btn-block mt-3">
+                        View Bookings
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+            <div className="col-md-6 mb-4">
+                  <div className="card text-dark bg-light h-100">
+                    <div className="card-body">
+                      <div className="d-flex align-items-center">
+                        <div className="icon mr-3"><TfiPrinter /></div>
+                        <div>
+                          <h3>{rentals.length}</h3>
+                          <p>Property Rentals</p>
+                        </div>
+                      </div>
+                      <Link to={'/agent/propertyrentals'} className="btn blue btn-block mt-3">
+                        View Rental Records
+                      </Link>
+                    </div>
+                  </div>
+                </div>
             </div>
           </div>
         </div>

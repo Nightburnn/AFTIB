@@ -5,36 +5,6 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { updateUserData } from "../../../store/userSlice";
 import { getUserData } from "../../../utils/adminOpsRequests";
-const approvalAndReviewData = [
-  {
-    icon: <TfiPrinter />,
-    number: "2,345",
-    title: "My Transactions",
-    buttonText: "Review Request",
-    link: "/review-agent",
-  },
-  {
-    icon: <TfiPrinter />,
-    number: "2,345",
-    title: "My purchases",
-    buttonText: "Review Hotel",
-    link: "/review-listings",
-  },
-  {
-    icon: <TfiPrinter />,
-    number: "2,345",
-    title: "My Rentals",
-    buttonText: "Review Request",
-    link: "/review-hotels",
-  },
-  {
-    icon: <TfiPrinter />,
-    number: "2,345",
-    title: "My Hotel Reservations",
-    buttonText: "Review Hotel",
-    link: "/review-transactions",
-  },
-];
 
 const ClientDashboard = () => {
   let [userData, setUserData] = useState(null);
