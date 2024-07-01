@@ -157,11 +157,11 @@ const AgentRegistration = () => {
 
   const handleOk = () => {
     setShowModal(false);
-    navigate("/");
-  };
+    navigate("/agent-dashboard");
+  }
   const handleCancel = () => {
     setShowModal(false);
-  };
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);

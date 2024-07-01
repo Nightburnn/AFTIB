@@ -1,7 +1,7 @@
 import axios from "axios";
 let localhostAddr = "http://127.0.0.1:8080";
 let API_BASE_URL = "https://aftib-6o3h.onrender.com"; // adjust the base URL accordingly
-API_BASE_URL = localhostAddr
+//API_BASE_URL = localhostAddr
 
 let token = window.localStorage.getItem("accessToken");
 // Initialize agent status request
@@ -210,6 +210,24 @@ export const fetchUnapprovedListings = async () => {
   }
 };
 
+export const removeListingImages = async (listingId, toBeRemoved) => {
+  try {
+    const response = await axios.put(
+      `${API_BASE_URL}/${listingId}`,
+      { toBeRemoved },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`, // Assuming you store token in localStorage
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error removing images:", error);
+    throw error;
+  }
+};
+
 export const fetchListingById = async (id) => {
   let url = `${API_BASE_URL}/listing/getListingById/${id}`;
   try {
@@ -306,3 +324,22 @@ export const getUserData = async () => {
     throw err;
   }
 };
+
+// get user data. pass the accesstoken
+export const getAgentDashboardData = async () => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/auth/get-agent-dashboard-data`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log({ response: response.data });
+    return response.data;
+  } catch (err) {
+    throw err;
+  }
+};
+
+
+
+

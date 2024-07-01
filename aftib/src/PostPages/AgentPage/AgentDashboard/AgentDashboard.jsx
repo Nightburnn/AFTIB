@@ -2,7 +2,7 @@ import React,{useState,useEffect} from "react";
 import "../../Admin/Dashboard/Dash.css";
 import { TfiPrinter } from "react-icons/tfi";
 import { Link, useNavigate } from "react-router-dom";
-import { getAgencyRequestByToken } from "../../../utils/adminOpsRequests";
+import { getAgencyRequestByToken, getAgentDashboardData } from "../../../utils/adminOpsRequests";
 
 
 const approvalAndReviewData = [
@@ -70,9 +70,15 @@ const statisticsAndInfoData = [
 const AgentDashboard = () => {
   let navigate = useNavigate()
   let [agentData,setAgentData] = useState({})
+  let [dashboardData,setDashboardData] = useState({})
+  let [hotels,setHotel] = useState([])
+  let [listings,setListings] = useState([])
   let [message, setMessage] = useState('')
   const goToAgentRegistration = () =>{
     navigate('/agent-registration?edit=true')
+  }
+  function getApprovedCount(bool,array){
+    return bool? array.filter(x=> x.approved ).length: array.filter(x=> !x.approved).length
   }
   async function getByToken(){
     try{
@@ -94,8 +100,22 @@ const AgentDashboard = () => {
       console.error(err.message)
     }
   }
+  async function getByDashboardData(){
+    try{
+      let response = await getAgentDashboardData()
+      // fill the other data
+      setDashboardData(response)
+      setHotel(response.hotels)
+      setListings(response.listings)
+      console.log('daashboardddddddddd', response)    
+    }
+    catch(err){
+      console.error(err.message)
+    }
+  }
   useEffect(()=>{
       getByToken()
+      getByDashboardData()
   },[])
   return (
     <div className="dash">
@@ -113,24 +133,70 @@ const AgentDashboard = () => {
           </div>
           <div className="card-body">
             <div className="row">
-              {approvalAndReviewData.map((item, idx) => (
-                <div className="col-md-6 mb-4" key={idx}>
+            <div className="col-md-6 mb-4">
                   <div className="card text-dark bg-light h-100">
                     <div className="card-body">
                       <div className="d-flex align-items-center">
-                        <div className="icon mr-3">{item.icon}</div>
+                        <div className="icon mr-3"><TfiPrinter /></div>
                         <div>
-                          <h3>{item.number}</h3>
-                          <p>{item.title}</p>
+                          <h3>{getApprovedCount(true,listings)}</h3>
+                          <p>My Approved Listing</p>
                         </div>
                       </div>
-                      <Link to={item.link} className="btn blue btn-block mt-3">
-                        {item.buttonText}
+                      <Link to={'/agent/approvedlist'} className="btn blue btn-block mt-3">
+                        View Your Approved Listings
                       </Link>
                     </div>
                   </div>
                 </div>
-              ))}
+            <div className="col-md-6 mb-4">
+                  <div className="card text-dark bg-light h-100">
+                    <div className="card-body">
+                      <div className="d-flex align-items-center">
+                        <div className="icon mr-3"><TfiPrinter /></div>
+                        <div>
+                          <h3>{getApprovedCount(true,hotels)}</h3>
+                          <p>My Approved Hotels</p>
+                        </div>
+                      </div>
+                      <Link to={'/agent/approvedhotels'} className="btn blue btn-block mt-3">
+                        View Approved Hotels
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+            <div className="col-md-6 mb-4">
+                  <div className="card text-dark bg-light h-100">
+                    <div className="card-body">
+                      <div className="d-flex align-items-center">
+                        <div className="icon mr-3"><TfiPrinter /></div>
+                        <div>
+                          <h3>{getApprovedCount(false,listings)}</h3>
+                          <p>Pending Listing</p>
+                        </div>
+                      </div>
+                      <Link to={'/agent/pendinglist'} className="btn blue btn-block mt-3">
+                        View Pending Listings
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+            <div className="col-md-6 mb-4">
+                  <div className="card text-dark bg-light h-100">
+                    <div className="card-body">
+                      <div className="d-flex align-items-center">
+                        <div className="icon mr-3"><TfiPrinter /></div>
+                        <div>
+                          <h3>{getApprovedCount(false,hotels)}</h3>
+                          <p>Pending Hotels</p>
+                        </div>
+                      </div>
+                      <Link to={'/agent/pendinghotels'} className="btn blue btn-block mt-3">
+                        View Pending Hotels
+                      </Link>
+                    </div>
+                  </div>
+                </div>
             </div>
           </div>
         </div>

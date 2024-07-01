@@ -4,7 +4,11 @@ import "leaflet/dist/leaflet.css";
 import "./Listing.css";
 import L from "leaflet";
 import { nigerianStateData } from "./data";
+import { Modal } from "antd";
+import { useLoading } from "../../Components/LoadingContext";
+import { useLocation, useNavigate } from "react-router-dom";
 import { checkRequiredData } from "../../utils/processListing";
+import { fetchListingById } from "../../utils/adminOpsRequests";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -18,10 +22,24 @@ L.Icon.Default.mergeOptions({
 
 const Listing = () => {
   let token = window.localStorage.getItem("accessToken");
+  let navigate = useNavigate()
+  const routeLocation = useLocation();
+  const queryParams = new URLSearchParams(routeLocation.search);
+  let edit = queryParams.get('edit') ? true : false
+  let id = queryParams.get('id')
+  let [showModal, setShowModal] = useState(false);
+  let [modalTitle, setModalTitle] = useState("");
+  let [modalBody, setModalBody] = useState("");
+  let { setLoading, setLoadingText } = useLoading();
   let imageInput = useRef(null);
   const [images, setImages] = useState([]);
   const [previews, setPreviews] = useState([]);
-
+  const handleOk = () => {
+    setShowModal(false);
+  }
+  const handleCancel = () => {
+    setShowModal(false);
+  }
   const [developmentStage, setDevelopmentStage] = useState("urban");
   function updateDevelopmentStage(e) {
     setDevelopmentStage(e.target.value);
@@ -149,6 +167,8 @@ const Listing = () => {
     };
     if (!validate.valid) return;
     try {
+      setLoading(true)
+      setLoadingText('Adding your listing')
       let addListing = await axios.post(
         "http://127.0.0.1:8080/listing/addListing",
         JSON.stringify(requestBody),
@@ -168,6 +188,7 @@ const Listing = () => {
           formData.append("files", files[i]);
         }
       }
+      setLoadingText('Adding images')
       // Make an Axios POST request to the add listing image endpoint
       const result = await axios.put(
         `http://127.0.0.1:8080/listing/addListingImages/${addListing.data.listingId}`,
@@ -180,9 +201,16 @@ const Listing = () => {
           },
         },
       );
+      setLoadingText('Successful')
       console.log("Images uploaded successfully", result.data);
     } catch (err) {
       console.error(err.message);
+    }
+    finally{
+      setTimeout(()=>{
+        setLoading(false)
+        navigate('/agent-dashboard')
+      },3000)
     }
   }
 
@@ -220,6 +248,15 @@ const Listing = () => {
 
   return (
     <div className="container mt-5">
+            <Modal
+        title={modalTitle}
+        open={showModal}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        cancelText={"Try Again"}
+      >
+        <p>{modalBody}</p>
+      </Modal>
       <div className="row">
         <div className="col-md-6 listing">
           <h2>Listing</h2>
