@@ -9,6 +9,7 @@ import {
   requestAgencyStatus,
   updateAgencyStatusIssuedId,
   updateAgencyStatusPassport,
+  getAgencyRequestByToken
 } from "../../utils/adminOpsRequests";
 
 const AgentRegistration = () => {
@@ -42,10 +43,13 @@ const AgentRegistration = () => {
   const [passport, setPassport] = useState(null);
   const [issuedIdPreview, setIssuedIdPreview] = useState(null);
   const [passportPhotoPreview, setPassportPhotoPreview] = useState(null);
-  
+  async function getByToken(){
+    let response = await getAgencyRequestByToken()
+    console.log('data', response)
+  }
   useEffect(()=>{
     if(edit){
-
+      
     }
     else {
       

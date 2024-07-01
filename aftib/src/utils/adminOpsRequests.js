@@ -2,6 +2,7 @@ import axios from "axios";
 const localhostAddr = "http://127.0.0.1:8080";
 const API_BASE_URL = "https://aftib-6o3h.onrender.com"; // adjust the base URL accordingly
 
+
 let token = window.localStorage.getItem("accessToken");
 // Initialize agent status request
 export const requestAgencyStatus = async (data, token) => {
@@ -148,6 +149,21 @@ export const approveRequest = async (requestId, token) => {
 
 export const getAgencyRequestById = async (id) => {
   let url = `${API_BASE_URL}/get-agency-request/${id}`;
+  try {
+    const response = await axios.get(url,{
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    return response;
+  } catch (error) {
+    console.error("Error fetching agency request:", error);
+    throw error;
+  }
+};
+
+export const getAgencyRequestByToken = async (id) => {
+  let url = `${API_BASE_URL}/get-agency-request-by-token`;
   try {
     const response = await axios.get(url,{
       headers: {
