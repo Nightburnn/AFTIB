@@ -47,8 +47,8 @@ const AgentRegistration = () => {
     try{
       let response = await getAgencyRequestByToken()
       // fill the other data
-      setName(data.name)
-      setBusinessName(data.businessName)
+      setName(response.name)
+      setBusinessName(response.businessName)
       console.log('data', response)
     }
     catch(err){
