@@ -44,9 +44,16 @@ const AgentRegistration = () => {
   const [issuedIdPreview, setIssuedIdPreview] = useState(null);
   const [passportPhotoPreview, setPassportPhotoPreview] = useState(null);
   async function getByToken(){
-    let response = await getAgencyRequestByToken()
-    
-    console.log('data', response)
+    try{
+      let response = await getAgencyRequestByToken()
+      // fill the other data
+      setName(data.name)
+      setBusinessName(data.businessName)
+      console.log('data', response)
+    }
+    catch(err){
+      console.error(err.message)
+    }
   }
   useEffect(()=>{
     if(edit){
