@@ -257,7 +257,7 @@ const Header = () => {
                             </NavLink>
                           </li>
                         </>
-                      ) : user.accountType === "Agent" ? (
+                      ) : user.accountType === "agent" ? (
                         <>
                           <li>
                             <NavLink
@@ -280,7 +280,7 @@ const Header = () => {
                           <li>
                             <NavLink
                               className="dropdown-item"
-                              to="/profile#settings"
+                              to="/profile"
                               onClick={handleNavLinkClick}
                             >
                               Settings
