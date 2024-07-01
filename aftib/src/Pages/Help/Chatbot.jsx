@@ -36,6 +36,16 @@ const Chatbot = () => {
   }, [messages]);
 
   useEffect(() => {
+    if (isOpen) {
+      setTimeout(() => {
+        if (chatboxRef.current) {
+          chatboxRef.current.scrollTop = chatboxRef.current.scrollHeight;
+        }
+      }, 0);
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
     saveStateToLocalStorage({ isOpen, messages });
   }, [isOpen, messages]);
 
@@ -67,10 +77,9 @@ const Chatbot = () => {
     }, 600);
   };
 
-  // Manually create keyword-response pairs
   const keywordResponses = [
     { keywords: ["greetings", "salutations", "hello", "hi", "hey"], response: "Hello! How can I help you today?" },
-    { keywords: ["buy", "sell",  "rent", "shortlet"], response: "To Buy, rent, sell,or shortlet an aprtment go to Buy Page and scroll through various houses " },
+    { keywords: ["buy", "sell",  "rent", "shortlet"], response: "To Buy, rent, sell,or shortlet an apartment go to Buy Page and scroll through various houses." },
     { keywords: ["assistance", "aid", "help", "support"], response: "I'm here to help! What do you need assistance with?" },
     { keywords: ["signup", "register", "create", "open"], response: "To create an account, go to the signup page and fill out the form with your details. Once you submit the form, you will receive a confirmation email." },
     { keywords: ["forgot", "reset", "password"], response: "To reset your password, click on the 'Forgot Password' link on the login page and follow the instructions." },
@@ -96,13 +105,10 @@ const Chatbot = () => {
     const lowerCaseMessage = userMessage.toLowerCase();
     let response = null;
 
-    console.log("User message:", userMessage); // Logging user message
-
     for (const pair of keywordResponses) {
       const matched = pair.keywords.some((keyword) =>
         lowerCaseMessage.includes(keyword),
       );
-      console.log("Checking keywords:", pair.keywords, "Matched:", matched); // Logging keyword checking
       if (matched) {
         response = pair.response;
         break;
@@ -113,8 +119,6 @@ const Chatbot = () => {
       response = "Sorry, I couldn't find an answer to your question. Please send your email and leave a message, and someone will get back to you.";
       setAwaitingEmail(true); 
     }
-
-    console.log("Response:", response);
 
     setMessages((prevMessages) => {
       const updatedMessages = [...prevMessages];
@@ -186,7 +190,7 @@ const Chatbot = () => {
               Clear Chat
             </button>
           </header>
-          <ul className="chatbox" ref={chatboxRef}>
+          <ul className="chatbox" ref={chatboxRef} style={{ maxHeight: '300px', overflowY: 'auto' }}>
             {messages.map((message, index) => (
               <li key={index} className={`chat ${message.type}`}>
                 {message.type === "incoming" && (
