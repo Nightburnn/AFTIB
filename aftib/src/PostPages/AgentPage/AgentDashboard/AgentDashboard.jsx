@@ -4,7 +4,7 @@ import { TfiPrinter } from "react-icons/tfi";
 import { Link, useNavigate } from "react-router-dom";
 import { getAgencyRequestByToken, getAgentDashboardData, getUserData } from "../../../utils/adminOpsRequests";
 import { useSelector, useDispatch } from "react-redux";
-import { updateUserData } from "../../../store/userSlice";
+import { updateUserData, updateAgentDashboardData } from "../../../store/userSlice";
 
 const AgentDashboard = () => {
   let navigate = useNavigate()
@@ -19,6 +19,7 @@ const AgentDashboard = () => {
   let [listings,setListings] = useState([])
   let [message, setMessage] = useState('')
   let dispatch = useDispatch();
+  let dashboardDataMain = useSelector(state=> state.user.agentDashboardData)
   async function getData() {
     try {
       let data = await Promise.resolve(getUserData());
@@ -46,7 +47,6 @@ const AgentDashboard = () => {
       let response = await getAgencyRequestByToken()
       // fill the other data
       setAgentData(response)
-      console.log('data', response)    
         if(response.approvalState == 'rejected'){
         setMessage(response.rejectionMessage)
       }
@@ -66,9 +66,9 @@ const AgentDashboard = () => {
       let response = await getAgentDashboardData()
       // fill the other data
       setDashboardData(response)
+      dispatch(updateAgentDashboardData(response))
       setHotel(response.hotels)
       setListings(response.listings)
-      console.log('daashboardddddddddd', response)    
     }
     catch(err){
       console.error(err.message)

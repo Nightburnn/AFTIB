@@ -287,6 +287,23 @@ export const approveHotel = async (hotelId, token) => {
     throw error;
   }
 };
+export const rejectHotel = async (hotelId, token,message) => {
+  try {
+    const response = await axios.put(
+      `${API_BASE_URL}//hotels/reject/${hotelId}?message=${message}`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error rejecting hotel:", error);
+    throw error;
+  }
+};
 
 // Fetch hotel by ID
 export const fetchHotelById = async (hotelId) => {

@@ -6,6 +6,9 @@ import TransactionCard from "../../../Pages/ClientView/TransactionCard";
 
 export function AgentTransactions() {
   let userData = useSelector((state) => state.user.userData);
+  let transactions = userData.myTransactions
+
+  console.log({transactions})
   const transactionDetails = {
     date: "2023-06-29",
     type: "Purchase",

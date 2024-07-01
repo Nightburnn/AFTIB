@@ -4,6 +4,7 @@ let initialState = {
   email: "",
   accessToken: "",
   userData: {},
+  agentDashboardData: {}
 };
 
 export const userSlice = createSlice({
@@ -19,10 +20,13 @@ export const userSlice = createSlice({
     updateUserData: (state, action) => {
       state.userData = action.payload;
     },
+    updateAgentDashboardData: (state,action) => {
+      state.agentDashboardData = action.payload
+    }
   },
 });
 
-export const { updateEmail, updateAccessToken, updateUserData } =
+export const { updateEmail, updateAccessToken, updateUserData, updateAgentDashboardData } =
   userSlice.actions;
 
 export default userSlice.reducer;

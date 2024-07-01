@@ -5,7 +5,12 @@ import { Link } from "react-router-dom";
 import ListingCard from "./Cards";
 
 export function AgentApprovedHotels() {
-  let userData = useSelector((state) => state.user.userData);
+  function getApproved(bool,array){
+    return bool? array.filter(x=> x.approved ): array.filter(x=> !x.approved)
+  }
+  let dashboardData = useSelector((state) => state.user.agentDashboardData)
+  let approved = getApproved(true,dashboardData.hotels)
+  console.log({approved})
   let listingDetails = {
     image:
       "https://res.cloudinary.com/mixambusiness/image/upload/v1718797096/listings/qhzp4cvoqvb7zy9l1kqv.jpg",

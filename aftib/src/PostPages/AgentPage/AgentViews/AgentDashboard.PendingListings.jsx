@@ -6,6 +6,12 @@ import ListingCard from "./Cards";
 
 export function AgentPendingListings() {
   let userData = useSelector((state) => state.user.userData);
+  let dashboardData = useSelector((state) => state.user.agentDashboardData)
+  let pending = getApproved(false,dashboardData.listings)
+  console.log({pending})
+  function getApproved(bool,array){
+    return bool? array.filter(x=> x.approved ): array.filter(x=> !x.approved)
+  }
   let listingDetails = {
     image:
       "https://res.cloudinary.com/mixambusiness/image/upload/v1718797096/listings/qhzp4cvoqvb7zy9l1kqv.jpg",
