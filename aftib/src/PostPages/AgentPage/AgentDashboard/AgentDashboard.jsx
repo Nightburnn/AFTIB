@@ -1,7 +1,7 @@
 import React from "react";
 import "../../Admin/Dashboard/Dash.css";
 import { TfiPrinter } from "react-icons/tfi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const approvalAndReviewData = [
   {
@@ -66,6 +66,10 @@ const statisticsAndInfoData = [
 ];
 
 const AgentDashboard = () => {
+  let navigate = useNavigate()
+  const goToAgentRegistration = () =>{
+    navigate('/agent-registration?edit=true')
+  }
   return (
     <div className="dash">
       <div className="container">
@@ -78,7 +82,7 @@ const AgentDashboard = () => {
               Agent Status: <span className="text-danger">Approved or</span>{" "}
               <span className="coor">Pending</span> or Unapproved
               <p>Message: Your agent registration is still being reviewed by the admins.</p>
-              <button>Edit Registration Details</button>
+              <button onClick={goToAgentRegistration}>Edit Registration Details</button>
             </h3>
           </div>
           <div className="card-body">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./style.css";
 import { useLoading } from "../../Components/LoadingContext";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +15,7 @@ const AgentRegistration = () => {
   let token = window.localStorage.getItem("accessToken");
   const routeLocation = useLocation();
   const queryParams = new URLSearchParams(routeLocation.search);
-  console.log({queryParams})
+  let edit = queryParams.get('edit') ? true : false
   let navigate = useNavigate();
   let [showModal, setShowModal] = useState(false);
   let [modalTitle, setModalTitle] = useState("");
@@ -42,6 +42,15 @@ const AgentRegistration = () => {
   const [passport, setPassport] = useState(null);
   const [issuedIdPreview, setIssuedIdPreview] = useState(null);
   const [passportPhotoPreview, setPassportPhotoPreview] = useState(null);
+  
+  useEffect(()=>{
+    if(edit){
+
+    }
+    else {
+      
+    }
+  },[])
   // handle passport and issued id
   const handleIssuedIdChange = (e) => {
     const file = e.target.files[0];
@@ -577,8 +586,10 @@ const AgentRegistration = () => {
               </div>
             </div>
           </div>
-
-          <button type="submit">Register</button>
+          {
+            edit ? <button type="submit">Update Data</button> : <button type="submit">Register</button>
+          }
+          
         </form>
       </div>
     </div>

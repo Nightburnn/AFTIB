@@ -149,7 +149,11 @@ export const approveRequest = async (requestId, token) => {
 export const getAgencyRequestById = async (id) => {
   let url = `${API_BASE_URL}/get-agency-request/${id}`;
   try {
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
     return response;
   } catch (error) {
     console.error("Error fetching agency request:", error);
