@@ -186,14 +186,14 @@ const Header = () => {
                   <NavLink
                     className="nav-link"
                     to={
-                      isLoggedIn && user && user.accountType === "Agent"
+                      isLoggedIn && user && user.accountType === "agent"
                         ? "/agent-dashboard"
                         : "/agent-finder"
                     }
                     activeClassName="active"
                     onClick={handleNavLinkClick}
                   >
-                    {isLoggedIn && user && user.accountType === "Agent"
+                    {isLoggedIn && user && user.accountType === "agent"
                       ? "Dashboard"
                       : "Agent Finder"}
                   </NavLink>
