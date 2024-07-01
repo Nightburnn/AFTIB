@@ -104,7 +104,7 @@ a:focus {
 .sign-in {
   background-color: #4517fb;
   border: none;
-  margin-top: -10px;
+  margin-left: 5px;
   width: 100%;
   border-radius: 10px;
   padding: 7px;
@@ -146,6 +146,9 @@ a:focus {
     padding-left: 20px;
   }
 
+  .sign-in {
+    margin-left: 0;
+  }
   .navbar-nav button {
     width: 95%;
   }

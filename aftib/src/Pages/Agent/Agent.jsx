@@ -23,17 +23,18 @@ const Agent = () => {
                   <div className="col-md-4">
                     <select className="form-select border-0 py-3">
                       <option selected>Property Type</option>
-                      <option value="1">Property Type 1</option>
-                      <option value="2">Property Type 2</option>
-                      <option value="3">Property Type 3</option>
+                      <option value="1">Apartment</option>
+                      <option value="2">Villas</option>
+                      <option value="3">Land</option>
+                      <option value="3">Duplex</option>
                     </select>
                   </div>
                   <div className="col-md-4">
                     <select className="form-select border-0 py-3">
                       <option selected>Specialties</option>
-                      <option value="1">Location 1</option>
-                      <option value="2">Location 2</option>
-                      <option value="3">Location 3</option>
+                      <option value="1">Consultation and Advice</option>
+                      <option value="2">Relocation Services</option>
+                      <option value="3">Client Representation</option>
                     </select>
                   </div>
                 </div>

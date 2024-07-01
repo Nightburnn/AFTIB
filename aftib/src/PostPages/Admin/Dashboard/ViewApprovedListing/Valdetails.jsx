@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { fetchListingById, approveListing } from '../../../../utils/adminOpsRequests';
 import { useLoading } from '../../../../Components/LoadingContext';
-import { fetchListingById } from '../../../../utils/adminOpsRequests';
 
 const Valdetails = () => {
   const { id } = useParams();
-  let token = window.localStorage.getItem('accessToken');
+  let token = window.localStorage.getItem("accessToken");
   let { setLoading, setLoadingText } = useLoading();
   const [listing, setListing] = useState(null);
 
@@ -14,10 +14,26 @@ const Valdetails = () => {
       setLoading(true);
       setLoadingText('Fetching Listing Information');
       console.log('Fetching listing with ID:', id);
-      const fetchedListing = await fetchListingById(id);
-      setListing(fetchedListing);
+      let response = await fetchListingById(id);
+      console.log('Fetched listing:', response);
+      setListing(response.listing);  // Set the state to the actual listing object
     } catch (err) {
       console.error('Error fetching listing:', err.message);
+    } finally {
+      setLoading(false);
+      setLoadingText('');
+    }
+  }
+
+  async function approve() {
+    try {
+      setLoading(true);
+      setLoadingText('Approving');
+      console.log('Approving listing with ID:', id);
+      let response = await approveListing(id, token);
+      console.log('Approval response:', response);
+    } catch (err) {
+      console.error('Error approving listing:', err.message);
     } finally {
       setLoading(false);
       setLoadingText('');
@@ -89,10 +105,10 @@ const Valdetails = () => {
         <div className="section border">
           <h2 className="text-center">Approval Section</h2>
           <p className="text-center">
-          Are you sure you want to delete this listing? This action cannot be undone.
+            If you are satisfied with the listing and have concluded your vetting, click the approval button.
           </p>
           <div className="text-center">
-            <button  className="btn danger approval-btn">Delete this Listing</button>
+            <button onClick={approve} className="btn blue approval-btn">Approve This Listing</button>
           </div>
         </div>
       </div>

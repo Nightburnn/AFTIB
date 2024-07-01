@@ -2,38 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLoading } from '../../../../Components/LoadingContext';
 
-// Dummy data for testing
-const dummyListings = [
-  {
-    _id: '1',
-    title: 'Beautiful Home in Suburbia',
-    location: 'Suburbia, City A',
-    saleType: 'Sale',
-  },
-  {
-    _id: '2',
-    title: 'Cozy Apartment Downtown',
-    location: 'Downtown, City B',
-    saleType: 'Rent',
-  },
-];
-
 const Val = () => {
   let { setLoading, setLoadingText } = useLoading();
-  let [unapprovedListings, setUnapprovedListings] = useState([]);
+  let [listings, setListings] = useState([]);
 
   async function fetchListings() {
     try {
       setLoading(true);
       setLoadingText('Fetching Agent Listings');
-      // Simulate API call delay for 1 second
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      // Replace with actual fetchUnapprovedListings() when integrating with backend
-      // let response = await fetchUnapprovedListings();
-      // setUnapprovedListings(response.listingsData);
-      setUnapprovedListings(dummyListings); // Set dummy data
+      const response = await fetch('https://aftib-6o3h.onrender.com/getListings/:sectionNo');
+      const data = await response.json();
+      console.log('Fetched Listings:', data.listingsData);
+      setListings(data.listingsData);
     } catch (err) {
-      console.error(err.message);
+      console.error('Error fetching listings:', err.message);
     } finally {
       setLoading(false);
       setLoadingText('');
@@ -44,14 +26,30 @@ const Val = () => {
     fetchListings();
   }, []);
 
+  const handleApprove = async (id) => {
+    let token = window.localStorage.getItem('accessToken');
+    try {
+      setLoading(true);
+      setLoadingText('Approving Listing');
+      console.log('Approving Listing ID:', id);
+      // Implement the approve listing functionality here
+      setListings(listings.filter(listing => listing._id !== id));
+    } catch (err) {
+      console.error('Error approving listing:', err.message);
+    } finally {
+      setLoading(false);
+      setLoadingText('');
+    }
+  };
+
   return (
     <div className="container mt-3 alr">
       <div className="py-4 agent">
-        <h1 className="text-center">Approved Listings</h1>
-        <h3 className="text-center">Review the approved listings below.</h3>
+        <h1 className="text-center">Listings</h1>
+        <h3 className="text-center">Review the listings below.</h3>
       </div>
       <div className="row mt-4">
-        {unapprovedListings.map(listing => (
+        {listings.map(listing => (
           <div key={listing._id} className="col-md-6 mb-4">
             <div className="card h-100">
               <div className="card-body">
@@ -67,7 +65,7 @@ const Val = () => {
                 </div>
               </div>
               <div className="px-3 pb-3">
-                <Link to='/valdetails' className="btn blue btn-block">View Listing</Link>
+                <Link to={`/valdetails/${listing._id}`} className="btn blue btn-block">View Listing</Link>
               </div>
             </div>
           </div>

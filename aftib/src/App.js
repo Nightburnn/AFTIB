@@ -221,7 +221,7 @@ function App() {
                 <Route path='/view-approved-agent' Component={Vaa} />
                 <Route path='/vaadetails/:id' Component={Vaadetails} />
                 <Route path='/view-approved-listings' Component={Val} />
-                <Route path='/valdetails' Component={Valdetails} />
+                <Route path='/valdetails/:id' Component={Valdetails} />
                 <Route path='/approve/:id' Component={Approval} />
                 <Route path='/hotellist' Component={HotelListing}/>
                 <Route path='/faq/:id' element={<FaqSection searchTerm={searchTerm} faqData={faqData}  />}/>

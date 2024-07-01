@@ -25,6 +25,7 @@ const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(initialState.isOpen);
   const [messages, setMessages] = useState(initialState.messages);
   const [input, setInput] = useState("");
+  const [awaitingEmail, setAwaitingEmail] = useState(false); // State to track if bot is awaiting email
   const chatboxRef = useRef(null);
   const chatInputRef = useRef(null);
 
@@ -40,7 +41,7 @@ const Chatbot = () => {
 
   const toggleChatbot = () => {
     document.body.classList.toggle("show-chatbot");
-    setIsOpen(!isOpen);
+    setIsOpen((prevIsOpen) => !prevIsOpen);
   };
 
   const handleInputChange = (event) => {
@@ -66,66 +67,100 @@ const Chatbot = () => {
     }, 600);
   };
 
-  const generateResponse = (userMessage) => {
-    const API_URL = "https://api.openai.com/v1/chat/completions";
+  // Manually create keyword-response pairs
+  const keywordResponses = [
+    { keywords: ["greetings", "salutations", "hello", "hi", "hey"], response: "Hello! How can I help you today?" },
+    { keywords: ["buy", "sell",  "rent", "shortlet"], response: "To Buy, rent, sell,or shortlet an aprtment go to Buy Page and scroll through various houses " },
+    { keywords: ["assistance", "aid", "help", "support"], response: "I'm here to help! What do you need assistance with?" },
+    { keywords: ["signup", "register", "create", "account", "open"], response: "To create an account, go to the signup page and fill out the form with your details. Once you submit the form, you will receive a confirmation email." },
+    { keywords: ["forgot", "reset", "password"], response: "To reset your password, click on the 'Forgot Password' link on the login page and follow the instructions." },
+    { keywords: ["edit", "modify", "update", "profile"], response: "To update your profile information, go to the profile settings page and make the necessary changes." },
+    { keywords: ["modify", "change", "email"], response: "To change your email address, go to the account settings page and update your email information." },
+    { keywords: ["modify", "change", "password"], response: "To change your password, go to the account settings page and update your password." },
+    { keywords: ["adjust", "manage", "notifications"], response: "To manage your notifications, go to the notification settings page and adjust your preferences." },
+    { keywords: ["single", "multiple", "accounts"], response: "No, our policy does not allow multiple accounts per user." },
+    { keywords: ["submit", "report", "bug"], response: "To report a bug, go to the support page and submit a bug report form." },
+    { keywords: ["flag", "report", "inappropriate", "content"], response: "To report inappropriate content, click on the report button next to the content in question." },
+    { keywords: ["give", "provide", "feedback"], response: "To provide feedback, go to the feedback page and fill out the feedback form." },
+    { keywords: ["alert", "report", "security", "issue"], response: "To report a security issue, contact our security team at security@example.com." },
+    { keywords: ["alert", "report", "copyright", "infringement"], response: "To report a copyright infringement, contact our legal team at legal@example.com." },
+    { keywords: ["alert", "report", "billing", "issue"], response: "To report a billing issue, contact our billing support at billing@example.com." },
+    { keywords: ["alert", "report", "violation", "terms"], response: "To report a violation of terms, use the report feature or contact our support team." },
+    { keywords: ["alert", "report", "privacy", "concern"], response: "To report a privacy concern, contact our privacy team at privacy@example.com." },
+    { keywords: ["alert", "report", "scam", "phishing"], response: "To report a scam or phishing attempt, forward the suspicious email to phishing@example.com." },
+    { keywords: ["submit", "report", "error", "app"], response: "To report an error in the app, use the feedback feature or contact our support team." },
+    { keywords: ["submit", "report", "broken", "feature"], response: "To report a broken feature, use the bug report form on the support page." },
+  ];
 
-    fetch(API_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${API_URL}`,
-      },
-      body: JSON.stringify({
-        model: "gpt-3.5-turbo",
-        messages: [{ role: "user", content: userMessage }],
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (
-          data.choices &&
-          data.choices.length > 0 &&
-          data.choices[0].message
-        ) {
-          setMessages((prevMessages) => {
-            const updatedMessages = [...prevMessages];
-            updatedMessages.pop();
-            updatedMessages.push({
-              type: "incoming",
-              text: data.choices[0].message.content.trim(),
-            });
-            return updatedMessages;
-          });
-        } else {
-          setMessages((prevMessages) => {
-            const updatedMessages = [...prevMessages];
-            updatedMessages.pop();
-            updatedMessages.push({
-              type: "incoming",
-              text: "Oops! I couldn't generate a response. Please try again.",
-            });
-            return updatedMessages;
-          });
-        }
-      })
-      .catch(() => {
-        setMessages((prevMessages) => {
-          const updatedMessages = [...prevMessages];
-          updatedMessages.pop();
-          updatedMessages.push({
-            type: "incoming",
-            text: "Oops! Something went wrong. Please try again.",
-          });
-          return updatedMessages;
-        });
+  const generateResponse = (userMessage) => {
+    const lowerCaseMessage = userMessage.toLowerCase();
+    let response = null;
+
+    console.log("User message:", userMessage); // Logging user message
+
+    for (const pair of keywordResponses) {
+      const matched = pair.keywords.some(keyword =>
+        lowerCaseMessage.includes(keyword)
+      );
+      console.log("Checking keywords:", pair.keywords, "Matched:", matched); // Logging keyword checking
+      if (matched) {
+        response = pair.response;
+        break;
+      }
+    }
+
+    if (!response) {
+      response = "Sorry, I couldn't find an answer to your question. Please send your email and leave a message, and someone will get back to you.";
+      setAwaitingEmail(true); // Set flag to indicate bot is awaiting email
+    }
+
+    console.log("Response:", response);
+
+    setMessages((prevMessages) => {
+      const updatedMessages = [...prevMessages];
+      updatedMessages.pop(); // Remove "Thinking..." message
+      updatedMessages.push({
+        type: "incoming",
+        text: response,
       });
+      return updatedMessages;
+    });
+  };
+
+  const checkForEmailInMessage = (userMessage) => {
+    const emailRegex = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/;
+    if (emailRegex.test(userMessage)) {
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { type: "incoming", text: "Email and message received. Thank you!" },
+      ]);
+      setAwaitingEmail(false); // Clear the flag as email has been received
+    } else {
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { type: "incoming", text: "Please make sure to include your email in the message." },
+      ]);
+    }
   };
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && !e.shiftKey && window.innerWidth > 800) {
       e.preventDefault();
-      sendMessage();
+      if (awaitingEmail) {
+        checkForEmailInMessage(input);
+      } else {
+        sendMessage();
+      }
     }
+  };
+
+  const clearChat = () => {
+    setMessages([
+      {
+        type: "incoming",
+        text: "Hi there 👋\nHow can I help you today?",
+      },
+    ]);
   };
 
   return (
@@ -144,6 +179,9 @@ const Chatbot = () => {
             >
               close
             </span>
+            <button onClick={clearChat} className="clear-btn">
+              Clear Chat
+            </button>
           </header>
           <ul className="chatbox" ref={chatboxRef}>
             {messages.map((message, index) => (

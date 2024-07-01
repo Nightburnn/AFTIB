@@ -195,6 +195,14 @@ header h2 {
   font-size: 1.35rem;
 }
 
+.clear-btn{
+  outline: none;
+  border: 1px solid #4517fb;
+  background-color: #4517fb;
+  color: #fff;
+  border-radius: 5px;
+}
+
 .chat-input textarea:valid ~ span {
   visibility: visible;
 }
