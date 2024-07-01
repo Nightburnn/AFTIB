@@ -1,0 +1,41 @@
+/* TransactionCard.css */
+.transaction-card {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px 0;
+    background-color: #fff;
+  }
+  
+  .transaction-field {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .field-name {
+    font-weight: bold;
+  }
+  
+  .field-value {
+    font-weight: normal;
+  }
+  
+  .view-transaction-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  .view-transaction-button:hover {
+    background-color: #0056b3;
+  }
+  

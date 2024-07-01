@@ -231,7 +231,7 @@ export const getUserData = async ()=>{
         Authorization: `Bearer ${token}`
       }
     })
-    console.log({response})
+    console.log({response: response.data})
     return response.data
   }
   catch(err){

@@ -14,7 +14,7 @@ const AgentListingReview = () => {
   async function fetchListings(){
     try {
       setLoading(true)
-      setLoadingText('Fetching Agent Information')
+      setLoadingText('Fetching Pending Listings')
       let response = await fetchUnapprovedListings()
       console.log(response.listingsData)
       setUnapprovedListings(response.listingsData)
@@ -43,7 +43,7 @@ const AgentListingReview = () => {
             <div className="card h-100">
               <div className="card-body">
                 <img 
-                  src="https://via.placeholder.com/50"
+                  src={listing.images[0]}
                   className="rounded-circle" 
                   alt="Listing"
                 />

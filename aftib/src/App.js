@@ -1,6 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import React, { useState} from 'react';
+import {store} from './store'
+import  { Provider }  from 'react-redux'
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { LoadingContextProvider } from './Components/LoadingContext';
@@ -52,6 +54,12 @@ import Vha from './PostPages/Admin/Dashboard/ViewHotelApproved/Vha';
 import Vhadetails from './PostPages/Admin/Dashboard/ViewHotelApproved/Vhadetails';
 import Approvedhotelagent from './PostPages/AgentPage/AgentDashboard/HotelAgent/Approvedhotelagent';
 import Pendhotelagent from './PostPages/AgentPage/AgentDashboard/HotelAgent/Pendhotelagent';
+import { ClientPurchaseList } from './Pages/ClientView/ClientPurchaseList';
+import { ClientRentalList } from './Pages/ClientView/ClientRentalList';
+import { ClientShortletList } from './Pages/ClientView/ClientShortletsList';
+import { ClientReservationList } from './Pages/ClientView/ClientReservation';
+import { ClientTransactionList } from './Pages/ClientView/ClientTransactionsList';
+
 
 
 const faqData = [
@@ -180,6 +188,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
   
   return (
+    <Provider store={store}>
     <AuthProvider>
       <LoadingContextProvider>
       <Router>
@@ -233,6 +242,11 @@ function App() {
                 <Route path='/review/:id' Component={Approval}/>
                 <Route path='/approved-hotel' Component={Approvedhotelagent}/>
                 <Route path='/pend-hotel' Component={Pendhotelagent}/>
+                <Route path='/client/purchaselist' Component={ClientPurchaseList}/>
+                <Route path='/client/hotelreservations' Component={ClientReservationList}/>
+                <Route path='/client/transactionslist' Component={ClientTransactionList}/>
+                <Route path='/client/shortletlist' Component={ClientShortletList}/>
+                <Route path='/client/rentallist' Component={ClientRentalList}/>
             </Routes>
          </main>
             
@@ -244,6 +258,7 @@ function App() {
         </LoadingContextProvider>
    
     </AuthProvider>
+    </Provider>
   );
 }
 

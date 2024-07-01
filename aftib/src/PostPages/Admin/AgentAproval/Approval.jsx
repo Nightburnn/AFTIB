@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { getAgencyRequestById,approveRequest } from '../../../utils/adminOpsRequests'; 
 import './Approval.css';
 import { useLoading } from '../../../Components/LoadingContext';
@@ -7,6 +7,7 @@ import { useLoading } from '../../../Components/LoadingContext';
 const Approval = () => {
   let token = window.localStorage.getItem("accessToken");
   let {setLoading,setLoadingText}= useLoading()
+  let navigate = useNavigate()
   const { id } = useParams();
   const [agent, setAgent] = useState(null);
     const fetchAgentRequest = async () => {
@@ -35,6 +36,7 @@ const Approval = () => {
         console.error(err.message)
       }
       finally {
+        navigate('/admin-dashboard')
         setLoading(false)
         setLoadingText('')
       }
