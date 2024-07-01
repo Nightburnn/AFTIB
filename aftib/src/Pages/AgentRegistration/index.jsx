@@ -45,11 +45,12 @@ const AgentRegistration = () => {
   const [passportPhotoPreview, setPassportPhotoPreview] = useState(null);
   async function getByToken(){
     let response = await getAgencyRequestByToken()
+    
     console.log('data', response)
   }
   useEffect(()=>{
     if(edit){
-      
+      getByToken()
     }
     else {
       
