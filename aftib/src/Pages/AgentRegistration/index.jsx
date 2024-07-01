@@ -4,6 +4,7 @@ import { useLoading } from "../../Components/LoadingContext";
 import { useNavigate } from "react-router-dom";
 import { Modal } from "antd";
 import { nigerianStateData } from ".././Listing/data";
+import { useLocation } from "react-router-dom";
 import {
   requestAgencyStatus,
   updateAgencyStatusIssuedId,
@@ -12,6 +13,9 @@ import {
 
 const AgentRegistration = () => {
   let token = window.localStorage.getItem("accessToken");
+  const routeLocation = useLocation();
+  const queryParams = new URLSearchParams(routeLocation.search);
+  console.log({queryParams})
   let navigate = useNavigate();
   let [showModal, setShowModal] = useState(false);
   let [modalTitle, setModalTitle] = useState("");
