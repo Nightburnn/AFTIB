@@ -170,6 +170,16 @@ const Header = () => {
                         Short Let
                       </NavLink>
                     </li>
+                    <li className="nav-item">
+                      <NavLink
+                        className="nav-link"
+                        to="/hotel"
+                        activeClassName="active"
+                        onClick={handleNavLinkClick}
+                      >
+                        Hotel
+                      </NavLink>
+                    </li>
                   </>
                 )}
                 <li className="nav-item">
