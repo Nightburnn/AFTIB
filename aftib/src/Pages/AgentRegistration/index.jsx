@@ -7,6 +7,7 @@ import { nigerianStateData } from ".././Listing/data";
 import { useLocation } from "react-router-dom";
 import {
   requestAgencyStatus,
+  updateAgencyStatus,
   updateAgencyStatusIssuedId,
   updateAgencyStatusPassport,
   getAgencyRequestByToken
@@ -171,7 +172,7 @@ const AgentRegistration = () => {
       formData1.append("files", IssuedId);
       let formData2 = new FormData();
       formData2.append("files", passport);
-      let initialize = await requestAgencyStatus(reqBody1, token);
+      let initialize = edit? await updateAgencyStatus(reqBody1,token):  await requestAgencyStatus(reqBody1, token);
       let uploadPassport;
       let uploadId;
       console.log({ initialize });
@@ -189,7 +190,7 @@ const AgentRegistration = () => {
       setLoading(false);
       setShowModal(true);
       setModalTitle(
-        "Successfully submitted Request to become an agent at Aftib. Our Admin would reveiw your details",
+        edit? "Your Data has been updated. Admin would review and get back to you" : "Successfully submitted Request to become an agent at Aftib. Our Admin would reveiw your details",
       );
       setModalBody(
         "An email would be sent to you to notify you if it has been approved or requires modification.",
@@ -599,7 +600,7 @@ const AgentRegistration = () => {
             </div>
           </div>
           {
-            edit ? <button type="submit">Update Data</button> : <button type="submit">Register</button>
+            edit ? <button type={'submit'}>Update Data</button> : <button type="submit">Register</button>
           }
           
         </form>

@@ -1,18 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { Modal } from "antd";
 import {
   getAgencyRequestById,
   approveRequest,
+  rejectRequest
 } from "../../../utils/adminOpsRequests";
 import "./Approval.css";
 import { useLoading } from "../../../Components/LoadingContext";
 
 const Approval = () => {
   let token = window.localStorage.getItem("accessToken");
+  let [showModal, setShowModal] = useState(false);
+  let [modalTitle, setModalTitle] = useState("");
+  let [modalBody, setModalBody] = useState("");
   let { setLoading, setLoadingText } = useLoading();
+  let [rMessage,setRMessage] = useState('')
   let navigate = useNavigate();
   const { id } = useParams();
   const [agent, setAgent] = useState(null);
+  const handleOk = () => {
+    setShowModal(false);
+  };
+  const handleCancel = () => {
+    setShowModal(false);
+  };
   const fetchAgentRequest = async () => {
     try {
       setLoading(true);
@@ -41,6 +53,35 @@ const Approval = () => {
       setLoadingText("");
     }
   };
+  const sendRejectRequest = async (id) => {
+    if(rMessage === ''){
+      console.log('rMessage')
+      setShowModal(true)
+      setModalTitle('Input a rejection Message')
+      setModalBody('Inform the agent of the reason their request has been reject to they can update it and return the correct one.')
+       return;
+    }
+    try {
+    setLoading(true);
+    setLoadingText("Please Wait");
+      let response = await rejectRequest(id, token,rMessage);
+      setShowModal(true)
+      setModalTitle('Successful')
+      setModalBody('Agent would be notified of the rejection and prompted to update their data')
+      console.log(response.data);
+    } catch (err) {
+      setShowModal(true)
+      setModalTitle('Error Occured')
+      setModalBody(err.message)
+      console.error(err.message);
+    } finally {
+      setTimeout(()=>{
+      navigate("/admin-dashboard");
+      setLoading(false);
+      setLoadingText("");
+      }, 3000)
+    }
+  };
 
   useEffect(() => {
     fetchAgentRequest(id);
@@ -60,6 +101,15 @@ const Approval = () => {
 
   return (
     <div className="container agent-detail">
+            <Modal
+        title={modalTitle}
+        open={showModal}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        cancelText={"Try Again"}
+      >
+        <p>{modalBody}</p>
+      </Modal>
       <div className="header">
         <h1 className="text-center">Agent Review</h1>
       </div>
@@ -160,9 +210,13 @@ const Approval = () => {
           <textarea
             placeholder="Enter your rejection reason here"
             className="form-control"
+            value={rMessage}
+            onChange={(e)=>setRMessage(e.target.value)}
           />
           <button
-           
+           onClick={()=>{
+            sendRejectRequest(agent._id)
+           }}
             className="btn danger mt-4"
           >
             Reject This Request

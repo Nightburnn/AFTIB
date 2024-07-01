@@ -1,7 +1,9 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import "../../Admin/Dashboard/Dash.css";
 import { TfiPrinter } from "react-icons/tfi";
 import { Link, useNavigate } from "react-router-dom";
+import { getAgencyRequestByToken } from "../../../utils/adminOpsRequests";
+
 
 const approvalAndReviewData = [
   {
@@ -67,9 +69,24 @@ const statisticsAndInfoData = [
 
 const AgentDashboard = () => {
   let navigate = useNavigate()
+  let [agentData,setAgentData] = useState({})
   const goToAgentRegistration = () =>{
     navigate('/agent-registration?edit=true')
   }
+  async function getByToken(){
+    try{
+      let response = await getAgencyRequestByToken()
+      // fill the other data
+      setAgentData(response)
+      console.log('data', response)
+    }
+    catch(err){
+      console.error(err.message)
+    }
+  }
+  useEffect(()=>{
+      getByToken()
+  },[])
   return (
     <div className="dash">
       <div className="container">
@@ -79,9 +96,8 @@ const AgentDashboard = () => {
           <h2 className="text-center">OverView</h2>
           <div className="white-container">
             <h3 className="text-center">
-              Agent Status: <span className="text-danger">Approved or</span>{" "}
-              <span className="coor">Pending</span> or Unapproved
-              <p className="mt-2 agentred">Message: Your agent registration is still being reviewed by the admins.</p>
+              <p>Approval Status : {String(agentData.approvalState).toUpperCase() ||''}</p>
+              <p className="mt-2 agentred">Message:{String(agentData.rejectionMessage) || ''}</p>
               <button className="btn blue" onClick={goToAgentRegistration}>Edit Registration Details</button>
             </h3>
           </div>

@@ -2,7 +2,6 @@ import axios from "axios";
 let localhostAddr = "http://127.0.0.1:8080";
 let API_BASE_URL = "https://aftib-6o3h.onrender.com"; // adjust the base URL accordingly
 
-
 let token = window.localStorage.getItem("accessToken");
 // Initialize agent status request
 export const requestAgencyStatus = async (data, token) => {
@@ -56,7 +55,7 @@ export const updateAgencyStatusIssuedId = async (formData, token) => {
   } catch (error) {
     throw new Error(error.response.data.error);
   }
-};
+}
 
 // Update the text fields of the agent status
 export const updateAgencyStatus = async (data, token) => {
@@ -133,6 +132,27 @@ export const approveRequest = async (requestId, token) => {
     const response = await axios.put(
       `${API_BASE_URL}/approve-agency-request/${requestId}`,
       {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    );
+    return response;
+    // Optionally update state or notify user of success
+  } catch (error) {
+    console.error("Error approving request:", error);
+    // Handle error state or notify user
+  }
+};
+
+// function to approve request.
+export const rejectRequest = async (requestId, token,message) => {
+  // id of the item to be approved.
+  try {
+    const response = await axios.put(
+      `${API_BASE_URL}/reject-agency-request/${requestId}?message=${message}`,
+      {message},
       {
         headers: {
           Authorization: `Bearer ${token}`,
