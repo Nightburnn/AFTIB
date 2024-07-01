@@ -70,6 +70,7 @@ const statisticsAndInfoData = [
 const AgentDashboard = () => {
   let navigate = useNavigate()
   let [agentData,setAgentData] = useState({})
+  let [message, setMessage] = useState('')
   const goToAgentRegistration = () =>{
     navigate('/agent-registration?edit=true')
   }
@@ -78,7 +79,16 @@ const AgentDashboard = () => {
       let response = await getAgencyRequestByToken()
       // fill the other data
       setAgentData(response)
-      console.log('data', response)
+      console.log('data', response)    
+        if(response.approvalState == 'rejected'){
+        setMessage(response.rejectionMessage)
+      }
+      else if(response.approvalState == 'pending'){
+        setMessage('Your request is currently being reviewed by the admins')
+      }
+      else {
+        setMessage('You have been approved as an Agent.')
+      }
     }
     catch(err){
       console.error(err.message)
@@ -97,7 +107,7 @@ const AgentDashboard = () => {
           <div className="white-container">
             <h3 className="text-center">
               <p>Approval Status : {String(agentData.approvalState).toUpperCase() ||''}</p>
-              <p className="mt-2 agentred">Message:{String(agentData.rejectionMessage) || ''}</p>
+              <p className="mt-2 agentred">Message: {message}</p>
               <button className="btn blue" onClick={goToAgentRegistration}>Edit Registration Details</button>
             </h3>
           </div>
