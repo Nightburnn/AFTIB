@@ -81,8 +81,8 @@ const AgentDashboard = () => {
             <h3 className="text-center">
               Agent Status: <span className="text-danger">Approved or</span>{" "}
               <span className="coor">Pending</span> or Unapproved
-              <p>Message: Your agent registration is still being reviewed by the admins.</p>
-              <button onClick={goToAgentRegistration}>Edit Registration Details</button>
+              <p className="mt-2 agentred">Message: Your agent registration is still being reviewed by the admins.</p>
+              <button className="btn blue" onClick={goToAgentRegistration}>Edit Registration Details</button>
             </h3>
           </div>
           <div className="card-body">
