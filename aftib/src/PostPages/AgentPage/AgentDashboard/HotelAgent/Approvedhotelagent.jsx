@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { fetchApprovedHotels } from '../../../../utils/adminOpsRequests';
-import { useLoading } from '../../../../Components/LoadingContext';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { fetchApprovedHotels } from "../../../../utils/adminOpsRequests";
+import { useLoading } from "../../../../Components/LoadingContext";
 
 const Approvedhotelagent = () => {
   let token = window.localStorage.getItem("accessToken");
@@ -11,7 +11,7 @@ const Approvedhotelagent = () => {
   async function fetchData() {
     try {
       setLoading(true);
-      setLoadingText('Fetching Approved Hotels');
+      setLoadingText("Fetching Approved Hotels");
       const page = 1; // Replace with the actual page number if needed
       const retrieved = await fetchApprovedHotels(page);
       console.log("Retrieved hotels:", retrieved);
@@ -20,7 +20,7 @@ const Approvedhotelagent = () => {
       console.error("Error fetching approved hotels:", error.message);
     } finally {
       setLoading(false);
-      setLoadingText('');
+      setLoadingText("");
     }
   }
 
@@ -35,15 +35,22 @@ const Approvedhotelagent = () => {
         <h3 className="text-center">Below are the approved hotel listings.</h3>
       </div>
       <div className="row mt-4">
-        {approvedHotels.map(hotel => (
+        {approvedHotels.map((hotel) => (
           <div key={hotel._id} className="col-md-4 mb-4">
             <div className="card h-100">
               <div className="card-body">
                 <h5 className="card-title">{hotel.name}</h5>
-                <p className="card-text"><strong>Agent:</strong> {hotel.createdBy}</p>
+                <p className="card-text">
+                  <strong>Agent:</strong> {hotel.createdBy}
+                </p>
               </div>
               <div className="px-3 pb-3">
-                <Link to={`/ahadetails/${hotel._id}`} className="btn blue btn-block">View Hotel</Link>
+                <Link
+                  to={`/ahadetails/${hotel._id}`}
+                  className="btn blue btn-block"
+                >
+                  View Hotel
+                </Link>
               </div>
             </div>
           </div>

@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 let initialState = {
   email: "",
   accessToken: "",
-  userData: {}
+  userData: {},
 };
 
 export const userSlice = createSlice({
@@ -16,12 +16,13 @@ export const userSlice = createSlice({
     updateAccessToken: (state, action) => {
       state.accessToken = action.payload;
     },
-    updateUserData : (state,action) => {
-      state.userData = action.payload
-    }
+    updateUserData: (state, action) => {
+      state.userData = action.payload;
+    },
   },
 });
 
-export const { updateEmail, updateAccessToken, updateUserData } = userSlice.actions;
+export const { updateEmail, updateAccessToken, updateUserData } =
+  userSlice.actions;
 
 export default userSlice.reducer;

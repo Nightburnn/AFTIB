@@ -114,7 +114,6 @@ const Header = () => {
                         Inbox
                       </NavLink>
                     </li>
-                    
                   </>
                 ) : isLoggedIn && user && user.accountType === "admin" ? (
                   <>
@@ -176,11 +175,17 @@ const Header = () => {
                 <li className="nav-item">
                   <NavLink
                     className="nav-link"
-                    to={isLoggedIn && user && user.accountType === 'Agent' ? "/agent-dashboard" : "/agent-finder"}
+                    to={
+                      isLoggedIn && user && user.accountType === "Agent"
+                        ? "/agent-dashboard"
+                        : "/agent-finder"
+                    }
                     activeClassName="active"
                     onClick={handleNavLinkClick}
                   >
-                    {isLoggedIn && user && user.accountType === 'Agent' ? "Dashboard" : "Agent Finder"}
+                    {isLoggedIn && user && user.accountType === "Agent"
+                      ? "Dashboard"
+                      : "Agent Finder"}
                   </NavLink>
                 </li>
                 <li className="nav-item">

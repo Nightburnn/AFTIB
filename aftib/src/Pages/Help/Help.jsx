@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import './Help.css';
-import help1 from '../../assets/images/help1.png';
-import help2 from '../../assets/images/help2.png';
-import help3 from '../../assets/images/help3.png';
-import { Link } from 'react-router-dom';
-import FaqSection from './FaqSection';
+import React, { useState, useEffect } from "react";
+import "./Help.css";
+import help1 from "../../assets/images/help1.png";
+import help2 from "../../assets/images/help2.png";
+import help3 from "../../assets/images/help3.png";
+import { Link } from "react-router-dom";
+import FaqSection from "./FaqSection";
 
 const Help = ({ faqData }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [autocompleteSuggestions, setAutocompleteSuggestions] = useState([]);
   const [filteredFaqs, setFilteredFaqs] = useState([]);
   const [showFaqSection, setShowFaqSection] = useState(false);
-  const [sectionTitle, setSectionTitle] = useState('');
+  const [sectionTitle, setSectionTitle] = useState("");
 
   useEffect(() => {
     if (searchTerm && faqData) {
@@ -56,18 +56,18 @@ const Help = ({ faqData }) => {
 
   const helpItems = [
     {
-      title: 'Getting started',
-      description: 'Get your account set up in just 5 simple steps',
+      title: "Getting started",
+      description: "Get your account set up in just 5 simple steps",
       image: help1,
     },
     {
-      title: 'Account Management',
-      description: 'Manage your Account',
+      title: "Account Management",
+      description: "Manage your Account",
       image: help2,
     },
     {
-      title: 'Reporting',
-      description: 'Reporting issues',
+      title: "Reporting",
+      description: "Reporting issues",
       image: help3,
     },
   ];
@@ -101,7 +101,10 @@ const Help = ({ faqData }) => {
                     {autocompleteSuggestions.length > 0 && (
                       <ul className="autocomplete-suggestions">
                         {autocompleteSuggestions.map((suggestion, index) => (
-                          <li key={index} onClick={() => handleSuggestionClick(suggestion)}>
+                          <li
+                            key={index}
+                            onClick={() => handleSuggestionClick(suggestion)}
+                          >
                             {suggestion}
                           </li>
                         ))}
@@ -116,7 +119,11 @@ const Help = ({ faqData }) => {
       </section>
 
       {showFaqSection && filteredFaqs.length > 0 ? (
-        <FaqSection searchTerm={searchTerm} faqData={filteredFaqs} sectionTitle={sectionTitle} />
+        <FaqSection
+          searchTerm={searchTerm}
+          faqData={filteredFaqs}
+          sectionTitle={sectionTitle}
+        />
       ) : (
         <section className="help mt-5">
           <div className="container">

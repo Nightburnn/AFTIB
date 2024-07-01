@@ -20,11 +20,11 @@ const Listing = () => {
   let token = window.localStorage.getItem("accessToken");
   let imageInput = useRef(null);
   const [images, setImages] = useState([]);
-  const [previews,setPreviews] = useState([]);
+  const [previews, setPreviews] = useState([]);
 
-  const [developmentStage,setDevelopmentStage] = useState('urban') 
-  function updateDevelopmentStage(e){
-    setDevelopmentStage(e.target.value)
+  const [developmentStage, setDevelopmentStage] = useState("urban");
+  function updateDevelopmentStage(e) {
+    setDevelopmentStage(e.target.value);
   }
   const [position, setPosition] = useState({
     lat: 6.447809299999999,
@@ -79,7 +79,7 @@ const Listing = () => {
     floorNumber: "",
     agentName: "",
     agentPhone: "",
-    agentEmail: ""
+    agentEmail: "",
   });
   const [checks, setChecks] = useState({
     Garage: false,
@@ -101,14 +101,14 @@ const Listing = () => {
     setFormValues({
       ...formValues,
       [name]: value,
-    })
-  }
+    });
+  };
 
   const handleDrop = (event) => {
-    event.preventDefault()
-    const files = Array.from(event.dataTransfer.files)
-    uploadFiles(files)
-  }
+    event.preventDefault();
+    const files = Array.from(event.dataTransfer.files);
+    uploadFiles(files);
+  };
 
   const handleFileSelect = (event) => {
     const files = Array.from(event.target.files);
@@ -452,8 +452,8 @@ const Listing = () => {
                       />
                     </div>
                   ))}
-                  <div className="col-sm-12">
-                    <h3>Area Development Stage?</h3>
+                <div className="col-sm-12">
+                  <h3>Area Development Stage?</h3>
                   <div class="form-group">
                     <div style={{ marginBottom: "10px" }}>
                       <label>
@@ -492,7 +492,7 @@ const Listing = () => {
                       </label>
                     </div>
                   </div>
-                  </div>
+                </div>
               </div>
             </div>
             <div className="form-group mb-3">
@@ -800,40 +800,48 @@ const Listing = () => {
             <h2>Gallery</h2>
             <p>Upload the images for the listings one after the other</p>
             <div className="listing-gallery">
-            <form id="uploadForm">
-              <p><b>{images.length > 0? 'Upload Another One': ""}</b></p>
-              
-        <input
-          type="file"
-          id="fileInput"
-          placeholder="Add Image"
-          name="files"
-          onChange={handleImageUpload}
-          ref={imageInput}
-        />
-        <div className="my-5 row justify-content-center">
-          {previews.map((preview, index) => (
-            <div className="col-8 col-md-5 col-lg-4 position-relative" key={index}>
-              <img src={preview} alt={`preview-${index}`} className="img-fluid previewImage" />
-              <button
-                type="button"
-                className="btn btn-danger position-absolute top-0 end-0"
-                onClick={() => handleDeleteImage(index)}
-              >
-                Delete
-              </button>
-            </div>
-          ))}
-        </div>
-      </form>
+              <form id="uploadForm">
+                <p>
+                  <b>{images.length > 0 ? "Upload Another One" : ""}</b>
+                </p>
 
+                <input
+                  type="file"
+                  id="fileInput"
+                  placeholder="Add Image"
+                  name="files"
+                  onChange={handleImageUpload}
+                  ref={imageInput}
+                />
+                <div className="my-5 row justify-content-center">
+                  {previews.map((preview, index) => (
+                    <div
+                      className="col-8 col-md-5 col-lg-4 position-relative"
+                      key={index}
+                    >
+                      <img
+                        src={preview}
+                        alt={`preview-${index}`}
+                        className="img-fluid previewImage"
+                      />
+                      <button
+                        type="button"
+                        className="btn btn-danger position-absolute top-0 end-0"
+                        onClick={() => handleDeleteImage(index)}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
       <div className="row justify-content-center">
         <button className="btn listbtn  mt-3" onClick={submitForm}>
-            Submit
+          Submit
         </button>
       </div>
     </div>

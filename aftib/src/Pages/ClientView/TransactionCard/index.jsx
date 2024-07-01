@@ -1,7 +1,13 @@
-import React from 'react';
-import './style.css'; // Import the CSS file for styling
+import React from "react";
+import "./style.css"; // Import the CSS file for styling
 
-const TransactionCard = ({ date, type, transactionId, paymentInitialized, onViewTransaction }) => {
+const TransactionCard = ({
+  date,
+  type,
+  transactionId,
+  paymentInitialized,
+  onViewTransaction,
+}) => {
   return (
     <div className="transaction-card">
       <div className="transaction-field">

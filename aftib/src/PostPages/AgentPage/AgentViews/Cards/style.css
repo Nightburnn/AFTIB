@@ -1,5 +1,6 @@
-/* TransactionCard.css */
-.transaction-card {
+/* ListingCard.css */
+.listing-card {
+  display: flex;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   padding: 20px;
@@ -7,7 +8,26 @@
   background-color: #fff;
 }
 
-.transaction-field {
+.image-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.listing-image {
+  border-radius: 10px;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.data-container {
+  flex: 3;
+  padding-left: 20px;
+}
+
+.listing-field {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
@@ -21,7 +41,7 @@
   font-weight: normal;
 }
 
-.view-transaction-button {
+.view-listing-button {
   display: block;
   width: 100%;
   padding: 10px;
@@ -35,6 +55,6 @@
   text-align: center;
 }
 
-.view-transaction-button:hover {
+.view-listing-button:hover {
   background-color: #0056b3;
 }

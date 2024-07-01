@@ -58,13 +58,12 @@
   margin-bottom: 40px;
 }
 
-.previewImage{
+.previewImage {
   border: 1px solid rgb(180, 180, 180);
   border-radius: 10px;
   padding: 10px;
   max-height: 200px;
 }
-
 
 @media (max-width: 760px) {
   .listbtn {

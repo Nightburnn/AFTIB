@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useLoading } from '../../../../Components/LoadingContext';
-import { fetchUnapprovedAgents } from '../../../../utils/adminOpsRequests';
-import './AgentReview.css';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useLoading } from "../../../../Components/LoadingContext";
+import { fetchUnapprovedAgents } from "../../../../utils/adminOpsRequests";
+import "./AgentReview.css";
 
 const AgentReview = () => {
   const [agents, setAgents] = useState([]);
@@ -12,15 +12,15 @@ const AgentReview = () => {
   const fetchAgentRequests = async () => {
     try {
       setLoading(true);
-      setLoadingText('Fetching Agent Requests...');
+      setLoadingText("Fetching Agent Requests...");
       const response = await fetchUnapprovedAgents();
       setAgents(response.data);
     } catch (error) {
-      console.error('Error fetching agent requests:', error);
+      console.error("Error fetching agent requests:", error);
       setError(error.message);
     } finally {
       setLoading(false);
-      setLoadingText('');
+      setLoadingText("");
     }
   };
 
@@ -37,17 +37,18 @@ const AgentReview = () => {
       <div className="py-4 agent">
         <h1 className="text-center">Pending Agent Review</h1>
         <h3 className="text-center">
-          Below are the list of agent requests that are pending approval. Review them for approval.
+          Below are the list of agent requests that are pending approval. Review
+          them for approval.
         </h3>
       </div>
       <div className="row mt-4">
         {Array.isArray(agents) && agents.length > 0 ? (
-          agents.map(agent => (
+          agents.map((agent) => (
             <div className="col-md-6 mb-4" key={agent.id}>
               <div className="card text-center">
                 <div className="card-body">
                   <img
-                    src={agent.passport || 'https://via.placeholder.com/150'}
+                    src={agent.passport || "https://via.placeholder.com/150"}
                     className="rounded-circle mb-3"
                     alt={`${agent.name}'s profile`}
                   />
@@ -57,7 +58,10 @@ const AgentReview = () => {
                     <h5>Agency Type:</h5>
                     <p>{agent.agency}</p>
                   </div>
-                  <Link to={`/approve/${agent._id}`} className="btn blue btn-block">
+                  <Link
+                    to={`/approve/${agent._id}`}
+                    className="btn blue btn-block"
+                  >
                     Review this prospect
                   </Link>
                 </div>

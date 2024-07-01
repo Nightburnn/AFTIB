@@ -1,20 +1,68 @@
 import React from "react";
 import "./Dash.css";
 import { TfiPrinter } from "react-icons/tfi";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const approvalAndReviewData = [
-  { icon: <TfiPrinter />, number: "2,345", title: "Agent", buttonText: "Review Request", link: "/review-agent" },
-  { icon: <TfiPrinter />, number: "2,345", title: "New Listing Pending", buttonText: "Review Listings", link: "/review-listings" },
-  { icon: <TfiPrinter />, number: "2,345", title: "New Hotel Listing", buttonText: "Review Hotels", link: "/review-hotels" },
+  {
+    icon: <TfiPrinter />,
+    number: "2,345",
+    title: "Agent",
+    buttonText: "Review Request",
+    link: "/review-agent",
+  },
+  {
+    icon: <TfiPrinter />,
+    number: "2,345",
+    title: "New Listing Pending",
+    buttonText: "Review Listings",
+    link: "/review-listings",
+  },
+  {
+    icon: <TfiPrinter />,
+    number: "2,345",
+    title: "New Hotel Listing",
+    buttonText: "Review Hotels",
+    link: "/review-hotels",
+  },
 ];
 
 const statisticsAndInfoData = [
-  { icon: <TfiPrinter />, number: "2,345", title: "Approved Agent", buttonText: "View Data", link: "/view-approved-agent" },
-  { icon: <TfiPrinter />, number: "2,345", title: "Client Account", buttonText: "View Data", link: "/view-client-account" },
-  { icon: <TfiPrinter />, number: "2,345", title: "Approved Listings", buttonText: "View Data", link: "/view-approved-listings" },
-  { icon: <TfiPrinter />, number: "2,345", title: "Approved Hotels", buttonText: "View Data", link: "/view-approved-hotels" },
-  { icon: <TfiPrinter />, number: "2,345", title: "Concluded Transactions", buttonText: "View Data", link: "/review-transactions" },
+  {
+    icon: <TfiPrinter />,
+    number: "2,345",
+    title: "Approved Agent",
+    buttonText: "View Data",
+    link: "/view-approved-agent",
+  },
+  {
+    icon: <TfiPrinter />,
+    number: "2,345",
+    title: "Client Account",
+    buttonText: "View Data",
+    link: "/view-client-account",
+  },
+  {
+    icon: <TfiPrinter />,
+    number: "2,345",
+    title: "Approved Listings",
+    buttonText: "View Data",
+    link: "/view-approved-listings",
+  },
+  {
+    icon: <TfiPrinter />,
+    number: "2,345",
+    title: "Approved Hotels",
+    buttonText: "View Data",
+    link: "/view-approved-hotels",
+  },
+  {
+    icon: <TfiPrinter />,
+    number: "2,345",
+    title: "Concluded Transactions",
+    buttonText: "View Data",
+    link: "/review-transactions",
+  },
 ];
 
 const Dashboard = () => {
@@ -39,7 +87,9 @@ const Dashboard = () => {
                           <p>{item.title}</p>
                         </div>
                       </div>
-                      <Link to={item.link} className="btn blue btn-block mt-3">{item.buttonText}</Link>
+                      <Link to={item.link} className="btn blue btn-block mt-3">
+                        {item.buttonText}
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -54,7 +104,10 @@ const Dashboard = () => {
           <div className="card-body">
             <div className="row">
               {statisticsAndInfoData.map((item, idx) => (
-                <div className={`col-md-6 mb-4 ${idx === 4 ? "col-md-6" : ""}`} key={idx}>
+                <div
+                  className={`col-md-6 mb-4 ${idx === 4 ? "col-md-6" : ""}`}
+                  key={idx}
+                >
                   <div className="card text-dark bg-light h-100">
                     <div className="card-body">
                       <div className="d-flex align-items-center">
@@ -64,7 +117,9 @@ const Dashboard = () => {
                           <p>{item.title}</p>
                         </div>
                       </div>
-                      <Link to={item.link} className="btn blue btn-block mt-3">{item.buttonText}</Link>
+                      <Link to={item.link} className="btn blue btn-block mt-3">
+                        {item.buttonText}
+                      </Link>
                     </div>
                   </div>
                 </div>

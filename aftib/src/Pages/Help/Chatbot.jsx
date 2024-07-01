@@ -69,27 +69,108 @@ const Chatbot = () => {
 
   // Manually create keyword-response pairs
   const keywordResponses = [
-    { keywords: ["greetings", "salutations", "hello", "hi", "hey"], response: "Hello! How can I help you today?" },
-    { keywords: ["buy", "sell",  "rent", "shortlet"], response: "To Buy, rent, sell,or shortlet an aprtment go to Buy Page and scroll through various houses " },
-    { keywords: ["assistance", "aid", "help", "support"], response: "I'm here to help! What do you need assistance with?" },
-    { keywords: ["signup", "register", "create", "account", "open"], response: "To create an account, go to the signup page and fill out the form with your details. Once you submit the form, you will receive a confirmation email." },
-    { keywords: ["forgot", "reset", "password"], response: "To reset your password, click on the 'Forgot Password' link on the login page and follow the instructions." },
-    { keywords: ["edit", "modify", "update", "profile"], response: "To update your profile information, go to the profile settings page and make the necessary changes." },
-    { keywords: ["modify", "change", "email"], response: "To change your email address, go to the account settings page and update your email information." },
-    { keywords: ["modify", "change", "password"], response: "To change your password, go to the account settings page and update your password." },
-    { keywords: ["adjust", "manage", "notifications"], response: "To manage your notifications, go to the notification settings page and adjust your preferences." },
-    { keywords: ["single", "multiple", "accounts"], response: "No, our policy does not allow multiple accounts per user." },
-    { keywords: ["submit", "report", "bug"], response: "To report a bug, go to the support page and submit a bug report form." },
-    { keywords: ["flag", "report", "inappropriate", "content"], response: "To report inappropriate content, click on the report button next to the content in question." },
-    { keywords: ["give", "provide", "feedback"], response: "To provide feedback, go to the feedback page and fill out the feedback form." },
-    { keywords: ["alert", "report", "security", "issue"], response: "To report a security issue, contact our security team at security@example.com." },
-    { keywords: ["alert", "report", "copyright", "infringement"], response: "To report a copyright infringement, contact our legal team at legal@example.com." },
-    { keywords: ["alert", "report", "billing", "issue"], response: "To report a billing issue, contact our billing support at billing@example.com." },
-    { keywords: ["alert", "report", "violation", "terms"], response: "To report a violation of terms, use the report feature or contact our support team." },
-    { keywords: ["alert", "report", "privacy", "concern"], response: "To report a privacy concern, contact our privacy team at privacy@example.com." },
-    { keywords: ["alert", "report", "scam", "phishing"], response: "To report a scam or phishing attempt, forward the suspicious email to phishing@example.com." },
-    { keywords: ["submit", "report", "error", "app"], response: "To report an error in the app, use the feedback feature or contact our support team." },
-    { keywords: ["submit", "report", "broken", "feature"], response: "To report a broken feature, use the bug report form on the support page." },
+    {
+      keywords: ["greetings", "salutations", "hello", "hi", "hey"],
+      response: "Hello! How can I help you today?",
+    },
+    {
+      keywords: ["buy", "sell", "rent", "shortlet"],
+      response:
+        "To Buy, rent, sell,or shortlet an aprtment go to Buy Page and scroll through various houses ",
+    },
+    {
+      keywords: ["assistance", "aid", "help", "support"],
+      response: "I'm here to help! What do you need assistance with?",
+    },
+    {
+      keywords: ["signup", "register", "create", "account", "open"],
+      response:
+        "To create an account, go to the signup page and fill out the form with your details. Once you submit the form, you will receive a confirmation email.",
+    },
+    {
+      keywords: ["forgot", "reset", "password"],
+      response:
+        "To reset your password, click on the 'Forgot Password' link on the login page and follow the instructions.",
+    },
+    {
+      keywords: ["edit", "modify", "update", "profile"],
+      response:
+        "To update your profile information, go to the profile settings page and make the necessary changes.",
+    },
+    {
+      keywords: ["modify", "change", "email"],
+      response:
+        "To change your email address, go to the account settings page and update your email information.",
+    },
+    {
+      keywords: ["modify", "change", "password"],
+      response:
+        "To change your password, go to the account settings page and update your password.",
+    },
+    {
+      keywords: ["adjust", "manage", "notifications"],
+      response:
+        "To manage your notifications, go to the notification settings page and adjust your preferences.",
+    },
+    {
+      keywords: ["single", "multiple", "accounts"],
+      response: "No, our policy does not allow multiple accounts per user.",
+    },
+    {
+      keywords: ["submit", "report", "bug"],
+      response:
+        "To report a bug, go to the support page and submit a bug report form.",
+    },
+    {
+      keywords: ["flag", "report", "inappropriate", "content"],
+      response:
+        "To report inappropriate content, click on the report button next to the content in question.",
+    },
+    {
+      keywords: ["give", "provide", "feedback"],
+      response:
+        "To provide feedback, go to the feedback page and fill out the feedback form.",
+    },
+    {
+      keywords: ["alert", "report", "security", "issue"],
+      response:
+        "To report a security issue, contact our security team at security@example.com.",
+    },
+    {
+      keywords: ["alert", "report", "copyright", "infringement"],
+      response:
+        "To report a copyright infringement, contact our legal team at legal@example.com.",
+    },
+    {
+      keywords: ["alert", "report", "billing", "issue"],
+      response:
+        "To report a billing issue, contact our billing support at billing@example.com.",
+    },
+    {
+      keywords: ["alert", "report", "violation", "terms"],
+      response:
+        "To report a violation of terms, use the report feature or contact our support team.",
+    },
+    {
+      keywords: ["alert", "report", "privacy", "concern"],
+      response:
+        "To report a privacy concern, contact our privacy team at privacy@example.com.",
+    },
+    {
+      keywords: ["alert", "report", "scam", "phishing"],
+      response:
+        "To report a scam or phishing attempt, forward the suspicious email to phishing@example.com.",
+    },
+    {
+      keywords: ["submit", "report", "error", "app"],
+      response:
+        "To report an error in the app, use the feedback feature or contact our support team.",
+    },
+    {
+      keywords: ["submit", "report", "broken", "feature"],
+      response:
+        "To report a broken feature, use the bug report form on the support page.",
+    },
   ];
 
   const generateResponse = (userMessage) => {
@@ -99,8 +180,8 @@ const Chatbot = () => {
     console.log("User message:", userMessage); // Logging user message
 
     for (const pair of keywordResponses) {
-      const matched = pair.keywords.some(keyword =>
-        lowerCaseMessage.includes(keyword)
+      const matched = pair.keywords.some((keyword) =>
+        lowerCaseMessage.includes(keyword),
       );
       console.log("Checking keywords:", pair.keywords, "Matched:", matched); // Logging keyword checking
       if (matched) {
@@ -110,7 +191,8 @@ const Chatbot = () => {
     }
 
     if (!response) {
-      response = "Sorry, I couldn't find an answer to your question. Please send your email and leave a message, and someone will get back to you.";
+      response =
+        "Sorry, I couldn't find an answer to your question. Please send your email and leave a message, and someone will get back to you.";
       setAwaitingEmail(true); // Set flag to indicate bot is awaiting email
     }
 
@@ -138,7 +220,10 @@ const Chatbot = () => {
     } else {
       setMessages((prevMessages) => [
         ...prevMessages,
-        { type: "incoming", text: "Please make sure to include your email in the message." },
+        {
+          type: "incoming",
+          text: "Please make sure to include your email in the message.",
+        },
       ]);
     }
   };

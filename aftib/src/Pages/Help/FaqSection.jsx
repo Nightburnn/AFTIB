@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import './Faq.css';
+import React, { useState, useEffect } from "react";
+import "./Faq.css";
 
 const FaqSection = ({ searchTerm, faqData, sectionTitle }) => {
   const [filteredFaqs, setFilteredFaqs] = useState([]);
@@ -9,8 +9,8 @@ const FaqSection = ({ searchTerm, faqData, sectionTitle }) => {
       let filteredItems = faqData;
 
       if (searchTerm) {
-        filteredItems = faqData.filter(item =>
-          item.question.toLowerCase().includes(searchTerm.toLowerCase())
+        filteredItems = faqData.filter((item) =>
+          item.question.toLowerCase().includes(searchTerm.toLowerCase()),
         );
       }
 
@@ -27,7 +27,10 @@ const FaqSection = ({ searchTerm, faqData, sectionTitle }) => {
       <div className="row">
         <div className="col-lg-8 offset-lg-2">
           <h2 className="text-center faq-title">{sectionTitle}</h2>
-          <p className="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt dolorum natus explicabo</p>
+          <p className="text-center">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
+            dolorum natus explicabo
+          </p>
           <div className="accordion" id="faqAccordion">
             {filteredFaqs.length > 0 ? (
               filteredFaqs.map((item, idx) => (
@@ -50,9 +53,7 @@ const FaqSection = ({ searchTerm, faqData, sectionTitle }) => {
                     aria-labelledby={`heading${idx}`}
                     data-bs-parent="#faqAccordion"
                   >
-                    <div className="accordion-body">
-                      {item.answer}
-                    </div>
+                    <div className="accordion-body">{item.answer}</div>
                   </div>
                 </div>
               ))

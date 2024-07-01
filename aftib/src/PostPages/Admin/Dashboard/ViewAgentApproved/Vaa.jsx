@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { fetchAapprovedAgents } from '../../../../utils/adminOpsRequests';
-import { useLoading } from '../../../../Components/LoadingContext';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { fetchAapprovedAgents } from "../../../../utils/adminOpsRequests";
+import { useLoading } from "../../../../Components/LoadingContext";
 
 const ApprovedAgents = () => {
   const [agents, setAgents] = useState([]);
@@ -11,16 +11,16 @@ const ApprovedAgents = () => {
   const fetchAgentRequests = async () => {
     try {
       setLoading(true);
-      setLoadingText('Fetching Approved Agents');
+      setLoadingText("Fetching Approved Agents");
       const response = await fetchAapprovedAgents();
-      console.log('Approved Agents Data:', response.data);
+      console.log("Approved Agents Data:", response.data);
       setAgents(response.data);
     } catch (error) {
-      console.error('Error fetching agent requests:', error);
+      console.error("Error fetching agent requests:", error);
       setError(error.message);
     } finally {
       setLoading(false);
-      setLoadingText('');
+      setLoadingText("");
     }
   };
 
@@ -40,12 +40,12 @@ const ApprovedAgents = () => {
       </div>
       <div className="row mt-4">
         {Array.isArray(agents) && agents.length > 0 ? (
-          agents.map(agent => (
+          agents.map((agent) => (
             <div className="col-md-6 mb-4" key={agent._id}>
               <div className="card text-center">
                 <div className="card-body">
                   <img
-                    src={agent.passport || 'https://via.placeholder.com/150'}
+                    src={agent.passport || "https://via.placeholder.com/150"}
                     className="rounded-circle mb-3"
                     alt={`${agent.name}'s profile`}
                   />
@@ -55,7 +55,10 @@ const ApprovedAgents = () => {
                     <h5>Agency Type:</h5>
                     <p>{agent.agency}</p>
                   </div>
-                  <Link to={`/vaadetails/${agent._id}`} className="btn blue btn-block">
+                  <Link
+                    to={`/vaadetails/${agent._id}`}
+                    className="btn blue btn-block"
+                  >
                     View Details
                   </Link>
                 </div>

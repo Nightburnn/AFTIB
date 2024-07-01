@@ -9,7 +9,7 @@ const AgentCard = ({ agent, token, onApprove }) => {
       const data = await approveListing(agent._id, token);
       onApprove(agent._id, data);
     } catch (error) {
-      console.error('Error approving listing:', error);
+      console.error("Error approving listing:", error);
     }
   };
 
@@ -17,7 +17,11 @@ const AgentCard = ({ agent, token, onApprove }) => {
     <div className="col-md-4">
       <div className="card-box-d">
         <div className="card-img-d">
-          <img src={agent.passport} alt={`${agent.name}`} className="img-d img-fluid" />
+          <img
+            src={agent.passport}
+            alt={`${agent.name}`}
+            className="img-d img-fluid"
+          />
         </div>
         <div className="card-overlay card-overlay-hover">
           <div className="card-header-d">
@@ -61,7 +65,9 @@ const AgentCard = ({ agent, token, onApprove }) => {
                 </li>
               </ul>
             </div>
-            <button className="btn btn-approve" onClick={handleApprove}>Approve</button>
+            <button className="btn btn-approve" onClick={handleApprove}>
+              Approve
+            </button>
           </div>
         </div>
       </div>

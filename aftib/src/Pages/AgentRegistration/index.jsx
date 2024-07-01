@@ -4,7 +4,11 @@ import { useLoading } from "../../Components/LoadingContext";
 import { useNavigate } from "react-router-dom";
 import { Modal } from "antd";
 import { nigerianStateData } from ".././Listing/data";
-import { requestAgencyStatus, updateAgencyStatusIssuedId, updateAgencyStatusPassport} from "../../utils/adminOpsRequests";
+import {
+  requestAgencyStatus,
+  updateAgencyStatusIssuedId,
+  updateAgencyStatusPassport,
+} from "../../utils/adminOpsRequests";
 
 const AgentRegistration = () => {
   let token = window.localStorage.getItem("accessToken");
@@ -28,7 +32,7 @@ const AgentRegistration = () => {
   const [facebookLink, setFacebookLink] = useState("");
   const [instagramLink, setInstagramLink] = useState("");
   const [twitterLink, setTwitterLink] = useState("");
-  const [linkedIn,setLinkedIn] = useState('')
+  const [linkedIn, setLinkedIn] = useState("");
   const [agencyType, setAgencyType] = useState("");
   const [IssuedId, setIssuedId] = useState(null);
   const [passport, setPassport] = useState(null);
@@ -37,14 +41,14 @@ const AgentRegistration = () => {
   // handle passport and issued id
   const handleIssuedIdChange = (e) => {
     const file = e.target.files[0];
-    setIssuedId(file)
-    setIssuedIdPreview(URL.createObjectURL(file))
-  }
+    setIssuedId(file);
+    setIssuedIdPreview(URL.createObjectURL(file));
+  };
   const handlePassportPhotoChange = (e) => {
     const file = e.target.files[0];
-    setPassport(file)
-    setPassportPhotoPreview(URL.createObjectURL(file))
-  }
+    setPassport(file);
+    setPassportPhotoPreview(URL.createObjectURL(file));
+  };
 
   const updateName = (e) => {
     setName(e.target.value);
@@ -73,7 +77,7 @@ const AgentRegistration = () => {
   const updateState = (e) => {
     setState(e.target.value);
   };
-  
+
   const updateLGA = (e) => {
     setLGA(e.target.value);
   };
@@ -104,7 +108,7 @@ const AgentRegistration = () => {
   const updateLinkedIn = (e) => {
     setLinkedIn(e.target.value);
   };
-  
+
   const handleOk = () => {
     setShowModal(false);
     navigate("/");
@@ -119,31 +123,46 @@ const AgentRegistration = () => {
     e.preventDefault();
 
     try {
-      setLoadingText("Initializing")
+      setLoadingText("Initializing");
       let reqBody1 = {
-        name,businessName,phone,whatsappNo,email,officeAddress,state,LGA,about,CACRef,ninNumber,facebookLink,instagramLink,twitterLink,linkedIn,agencyType
+        name,
+        businessName,
+        phone,
+        whatsappNo,
+        email,
+        officeAddress,
+        state,
+        LGA,
+        about,
+        CACRef,
+        ninNumber,
+        facebookLink,
+        instagramLink,
+        twitterLink,
+        linkedIn,
+        agencyType,
+      };
+      let formData1 = new FormData();
+      formData1.append("files", IssuedId);
+      let formData2 = new FormData();
+      formData2.append("files", passport);
+      let initialize = await requestAgencyStatus(reqBody1, token);
+      let uploadPassport;
+      let uploadId;
+      console.log({ initialize });
+      if (passport) {
+        setLoadingText("Uploading Passport Photo");
+        uploadPassport = await updateAgencyStatusPassport(formData2, token);
+        console.log({ uploadPassport });
       }
-      let formData1 = new FormData()
-      formData1.append('files',IssuedId)
-      let formData2 = new FormData()
-      formData2.append('files',passport)
-      let initialize = await requestAgencyStatus(reqBody1,token)
-      let uploadPassport 
-      let uploadId 
-      console.log({initialize});
-      if(passport){
-        setLoadingText("Uploading Passport Photo")  
-        uploadPassport= await updateAgencyStatusPassport(formData2,token)
-      console.log({uploadPassport});
+      if (IssuedId) {
+        setLoadingText("Uploading Issued Id");
+        uploadId = await updateAgencyStatusIssuedId(formData1, token);
+        console.log({ uploadId });
       }
-      if(IssuedId){
-        setLoadingText("Uploading Issued Id")
-        uploadId= await updateAgencyStatusIssuedId(formData1,token)
-      console.log({uploadId});
-      }
-      setLoadingText("")
-      setLoading(false)
-      setShowModal(true)
+      setLoadingText("");
+      setLoading(false);
+      setShowModal(true);
       setModalTitle(
         "Successfully submitted Request to become an agent at Aftib. Our Admin would reveiw your details",
       );
@@ -231,8 +250,8 @@ const AgentRegistration = () => {
                     type="number"
                     pattern="[0-9+]+"
                     required="required"
-                  value={phone}
-                  onChange={updatePhone}
+                    value={phone}
+                    onChange={updatePhone}
                   />
                 </div>
               </div>
@@ -248,8 +267,8 @@ const AgentRegistration = () => {
                     type="number"
                     pattern="[0-9+]+"
                     required="required"
-                  value={whatsappNo}
-                  onChange={updateWhatsappNo}
+                    value={whatsappNo}
+                    onChange={updateWhatsappNo}
                   />
                 </div>
               </div>
@@ -263,9 +282,9 @@ const AgentRegistration = () => {
                     name="email"
                     placeholder="e.g musa@gmail.com"
                     type="text"
-                    required="required"                    
-                  value={email}
-                  onChange={updateEmail}
+                    required="required"
+                    value={email}
+                    onChange={updateEmail}
                   />
                 </div>
               </div>
@@ -287,9 +306,9 @@ const AgentRegistration = () => {
                     name="addressStreet"
                     placeholder="e.g No 28 Toyin Street, Ikeja"
                     type="text"
-                    required='true'
-                  value={officeAddress}
-                  onChange={updateOfficeAddress}
+                    required="true"
+                    value={officeAddress}
+                    onChange={updateOfficeAddress}
                   />
                 </div>
               </div>
@@ -377,8 +396,8 @@ const AgentRegistration = () => {
                     className="form-control height-100"
                     rows="3"
                     placeholder="Describe your organization"
-                  value={about}
-                  onChange={updateAbout}
+                    value={about}
+                    onChange={updateAbout}
                   ></textarea>
                   <span className="help-block"></span>
                 </div>
@@ -402,8 +421,8 @@ const AgentRegistration = () => {
                       placeholder="01234567891"
                       type="text"
                       required="required"
-                  value={ninNumber}
-                  onChange={updateNinNumber}
+                      value={ninNumber}
+                      onChange={updateNinNumber}
                     />
                   </div>
                 </div>
@@ -419,8 +438,8 @@ const AgentRegistration = () => {
                       placeholder="01234567891"
                       type="text"
                       required="required"
-                  value={CACRef}
-                  onChange={updateCACRef}
+                      value={CACRef}
+                      onChange={updateCACRef}
                     />
                   </div>
                 </div>
@@ -445,7 +464,13 @@ const AgentRegistration = () => {
                       className="docUpload form-control height-auto"
                       onChange={handleIssuedIdChange}
                     />
-                    {issuedIdPreview && <img src={issuedIdPreview} alt="ID Preview" className="image-preview" />}
+                    {issuedIdPreview && (
+                      <img
+                        src={issuedIdPreview}
+                        alt="ID Preview"
+                        className="image-preview"
+                      />
+                    )}
                   </div>
                 </div>
 
@@ -466,7 +491,13 @@ const AgentRegistration = () => {
                       placeholder="Add Passport Photo"
                       className="docUpload form-control height-auto"
                     />
-                    {passport && <img src={passportPhotoPreview} alt="NIN Preview" className="image-preview" />}
+                    {passport && (
+                      <img
+                        src={passportPhotoPreview}
+                        alt="NIN Preview"
+                        className="image-preview"
+                      />
+                    )}
                   </div>
                 </div>
               </div>
@@ -487,8 +518,8 @@ const AgentRegistration = () => {
                     name="facebook"
                     placeholder="facebook.com/johndoe"
                     type="text"
-                  value={facebookLink}
-                  onChange={updateFacebookLink}
+                    value={facebookLink}
+                    onChange={updateFacebookLink}
                   />
                 </div>
               </div>
@@ -501,8 +532,8 @@ const AgentRegistration = () => {
                   <input
                     className="form-control"
                     name="twitter"
-                  value={twitterLink}
-                  onChange={updateTwitterLink}
+                    value={twitterLink}
+                    onChange={updateTwitterLink}
                     placeholder="twitter.com/johndoe"
                     type="text"
                   />
@@ -517,8 +548,8 @@ const AgentRegistration = () => {
                   <input
                     className="form-control"
                     name="linkedin"
-                  value={linkedIn}
-                  onChange={updateLinkedIn}
+                    value={linkedIn}
+                    onChange={updateLinkedIn}
                     placeholder="linkedin.com/johndoe"
                     type="text"
                   />
@@ -533,8 +564,8 @@ const AgentRegistration = () => {
                   <input
                     className="form-control"
                     name="instagram"
-                  value={instagramLink}
-                  onChange={updateInstagramLink}
+                    value={instagramLink}
+                    onChange={updateInstagramLink}
                     placeholder="instagram.com/johndoe"
                     type="text"
                   />

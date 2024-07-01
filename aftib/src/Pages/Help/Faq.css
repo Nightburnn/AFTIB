@@ -1,18 +1,18 @@
-.faq-title{
-    color: #4517fb;
-    font-size: 2.2rem;
-    font-weight: 500;
-    margin-bottom: 10px;
+.faq-title {
+  color: #4517fb;
+  font-size: 2.2rem;
+  font-weight: 500;
+  margin-bottom: 10px;
 }
 .accordion-item {
-    margin-bottom: 15px; 
-  }
-  
-  .accordion-button {
-    transition: background-color 0.3s;
-  }
-  
-  .accordion-button:hover {
-    background-color: #4517fb; 
-    color: #fff;
-  }
+  margin-bottom: 15px;
+}
+
+.accordion-button {
+  transition: background-color 0.3s;
+}
+
+.accordion-button:hover {
+  background-color: #4517fb;
+  color: #fff;
+}

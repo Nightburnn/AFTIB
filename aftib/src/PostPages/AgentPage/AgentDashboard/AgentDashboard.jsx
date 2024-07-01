@@ -1,20 +1,68 @@
-import React from 'react'
-import '../../Admin/Dashboard/Dash.css'
+import React from "react";
+import "../../Admin/Dashboard/Dash.css";
 import { TfiPrinter } from "react-icons/tfi";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const approvalAndReviewData = [
-  { icon: <TfiPrinter />, number: "2,345", title: "Approved Listing", buttonText: "Review Request", link: "/approved-list" },
-  { icon: <TfiPrinter />, number: "2,345", title: "Approved Hotel", buttonText: "Review Hotel", link: "/approved-hotel" },
-  { icon: <TfiPrinter />, number: "2,345", title: "Pending Listing", buttonText: "Review Request", link: "/pend-list" },
-  { icon: <TfiPrinter />, number: "2,345", title: "Pending Hotel", buttonText: "Review Hotel", link: "/pend-hotel" },
+  {
+    icon: <TfiPrinter />,
+    number: "2,345",
+    title: "My Approved Listing",
+    buttonText: "Review Request",
+    link: "/agent/approvedlist",
+  },
+  {
+    icon: <TfiPrinter />,
+    number: "2,345",
+    title: "My Approved Hotel",
+    buttonText: "Review Hotel",
+    link: "/agent/approvedhotels",
+  },
+  {
+    icon: <TfiPrinter />,
+    number: "2,345",
+    title: "Pending Listing",
+    buttonText: "Review Request",
+    link: "/agent/pendinglist",
+  },
+  {
+    icon: <TfiPrinter />,
+    number: "2,345",
+    title: "Pending Hotel",
+    buttonText: "Review Hotel",
+    link: "/agent/pendinghotels",
+  },
 ];
 
 const statisticsAndInfoData = [
-  { icon: <TfiPrinter />, number: "2,345", title: "My Transaction", buttonText: "View Data", link: "/view-approved-agent" },
-  { icon: <TfiPrinter />, number: "2,345", title: "My Sale", buttonText: "View Data", link: "/view-client-account" },
-  { icon: <TfiPrinter />, number: "2,345", title: "My Hotel Bookings", buttonText: "View Data", link: "/view-approved-listings" },
-  { icon: <TfiPrinter />, number: "2,345", title: "My Rentals", buttonText: "View Data", link: "/view-approved-hotels" },
+  {
+    icon: <TfiPrinter />,
+    number: "2,345",
+    title: "My Transaction",
+    buttonText: "View Data",
+    link: "/agent/transactions",
+  },
+  {
+    icon: <TfiPrinter />,
+    number: "2,345",
+    title: "My Property Sales",
+    buttonText: "View Data",
+    link: "/agent/propertysales",
+  },
+  {
+    icon: <TfiPrinter />,
+    number: "2,345",
+    title: "My Hotel Bookings",
+    buttonText: "View Data",
+    link: "/agent/hotelbookings",
+  },
+  {
+    icon: <TfiPrinter />,
+    number: "2,345",
+    title: "My Property Rentals",
+    buttonText: "View Data",
+    link: "/agent/propertyrentals",
+  },
 ];
 
 const AgentDashboard = () => {
@@ -23,11 +71,13 @@ const AgentDashboard = () => {
       <div className="container">
         <h1 className="my-4">Agent Dashboard</h1>
 
-       
         <div className="card text-white mb-5">
           <h2 className="text-center">OverView</h2>
           <div className="white-container">
-            <h3 className='text-center'>Agent Status: <span className='text-danger'>Approved or</span> <span className='coor'>Pending</span></h3>
+            <h3 className="text-center">
+              Agent Status: <span className="text-danger">Approved or</span>{" "}
+              <span className="coor">Pending</span>
+            </h3>
           </div>
           <div className="card-body">
             <div className="row">
@@ -42,7 +92,9 @@ const AgentDashboard = () => {
                           <p>{item.title}</p>
                         </div>
                       </div>
-                      <Link to={item.link} className="btn blue btn-block mt-3">{item.buttonText}</Link>
+                      <Link to={item.link} className="btn blue btn-block mt-3">
+                        {item.buttonText}
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -57,7 +109,10 @@ const AgentDashboard = () => {
           <div className="card-body">
             <div className="row">
               {statisticsAndInfoData.map((item, idx) => (
-                <div className={`col-md-6 mb-4 ${idx === 4 ? "col-md-6" : ""}`} key={idx}>
+                <div
+                  className={`col-md-6 mb-4 ${idx === 4 ? "col-md-6" : ""}`}
+                  key={idx}
+                >
                   <div className="card text-dark bg-light h-100">
                     <div className="card-body">
                       <div className="d-flex align-items-center">
@@ -67,7 +122,9 @@ const AgentDashboard = () => {
                           <p>{item.title}</p>
                         </div>
                       </div>
-                      <Link to={item.link} className="btn blue btn-block mt-3">{item.buttonText}</Link>
+                      <Link to={item.link} className="btn blue btn-block mt-3">
+                        {item.buttonText}
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -77,7 +134,7 @@ const AgentDashboard = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default AgentDashboard;
