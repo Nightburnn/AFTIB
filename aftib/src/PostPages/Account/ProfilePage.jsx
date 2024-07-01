@@ -39,7 +39,7 @@ const ProfilePage = () => {
               {activeTab === "help" && <Help />}
             </>
           );
-        case "Agent":
+        case "agent":
           return (
             <>
               {activeTab === "user" && <AgentUser />}
