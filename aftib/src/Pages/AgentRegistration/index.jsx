@@ -49,7 +49,27 @@ const AgentRegistration = () => {
       // fill the other data
       setName(response.name)
       setBusinessName(response.businessName)
+      setPhone(response.phone || "");
+        setWhatsappNo(response.whatsappNo || "");
+        setEmail(response.email || "");
+        setOfficeAddress(response.officeAddress || "");
+        setState(response.state || "Abia");
+        setLGA(response.LGA || "Aba North");
+        setAbout(response.about || "");
+        setCACRef(response.CACRef || "");
+        setNinNumber(response.ninNumber || "");
+        setFacebookLink(response.facebookLink || "");
+        setInstagramLink(response.instagramLink || "");
+        setTwitterLink(response.twitterLink || "");
+        setLinkedIn(response.linkedIn || "");
+        setAgencyType(response.agencyType || "");
       console.log('data', response)
+      if (response.IssuedId) {
+        setIssuedIdPreview(response.IssuedId);
+    }
+    if (response.passport) {
+        setPassportPhotoPreview(response.passport);
+    }
     }
     catch(err){
       console.error(err.message)
