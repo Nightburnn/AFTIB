@@ -124,6 +124,28 @@ const Hlrdetails = () => {
             </button>
           </div>
         </div>
+
+
+        <div className="section  reject">
+        <h2 className="text-center">Rejection Section</h2>
+        <p className="text-center">
+          If you are not satisfied with the hotel listing, please provide a reason for rejection.
+        </p>
+        <div className="text-center">
+          <textarea
+            placeholder="Enter your rejection reason here"
+            className="form-control"
+         
+           
+          />
+          <button
+           
+            className="btn danger mt-4"
+          >
+            Reject This Hotel Listing
+          </button>
+        </div>
+      </div>
       </div>
     </div>
   );

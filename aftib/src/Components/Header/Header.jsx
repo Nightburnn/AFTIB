@@ -92,7 +92,7 @@ const Header = () => {
                     Buy
                   </NavLink>
                 </li>
-                {isLoggedIn && user && user.accountType === "Agent" ? (
+                {isLoggedIn && user && user.accountType === "agent" ? (
                   <>
                     <li className="nav-item">
                       <NavLink
