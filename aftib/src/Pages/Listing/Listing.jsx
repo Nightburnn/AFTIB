@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef,useEffect } from "react";
 import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "./Listing.css";
@@ -27,6 +27,65 @@ const Listing = () => {
   const queryParams = new URLSearchParams(routeLocation.search);
   let edit = queryParams.get('edit') ? true : false
   let id = queryParams.get('id')
+  let [previousImages,setPreviousImages] = useState([])
+  const [imagesToRemove, setImagesToRemove] = useState([]);
+  const handleImageDelete = (index) => {
+    const newImages = previousImages.filter((_, i) => i !== index);
+    setPreviousImages(newImages);
+    setImagesToRemove([...imagesToRemove, previousImages[index]]);
+  };
+
+  const getListing = async () => {
+    try {
+      const response = await Promise.resolve(fetchListingById(id));
+      const data = response.listing
+      console.log(data)
+      setPreviousImages(data.images || [])
+      // Populate formValues state
+      setFormValues({
+        title: data.title || "",
+        description: data.description || "",
+        saleType: data.saleType || "",
+        propertyType: data.propertyType || "",
+        size: data.size || "",
+        bedrooms: data.bedrooms || "",
+        bathrooms: data.bathrooms || "",
+        estate: data.estate || "",
+        yearBuilt: data.yearBuilt || "",
+        price: data.price || "",
+        monthlyRentPayment: data.monthlyRentPayment || "",
+        monthlyShortLetPrice: data.monthlyShortLetPrice || "",
+        location: data.location || "",
+        state: data.state || "Abia",
+        LGA: data.LGA || "Aba North",
+        ownerName: data.ownersContact?.name || "",
+        ownerPhone: data.ownersContact?.phone || "",
+        ownerEmail: data.ownersContact?.email || "",
+        virtualTour: data.virtualTour || "",
+        neighborhood: data.neighborhood || "",
+        propertyStatus: data.propertyStatus || "Available",
+        energyRating: data.energyRating || "",
+        nearbySchools: data.nearbySchools.join(", ") || "",
+        transportation: data.transportation || "",
+        floorNumber: data.floorNumber || "",
+        agentName: data.agentContact?.name || "",
+        agentPhone: data.agentContact?.phone || "",
+        agentEmail: data.agentContact?.email || "",
+      });
+
+      // Populate checks state
+      setChecks({
+        Garage: data.garage || false,
+        Garden: data.garden || false,
+        Balcony: data.balcony || false,
+        "Pets Allowed": data.petsAllowed || false,
+        Furnished: data.furnished || false,
+      });
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
   let [showModal, setShowModal] = useState(false);
   let [modalTitle, setModalTitle] = useState("");
   let [modalBody, setModalBody] = useState("");
@@ -107,6 +166,14 @@ const Listing = () => {
     Furnished: false,
   });
 
+  useEffect(()=>{
+    if(edit){
+      getListing()
+    }
+    else {
+      console.log('Not Edit')
+    }
+  },[])
   const updateCheck = (option) => {
     let bool = !checks[option];
     let updated = { ...checks, [option]: bool };
@@ -142,12 +209,16 @@ const Listing = () => {
       ...checks,
       ...formValues,
     };
+    if(edit){
+      requestBody.images = previousImages
+    }
+    console.log(edit,validate.message)
     if (!validate.valid) return;
     try {
       setLoading(true)
-      setLoadingText('Adding your listing')
-      let addListing = await axios.post(
-        "https://aftib-6o3h.onrender.com/listing/addListing",
+      setLoadingText(edit?'Updating your listing':'Adding your listing')
+      let addListing = !edit ? await axios.post(
+        "http://127.0.0.1:8080/listing/addListing",
         JSON.stringify(requestBody),
         {
           headers: {
@@ -155,7 +226,15 @@ const Listing = () => {
             Authorization: `Bearer ${token}`,
           },
         },
-      );
+      ) : await axios.put(`http://127.0.0.1:8080/listing/updateListing/${id}`,
+        JSON.stringify(requestBody),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      )
       console.log({ res: addListing.data });
       const formData = new FormData();
       let files = images;
@@ -168,7 +247,7 @@ const Listing = () => {
       setLoadingText('Adding images')
       // Make an Axios POST request to the add listing image endpoint
       const result = await axios.put(
-        `https://aftib-6o3h.onrender.com/listing/addListingImages/${addListing.data.listingId}`,
+        `http://127.0.0.1:8080/listing/addListingImages/${id}`,
         formData,
         {
           headers: {
@@ -849,6 +928,26 @@ const Listing = () => {
                   ))}
                 </div>
               </form>
+            </div>
+          </div>
+          <div>
+            <h4>Previously Uploade Images</h4>
+            <div>
+            <div className="row justify-content-center">
+        {previousImages.map((image, index) => (
+          <div key={index} className="col-8 col-md-5 col-lg-4 position-relative">
+            <img src={image} alt={`Previous Image ${index}`} className="img-fluid" />
+            <button
+              type="button"
+              className="btn btn-danger position-absolute"
+              style={{ top: 10, right: 10 }}
+              onClick={() => handleImageDelete(index)}
+            >
+              Delete
+            </button>
+          </div>
+        ))}
+      </div>
             </div>
           </div>
         </div>

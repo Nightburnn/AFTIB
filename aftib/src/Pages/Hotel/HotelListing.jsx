@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -9,7 +9,7 @@ import {
   addNewHotel,
 } from "../../utils/hotelUtils";
 import { fetchHotelById } from "../../utils/adminOpsRequests";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 import { useLoading } from "../../Components/LoadingContext";
 import { RoomForm } from "./Room";
 
@@ -27,6 +27,27 @@ L.Icon.Default.mergeOptions({
 const Listing = () => {
   let token = window.localStorage.getItem("accessToken");
   let navigate = useNavigate();
+  const routeLocation = useLocation();
+  const queryParams = new URLSearchParams(routeLocation.search);
+  let edit = queryParams.get('edit') ? true : false
+  let id = queryParams.get('id')
+  async function getListing(){
+    try{
+      let response = await fetchHotelById(id)
+      console.log('in hotel page', response)
+    }
+    catch(err){
+      console.error(err.message)
+    }
+  }
+  useEffect(()=>{
+    if(edit){
+      getListing()
+    }
+    else {
+      console.log('Not Edit')
+    }
+  },[])
   const emptyRoomData = {
     id: Date.now(),         // Unique identifier for the room
     type: '',               // Room type (e.g., suite, double, single)
@@ -310,8 +331,8 @@ const Listing = () => {
                   value={formValues.state}
                   onChange={handleChange}
                 >
-                  {Object.keys(nigerianStateData).map((x) => {
-                    return <option>{x}</option>;
+                  {Object.keys(nigerianStateData).map((x,index) => {
+                    return <option key={index}>{x}</option>;
                   })}
                 </select>
               </div>
@@ -324,8 +345,8 @@ const Listing = () => {
                   value={formValues.LGA}
                   onChange={handleChange}
                 >
-                  {nigerianStateData[formValues.state].map((x) => {
-                    return <option>{x}</option>;
+                  {nigerianStateData[formValues.state].map((x,index) => {
+                    return <option key={index}>{x}</option>;
                   })}
                 </select>
               </div>
