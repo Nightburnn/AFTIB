@@ -1,50 +1,44 @@
 import React, { useState, useRef } from 'react';
-export const RoomForm = ({ room, onChange, onDelete, updateRoomImages, updateAmenities }) => {
-    const [images, setImages] = useState(room.images || []);
-    const [previews, setPreviews] = useState(room.images || []);
-    const [amenities, setAmenities] = useState(room.amenities || []);
-    const imageInput = useRef(null);
-  
-    const handleImageUpload = (e) => {
-      const files = Array.from(e.target.files);
-      const newImages = files.map(file => URL.createObjectURL(file));
-      setImages([...images, ...files]);
-      setPreviews([...previews, ...newImages]);
-      imageInput.current.value = null;
-      updateRoomImages(room.id, [...images, ...files]);
-    };
-  
-    const handleImageDelete = (index) => {
-      const newImages = images.filter((_, i) => i !== index);
-      const newPreviews = previews.filter((_, i) => i !== index);
-      setImages(newImages);
-      setPreviews(newPreviews);
-      updateRoomImages(room.id, newImages);
-    };
-  
-  
-    const handleAmenityDelete = (index) => {
-      const newAmenities = amenities.filter((_, i) => i !== index);
-      setAmenities(newAmenities);
-      updateAmenities(room.id, newAmenities);
-    };
-  
+
+export const RoomForm = ({ room, onChange, onDelete }) => {
+  const [images, setImages] = useState(room.images || []);
+  const [previews, setPreviews] = useState(room.images || []);
+  const [amenities, setAmenities] = useState(room.amenities || []);
+  const imageInput = useRef(null);
+
+  const handleImageUpload = (e) => {
+    const files = Array.from(e.target.files);
+    const newImages = files.map(file => URL.createObjectURL(file));
+    setImages([...images, ...files]);
+    setPreviews([...previews, ...newImages]);
+    imageInput.current.value = null;
+  };
+
+  const handleImageDelete = (index) => {
+    const newImages = images.filter((_, i) => i !== index);
+    const newPreviews = previews.filter((_, i) => i !== index);
+    setImages(newImages);
+    setPreviews(newPreviews);
+  };
 
   const handleAmenityAdd = (e) => {
     const amenity = document.getElementById('amenity')
     if (amenity) {
         console.log(amenity)
       setAmenities([...amenities, amenity.value]);
-      updateAmenities(room.id, [...amenities, amenity]);
       amenity.value = ''
     }
   };
 
+  const handleAmenityDelete = (index) => {
+    const newAmenities = amenities.filter((_, i) => i !== index);
+    setAmenities(newAmenities);
+  };
 
   return (
     <div className="">
     <div className="form-group mb-3">
-      <label className="form-label mb-1">Room Type</label>
+      <p className="form-label mb-1">Room Type</p>
       <div className="form-check-inline">
         <input
           type="radio"
