@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 
-export const RoomForm = ({ room, onChange, onDelete }) => {
+export const RoomForm = ({ room, onChange, onDelete,updateRoomImages, updateAmenities }) => {
   const [images, setImages] = useState(room.images || []);
   const [previews, setPreviews] = useState(room.images || []);
   const [amenities, setAmenities] = useState(room.amenities || []);
@@ -12,6 +12,7 @@ export const RoomForm = ({ room, onChange, onDelete }) => {
     setImages([...images, ...files]);
     setPreviews([...previews, ...newImages]);
     imageInput.current.value = null;
+    updateRoomImages(room.id, [...images, ...files]);
   };
 
   const handleImageDelete = (index) => {
@@ -19,6 +20,7 @@ export const RoomForm = ({ room, onChange, onDelete }) => {
     const newPreviews = previews.filter((_, i) => i !== index);
     setImages(newImages);
     setPreviews(newPreviews);
+    updateRoomImages(room.id, newImages);
   };
 
   const handleAmenityAdd = (e) => {
@@ -26,12 +28,14 @@ export const RoomForm = ({ room, onChange, onDelete }) => {
     if (amenity) {
         console.log(amenity)
       setAmenities([...amenities, amenity.value]);
+      updateAmenities(room.id, [...amenities, amenity]);
       amenity.value = ''
     }
   };
 
   const handleAmenityDelete = (index) => {
     const newAmenities = amenities.filter((_, i) => i !== index);
+    updateAmenities(room.id, newAmenities);
     setAmenities(newAmenities);
   };
 
@@ -112,7 +116,7 @@ export const RoomForm = ({ room, onChange, onDelete }) => {
       </div>
       <div className="amenities-list">
         {amenities.map((amenity, index) => (
-          <span key={index} className="badge bg-secondary me-2">
+          <span key={index} className="badge bg-primary my-1 me-2 p-2">
             {amenity}
             <button
               onClick={() => handleAmenityDelete(index)}
