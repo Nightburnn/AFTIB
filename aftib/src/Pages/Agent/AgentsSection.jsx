@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import AgentCard from "./AgentCard";
 import "./AgentsSection.css";
 import { Link } from "react-router-dom";
-import { fetchAapprovedAgents } from '../../utils/adminOpsRequests'; // Adjust path as necessary
-import { useLoading } from '../../Components/LoadingContext'; // Adjust path as necessary
+import { fetchAapprovedAgents } from "../../utils/adminOpsRequests"; // Adjust path as necessary
+import { useLoading } from "../../Components/LoadingContext"; // Adjust path as necessary
 
 const AgentsSection = () => {
   const [agents, setAgents] = useState([]);
@@ -13,16 +13,16 @@ const AgentsSection = () => {
   const fetchAgents = async () => {
     try {
       setLoading(true);
-      setLoadingText('Fetching Approved Agents');
+      setLoadingText("Fetching Approved Agents");
       const response = await fetchAapprovedAgents();
-      console.log('Approved Agents Data:', response.data);
+      console.log("Approved Agents Data:", response.data);
       setAgents(response.data);
     } catch (error) {
-      console.error('Error fetching agents:', error);
+      console.error("Error fetching agents:", error);
       setError(error.message);
     } finally {
       setLoading(false);
-      setLoadingText('');
+      setLoadingText("");
     }
   };
 

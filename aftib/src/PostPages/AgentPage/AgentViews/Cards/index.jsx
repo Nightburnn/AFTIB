@@ -42,7 +42,7 @@ export const ListingCard1 = ({
   address,
   onViewListing,
   onEditListing,
-  viewText
+  viewText,
 }) => {
   return (
     <div className="listing-card">
@@ -58,7 +58,7 @@ export const ListingCard1 = ({
           <span className="field-name">Location:</span>
           <span className="field-value">{address}</span>
         </div>
-        <i style={{color: 'green'}}>Approved</i>
+        <i style={{ color: "green" }}>Approved</i>
         <button className="view-listing-button" onClick={onViewListing}>
           {viewText}
         </button>
@@ -75,7 +75,7 @@ export const ListingCard2 = ({
   address,
   onViewListing,
   onEditListing,
-  viewText
+  viewText,
 }) => {
   return (
     <div className="listing-card">
@@ -91,7 +91,7 @@ export const ListingCard2 = ({
           <span className="field-name">Location:</span>
           <span className="field-value">{address}</span>
         </div>
-        <i style={{color: 'pink'}}>Pending</i>
+        <i style={{ color: "pink" }}>Pending</i>
         <button className="view-listing-button" onClick={onViewListing}>
           {viewText}
         </button>

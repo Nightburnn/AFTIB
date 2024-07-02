@@ -73,88 +73,99 @@ const faqData = [
     title: "Getting started",
     faqs: [
       {
-        question: 'How do I create an account?',
-        answer: 'To create an account, go to the signup page and fill out the form with your details. Once you submit the form, you will receive a confirmation email.',
+        question: "How do I create an account?",
+        answer:
+          "To create an account, go to the signup page and fill out the form with your details. Once you submit the form, you will receive a confirmation email.",
       },
       {
-        question: 'How can I reset my password?',
-        answer: 'To reset your password, click on the "Forgot Password" link on the login page and follow the instructions.',
+        question: "How can I reset my password?",
+        answer:
+          'To reset your password, click on the "Forgot Password" link on the login page and follow the instructions.',
       },
-     
     ],
   },
   {
     title: "Account Management",
     faqs: [
       {
-        question: 'How do I update my profile information?',
-        answer: 'To update your profile information, go to the profile settings page and make the necessary changes.',
+        question: "How do I update my profile information?",
+        answer:
+          "To update your profile information, go to the profile settings page and make the necessary changes.",
       },
-     
-     
+
       {
-        question: 'How can I change my password?',
-        answer: 'To change your password, go to the account settings page and update your password.',
-      },
-      {
-        question: 'How do I manage my notifications?',
-        answer: 'To manage your notifications, go to the notification settings page and adjust your preferences.',
+        question: "How can I change my password?",
+        answer:
+          "To change your password, go to the account settings page and update your password.",
       },
       {
-        question: 'Can I have multiple accounts?',
-        answer: 'No, our policy does not allow multiple accounts per user.',
+        question: "How do I manage my notifications?",
+        answer:
+          "To manage your notifications, go to the notification settings page and adjust your preferences.",
       },
-      
+      {
+        question: "Can I have multiple accounts?",
+        answer: "No, our policy does not allow multiple accounts per user.",
+      },
     ],
   },
   {
     title: "Reporting",
     faqs: [
       {
-        question: 'How do I report a bug?',
-        answer: 'To report a bug, contact our privacy team at privacy@example.com.',
+        question: "How do I report a bug?",
+        answer:
+          "To report a bug, contact our privacy team at privacy@example.com.",
       },
       {
-        question: 'How do I report inappropriate content?',
-        answer: 'To report a inappropriate content, contact our privacy team at privacy@example.com.',
+        question: "How do I report inappropriate content?",
+        answer:
+          "To report a inappropriate content, contact our privacy team at privacy@example.com.",
       },
       {
-        question: 'How can I provide feedback?',
-        answer: 'To provide feedback, go to the feedback page and fill out the feedback form.',
+        question: "How can I provide feedback?",
+        answer:
+          "To provide feedback, go to the feedback page and fill out the feedback form.",
       },
       {
-        question: 'How do I report a security issue?',
-        answer: 'To report a security issue, contact our security team at security@example.com.',
+        question: "How do I report a security issue?",
+        answer:
+          "To report a security issue, contact our security team at security@example.com.",
       },
-    
-     
+
       {
-        question: 'How do I report a copyright infringement?',
-        answer: 'To report a copyright infringement, contact our legal team at legal@example.com.',
-      },
-      {
-        question: 'How do I report a billing issue?',
-        answer: 'To report a billing issue, contact our billing support at billing@example.com.',
+        question: "How do I report a copyright infringement?",
+        answer:
+          "To report a copyright infringement, contact our legal team at legal@example.com.",
       },
       {
-        question: 'How do I report a violation of terms?',
-        answer: 'To report a violation of terms, contact our support team.',
+        question: "How do I report a billing issue?",
+        answer:
+          "To report a billing issue, contact our billing support at billing@example.com.",
       },
       {
-        question: 'How do I report a privacy concern?',
-        answer: 'To report a privacy concern, contact our privacy team at privacy@example.com.',
+        question: "How do I report a violation of terms?",
+        answer: "To report a violation of terms, contact our support team.",
       },
       {
-        question: 'How do I report a scam or phishing attempt?',
-        answer: 'To report a scam or phishing attempt, forward the suspicious email to phishing@example.com.',
+        question: "How do I report a privacy concern?",
+        answer:
+          "To report a privacy concern, contact our privacy team at privacy@example.com.",
       },
       {
-        question: 'How do I report an error in the app?',
-        answer: 'To report an error in the app, contact our support team at support@example.com.',
+        question: "How do I report a scam or phishing attempt?",
+        answer:
+          "To report a scam or phishing attempt, forward the suspicious email to phishing@example.com.",
       },
       {
-        question: 'How do I report a broken feature?',
-        answer: 'To report a broken feature in the app, contact our support team at support@example.com.',
+        question: "How do I report an error in the app?",
+        answer:
+          "To report an error in the app, contact our support team at support@example.com.",
+      },
+      {
+        question: "How do I report a broken feature?",
+        answer:
+          "To report a broken feature in the app, contact our support team at support@example.com.",
       },
     ],
   },
@@ -195,7 +206,7 @@ function App() {
                   <Route path="/list" Component={Listing} />
                   <Route path="/review" Component={ListingReview} />
                   <Route path="/pd" Component={Index} />
-                 
+
                   <Route path="/short" Component={Shortlet} />
                   <Route path="/user-dashboard" Component={ClientDashboard} />
                   <Route

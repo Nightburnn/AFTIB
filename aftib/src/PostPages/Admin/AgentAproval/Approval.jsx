@@ -4,7 +4,7 @@ import { Modal } from "antd";
 import {
   getAgencyRequestById,
   approveRequest,
-  rejectRequest
+  rejectRequest,
 } from "../../../utils/adminOpsRequests";
 import "./Approval.css";
 import { useLoading } from "../../../Components/LoadingContext";
@@ -15,7 +15,7 @@ const Approval = () => {
   let [modalTitle, setModalTitle] = useState("");
   let [modalBody, setModalBody] = useState("");
   let { setLoading, setLoadingText } = useLoading();
-  let [rMessage,setRMessage] = useState('')
+  let [rMessage, setRMessage] = useState("");
   let navigate = useNavigate();
   const { id } = useParams();
   const [agent, setAgent] = useState(null);
@@ -54,32 +54,36 @@ const Approval = () => {
     }
   };
   const sendRejectRequest = async (id) => {
-    if(rMessage === ''){
-      console.log('rMessage')
-      setShowModal(true)
-      setModalTitle('Input a rejection Message')
-      setModalBody('Inform the agent of the reason their request has been reject to they can update it and return the correct one.')
-       return;
+    if (rMessage === "") {
+      console.log("rMessage");
+      setShowModal(true);
+      setModalTitle("Input a rejection Message");
+      setModalBody(
+        "Inform the agent of the reason their request has been reject to they can update it and return the correct one.",
+      );
+      return;
     }
     try {
-    setLoading(true);
-    setLoadingText("Please Wait");
-      let response = await rejectRequest(id, token,rMessage);
-      setShowModal(true)
-      setModalTitle('Successful')
-      setModalBody('Agent would be notified of the rejection and prompted to update their data')
+      setLoading(true);
+      setLoadingText("Please Wait");
+      let response = await rejectRequest(id, token, rMessage);
+      setShowModal(true);
+      setModalTitle("Successful");
+      setModalBody(
+        "Agent would be notified of the rejection and prompted to update their data",
+      );
       console.log(response.data);
     } catch (err) {
-      setShowModal(true)
-      setModalTitle('Error Occured')
-      setModalBody(err.message)
+      setShowModal(true);
+      setModalTitle("Error Occured");
+      setModalBody(err.message);
       console.error(err.message);
     } finally {
-      setTimeout(()=>{
-      navigate("/admin-dashboard");
-      setLoading(false);
-      setLoadingText("");
-      }, 3000)
+      setTimeout(() => {
+        navigate("/admin-dashboard");
+        setLoading(false);
+        setLoadingText("");
+      }, 3000);
     }
   };
 
@@ -101,7 +105,7 @@ const Approval = () => {
 
   return (
     <div className="container agent-detail">
-            <Modal
+      <Modal
         title={modalTitle}
         open={showModal}
         onOk={handleOk}
@@ -204,26 +208,26 @@ const Approval = () => {
       <div className="section  reject">
         <h2 className="text-center">Rejection Section</h2>
         <p className="text-center">
-          If you are not satisfied with the agent, please provide a reason for rejection.
+          If you are not satisfied with the agent, please provide a reason for
+          rejection.
         </p>
         <div className="text-center">
           <textarea
             placeholder="Enter your rejection reason here"
             className="form-control"
             value={rMessage}
-            onChange={(e)=>setRMessage(e.target.value)}
+            onChange={(e) => setRMessage(e.target.value)}
           />
           <button
-           onClick={()=>{
-            sendRejectRequest(agent._id)
-           }}
+            onClick={() => {
+              sendRejectRequest(agent._id);
+            }}
             className="btn danger mt-4"
           >
             Reject This Request
           </button>
         </div>
       </div>
-    
     </div>
   );
 };

@@ -2,7 +2,6 @@ import axios from "axios";
 let localhostAddr = "http://127.0.0.1:8080";
 let API_BASE_URL = "https://aftib-6o3h.onrender.com"; // adjust the base URL accordingly
 
-
 let token = window.localStorage.getItem("accessToken");
 // Initialize agent status request
 export const requestAgencyStatus = async (data, token) => {
@@ -56,7 +55,7 @@ export const updateAgencyStatusIssuedId = async (formData, token) => {
   } catch (error) {
     throw new Error(error.response.data.error);
   }
-}
+};
 
 // Update the text fields of the agent status
 export const updateAgencyStatus = async (data, token) => {
@@ -148,12 +147,12 @@ export const approveRequest = async (requestId, token) => {
 };
 
 // function to approve request.
-export const rejectRequest = async (requestId, token,message) => {
+export const rejectRequest = async (requestId, token, message) => {
   // id of the item to be approved.
   try {
     const response = await axios.put(
       `${API_BASE_URL}/reject-agency-request/${requestId}?message=${message}`,
-      {message},
+      { message },
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -171,11 +170,11 @@ export const rejectRequest = async (requestId, token,message) => {
 export const getAgencyRequestById = async (id) => {
   let url = `${API_BASE_URL}/get-agency-request/${id}`;
   try {
-    const response = await axios.get(url,{
+    const response = await axios.get(url, {
       headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response;
   } catch (error) {
     console.error("Error fetching agency request:", error);
@@ -185,13 +184,13 @@ export const getAgencyRequestById = async (id) => {
 
 export const getAgencyRequestByToken = async (id) => {
   let url = `${API_BASE_URL}/get-agency-request-by-token`;
-  console.log({token})
+  console.log({ token });
   try {
-    const response = await axios.get(url,{
+    const response = await axios.get(url, {
       headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   } catch (error) {
     console.error("Error fetching agency request:", error);
@@ -219,7 +218,7 @@ export const removeListingImages = async (listingId, toBeRemoved) => {
         headers: {
           Authorization: `Bearer ${token}`, // Assuming you store token in localStorage
         },
-      }
+      },
     );
     return response.data;
   } catch (error) {
@@ -287,7 +286,7 @@ export const approveHotel = async (hotelId, token) => {
     throw error;
   }
 };
-export const rejectHotel = async (hotelId, token,message) => {
+export const rejectHotel = async (hotelId, token, message) => {
   try {
     const response = await axios.put(
       `${API_BASE_URL}//hotels/reject/${hotelId}?message=${message}`,
@@ -347,11 +346,14 @@ export const getUserData = async () => {
 export const getAgentDashboardData = async () => {
   let token = window.localStorage.getItem("accessToken");
   try {
-    const response = await axios.get(`${API_BASE_URL}/auth/get-agent-dashboard-data`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
+    const response = await axios.get(
+      `${API_BASE_URL}/auth/get-agent-dashboard-data`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       },
-    });
+    );
     console.log({ response: response.data });
     return response.data;
   } catch (err) {
@@ -363,18 +365,17 @@ export const getAgentDashboardData = async () => {
 export const getAdminDashboardData = async () => {
   let token = window.localStorage.getItem("accessToken");
   try {
-    const response = await axios.get(`${API_BASE_URL}/auth/get-admin-dashboard-data`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
+    const response = await axios.get(
+      `${API_BASE_URL}/auth/get-admin-dashboard-data`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       },
-    });
+    );
     console.log({ response: response.data });
     return response.data;
   } catch (err) {
     throw err;
   }
 };
-
-
-
-

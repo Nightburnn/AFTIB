@@ -1,4 +1,4 @@
-import React, { useState, useRef,useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "./Listing.css";
@@ -22,12 +22,12 @@ L.Icon.Default.mergeOptions({
 
 const Listing = () => {
   let token = window.localStorage.getItem("accessToken");
-  let navigate = useNavigate()
+  let navigate = useNavigate();
   const routeLocation = useLocation();
   const queryParams = new URLSearchParams(routeLocation.search);
-  let edit = queryParams.get('edit') ? true : false
-  let id = queryParams.get('id')
-  let [previousImages,setPreviousImages] = useState([])
+  let edit = queryParams.get("edit") ? true : false;
+  let id = queryParams.get("id");
+  let [previousImages, setPreviousImages] = useState([]);
   const [imagesToRemove, setImagesToRemove] = useState([]);
   const handleImageDelete = (index) => {
     const newImages = previousImages.filter((_, i) => i !== index);
@@ -38,9 +38,9 @@ const Listing = () => {
   const getListing = async () => {
     try {
       const response = await Promise.resolve(fetchListingById(id));
-      const data = response.listing
-      console.log(data)
-      setPreviousImages(data.images || [])
+      const data = response.listing;
+      console.log(data);
+      setPreviousImages(data.images || []);
       // Populate formValues state
       setFormValues({
         title: data.title || "",
@@ -95,10 +95,10 @@ const Listing = () => {
   const [previews, setPreviews] = useState([]);
   const handleOk = () => {
     setShowModal(false);
-  }
+  };
   const handleCancel = () => {
     setShowModal(false);
-  }
+  };
   const [developmentStage, setDevelopmentStage] = useState("urban");
   function updateDevelopmentStage(e) {
     setDevelopmentStage(e.target.value);
@@ -166,14 +166,13 @@ const Listing = () => {
     Furnished: false,
   });
 
-  useEffect(()=>{
-    if(edit){
-      getListing()
+  useEffect(() => {
+    if (edit) {
+      getListing();
+    } else {
+      console.log("Not Edit");
     }
-    else {
-      console.log('Not Edit')
-    }
-  },[])
+  }, []);
   const updateCheck = (option) => {
     let bool = !checks[option];
     let updated = { ...checks, [option]: bool };
@@ -209,32 +208,35 @@ const Listing = () => {
       ...checks,
       ...formValues,
     };
-    if(edit){
-      requestBody.images = previousImages
+    if (edit) {
+      requestBody.images = previousImages;
     }
-    console.log(edit,validate.message)
+    console.log(edit, validate.message);
     if (!validate.valid) return;
     try {
-      setLoading(true)
-      setLoadingText(edit?'Updating your listing':'Adding your listing')
-      let addListing = !edit ? await axios.post(
-        "https://aftib-6o3h.onrender.com/listing/addListing",
-        JSON.stringify(requestBody),
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      ) : await axios.put(`https://aftib-6o3h.onrender.com/listing/updateListing/${id}`,
-        JSON.stringify(requestBody),
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      )
+      setLoading(true);
+      setLoadingText(edit ? "Updating your listing" : "Adding your listing");
+      let addListing = !edit
+        ? await axios.post(
+            "https://aftib-6o3h.onrender.com/listing/addListing",
+            JSON.stringify(requestBody),
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+            },
+          )
+        : await axios.put(
+            `https://aftib-6o3h.onrender.com/listing/updateListing/${id}`,
+            JSON.stringify(requestBody),
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+            },
+          );
       console.log({ res: addListing.data });
       const formData = new FormData();
       let files = images;
@@ -244,7 +246,7 @@ const Listing = () => {
           formData.append("files", files[i]);
         }
       }
-      setLoadingText('Adding images')
+      setLoadingText("Adding images");
       // Make an Axios POST request to the add listing image endpoint
       const result = await axios.put(
         `https://aftib-6o3h.onrender.com/listing/addListingImages/${id}`,
@@ -257,16 +259,15 @@ const Listing = () => {
           },
         },
       );
-      setLoadingText('Successful')
+      setLoadingText("Successful");
       console.log("Images uploaded successfully", result.data);
     } catch (err) {
       console.error(err.message);
-    }
-    finally{
-      setTimeout(()=>{
-        setLoading(false)
-        navigate('/agent-dashboard')
-      },3000)
+    } finally {
+      setTimeout(() => {
+        setLoading(false);
+        navigate("/agent-dashboard");
+      }, 3000);
     }
   }
 
@@ -304,7 +305,7 @@ const Listing = () => {
 
   return (
     <div className="container mt-5">
-            <Modal
+      <Modal
         title={modalTitle}
         open={showModal}
         onOk={handleOk}
@@ -931,23 +932,30 @@ const Listing = () => {
             </div>
           </div>
           <div>
-            <h4>Previously Uploade Images</h4>
+            <h4>Previously Uploaded Images</h4>
             <div>
-            <div className="row justify-content-center">
-        {previousImages.map((image, index) => (
-          <div key={index} className="col-8 col-md-5 col-lg-4 position-relative">
-            <img src={image} alt={`Previous Image ${index}`} className="img-fluid" />
-            <button
-              type="button"
-              className="btn btn-danger position-absolute"
-              style={{ top: 10, right: 10 }}
-              onClick={() => handleImageDelete(index)}
-            >
-              Delete
-            </button>
-          </div>
-        ))}
-      </div>
+              <div className="row justify-content-center">
+                {previousImages.map((image, index) => (
+                  <div
+                    key={index}
+                    className="col-8 col-md-5 col-lg-4 position-relative"
+                  >
+                    <img
+                      src={image}
+                      alt={`Previous Image ${index}`}
+                      className="img-fluid"
+                    />
+                    <button
+                      type="button"
+                      className="btn btn-danger position-absolute"
+                      style={{ top: 10, right: 10 }}
+                      onClick={() => handleImageDelete(index)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

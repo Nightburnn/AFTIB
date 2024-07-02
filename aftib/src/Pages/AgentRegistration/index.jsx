@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.css";
 import { useLoading } from "../../Components/LoadingContext";
 import { useNavigate } from "react-router-dom";
@@ -10,14 +10,14 @@ import {
   updateAgencyStatus,
   updateAgencyStatusIssuedId,
   updateAgencyStatusPassport,
-  getAgencyRequestByToken
+  getAgencyRequestByToken,
 } from "../../utils/adminOpsRequests";
 
 const AgentRegistration = () => {
   let token = window.localStorage.getItem("accessToken");
   const routeLocation = useLocation();
   const queryParams = new URLSearchParams(routeLocation.search);
-  let edit = queryParams.get('edit') ? true : false
+  let edit = queryParams.get("edit") ? true : false;
   let navigate = useNavigate();
   let [showModal, setShowModal] = useState(false);
   let [modalTitle, setModalTitle] = useState("");
@@ -44,46 +44,43 @@ const AgentRegistration = () => {
   const [passport, setPassport] = useState(null);
   const [issuedIdPreview, setIssuedIdPreview] = useState(null);
   const [passportPhotoPreview, setPassportPhotoPreview] = useState(null);
-  async function getByToken(){
-    try{
-      let response = await getAgencyRequestByToken()
+  async function getByToken() {
+    try {
+      let response = await getAgencyRequestByToken();
       // fill the other data
-      setName(response.name)
-      setBusinessName(response.businessName)
+      setName(response.name);
+      setBusinessName(response.businessName);
       setPhone(response.phone || "");
-        setWhatsappNo(response.whatsappNo || "");
-        setEmail(response.email || "");
-        setOfficeAddress(response.officeAddress || "");
-        setState(response.state || "Abia");
-        setLGA(response.LGA || "Aba North");
-        setAbout(response.about || "");
-        setCACRef(response.CACRef || "");
-        setNinNumber(response.ninNumber || "");
-        setFacebookLink(response.facebookLink || "");
-        setInstagramLink(response.instagramLink || "");
-        setTwitterLink(response.twitterLink || "");
-        setLinkedIn(response.linkedIn || "");
-        setAgencyType(response.agencyType || "");
-      console.log('data', response)
+      setWhatsappNo(response.whatsappNo || "");
+      setEmail(response.email || "");
+      setOfficeAddress(response.officeAddress || "");
+      setState(response.state || "Abia");
+      setLGA(response.LGA || "Aba North");
+      setAbout(response.about || "");
+      setCACRef(response.CACRef || "");
+      setNinNumber(response.ninNumber || "");
+      setFacebookLink(response.facebookLink || "");
+      setInstagramLink(response.instagramLink || "");
+      setTwitterLink(response.twitterLink || "");
+      setLinkedIn(response.linkedIn || "");
+      setAgencyType(response.agencyType || "");
+      console.log("data", response);
       if (response.IssuedId) {
         setIssuedIdPreview(response.IssuedId);
-    }
-    if (response.passport) {
+      }
+      if (response.passport) {
         setPassportPhotoPreview(response.passport);
-    }
-    }
-    catch(err){
-      console.error(err.message)
+      }
+    } catch (err) {
+      console.error(err.message);
     }
   }
-  useEffect(()=>{
-    if(edit){
-      getByToken()
+  useEffect(() => {
+    if (edit) {
+      getByToken();
+    } else {
     }
-    else {
-      
-    }
-  },[])
+  }, []);
   // handle passport and issued id
   const handleIssuedIdChange = (e) => {
     const file = e.target.files[0];
@@ -158,10 +155,10 @@ const AgentRegistration = () => {
   const handleOk = () => {
     setShowModal(false);
     navigate("/agent-dashboard");
-  }
+  };
   const handleCancel = () => {
     setShowModal(false);
-  }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -192,7 +189,9 @@ const AgentRegistration = () => {
       formData1.append("files", IssuedId);
       let formData2 = new FormData();
       formData2.append("files", passport);
-      let initialize = edit? await updateAgencyStatus(reqBody1,token):  await requestAgencyStatus(reqBody1, token);
+      let initialize = edit
+        ? await updateAgencyStatus(reqBody1, token)
+        : await requestAgencyStatus(reqBody1, token);
       let uploadPassport;
       let uploadId;
       console.log({ initialize });
@@ -210,7 +209,9 @@ const AgentRegistration = () => {
       setLoading(false);
       setShowModal(true);
       setModalTitle(
-        edit? "Your Data has been updated. Admin would review and get back to you" : "Successfully submitted Request to become an agent at Aftib. Our Admin would reveiw your details",
+        edit
+          ? "Your Data has been updated. Admin would review and get back to you"
+          : "Successfully submitted Request to become an agent at Aftib. Our Admin would reveiw your details",
       );
       setModalBody(
         "An email would be sent to you to notify you if it has been approved or requires modification.",
@@ -619,10 +620,11 @@ const AgentRegistration = () => {
               </div>
             </div>
           </div>
-          {
-            edit ? <button type={'submit'}>Update Data</button> : <button type="submit">Register</button>
-          }
-          
+          {edit ? (
+            <button type={"submit"}>Update Data</button>
+          ) : (
+            <button type="submit">Register</button>
+          )}
         </form>
       </div>
     </div>

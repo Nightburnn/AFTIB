@@ -85,14 +85,13 @@ const Index = () => {
             </label>
           ))}
         </div>
-       
-          <div className="form-group mb-3">
+
+        <div className="form-group mb-3">
           <h3>Description</h3>
           {descriptions.map((description, index) => (
             <p key={index}>{description}</p>
           ))}
         </div>
-           
 
         <div className="row section-md-t3 justify-content-between amenities-summary-section">
           <div className="col-md-7 col-lg-7 amenities-section">

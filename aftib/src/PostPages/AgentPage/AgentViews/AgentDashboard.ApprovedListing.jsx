@@ -2,24 +2,23 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./style.css";
 import { Link, useNavigate } from "react-router-dom";
-import {ListingCard1} from "./Cards";
+import { ListingCard1 } from "./Cards";
 import { getApproved } from "../../../utils/others";
 
-
 export function AgentApprovedListings() {
-  let navigate = useNavigate()
+  let navigate = useNavigate();
 
-  let dashboardData = useSelector((state) => state.user.agentDashboardData)
-  let approved = getApproved(true,dashboardData.listings)
-  console.log({approved})
+  let dashboardData = useSelector((state) => state.user.agentDashboardData);
+  let approved = getApproved(true, dashboardData.listings);
+  console.log({ approved });
 
   const handleViewListing = (id) => {
-    console.log("View Listing clicked for:" ,id);
-    navigate(`/pd?id=${id}`)
+    console.log("View Listing clicked for:", id);
+    navigate(`/pd?id=${id}`);
   };
   const handleEdit = (id) => {
     console.log("View Listing clicked for:", id);
-    navigate(`/list?edit=true&id=${id}`)
+    navigate(`/list?edit=true&id=${id}`);
   };
   return (
     <div className="p-3 p-md-5">
@@ -30,22 +29,24 @@ export function AgentApprovedListings() {
         </h3>
       </div>
       <div className="row">
-          {
-           approved.map(x=>{
-              return (
-                <div key={x._id} className="col-12 col-md-6 col-xl-4 p-2">
-                  <ListingCard1
-                    image={x.images[0]}
-                    title={x.title}
-                    address={x.location}
-                    onViewListing={()=>{handleViewListing(x._id)}}
-                    onEditListing={()=>{handleEdit(x._id)}}
-                    viewText={'View Listing'}
-                  />
-                </div>                  
-              )
-            })
-          }
+        {approved.map((x) => {
+          return (
+            <div key={x._id} className="col-12 col-md-6 col-xl-4 p-2">
+              <ListingCard1
+                image={x.images[0]}
+                title={x.title}
+                address={x.location}
+                onViewListing={() => {
+                  handleViewListing(x._id);
+                }}
+                onEditListing={() => {
+                  handleEdit(x._id);
+                }}
+                viewText={"View Listing"}
+              />
+            </div>
+          );
+        })}
       </div>
     </div>
   );

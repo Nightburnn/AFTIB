@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./style.css";
 import { Link, useNavigate } from "react-router-dom";
-import {ListingCard1} from "./Cards";
+import { ListingCard1 } from "./Cards";
 import { getApproved } from "../../../utils/others";
 
 export function AgentApprovedHotels() {
   let navigate = useNavigate();
-  let dashboardData = useSelector((state) => state.user.agentDashboardData)
-  let approved = getApproved(true,dashboardData.hotels)
-  console.log({approved})
+  let dashboardData = useSelector((state) => state.user.agentDashboardData);
+  let approved = getApproved(true, dashboardData.hotels);
+  console.log({ approved });
 
   let listingDetails = {
     image:
@@ -22,12 +22,12 @@ export function AgentApprovedHotels() {
   };
 
   const handleViewListing = (id) => {
-    console.log("View Listing clicked for:" ,id);
-    navigate(`/pd?id=${id}`)
+    console.log("View Listing clicked for:", id);
+    navigate(`/pd?id=${id}`);
   };
   const handleEdit = (id) => {
     console.log("View Listing clicked for:", id);
-    navigate(`/hotellist?edit=true&id=${id}`)
+    navigate(`/hotellist?edit=true&id=${id}`);
   };
 
   return (
@@ -39,22 +39,24 @@ export function AgentApprovedHotels() {
         </h3>
       </div>
       <div className="row">
-      {
-           approved.map(x=>{
-              return (
-                <div key={x._id} className="col-12 col-md-6 col-xl-4 p-2">
-                  <ListingCard1
-                    image={x.images[0]}
-                    title={x.name}
-                    address={x.address}
-                    onViewListing={()=>{handleViewListing(x._id)}}
-                    onEditListing={()=>{handleEdit(x._id)}}
-                    viewText={'View Hotel'}
-                  />
-                </div>                  
-              )
-            })
-          }
+        {approved.map((x) => {
+          return (
+            <div key={x._id} className="col-12 col-md-6 col-xl-4 p-2">
+              <ListingCard1
+                image={x.images[0]}
+                title={x.name}
+                address={x.address}
+                onViewListing={() => {
+                  handleViewListing(x._id);
+                }}
+                onEditListing={() => {
+                  handleEdit(x._id);
+                }}
+                viewText={"View Hotel"}
+              />
+            </div>
+          );
+        })}
       </div>
     </div>
   );

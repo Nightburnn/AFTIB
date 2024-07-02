@@ -1,10 +1,12 @@
 export const nigerianStateData = {
-  Abuja: ['Abaji',
-    'Abuja Municipal Area Council (AMAC)',
-    'Bwari',
-    'Gwagwalada',
-    'Kuje',
-    'Kwali'],
+  Abuja: [
+    "Abaji",
+    "Abuja Municipal Area Council (AMAC)",
+    "Bwari",
+    "Gwagwalada",
+    "Kuje",
+    "Kwali",
+  ],
   Abia: [
     "Aba North",
     "Aba South",

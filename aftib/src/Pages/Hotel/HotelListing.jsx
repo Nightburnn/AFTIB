@@ -9,7 +9,7 @@ import {
   addNewHotel,
 } from "../../utils/hotelUtils";
 import { fetchHotelById } from "../../utils/adminOpsRequests";
-import { useNavigate,useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useLoading } from "../../Components/LoadingContext";
 import { RoomForm } from "./Room";
 
@@ -29,41 +29,27 @@ const Listing = () => {
   let navigate = useNavigate();
   const routeLocation = useLocation();
   const queryParams = new URLSearchParams(routeLocation.search);
-  let edit = queryParams.get('edit') ? true : false
-  let id = queryParams.get('id')
-  async function getListing(){
-    try{
-      let response = await fetchHotelById(id)
-      console.log('in hotel page', response)
-    }
-    catch(err){
-      console.error(err.message)
-    }
-  }
-  useEffect(()=>{
-    if(edit){
-      getListing()
-    }
-    else {
-      console.log('Not Edit')
-    }
-  },[])
+  let edit = queryParams.get("edit") ? true : false;
+  let id = queryParams.get("id");
+
   const emptyRoomData = {
-    id: Date.now(),         // Unique identifier for the room
-    roomType: 'suite',      // Room type (e.g., suite, double, single)
-    description: '',        // Detailed description of the room
-    price: '',              // Price of the room
-    amenities: [],          // List of amenities for the room
-    images: [],             // URLs to images of the room
-    maxOccupants: '',       // Maximum number of occupants for the room
-    roomCount: ''           // Number of this type of room available in the hotel
+    roomId: Date.now(), // Unique identifier for the room
+    roomType: "suite", // Room type (e.g., suite, double, single)
+    description: "", // Detailed description of the room
+    price: "", // Price of the room
+    amenities: [], // List of amenities for the room
+    images: [], // URLs to images of the room
+    maxOccupants: "", // Maximum number of occupants for the room
+    roomCount: "", // Number of this type of room available in the hotel
   };
-  
-  const [rooms, setRooms] = useState(edit? []:[emptyRoomData]);
+
+  const [rooms, setRooms] = useState(edit ? [] : [emptyRoomData]);
 
   const handleRoomChange = (id) => (key) => (e) => {
     const value = e.target.value;
-    setRooms(rooms.map(room => (room.id === id ? { ...room, [key]: value } : room)));
+    setRooms(
+      rooms.map((room) => (room.roomId === id ? { ...room, [key]: value } : room)),
+    );
   };
 
   const handleRoomAdd = () => {
@@ -71,15 +57,19 @@ const Listing = () => {
   };
 
   const handleRoomDelete = (id) => () => {
-    setRooms(rooms.filter(room => room.id !== id));
+    setRooms(rooms.filter((room) => room.roomId !== id));
   };
 
   const updateRoomImages = (id, images) => {
-    setRooms(rooms.map(room => (room.id === id ? { ...room, images } : room)));
+    setRooms(
+      rooms.map((room) => (room.roomId === id ? { ...room, images } : room)),
+    );
   };
 
   const updateAmenities = (id, amenities) => {
-    setRooms(rooms.map(room => (room.id === id ? { ...room, amenities } : room)));
+    setRooms(
+      rooms.map((room) => (room.roomId === id ? { ...room, amenities } : room)),
+    );
   };
 
   let [showModal, setShowModal] = useState(false);
@@ -96,6 +86,13 @@ const Listing = () => {
   let imageInput = useRef(null);
   const [images, setImages] = useState([]);
   const [previews, setPreviews] = useState([]);
+  let [previousImages, setPreviousImages] = useState([]);
+  const [imagesToRemove, setImagesToRemove] = useState([]);
+  const handleImageDelete = (index) => {
+    const newImages = previousImages.filter((_, i) => i !== index);
+    setPreviousImages(newImages);
+    setImagesToRemove([...imagesToRemove, previousImages[index]]);
+  };
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -160,6 +157,52 @@ const Listing = () => {
     heating: { displayTitle: "Heating", selected: false },
   });
 
+  async function getListing() {
+    try {
+      let response = await fetchHotelById(id);
+      setPreviousImages(response.images || []);
+      setRooms(response.rooms);
+      // Populate formValues
+      setFormValues({
+        name: response.name || "",
+        description: response.description || "",
+        address: response.address || "",
+        LGA: response.LGA || "Aba North",
+        state: response.state || "Abia",
+        phone: response.phone || "",
+        email: response.email || "",
+        website: response.website || "",
+      });
+
+      // Populate checks
+
+      // Populate checks
+      setChecks((prevChecks) => {
+        let newChecks = { ...prevChecks };
+        console.log({amenities: response.amenities})
+        if(response.amenities){
+          response.amenities.forEach((amenity) => {
+            const amenityName = Object.keys(amenity)[0]; // Assuming there's only one key
+            if (newChecks[amenityName]) {
+              newChecks[amenityName].selected = amenity[amenityName];
+            }
+          });          
+        }
+        return newChecks;
+      });
+    } catch (err) {
+      console.error(err.message);
+    }
+  }
+
+  useEffect(() => {
+    if (edit) {
+      getListing();
+    } else {
+      console.log("Not Edit");
+    }
+  }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({
@@ -180,34 +223,67 @@ const Listing = () => {
 
   async function submitForm() {
     let valid = validateRequiredHotelData(formValues);
-    console.log(valid.valid,rooms);
+    console.log(valid.valid, rooms);
     if (valid.valid) {
       let amenities;
       amenities = Object.keys(checks).map((x) => {
         return { [x]: checks[x].selected };
       });
       let requestBody = generateAddHotelReqBody({ formValues, amenities });
-      let remodeled = rooms.map(x=>{
-        let {id,roomType,description,price,amenities,maxOccupants,roomCount} = x
-        amenities = amenities.filter(x => {
+
+      let remodeled = rooms.map((x) => {
+        let {
+          roomId,
+          roomType,
+          description,
+          price,
+          amenities,
+          maxOccupants,
+          roomCount,
+          images
+        } = x;
+        images = images.map(x=>{
+          return typeof x == 'string' ? x : null
+        })
+        amenities = amenities.filter((x) => {
           // Check if x is an object and does not have DOM properties
           return !(x instanceof HTMLElement);
         });
-        return {roomId: id,roomType,description,price,amenities,maxOccupants,roomCount}
-      })
-      let imagesRemodeled = rooms.map(x=>{
-        let {images,id} = x
-        return {images,roomId: id}
-      })
-      console.log('remodelled', remodeled)
-      requestBody.rooms = remodeled
+        return {
+          roomId,
+          roomType,
+          description,
+          price,
+          amenities,
+          maxOccupants,
+          roomCount,
+          images
+        };
+      });
+      let imagesRemodeled = rooms.map((x) => {
+        let { images, roomId } = x;
+        images = images.map(x=>{
+          return typeof x == 'string' ? null : x
+        })
+        return { images, roomId };
+      });
+      console.log("remodelled", remodeled);
+      requestBody.rooms = remodeled;
+      if (edit) {
+        requestBody.images = previousImages;
+      }
+      console.log({imagesRemodeled, requestBody });
       try {
         setLoading(true);
-        setLoadingText('Uploading Data')
-        let response = await Promise.resolve(addNewHotel(requestBody, token));
-        console.log({response})
-        setLoadingText('Uploading Images')
-        const formData = new FormData();
+        setLoadingText("Uploading Data");
+        let response = edit ? await axios.put(`http://127.0.0.1:8080/hotels/${id}`,requestBody,{
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }):  await Promise.resolve(addNewHotel(requestBody, token))
+        console.log({ response })
+        setLoadingText("Uploading Images")
+        const formData = new FormData()
         let files = images;
         if (files.length > 0) {
           // Create a FormData object
@@ -215,48 +291,54 @@ const Listing = () => {
             formData.append("files", files[i]);
           }
         }
-        let reqId = response.data.hotel.id
-        console.log({reqId})
-        let addImages = await axios.put(`https://aftib-6o3h.onrender.com/hotels/addImages/${response.data.hotel._id}`,formData,
+        let reqId = response.data.hotel.id;
+        console.log({ reqId });
+        let addImages = await axios.put(
+          `https://aftib-6o3h.onrender.com/hotels/addImages/${response.data.hotel._id}`,
+          formData,
           {
             headers: {
               "Content-Type": "multipart/form-data",
               Authorization: `Bearer ${token}`,
               // Include any other headers you need, such as authorization
-            }
-          })
+            },
+          },
+        );
         // add room images.
-        setLoadingText('Adding Room Images')
+        setLoadingText("Adding Room Images");
         for (let roomImages of imagesRemodeled) {
           if (roomImages.images.length > 0) {
             const roomFormData = new FormData();
             for (let i = 0; i < roomImages.images.length; i++) {
               roomFormData.append("files", roomImages.images[i]);
             }
-            await axios.put(`https://aftib-6o3h.onrender.com/hotels/addRoomImages/${response.data.hotel._id}/${roomImages.roomId}`, roomFormData, {
-              headers: {
-                "Content-Type": "multipart/form-data",
-                Authorization: `Bearer ${token}`,
-              }
-            });
+            await axios.put(
+              `https://aftib-6o3h.onrender.com/hotels/addRoomImages/${response.data.hotel._id}/${roomImages.roomId}`,
+              roomFormData,
+              {
+                headers: {
+                  "Content-Type": "multipart/form-data",
+                  Authorization: `Bearer ${token}`,
+                },
+              },
+            );
           }
         }
-          setLoadingText('done uploading')
-          setModalTitle("Successfully Added the hotel details.");
-          setModalBody(
-            "Your Hotel has been submitted to the admins. They would review it and get back to you within the next 1 - 24 hours. Thanks",
-          );
+        setLoadingText("done uploading");
+        setModalTitle("Successfully Added the hotel details.");
+        setModalBody(
+          "Your Hotel has been submitted to the admins. They would review it and get back to you within the next 1 - 24 hours. Thanks",
+        );
         console.log({ response: response.data });
       } catch (err) {
-          setModalTitle("Error Occured");
-          setModalBody(err.message);
+        setModalTitle("Error Occured");
+        setModalBody(err.message);
         console.error(err.message);
-      }
-      finally {
-        setTimeout(()=>{
+      } finally {
+        setTimeout(() => {
           setShowModal(true);
           setLoading(false);
-        },3000)
+        }, 3000);
       }
     }
   }
@@ -312,182 +394,191 @@ const Listing = () => {
         <p>{modalBody}</p>
       </Modal>
       <div className="row">
-      <div className="col-md-6 listing">
-  <h2 className="listing-title">Hotel</h2>
-  <form onSubmit={handleSubmit} className="listing-container">
-    <section className="form-section">
-      <h4 className="section-title py-2">Main Information</h4>
-      <div className="form-group mb-3">
-        <label className="form-label mb-1">Hotel Name</label>
-        <input
-          type="text"
-          className="form-control"
-          placeholder="e.g., Z hotel"
-          name="name"
-          id="name"
-          value={formValues.name}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="form-group mb-3">
-        <label className="form-label mb-1">Description</label>
-        <textarea
-          className="form-control"
-          placeholder="Detailed description of the hotel"
-          rows="4"
-          name="description"
-          id="description"
-          value={formValues.description}
-          onChange={handleChange}
-        ></textarea>
-      </div>
-      <div className="form-group mb-3">
-        <label className="form-label mb-1">Full Address</label>
-        <input
-          type="text"
-          className="form-control"
-          placeholder="e.g., 23A, Ikori Street, OJB road, Agege, Lagos."
-          name="address"
-          id="address"
-          value={formValues.address}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="form-group row mb-3">
-        <div className="col-sm-12 mb-2">
-          <label className="form-label mb-1">State</label>
-          <select
-            className="form-control"
-            name="state"
-            id="state"
-            value={formValues.state}
-            onChange={handleChange}
-          >
-            {Object.keys(nigerianStateData).map((x) => (
-              <option key={x}>{x}</option>
-            ))}
-          </select>
-        </div>
-        <div className="col-sm-12 mb-2">
-          <label className="form-label mb-1">Local Government Area</label>
-          <select
-            className="form-control"
-            name="LGA"
-            id="LGA"
-            value={formValues.LGA}
-            onChange={handleChange}
-          >
-            {nigerianStateData[formValues.state].map((x) => (
-              <option key={x}>{x}</option>
-            ))}
-          </select>
-        </div>
-      </div>
-    </section>
-
-    <section className="form-section">
-      <h4 className="section-title">Rooms Available</h4>
-      <p>Add information about the rooms and services this hotel has here.</p>
-     
-    
-      {rooms.map((room, index) => (
-        <div className="room-container p-2 border-gray mb-3" key={room.id}>
-         
-        <b>Room {index + 1}</b>
-          <RoomForm
-            room={room}
-            onChange={handleRoomChange(room.id)}
-            onDelete={handleRoomDelete(room.id)}
-            updateAmenities={updateAmenities}
-            updateRoomImages={updateRoomImages}
-          />
-          <div className="form-group mb-3">
-            <label className="form-label mb-1">Upload Room Image</label>
-            <div className="input-group">
-              <input type="file" className="form-control-file" />
-            </div>
-          </div>
-        </div>
-      ))}
-      <div className="d-grid mt-4">
-        <button type="button" className="btn blue mb-4" onClick={handleRoomAdd}>
-          Add New Room
-        </button>
-      </div>
-    </section>
-
-    <section className="form-section">
-      <h4 className="section-title py-2">Contact Section</h4>
-      <div className="row">
-        <div className="col-sm-6 mb-2">
-          <label className="form-label mb-1">Contact Phone</label>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Phone"
-            name="phone"
-            id="phone"
-            value={formValues.phone}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="col-sm-6 mb-2">
-          <label className="form-label mb-1">Contact Email</label>
-          <input
-            type="email"
-            className="form-control"
-            placeholder="Email"
-            name="email"
-            id="email"
-            value={formValues.email}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="col-sm-6 mb-2">
-          <label className="form-label mb-1">Website</label>
-          <input
-            type="url"
-            className="form-control"
-            placeholder="Website URL"
-            name="website"
-            id="website"
-            value={formValues.website}
-            onChange={handleChange}
-          />
-        </div>
-      </div>
-    </section>
-
-    <section className="form-section">
-      <h4 className="section-title py-2">Extra Information</h4>
-      <div className="form-group mb-3">
-        <label className="form-label mb-1">Amenities</label>
-        <div className="row">
-          {Object.keys(checks).map((option, index) => (
-            <div className="col-md-4 col-sm-6 py-1 px-3" key={index}>
-              <div className="form-check">
+        <div className="col-md-6 listing">
+          <h2 className="listing-title">Hotel</h2>
+          <form onSubmit={handleSubmit} className="listing-container">
+            <section className="form-section">
+              <h4 className="section-title py-2">Main Information</h4>
+              <div className="form-group mb-3">
+                <label className="form-label mb-1">Hotel Name</label>
                 <input
-                  className="form-check-input"
-                  checked={checks[option].selected}
-                  onChange={() => updateCheck(option)}
-                  type="checkbox"
-                  id={`checkbox${index}`}
+                  type="text"
+                  className="form-control"
+                  placeholder="e.g., Z hotel"
+                  name="name"
+                  id="name"
+                  value={formValues.name}
+                  onChange={handleChange}
                 />
-                <label className="form-check-label" htmlFor={`checkbox${index}`}>
-                  {checks[option].displayTitle}
-                </label>
               </div>
-            </div>
-          ))}
+              <div className="form-group mb-3">
+                <label className="form-label mb-1">Description</label>
+                <textarea
+                  className="form-control"
+                  placeholder="Detailed description of the hotel"
+                  rows="4"
+                  name="description"
+                  id="description"
+                  value={formValues.description}
+                  onChange={handleChange}
+                ></textarea>
+              </div>
+              <div className="form-group mb-3">
+                <label className="form-label mb-1">Full Address</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="e.g., 23A, Ikori Street, OJB road, Agege, Lagos."
+                  name="address"
+                  id="address"
+                  value={formValues.address}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="form-group row mb-3">
+                <div className="col-sm-12 mb-2">
+                  <label className="form-label mb-1">State</label>
+                  <select
+                    className="form-control"
+                    name="state"
+                    id="state"
+                    value={formValues.state}
+                    onChange={handleChange}
+                  >
+                    {Object.keys(nigerianStateData).map((x) => (
+                      <option key={x}>{x}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="col-sm-12 mb-2">
+                  <label className="form-label mb-1">
+                    Local Government Area
+                  </label>
+                  <select
+                    className="form-control"
+                    name="LGA"
+                    id="LGA"
+                    value={formValues.LGA}
+                    onChange={handleChange}
+                  >
+                    {nigerianStateData[formValues.state].map((x) => (
+                      <option key={x}>{x}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            </section>
+
+            <section className="form-section">
+              <h4 className="section-title">Rooms Available</h4>
+              <p>
+                Add information about the rooms and services this hotel has
+                here.
+              </p>
+
+              {rooms.map((room, index) => (
+                <div
+                  className="room-container p-2 border-gray mb-3"
+                  key={room.roomId}
+                >
+                  <b>Room {index + 1}</b>
+                  <RoomForm
+                    room={room}
+                    onChange={handleRoomChange(room.roomId)}
+                    onDelete={handleRoomDelete(room.roomId)}
+                    updateAmenities={updateAmenities}
+                    updateRoomImages={updateRoomImages}
+                  />
+                  <div className="form-group mb-3">
+                    <label className="form-label mb-1">Upload Room Image</label>
+                    <div className="input-group">
+                      <input type="file" className="form-control-file" />
+                    </div>
+                  </div>
+                </div>
+              ))}
+              <div className="d-grid mt-4">
+                <button
+                  type="button"
+                  className="btn blue mb-4"
+                  onClick={handleRoomAdd}
+                >
+                  Add New Room
+                </button>
+              </div>
+            </section>
+
+            <section className="form-section">
+              <h4 className="section-title py-2">Contact Section</h4>
+              <div className="row">
+                <div className="col-sm-6 mb-2">
+                  <label className="form-label mb-1">Contact Phone</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Phone"
+                    name="phone"
+                    id="phone"
+                    value={formValues.phone}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="col-sm-6 mb-2">
+                  <label className="form-label mb-1">Contact Email</label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    placeholder="Email"
+                    name="email"
+                    id="email"
+                    value={formValues.email}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="col-sm-6 mb-2">
+                  <label className="form-label mb-1">Website</label>
+                  <input
+                    type="url"
+                    className="form-control"
+                    placeholder="Website URL"
+                    name="website"
+                    id="website"
+                    value={formValues.website}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+            </section>
+
+            <section className="form-section">
+              <h4 className="section-title py-2">Extra Information</h4>
+              <div className="form-group mb-3">
+                <label className="form-label mb-1">Amenities</label>
+                <div className="row">
+                  {Object.keys(checks).map((option, index) => (
+                    <div className="col-md-4 col-sm-6 py-1 px-3" key={index}>
+                      <div className="form-check">
+                        <input
+                          className="form-check-input"
+                          checked={checks[option].selected}
+                          onChange={() => updateCheck(option)}
+                          type="checkbox"
+                          id={`checkbox${index}`}
+                        />
+                        <label
+                          className="form-check-label"
+                          htmlFor={`checkbox${index}`}
+                        >
+                          {checks[option].displayTitle}
+                        </label>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+          </form>
         </div>
-      </div>
-    </section>
-  </form>
-</div>
-
-
-
-
 
         <div className="col-md-6 local">
           <h2>Localization</h2>
@@ -548,48 +639,75 @@ const Listing = () => {
       </div>
 
       <div className="col-xs-12 gallery-listing mb-3">
-          <div className="form-group mt-4">
-            <h2>Gallery</h2>
-            <p>Upload the images for the listings one after the other</p>
-            <div className="listing-gallery">
-              <form id="uploadForm">
-                <p>
-                  <b>{images.length > 0 ? "Upload Another One" : ""}</b>
-                </p>
+        <div className="form-group mt-4">
+          <h2>Gallery</h2>
+          <p>Upload the images for the listings one after the other</p>
+          <div className="listing-gallery">
+            <form id="uploadForm">
+              <p>
+                <b>{images.length > 0 ? "Upload Another One" : ""}</b>
+              </p>
 
-                <input
-                  type="file"
-                  id="fileInput"
-                  placeholder="Add Image"
-                  name="files"
-                  onChange={handleImageUpload}
-                  ref={imageInput}
-                />
-                <div className="my-5 row justify-content-center">
-                  {previews.map((preview, index) => (
-                    <div
-                      className="col-8 col-md-5 col-lg-4 position-relative"
-                      key={index}
+              <input
+                type="file"
+                id="fileInput"
+                placeholder="Add Image"
+                name="files"
+                onChange={handleImageUpload}
+                ref={imageInput}
+              />
+              <div className="my-5 row justify-content-center">
+                {previews.map((preview, index) => (
+                  <div
+                    className="col-8 col-md-5 col-lg-4 position-relative"
+                    key={index}
+                  >
+                    <img
+                      src={preview}
+                      alt={`preview-${index}`}
+                      className="img-fluid previewImage"
+                    />
+                    <button
+                      type="button"
+                      className="btn btn-danger position-absolute top-0 end-0"
+                      onClick={() => handleDeleteImage(index)}
                     >
-                      <img
-                        src={preview}
-                        alt={`preview-${index}`}
-                        className="img-fluid previewImage"
-                      />
-                      <button
-                        type="button"
-                        className="btn btn-danger position-absolute top-0 end-0"
-                        onClick={() => handleDeleteImage(index)}
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              </form>
+                      Delete
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </form>
+          </div>
+          <div>
+            <h4>Previously Uploaded Images</h4>
+            <div>
+              <div className="row justify-content-center">
+                {previousImages.map((image, index) => (
+                  <div
+                    key={index}
+                    className="col-8 col-md-5 col-lg-4 position-relative"
+                  >
+                    <img
+                      src={image}
+                      alt={`Previous Image ${index}`}
+                      className="img-fluid"
+                    />
+                    <button
+                      type="button"
+                      className="btn btn-danger position-absolute"
+                      style={{ top: 10, right: 10 }}
+                      onClick={() => handleImageDelete(index)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
+      </div>
 
       <div className="row justify-content-center">
         <button className="btn listbtn  mt-3" onClick={submitForm}>
