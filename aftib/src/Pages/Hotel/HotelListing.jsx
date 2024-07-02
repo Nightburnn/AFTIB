@@ -368,17 +368,6 @@ const Listing = () => {
             onChange={handleRoomChange(room.id)}
             onDelete={handleRoomDelete(room.id)}
           />
-<<<<<<< HEAD
-          <div className="form-group row align-items-center mb-3">
-            <label className="col-sm-2 col-form-label">Upload Room Image</label>
-            <div className="col-sm-10">
-              <input type="file" className="form-control-file" />
-            </div>
-          </div>
-          <div className="form-group row align-items-center mb-3">
-            <label className="col-sm-2 col-form-label">Amenities</label>
-            <div className="col-sm-8">
-=======
           <div className="form-group mb-3">
             <label className="form-label mb-1">Upload Room Image</label>
             <div className="input-group">
@@ -392,7 +381,6 @@ const Listing = () => {
             <label className="form-label mb-1">Amenities</label>
             <div className="form-group row mb-2">
                <div className="col-sm-10">
->>>>>>> 8ce51f3 (form group)
               <select className="form-control">
                 {Object.keys(checks).map((option, index) => (
                   <option key={index}>{checks[option].displayTitle}</option>
@@ -402,11 +390,8 @@ const Listing = () => {
             <div className="col-sm-2">
               <button type="button" className="btn blue">Add</button>
             </div>
-<<<<<<< HEAD
-=======
             </div>
            
->>>>>>> 8ce51f3 (form group)
           </div>
           <div className="text-center mb-3">
             <button
