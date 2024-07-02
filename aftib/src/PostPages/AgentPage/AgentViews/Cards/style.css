@@ -1,6 +1,5 @@
 /* ListingCard.css */
 .listing-card {
-  display: flex;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   padding: 20px;
@@ -13,12 +12,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow-y: hidden;
 }
 
 .listing-image {
   border-radius: 10px;
-  width: 150px;
-  height: 150px;
+  width: 100%;
   object-fit: cover;
 }
 

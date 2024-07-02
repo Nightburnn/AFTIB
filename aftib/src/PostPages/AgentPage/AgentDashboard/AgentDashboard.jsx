@@ -32,14 +32,25 @@ const AgentDashboard = () => {
       console.error({ error: err.message });
     }
   }
-  useEffect(() => {
-    getData();
-  }, []);
   const goToAgentRegistration = () =>{
     navigate('/agent-registration?edit=true')
   }
   function getApprovedCount(bool,array){
     return bool? array.filter(x=> x.approved ).length: array.filter(x=> !x.approved).length
+  }
+  async function getByDashboardData(){
+    try{
+      let response = await getAgentDashboardData()
+      // fill the other data
+      setDashboardData(response)
+      console.log({dashboardDataFromAgentDashboard: response})
+      dispatch(updateAgentDashboardData(response))
+      setHotel(response.hotels)
+      setListings(response.listings)
+    }
+    catch(err){
+      console.error(err.message)
+    }
   }
   async function getByToken(){
     try{
@@ -60,23 +71,16 @@ const AgentDashboard = () => {
       console.error(err.message)
     }
   }
-  async function getByDashboardData(){
-    try{
-      let response = await getAgentDashboardData()
-      // fill the other data
-      setDashboardData(response)
-      dispatch(updateAgentDashboardData(response))
-      setHotel(response.hotels)
-      setListings(response.listings)
-    }
-    catch(err){
-      console.error(err.message)
-    }
-  }
+  
   useEffect(()=>{
+    // fetches user account data
+      getData();
+      // fetches agency data
       getByToken()
+      // gets agent dashboard data.
       getByDashboardData()
   },[])
+
   return (
     <div className="dash">
       <div className="container">

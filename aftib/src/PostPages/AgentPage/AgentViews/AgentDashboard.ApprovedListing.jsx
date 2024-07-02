@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./style.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {ListingCard1} from "./Cards";
+import { getApproved } from "../../../utils/others";
+
 
 export function AgentApprovedListings() {
-  function getApproved(bool,array){
-    return bool? array.filter(x=> x.approved ): array.filter(x=> !x.approved)
-  }
+  let navigate = useNavigate()
+
   let dashboardData = useSelector((state) => state.user.agentDashboardData)
-  console.log({user: dashboardData})
+  let approved = getApproved(true,dashboardData.listings)
+  console.log({approved})
 
   const handleViewListing = (id) => {
     console.log("View Listing clicked for:" ,id);
+    navigate(`/pd?id=${id}`)
   };
   const handleEdit = (id) => {
     console.log("View Listing clicked for:", id);
+    navigate(`/list?edit=true&id=${id}`)
   };
   return (
     <div className="p-3 p-md-5">
@@ -27,16 +31,16 @@ export function AgentApprovedListings() {
       </div>
       <div className="row">
           {
-           [].map(x=>{
+           approved.map(x=>{
               return (
-                <div className="col-12 col-lg-4 col-md-6 p-2">
+                <div key={x._id} className="col-12 col-md-6 col-xl-4 p-2">
                   <ListingCard1
                     image={x.images[0]}
                     title={x.title}
                     address={x.location}
                     onViewListing={()=>{handleViewListing(x._id)}}
                     onEditListing={()=>{handleEdit(x._id)}}
-                    buttonText={'View Listing'}
+                    viewText={'View Listing'}
                   />
                 </div>                  
               )

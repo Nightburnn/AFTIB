@@ -1,6 +1,7 @@
 import axios from "axios";
 let localhostAddr = "http://127.0.0.1:8080";
 let API_BASE_URL = "https://aftib-6o3h.onrender.com"; // adjust the base URL accordingly
+API_BASE_URL = localhostAddr
 
 let token = window.localStorage.getItem("accessToken");
 // Initialize agent status request
@@ -328,6 +329,7 @@ export const fetchApprovedHotels = async (page = 1) => {
 
 // get user data. pass the accesstoken
 export const getUserData = async () => {
+  let token = window.localStorage.getItem("accessToken");
   try {
     const response = await axios.get(`${API_BASE_URL}/auth/get-user`, {
       headers: {
@@ -343,6 +345,7 @@ export const getUserData = async () => {
 
 // get user data. pass the accesstoken
 export const getAgentDashboardData = async () => {
+  let token = window.localStorage.getItem("accessToken");
   try {
     const response = await axios.get(`${API_BASE_URL}/auth/get-agent-dashboard-data`, {
       headers: {
@@ -358,6 +361,7 @@ export const getAgentDashboardData = async () => {
 
 // get user data. pass the accesstoken
 export const getAdminDashboardData = async () => {
+  let token = window.localStorage.getItem("accessToken");
   try {
     const response = await axios.get(`${API_BASE_URL}/auth/get-admin-dashboard-data`, {
       headers: {

@@ -7,11 +7,11 @@ import {
   validateRequiredHotelData,
   generateAddHotelReqBody,
   addNewHotel,
-  
 } from "../../utils/hotelUtils";
 import { fetchHotelById } from "../../utils/adminOpsRequests";
 import { useNavigate } from "react-router-dom";
 import { useLoading } from "../../Components/LoadingContext";
+import { RoomForm } from "./Room";
 
 import { Modal } from "antd";
 import axios from "axios";
@@ -27,6 +27,31 @@ L.Icon.Default.mergeOptions({
 const Listing = () => {
   let token = window.localStorage.getItem("accessToken");
   let navigate = useNavigate();
+  const emptyRoomData = {
+    id: Date.now(),         // Unique identifier for the room
+    type: '',               // Room type (e.g., suite, double, single)
+    description: '',        // Detailed description of the room
+    price: '',              // Price of the room
+    amenities: [],          // List of amenities for the room
+    images: [],             // URLs to images of the room
+    maxOccupants: '',       // Maximum number of occupants for the room
+    roomCount: ''           // Number of this type of room available in the hotel
+  };
+  const [rooms, setRooms] = useState([emptyRoomData]);
+
+  const handleRoomChange = (id) => (key) => (e) => {
+    const value = e.target.value;
+    setRooms(rooms.map(room => (room.id === id ? { ...room, [key]: value } : room)));
+  };
+
+  const handleRoomAdd = () => {
+    setRooms([...rooms, { id: Date.now(), type: '', description: '', price: '', amenities: [], images: [], maxOccupants: '', roomCount: '' }]);
+  };
+
+  const handleRoomDelete = (id) => () => {
+    setRooms(rooms.filter(room => room.id !== id));
+  };
+
   let [showModal, setShowModal] = useState(false);
   let [modalTitle, setModalTitle] = useState("");
   let [modalBody, setModalBody] = useState("");
@@ -125,7 +150,7 @@ const Listing = () => {
 
   async function submitForm() {
     let valid = validateRequiredHotelData(formValues);
-    console.log(valid.valid);
+    console.log(valid.valid,rooms);
     if (valid.valid) {
       let amenities;
       amenities = Object.keys(checks).map((x) => {
@@ -157,10 +182,10 @@ const Listing = () => {
             }
           })
           setLoadingText('done uploading')
-        setModalTitle("Successfully Added the hotel details.");
-        setModalBody(
-          "Your Hotel has been submitted to the admins. They would review it and get back to you within the next 1 - 24 hours. Thanks",
-        );
+          setModalTitle("Successfully Added the hotel details.");
+          setModalBody(
+            "Your Hotel has been submitted to the admins. They would review it and get back to you within the next 1 - 24 hours. Thanks",
+          );
         console.log({ response: response.data });
       } catch (err) {
           setModalTitle("Error Occured");
@@ -296,6 +321,26 @@ const Listing = () => {
                   })}
                 </select>
               </div>
+            </div>
+            <div>
+              <h4>Rooms Available</h4>
+              <p> Add information about the rooms and services this hotel has here.</p>
+            {rooms.map((room,index) => (
+              <div className="p-2 border-gray" style={{marginBottom: '10px'}}>
+                <b>Room {index+1} </b>
+                <RoomForm
+                  key={room.id}
+                  room={room}
+                  onChange={handleRoomChange(room.id)}
+                  onDelete={handleRoomDelete(room.id)}
+                />                
+              </div>
+
+            ))}
+            <div> 
+              <div className="py-3"></div>
+               <button onClick={handleRoomAdd}>Add New Room</button>
+            </div>
             </div>
             <div className="form-group row mb-3">
               <h4 className="py-2">Contact Section</h4>

@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./style.css";
-import { Link } from "react-router-dom";
-import ListingCard from "./Cards";
+import { Link, useNavigate } from "react-router-dom";
+import {ListingCard1} from "./Cards";
+import { getApproved } from "../../../utils/others";
 
 export function AgentApprovedHotels() {
-  function getApproved(bool,array){
-    return bool? array.filter(x=> x.approved ): array.filter(x=> !x.approved)
-  }
+  let navigate = useNavigate();
   let dashboardData = useSelector((state) => state.user.agentDashboardData)
   let approved = getApproved(true,dashboardData.hotels)
   console.log({approved})
+
   let listingDetails = {
     image:
       "https://res.cloudinary.com/mixambusiness/image/upload/v1718797096/listings/qhzp4cvoqvb7zy9l1kqv.jpg",
@@ -20,8 +20,14 @@ export function AgentApprovedHotels() {
     message: "Approved",
     buttonText: "View Hotel",
   };
-  const handleViewListing = () => {
-    console.log("View Listing clicked for:", listingDetails.title);
+
+  const handleViewListing = (id) => {
+    console.log("View Listing clicked for:" ,id);
+    navigate(`/pd?id=${id}`)
+  };
+  const handleEdit = (id) => {
+    console.log("View Listing clicked for:", id);
+    navigate(`/hotellist?edit=true&id=${id}`)
   };
 
   return (
@@ -33,39 +39,22 @@ export function AgentApprovedHotels() {
         </h3>
       </div>
       <div className="row">
-        <div className="col-12 col-lg-4 col-md-6 p-2">
-          <ListingCard
-            image={listingDetails.image}
-            title={listingDetails.title}
-            date={listingDetails.date}
-            address={listingDetails.address}
-            message={listingDetails.message}
-            onViewListing={handleViewListing}
-            buttonText={listingDetails.buttonText}
-          />
-        </div>
-        <div className="col-12 col-lg-4 col-md-6 p-2">
-          <ListingCard
-            image={listingDetails.image}
-            title={listingDetails.title}
-            date={listingDetails.date}
-            address={listingDetails.address}
-            message={listingDetails.message}
-            onViewListing={handleViewListing}
-            buttonText={listingDetails.buttonText}
-          />
-        </div>
-        <div className="col-12 col-lg-4 col-md-6 p-2">
-          <ListingCard
-            image={listingDetails.image}
-            title={listingDetails.title}
-            date={listingDetails.date}
-            address={listingDetails.address}
-            message={listingDetails.message}
-            onViewListing={handleViewListing}
-            buttonText={listingDetails.buttonText}
-          />
-        </div>
+      {
+           approved.map(x=>{
+              return (
+                <div key={x._id} className="col-12 col-md-6 col-xl-4 p-2">
+                  <ListingCard1
+                    image={x.images[0]}
+                    title={x.name}
+                    address={x.address}
+                    onViewListing={()=>{handleViewListing(x._id)}}
+                    onEditListing={()=>{handleEdit(x._id)}}
+                    viewText={'View Hotel'}
+                  />
+                </div>                  
+              )
+            })
+          }
       </div>
     </div>
   );
