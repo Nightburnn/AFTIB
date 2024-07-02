@@ -107,6 +107,16 @@ const Header = () => {
                     <li className="nav-item">
                       <NavLink
                         className="nav-link"
+                        to="/hotellist"
+                        activeClassName="active"
+                        onClick={handleNavLinkClick}
+                      >
+                        Hotel Listing
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink
+                        className="nav-link"
                         to="/inbox"
                         activeClassName="active"
                         onClick={handleNavLinkClick}

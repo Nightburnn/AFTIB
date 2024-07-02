@@ -281,170 +281,203 @@ const Listing = () => {
         <p>{modalBody}</p>
       </Modal>
       <div className="row">
-        <div className="col-md-6 listing">
-          <h2>Hotel</h2>
-          <form onSubmit={handleSubmit} className="listing-container">
-            <h4 className="py-2">Main Informations</h4>
-            <div className="form-group mb-3">
-              <label className="mb-1">Hotel Name</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="e.g., Z hotel"
-                name="name"
-                id="name"
-                value={formValues.name}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="form-group mb-3">
-              <label className="mb-1">Description</label>
-              <textarea
-                className="form-control"
-                placeholder="Detailed description of the hotel"
-                rows="4"
-                name="description"
-                id="description"
-                value={formValues.description}
-                onChange={handleChange}
-              ></textarea>
-            </div>
-            <div className="form-group mb-3">
-              <label className="mb-1">Full Address</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="e.g., 23A, Ikori Street, OJB road, Agege, Lagos."
-                name="address"
-                id="address"
-                value={formValues.address}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="form-group row mb-3">
-              <div className="col-sm-12 mb-2">
-                <label className="mb-1">State</label>
-                <select
-                  className="form-control"
-                  name="state"
-                  id="state"
-                  value={formValues.state}
-                  onChange={handleChange}
-                >
-                  {Object.keys(nigerianStateData).map((x,index) => {
-                    return <option key={index}>{x}</option>;
-                  })}
-                </select>
-              </div>
-              <div className="col-sm-12 mb-2">
-                <label className="mb-1">Local Government Area</label>
-                <select
-                  className="form-control"
-                  name="LGA"
-                  id="LGA"
-                  value={formValues.LGA}
-                  onChange={handleChange}
-                >
-                  {nigerianStateData[formValues.state].map((x,index) => {
-                    return <option key={index}>{x}</option>;
-                  })}
-                </select>
-              </div>
-            </div>
-            <div>
-              <h4>Rooms Available</h4>
-              <p> Add information about the rooms and services this hotel has here.</p>
-            {rooms.map((room,index) => (
-              <div className="p-2 border-gray" style={{marginBottom: '10px'}}>
-                <b>Room {index+1} </b>
-                <RoomForm
-                  key={room.id}
-                  room={room}
-                  onChange={handleRoomChange(room.id)}
-                  onDelete={handleRoomDelete(room.id)}
-                  updateRoomImages={updateRoomImages}
-                  updateAmenities={updateAmenities}
-                />           
-              </div>
-
+      <div className="col-md-6 listing">
+  <h2 className="listing-title">Hotel</h2>
+  <form onSubmit={handleSubmit} className="listing-container">
+    <section className="form-section">
+      <h4 className="section-title py-2">Main Information</h4>
+      <div className="form-group mb-3">
+        <label className="form-label mb-1">Hotel Name</label>
+        <input
+          type="text"
+          className="form-control"
+          placeholder="e.g., Z hotel"
+          name="name"
+          id="name"
+          value={formValues.name}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="form-group mb-3">
+        <label className="form-label mb-1">Description</label>
+        <textarea
+          className="form-control"
+          placeholder="Detailed description of the hotel"
+          rows="4"
+          name="description"
+          id="description"
+          value={formValues.description}
+          onChange={handleChange}
+        ></textarea>
+      </div>
+      <div className="form-group mb-3">
+        <label className="form-label mb-1">Full Address</label>
+        <input
+          type="text"
+          className="form-control"
+          placeholder="e.g., 23A, Ikori Street, OJB road, Agege, Lagos."
+          name="address"
+          id="address"
+          value={formValues.address}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="form-group row mb-3">
+        <div className="col-sm-12 mb-2">
+          <label className="form-label mb-1">State</label>
+          <select
+            className="form-control"
+            name="state"
+            id="state"
+            value={formValues.state}
+            onChange={handleChange}
+          >
+            {Object.keys(nigerianStateData).map((x) => (
+              <option key={x}>{x}</option>
             ))}
-            <div> 
-              <div className="py-3"></div>
-               <button onClick={handleRoomAdd}>Add New Room</button>
-            </div>
-            </div>
-            <div className="form-group row mb-3">
-              <h4 className="py-2">Contact Section</h4>
-              <div className="col-sm-6 mb-2">
-                <label className="mb-1">Contact Phone</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Phone"
-                  name="phone"
-                  id="phone"
-                  value={formValues.phone}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="col-sm-6 mb-2">
-                <label className="mb-1">Contact Email</label>
-                <input
-                  type="email"
-                  className="form-control"
-                  placeholder="Email"
-                  name="email"
-                  id="email"
-                  value={formValues.email}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="col-sm-6 mb-2">
-                <label className="mb-1">Website</label>
-                <input
-                  type="url"
-                  className="form-control"
-                  placeholder="Website URL"
-                  name="website"
-                  id="website"
-                  value={formValues.website}
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-            <h4 className="py-2">Extra Information</h4>
-            <div className="form-group mb-3">
-              <label className="mb-1">Amenities</label>
-              <div className="row">
-                {Object.keys(checks).map((option, index) => {
-                  return (
-                    <div
-                      className="py-1 px-3"
-                      key={index}
-                      style={{ width: "max-content" }}
-                    >
-                      <div className="form-check">
-                        <input
-                          className="form-check-input"
-                          checked={checks[option].selected}
-                          onChange={() => updateCheck(option)}
-                          type="checkbox"
-                          id={`checkbox${index}`}
-                        />
-                        <label
-                          className="form-check-label"
-                          htmlFor={`checkbox${index}`}
-                        >
-                          {checks[option].displayTitle}
-                        </label>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </form>
+          </select>
         </div>
+        <div className="col-sm-12 mb-2">
+          <label className="form-label mb-1">Local Government Area</label>
+          <select
+            className="form-control"
+            name="LGA"
+            id="LGA"
+            value={formValues.LGA}
+            onChange={handleChange}
+          >
+            {nigerianStateData[formValues.state].map((x) => (
+              <option key={x}>{x}</option>
+            ))}
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <section className="form-section">
+      <h4 className="section-title">Rooms Available</h4>
+      <p>Add information about the rooms and services this hotel has here.</p>
+     
+    
+      {rooms.map((room, index) => (
+        <div className="room-container p-2 border-gray mb-3" key={room.id}>
+         
+        <b>Room {index + 1}</b>
+          <RoomForm
+            room={room}
+            onChange={handleRoomChange(room.id)}
+            onDelete={handleRoomDelete(room.id)}
+          />
+          <div className="form-group row align-items-center mb-3">
+            <label className="col-sm-2 col-form-label">Upload Room Image</label>
+            <div className="col-sm-10">
+              <input type="file" className="form-control-file" />
+            </div>
+          </div>
+          <div className="form-group row align-items-center mb-3">
+            <label className="col-sm-2 col-form-label">Amenities</label>
+            <div className="col-sm-8">
+              <select className="form-control">
+                {Object.keys(checks).map((option, index) => (
+                  <option key={index}>{checks[option].displayTitle}</option>
+                ))}
+              </select>
+            </div>
+            <div className="col-sm-2">
+              <button type="button" className="btn blue">Add</button>
+            </div>
+          </div>
+          <div className="text-center mb-3">
+            <button
+              type="button"
+              className="btn danger"
+              onClick={() => handleRoomDelete(room.id)}
+            >
+              Delete Room
+            </button>
+          </div>
+        </div>
+      ))}
+      <div className="d-grid mt-4">
+        <button type="button" className="btn blue mb-4" onClick={handleRoomAdd}>
+          Add New Room
+        </button>
+      </div>
+    </section>
+
+    <section className="form-section">
+      <h4 className="section-title py-2">Contact Section</h4>
+      <div className="row">
+        <div className="col-sm-6 mb-2">
+          <label className="form-label mb-1">Contact Phone</label>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Phone"
+            name="phone"
+            id="phone"
+            value={formValues.phone}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="col-sm-6 mb-2">
+          <label className="form-label mb-1">Contact Email</label>
+          <input
+            type="email"
+            className="form-control"
+            placeholder="Email"
+            name="email"
+            id="email"
+            value={formValues.email}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="col-sm-6 mb-2">
+          <label className="form-label mb-1">Website</label>
+          <input
+            type="url"
+            className="form-control"
+            placeholder="Website URL"
+            name="website"
+            id="website"
+            value={formValues.website}
+            onChange={handleChange}
+          />
+        </div>
+      </div>
+    </section>
+
+    <section className="form-section">
+      <h4 className="section-title py-2">Extra Information</h4>
+      <div className="form-group mb-3">
+        <label className="form-label mb-1">Amenities</label>
+        <div className="row">
+          {Object.keys(checks).map((option, index) => (
+            <div className="col-md-4 col-sm-6 py-1 px-3" key={index}>
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  checked={checks[option].selected}
+                  onChange={() => updateCheck(option)}
+                  type="checkbox"
+                  id={`checkbox${index}`}
+                />
+                <label className="form-check-label" htmlFor={`checkbox${index}`}>
+                  {checks[option].displayTitle}
+                </label>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </form>
+</div>
+
+
+
+
+
         <div className="col-md-6 local">
           <h2>Localization</h2>
           <div className="local-list">

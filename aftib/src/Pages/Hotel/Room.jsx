@@ -42,105 +42,148 @@ export const RoomForm = ({ room, onChange, onDelete, updateRoomImages, updateAme
 
 
   return (
-    <div>
-      <div>
-        <div>
-          <input
-            type="radio"
-            value="suite"
-            name={`roomType-${room.id}`}
-            checked={room.type === 'suite'}
-            onChange={onChange('type')}
-          />
-          <label>Suite</label><br />
-          <input
-            type="radio"
-            value="double"
-            name={`roomType-${room.id}`}
-            checked={room.type === 'double'}
-            onChange={onChange('type')}
-          />
-          <label>Double Room</label><br />
-          <input
-            type="radio"
-            value="single"
-            name={`roomType-${room.id}`}
-            checked={room.type === 'single'}
-            onChange={onChange('type')}
-          />
-          <label>Single Room</label><br />
-        </div>
-      </div>
-      <div>
-        <label>Description</label>
+    <div className="">
+    <div className="form-group mb-3">
+      <label className="form-label mb-1">Room Type</label>
+      <div className="form-check-inline">
         <input
-          type="text"
-          className="form-control"
-          placeholder="Description"
-          value={room.description}
-          onChange={onChange('description')}
+          type="radio"
+          value="suite"
+          name={`roomType-${room.id}`}
+          checked={room.type === 'suite'}
+          onChange={onChange('type')}
+          className="form-check-input"
         />
+        <label className="form-check-label">Suite</label>
       </div>
-      <div>
-        <label>Price Per Night</label>
+      <div className="form-check-inline">
         <input
-          type="number"
-          className="form-control"
-          placeholder="Price"
-          value={room.price}
-          onChange={onChange('price')}
+          type="radio"
+          value="double"
+          name={`roomType-${room.id}`}
+          checked={room.type === 'double'}
+          onChange={onChange('type')}
+          className="form-check-input"
         />
+        <label className="form-check-label">Double Room</label>
       </div>
-      <div>
-        <label>Amenities</label>
-          <input id='amenity' type="text" name="amenity" placeholder="Add Amenity" />
-          <button onClick={handleAmenityAdd}>Add</button>
-        <div>
-          {amenities.map((amenity, index) => (
-            <span key={index}>
-              {amenity} <button onClick={() => handleAmenityDelete(index)}>x</button>
-            </span>
-          ))}
-        </div>
-      </div>
-      <div>
-        <label>Upload Room Images</label>
+      <div className="form-check-inline">
         <input
-          type="file"
-          multiple
-          ref={imageInput}
-          onChange={handleImageUpload}
+          type="radio"
+          value="single"
+          name={`roomType-${room.id}`}
+          checked={room.type === 'single'}
+          onChange={onChange('type')}
+          className="form-check-input"
         />
-        <div className="row">
-          {previews.map((src, index) => (
-            <div className="col-3" key={index}>
-              <img src={src} alt={`Room ${index}`} style={{ width: '100%' }} />
-              <button onClick={() => handleImageDelete(index)}>Delete</button>
-            </div>
-          ))}
-        </div>
+        <label className="form-check-label">Single Room</label>
       </div>
-      <div>
-        <label>Maximum Occupants</label>
-        <input
-          type="number"
-          className="form-control"
-          placeholder="Maximum Occupants"
-          value={room.maxOccupants}
-          onChange={onChange('maxOccupants')}
-        />
-      </div>
-      <div>
-        <label>How many of this room do you have in your hotel?</label>
-        <input
-          type="number"
-          className="form-control"
-          placeholder="Number of Rooms"
-          value={room.roomCount}
-          onChange={onChange('roomCount')}
-        />
-      </div>
-      <button onClick={onDelete}>Delete Room</button>
     </div>
+  
+    <div className="form-group mb-3">
+      <label className="form-label mb-1">Description</label>
+      <input
+        type="text"
+        className="form-control"
+        placeholder="Description"
+        value={room.description}
+        onChange={onChange('description')}
+      />
+    </div>
+  
+    <div className="form-group mb-3">
+      <label className="form-label mb-1">Price Per Night</label>
+      <input
+        type="number"
+        className="form-control"
+        placeholder="Price"
+        value={room.price}
+        onChange={onChange('price')}
+      />
+    </div>
+  
+    <div className="form-group mb-3">
+      <label className="form-label mb-1">Amenities</label>
+      <div className="input-group">
+        <input
+          id="amenity"
+          type="text"
+          name="amenity"
+          placeholder="Add Amenity"
+          className="form-control"
+        />
+        <button onClick={handleAmenityAdd} className="btn blue">
+          Add
+        </button>
+      </div>
+      <div className="amenities-list">
+        {amenities.map((amenity, index) => (
+          <span key={index} className="badge bg-secondary me-2">
+            {amenity}
+            <button
+              onClick={() => handleAmenityDelete(index)}
+              className="btn-close ms-1"
+            ></button>
+          </span>
+        ))}
+      </div>
+    </div>
+  
+    <div className="form-group mb-3">
+      <label className="form-label mb-1">Upload Room Images</label>
+      <div className="input-group">
+          <input
+        type="file"
+        multiple
+        ref={imageInput}
+        onChange={handleImageUpload}
+        className="form-control-file"
+      />
+      <div className="row mt-3">
+        {previews.map((src, index) => (
+          <div className="col-3" key={index}>
+            <img src={src} alt={`Room ${index}`} className="img-thumbnail" />
+            <button
+              onClick={() => handleImageDelete(index)}
+              className="btn danger btn-sm mt-1"
+            >
+              Delete
+            </button>
+          </div>
+        ))}
+      </div>
+      </div>
+    
+    </div>
+  
+    <div className="form-group mb-3">
+      <label className="form-label mb-1">Maximum Occupants</label>
+      <input
+        type="number"
+        className="form-control"
+        placeholder="Maximum Occupants"
+        value={room.maxOccupants}
+        onChange={onChange('maxOccupants')}
+      />
+    </div>
+  
+    <div className="form-group mb-3">
+      <label className="form-label mb-1">Number of This Room</label>
+      <input
+        type="number"
+        className="form-control"
+        placeholder="Number of Rooms"
+        value={room.roomCount}
+        onChange={onChange('roomCount')}
+      />
+    </div>
+  
+    <div className="d-grid">
+      <button onClick={onDelete} className="btn danger mb-4">
+        Delete Room
+      </button>
+    </div>
+  </div>
+  
   );
 };
