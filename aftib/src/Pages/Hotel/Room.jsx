@@ -45,7 +45,7 @@ export const RoomForm = ({ room, onChange, onDelete }) => {
           value="suite"
           name={`roomType-${room.id}`}
           checked={room.roomType === 'suite'}
-          onChange={onChange('type')}
+          onChange={onChange('roomType')}
           className="form-check-input"
         />
         <label className="form-check-label">Suite</label>
@@ -56,7 +56,7 @@ export const RoomForm = ({ room, onChange, onDelete }) => {
           value="double"
           name={`roomType-${room.id}`}
           checked={room.roomType === 'double'}
-          onChange={onChange('type')}
+          onChange={onChange('roomType')}
           className="form-check-input"
         />
         <label className="form-check-label">Double Room</label>
@@ -67,7 +67,7 @@ export const RoomForm = ({ room, onChange, onDelete }) => {
           value="single"
           name={`roomType-${room.id}`}
           checked={room.roomType === 'single'}
-          onChange={onChange('type')}
+          onChange={onChange('roomType')}
           className="form-check-input"
         />
         <label className="form-check-label">Single Room</label>
@@ -162,7 +162,7 @@ export const RoomForm = ({ room, onChange, onDelete }) => {
     </div>
   
     <div className="form-group mb-3">
-      <label className="form-label mb-1">Number of This Room</label>
+      <label className="form-label mb-1">How many of this rooms do you have in your hotel?</label>
       <input
         type="number"
         className="form-control"

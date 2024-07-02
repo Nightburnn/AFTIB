@@ -408,31 +408,6 @@ const Listing = () => {
             </div>
            
           </div>
-          <div className="form-group  mb-3">
-            <label className="form-label mb-1">Amenities</label>
-            <div className="form-group row mb-2">
-               <div className="col-sm-10">
-              <select className="form-control">
-                {Object.keys(checks).map((option, index) => (
-                  <option key={index}>{checks[option].displayTitle}</option>
-                ))}
-              </select>
-            </div>
-            <div className="col-sm-2">
-              <button type="button" className="btn blue">Add</button>
-            </div>
-            </div>
-           
-          </div>
-          <div className="text-center mb-3">
-            <button
-              type="button"
-              className="btn danger"
-              onClick={() => handleRoomDelete(room.id)}
-            >
-              Delete Room
-            </button>
-          </div>
         </div>
       ))}
       <div className="d-grid mt-4">
