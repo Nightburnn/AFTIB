@@ -31,7 +31,7 @@ export function PropertyCard(props) {
             {property.location}
           </p>
           <div className="text-center">
-            <Link to="/pd" className="btn blue mb-3" style={{ width: "100%" }}>
+            <Link to={`/property-details/${property._id}`} className="btn blue mb-3" style={{ width: "100%" }}>
               View Details
             </Link>
           </div>{" "}

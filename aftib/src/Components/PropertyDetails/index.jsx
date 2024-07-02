@@ -1,68 +1,76 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { fetchListingById } from "../../utils/adminOpsRequests";
+import { useParams } from "react-router-dom";
 import "./PropertyDetails.css";
 import sh1 from "../../assets/images/sh1.png";
-import sh2 from "../../assets/images/sh2.png";
-import sh3 from "../../assets/images/sh3.png";
 
 const Index = () => {
+  const { id } = useParams();
+  const [listing, setListing] = useState(null);
   const [selectedImage, setSelectedImage] = useState("c1");
 
-  const images = [
-    { id: "c1", src: sh1, alt: "Image 1" },
-    { id: "c2", src: sh2, alt: "Image 2" },
-    { id: "c3", src: sh3, alt: "Image 3" },
-  ];
+  const fetchListing = async () => {
+    try {
+      console.log("Fetching listing with ID:", id);
+      let response = await fetchListingById(id);
+      console.log("Fetched listing:", response);
+      setListing(response.listing);
+    } catch (err) {
+      console.error("Error fetching listing:", err.message);
+    }
+  };
 
-  const descriptions = [
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the when an printer took a galley of type and scrambled it to make.",
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the when an printer took a galley of type and scrambled it to make.",
-  ];
+  useEffect(() => {
+    fetchListing();
+  }, []);
+
+  if (!listing) {
+    return <div>Loading...</div>;
+  }
+
+  const images = listing.images.map((src, index) => ({
+    id: `c${index + 1}`,
+    src,
+    alt: `Image ${index + 1}`,
+  }));
+
+  const descriptions = [listing.description];
 
   const contactInfo = {
-    name: "Anabella Geller",
+    name: listing.agentData.name,
     imgSrc: sh1,
-    description:
-      "Nulla porttitor accumsan tincidunt. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim.",
+    description: listing.agentData.businessName,
     details: [
-      { label: "Phone:", value: "(222) 4568932" },
-      { label: "Mobile:", value: "777 287 378 737" },
-      { label: "Email:", value: "annabella@example.com" },
-      { label: "Skype:", value: "Annabela.ge" },
+      { label: "Phone:", value: listing.agentData.phone },
+      { label: "Mobile:", value: listing.agentData.whatsappNo },
+      { label: "Email:", value: listing.agentData.email },
     ],
     socials: [
       { href: "#", className: "bi bi-facebook", ariaLabel: "Facebook" },
       { href: "#", className: "bi bi-twitter", ariaLabel: "Twitter" },
-      { href: "#", className: "bi bi-instagram", ariaLabel: "Instagrasm" },
+      { href: "#", className: "bi bi-instagram", ariaLabel: "Instagram" },
       { href: "#", className: "bi bi-linkedin", ariaLabel: "LinkedIn" },
     ],
   };
 
-  const amenities = [
-    "Balcony",
-    "Outdoor Kitchen",
-    "Cable Tv",
-    "Deck",
-    "Tennis Courts",
-    "Internet",
-    "Parking",
-    "Sun Room",
-    "Concrete Flooring",
-  ];
+  const amenities = listing.amenities.length
+    ? listing.amenities
+    : ["No amenities listed"];
 
   const summary = [
-    { label: "Property ID:", value: "1134" },
-    { label: "Location:", value: "Chicago, IL 606543" },
-    { label: "Property Type:", value: "House" },
-    { label: "Status:", value: "Sale" },
-    { label: "Area:", value: "340m²" },
-    { label: "Beds:", value: "4" },
-    { label: "Baths:", value: "2" },
-    { label: "Garage:", value: "1" },
+    { label: "Property ID:", value: listing._id },
+    { label: "Location:", value: listing.location },
+    { label: "Property Type:", value: listing.propertyType },
+    { label: "Status:", value: listing.propertyStatus },
+    { label: "Area:", value: `${listing.size}m²` },
+    { label: "Beds:", value: listing.bedrooms },
+    { label: "Baths:", value: listing.bathrooms },
+    { label: "Garage:", value: listing.garage ? listing.garage : "N/A" },
   ];
 
   return (
     <div className="container mt-5">
-      <h2 className="mb-3">Three bedroom apartment</h2>
+      <h2 className="mb-3">{listing.title}</h2>
       <div className="galleryContainer">
         <div className="gallery">
           {images.map((image) => (
