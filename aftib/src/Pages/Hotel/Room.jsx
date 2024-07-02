@@ -49,7 +49,7 @@ export const RoomForm = ({ room, onChange, onDelete, updateRoomImages, updateAme
             type="radio"
             value="suite"
             name={`roomType-${room.id}`}
-            checked={room.type === 'suite'}
+            checked={room.roomType === 'suite'}
             onChange={onChange('type')}
           />
           <label>Suite</label><br />
@@ -57,7 +57,7 @@ export const RoomForm = ({ room, onChange, onDelete, updateRoomImages, updateAme
             type="radio"
             value="double"
             name={`roomType-${room.id}`}
-            checked={room.type === 'double'}
+            checked={room.roomType === 'double'}
             onChange={onChange('type')}
           />
           <label>Double Room</label><br />
@@ -65,7 +65,7 @@ export const RoomForm = ({ room, onChange, onDelete, updateRoomImages, updateAme
             type="radio"
             value="single"
             name={`roomType-${room.id}`}
-            checked={room.type === 'single'}
+            checked={room.roomType === 'single'}
             onChange={onChange('type')}
           />
           <label>Single Room</label><br />

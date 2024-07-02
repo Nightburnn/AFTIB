@@ -218,7 +218,7 @@ const Listing = () => {
       setLoading(true)
       setLoadingText(edit?'Updating your listing':'Adding your listing')
       let addListing = !edit ? await axios.post(
-        "http://127.0.0.1:8080/listing/addListing",
+        "https://aftib-6o3h.onrender.com/listing/addListing",
         JSON.stringify(requestBody),
         {
           headers: {
@@ -226,7 +226,7 @@ const Listing = () => {
             Authorization: `Bearer ${token}`,
           },
         },
-      ) : await axios.put(`http://127.0.0.1:8080/listing/updateListing/${id}`,
+      ) : await axios.put(`https://aftib-6o3h.onrender.com/listing/updateListing/${id}`,
         JSON.stringify(requestBody),
         {
           headers: {
@@ -247,7 +247,7 @@ const Listing = () => {
       setLoadingText('Adding images')
       // Make an Axios POST request to the add listing image endpoint
       const result = await axios.put(
-        `http://127.0.0.1:8080/listing/addListingImages/${id}`,
+        `https://aftib-6o3h.onrender.com/listing/addListingImages/${id}`,
         formData,
         {
           headers: {

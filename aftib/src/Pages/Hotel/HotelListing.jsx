@@ -50,7 +50,7 @@ const Listing = () => {
   },[])
   const emptyRoomData = {
     id: Date.now(),         // Unique identifier for the room
-    type: '',               // Room type (e.g., suite, double, single)
+    roomType: 'suite',      // Room type (e.g., suite, double, single)
     description: '',        // Detailed description of the room
     price: '',              // Price of the room
     amenities: [],          // List of amenities for the room
@@ -58,7 +58,8 @@ const Listing = () => {
     maxOccupants: '',       // Maximum number of occupants for the room
     roomCount: ''           // Number of this type of room available in the hotel
   };
-  const [rooms, setRooms] = useState([emptyRoomData]);
+  
+  const [rooms, setRooms] = useState(edit? []:[emptyRoomData]);
 
   const handleRoomChange = (id) => (key) => (e) => {
     const value = e.target.value;
@@ -186,10 +187,24 @@ const Listing = () => {
         return { [x]: checks[x].selected };
       });
       let requestBody = generateAddHotelReqBody({ formValues, amenities });
+      let remodeled = rooms.map(x=>{
+        let {id,roomType,description,price,amenities,maxOccupants,roomCount} = x
+        amenities = amenities.filter(x => {
+          // Check if x is an object and does not have DOM properties
+          return !(x instanceof HTMLElement);
+        });
+        return {roomId: id,roomType,description,price,amenities,maxOccupants,roomCount}
+      })
+      let imagesRemodeled = rooms.map(x=>{
+        let {images,id} = x
+        return {images,roomId: id}
+      })
+      console.log('remodelled', remodeled)
+      requestBody.rooms = remodeled
       try {
         setLoading(true);
         setLoadingText('Uploading Data')
-        let response = await addNewHotel(requestBody, token);
+        let response = await Promise.resolve(addNewHotel(requestBody, token));
         console.log({response})
         setLoadingText('Uploading Images')
         const formData = new FormData();
@@ -210,6 +225,22 @@ const Listing = () => {
               // Include any other headers you need, such as authorization
             }
           })
+        // add room images.
+        setLoadingText('Adding Room Images')
+        for (let roomImages of imagesRemodeled) {
+          if (roomImages.images.length > 0) {
+            const roomFormData = new FormData();
+            for (let i = 0; i < roomImages.images.length; i++) {
+              roomFormData.append("files", roomImages.images[i]);
+            }
+            await axios.put(`http://127.0.0.1:8080/hotels/addRoomImages/${response.data.hotel._id}/${roomImages.roomId}`, roomFormData, {
+              headers: {
+                "Content-Type": "multipart/form-data",
+                Authorization: `Bearer ${token}`,
+              }
+            });
+          }
+        }
           setLoadingText('done uploading')
           setModalTitle("Successfully Added the hotel details.");
           setModalBody(
