@@ -30,7 +30,7 @@ const ProfilePage = () => {
   const renderBasedOnAccountType = () => {
     if (user && user.accountType) {
       switch (user.accountType) {
-        case "Client":
+        case "client":
           return (
             <>
               {activeTab === "user" && <User />}

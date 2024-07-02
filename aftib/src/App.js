@@ -195,6 +195,7 @@ function App() {
                   <Route path="/list" Component={Listing} />
                   <Route path="/review" Component={ListingReview} />
                   <Route path="/pd" Component={Index} />
+                 
                   <Route path="/short" Component={Shortlet} />
                   <Route path="/user-dashboard" Component={ClientDashboard} />
                   <Route
