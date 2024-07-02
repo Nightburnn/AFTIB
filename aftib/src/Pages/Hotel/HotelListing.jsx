@@ -276,7 +276,7 @@ const Listing = () => {
       try {
         setLoading(true);
         setLoadingText("Uploading Data");
-        let response = edit ? await axios.put(`http://127.0.0.1:8080/hotels/${id}`,requestBody,{
+        let response = edit ? await axios.put(`https://aftib-6o3h.onrender.com/hotels/${id}`,requestBody,{
           headers: {
             Authorization: `Bearer ${token}`
           }
