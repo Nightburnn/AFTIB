@@ -1,0 +1,108 @@
+.rooms__item {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 20px rgba(102, 102, 102, 0.15);
+    background-color: #ffffff;
+  }
+  
+  .rooms__pic img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .rooms__desc {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #ffffff;
+  }
+  
+  .rooms_desc__header {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .rooms_desc__title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #043040;
+  }
+  
+  .rooms_desc__location {
+    font-size: 18px;
+    color: #555;
+  }
+  
+  .rooms_desc__price {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ff6347;
+  }
+  
+  .rooms_desc__desc {
+    margin-bottom: 10px;
+  }
+  
+  .rooms_desc__services {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .rooms_desc__services li {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+  }
+  
+  .btn-rooms {
+    background-color: #4517fb;
+    color: #ffffff;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .btn-rooms:hover {
+    background-color: #4517fb;
+  }
+  
+  /* Responsive Design for Mobile */
+  @media (max-width: 768px) {
+    .rooms__item {
+      flex-direction: column;
+    }
+  
+    .rooms__desc {
+      padding: 15px;
+    }
+  
+    .rooms_desc__title {
+      font-size: 22px;
+    }
+  
+    .rooms_desc__location {
+      font-size: 16px;
+    }
+  
+    .rooms_desc__price {
+      font-size: 18px;
+    }
+  
+    .rooms_desc__header,
+    .rooms_desc__desc,
+    .rooms_desc__services li {
+      margin-bottom: 8px;
+      padding-bottom: 4px;
+    }
+  
+    .btn-rooms {
+      padding: 8px 16px;
+      font-size: 16px;
+    }
+  }
+  
