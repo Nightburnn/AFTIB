@@ -67,6 +67,7 @@ import { AgentPropertySales } from "./PostPages/AgentPage/AgentViews/AgentDashbo
 import { AgentPendingHotels } from "./PostPages/AgentPage/AgentViews/AgentDashboard.PendingHotels";
 import { AgentPendingListings } from "./PostPages/AgentPage/AgentViews/AgentDashboard.PendingListings";
 import { AgentTransactions } from "./PostPages/AgentPage/AgentViews/AgentDashboard.Transactions";
+import Hotel from "./Pages/Hotel/Hotel";
 
 const faqData = [
   {
@@ -195,6 +196,7 @@ function App() {
                   <Route path="/list" Component={Listing} />
                   <Route path="/review" Component={ListingReview} />
                   <Route path="/pd" Component={Index} />
+                  <Route path="/hotel" Component={Hotel}/>
                  
                   <Route path="/short" Component={Shortlet} />
                   <Route path="/user-dashboard" Component={ClientDashboard} />
