@@ -207,12 +207,8 @@ function App() {
                   <Route path="/list" Component={Listing} />
                   <Route path="/review" Component={ListingReview} />
                   <Route path="/pd" Component={Index} />
-<<<<<<< HEAD
-
-=======
                   <Route path="/hotel" Component={Hotel}/>
                  
->>>>>>> eb853e54582e0c81771fbfea84a113ffabcf9e92
                   <Route path="/short" Component={Shortlet} />
                   <Route path="/user-dashboard" Component={ClientDashboard} />
                   <Route
