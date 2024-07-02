@@ -122,29 +122,6 @@ const Listing = () => {
     });
   };
 
-  const handleDrop = (event) => {
-    event.preventDefault();
-    const files = Array.from(event.dataTransfer.files);
-    uploadFiles(files);
-  };
-
-  const handleFileSelect = (event) => {
-    const files = Array.from(event.target.files);
-    uploadFiles(files);
-  };
-
-  const uploadFiles = (files) => {
-    const newImages = files
-      .slice(0, 5 - images.length)
-      .map((file) => URL.createObjectURL(file));
-    setImages((prevImages) => [...prevImages, ...newImages].slice(0, 5));
-  };
-
-  const removeImage = (index) => {
-    const filteredImages = images.filter((_, i) => i !== index);
-    setImages(filteredImages);
-  };
-
   async function submitForm() {
     // this function only checks the required values and make sure that they have been filled
     let validate = checkRequiredData({ ...formValues });
@@ -170,7 +147,7 @@ const Listing = () => {
       setLoading(true)
       setLoadingText('Adding your listing')
       let addListing = await axios.post(
-        "http://127.0.0.1:8080/listing/addListing",
+        "https://aftib-6o3h.onrender.com/listing/addListing",
         JSON.stringify(requestBody),
         {
           headers: {
@@ -191,7 +168,7 @@ const Listing = () => {
       setLoadingText('Adding images')
       // Make an Axios POST request to the add listing image endpoint
       const result = await axios.put(
-        `http://127.0.0.1:8080/listing/addListingImages/${addListing.data.listingId}`,
+        `https://aftib-6o3h.onrender.com/listing/addListingImages/${addListing.data.listingId}`,
         formData,
         {
           headers: {

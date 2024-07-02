@@ -19,7 +19,6 @@ const AgentDashboard = () => {
   let [listings,setListings] = useState([])
   let [message, setMessage] = useState('')
   let dispatch = useDispatch();
-  let dashboardDataMain = useSelector(state=> state.user.agentDashboardData)
   async function getData() {
     try {
       let data = await Promise.resolve(getUserData());

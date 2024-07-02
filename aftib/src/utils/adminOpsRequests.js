@@ -356,6 +356,21 @@ export const getAgentDashboardData = async () => {
   }
 };
 
+// get user data. pass the accesstoken
+export const getAdminDashboardData = async () => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/auth/get-admin-dashboard-data`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log({ response: response.data });
+    return response.data;
+  } catch (err) {
+    throw err;
+  }
+};
+
 
 
 

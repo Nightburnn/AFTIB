@@ -36,5 +36,42 @@ const ListingCard = ({
     </div>
   );
 };
+export const ListingCard1 = ({
+  image,
+  title,
+  date,
+  address,
+  onViewListing,
+  onEditListing
+}) => {
+  return (
+    <div className="listing-card">
+      <div className="image-container">
+        <img src={image} alt={title} className="listing-image" />
+      </div>
+      <div className="data-container">
+        <div className="listing-field">
+          <span className="field-name">Title:</span>
+          <span className="field-value">{title}</span>
+        </div>
+        <div className="listing-field">
+          <span className="field-name">Date:</span>
+          <span className="field-value">{date}</span>
+        </div>
+        <div className="listing-field">
+          <span className="field-name">Location:</span>
+          <span className="field-value">{address}</span>
+        </div>
+        <i>'Approved'</i>
+        <button className="view-listing-button" onClick={onViewListing}>
+          View Listing
+        </button>
+        <button className="view-listing-button" onClick={onEditListing}>
+          Edit
+        </button>
+      </div>
+    </div>
+  );
+};
 
 export default ListingCard;

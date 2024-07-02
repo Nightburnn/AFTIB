@@ -7,12 +7,14 @@ import {
   validateRequiredHotelData,
   generateAddHotelReqBody,
   addNewHotel,
+  
 } from "../../utils/hotelUtils";
-
+import { fetchHotelById } from "../../utils/adminOpsRequests";
 import { useNavigate } from "react-router-dom";
 import { useLoading } from "../../Components/LoadingContext";
 
 import { Modal } from "antd";
+import axios from "axios";
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -36,7 +38,26 @@ const Listing = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
   };
+  let imageInput = useRef(null);
   const [images, setImages] = useState([]);
+  const [previews, setPreviews] = useState([]);
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const newImages = [...images, file];
+      const newPreviews = [...previews, URL.createObjectURL(file)];
+      setImages(newImages);
+      setPreviews(newPreviews);
+      imageInput.current.value = null;
+    }
+  };
+
+  const handleDeleteImage = (index) => {
+    const newImages = images.filter((_, i) => i !== index);
+    const newPreviews = previews.filter((_, i) => i !== index);
+    setImages(newImages);
+    setPreviews(newPreviews);
+  };
   const [formValues, setFormValues] = useState({
     name: "",
     description: "",
@@ -102,29 +123,6 @@ const Listing = () => {
     console.log("updated", bool, updated);
   };
 
-  const handleDrop = (event) => {
-    event.preventDefault();
-    const files = Array.from(event.dataTransfer.files);
-    uploadFiles(files);
-  };
-
-  const handleFileSelect = (event) => {
-    const files = Array.from(event.target.files);
-    uploadFiles(files);
-  };
-
-  const uploadFiles = (files) => {
-    const newImages = files
-      .slice(0, 5 - images.length)
-      .map((file) => URL.createObjectURL(file));
-    setImages((prevImages) => [...prevImages, ...newImages].slice(0, 5));
-  };
-
-  const removeImage = (index) => {
-    const filteredImages = images.filter((_, i) => i !== index);
-    setImages(filteredImages);
-  };
-
   async function submitForm() {
     let valid = validateRequiredHotelData(formValues);
     console.log(valid.valid);
@@ -136,21 +134,44 @@ const Listing = () => {
       let requestBody = generateAddHotelReqBody({ formValues, amenities });
       try {
         setLoading(true);
+        setLoadingText('Uploading Data')
         let response = await addNewHotel(requestBody, token);
-        setShowModal(true);
+        console.log({response})
+        setLoadingText('Uploading Images')
+        const formData = new FormData();
+        let files = images;
+        if (files.length > 0) {
+          // Create a FormData object
+          for (let i = 0; i < files.length; i++) {
+            formData.append("files", files[i]);
+          }
+        }
+        let reqId = response.data.hotel.id
+        console.log({reqId})
+        let addImages = await axios.put(`https://aftib-6o3h.onrender.com/hotels/addImages/${response.data.hotel._id}`,formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
+              // Include any other headers you need, such as authorization
+            }
+          })
+          setLoadingText('done uploading')
         setModalTitle("Successfully Added the hotel details.");
         setModalBody(
           "Your Hotel has been submitted to the admins. They would review it and get back to you within the next 1 - 24 hours. Thanks",
         );
-        setLoading(false);
         console.log({ response: response.data });
       } catch (err) {
-        setLoading(false);
-        setShowModal(true);
-        setModalTitle("Error Occured");
-        setModalBody(err.message);
-
+          setModalTitle("Error Occured");
+          setModalBody(err.message);
         console.error(err.message);
+      }
+      finally {
+        setTimeout(()=>{
+          setShowModal(true);
+          setLoading(false);
+        },3000)
       }
     }
   }
@@ -405,6 +426,51 @@ const Listing = () => {
           </div>
         </div>
       </div>
+
+      <div className="col-xs-12 gallery-listing mb-3">
+          <div className="form-group mt-4">
+            <h2>Gallery</h2>
+            <p>Upload the images for the listings one after the other</p>
+            <div className="listing-gallery">
+              <form id="uploadForm">
+                <p>
+                  <b>{images.length > 0 ? "Upload Another One" : ""}</b>
+                </p>
+
+                <input
+                  type="file"
+                  id="fileInput"
+                  placeholder="Add Image"
+                  name="files"
+                  onChange={handleImageUpload}
+                  ref={imageInput}
+                />
+                <div className="my-5 row justify-content-center">
+                  {previews.map((preview, index) => (
+                    <div
+                      className="col-8 col-md-5 col-lg-4 position-relative"
+                      key={index}
+                    >
+                      <img
+                        src={preview}
+                        alt={`preview-${index}`}
+                        className="img-fluid previewImage"
+                      />
+                      <button
+                        type="button"
+                        className="btn btn-danger position-absolute top-0 end-0"
+                        onClick={() => handleDeleteImage(index)}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
       <div className="row justify-content-center">
         <button className="btn listbtn  mt-3" onClick={submitForm}>
           Submit

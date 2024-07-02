@@ -2,26 +2,20 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./style.css";
 import { Link } from "react-router-dom";
-import ListingCard from "./Cards";
+import {ListingCard1} from "./Cards";
 
 export function AgentApprovedListings() {
   function getApproved(bool,array){
     return bool? array.filter(x=> x.approved ): array.filter(x=> !x.approved)
   }
   let dashboardData = useSelector((state) => state.user.agentDashboardData)
-  let approved = getApproved(true,dashboardData.listings)
-  console.log({approved})
-  let listingDetails = {
-    image:
-      "https://res.cloudinary.com/mixambusiness/image/upload/v1718797096/listings/qhzp4cvoqvb7zy9l1kqv.jpg",
-    title: "Beautiful Villa",
-    date: "2023-06-29",
-    address: "123 Main St, Springfield",
-    message: "Approved",
-    buttonText: "View Property",
+  console.log({user: dashboardData})
+
+  const handleViewListing = (id) => {
+    console.log("View Listing clicked for:" ,id);
   };
-  const handleViewListing = () => {
-    console.log("View Listing clicked for:", listingDetails.title);
+  const handleEdit = (id) => {
+    console.log("View Listing clicked for:", id);
   };
   return (
     <div className="p-3 p-md-5">
@@ -32,39 +26,22 @@ export function AgentApprovedListings() {
         </h3>
       </div>
       <div className="row">
-        <div className="col-12 col-lg-4 col-md-6 p-2">
-          <ListingCard
-            image={listingDetails.image}
-            title={listingDetails.title}
-            date={listingDetails.date}
-            address={listingDetails.address}
-            message={listingDetails.message}
-            onViewListing={handleViewListing}
-            buttonText={listingDetails.buttonText}
-          />
-        </div>
-        <div className="col-12 col-lg-4 col-md-6 p-2">
-          <ListingCard
-            image={listingDetails.image}
-            title={listingDetails.title}
-            date={listingDetails.date}
-            address={listingDetails.address}
-            message={listingDetails.message}
-            onViewListing={handleViewListing}
-            buttonText={listingDetails.buttonText}
-          />
-        </div>
-        <div className="col-12 col-lg-4 col-md-6 p-2">
-          <ListingCard
-            image={listingDetails.image}
-            title={listingDetails.title}
-            date={listingDetails.date}
-            address={listingDetails.address}
-            message={listingDetails.message}
-            onViewListing={handleViewListing}
-            buttonText={listingDetails.buttonText}
-          />
-        </div>
+          {
+           [].map(x=>{
+              return (
+                <div className="col-12 col-lg-4 col-md-6 p-2">
+                  <ListingCard1
+                    image={x.images[0]}
+                    title={x.title}
+                    address={x.location}
+                    onViewListing={()=>{handleViewListing(x._id)}}
+                    onEditListing={()=>{handleEdit(x._id)}}
+                    buttonText={'View Listing'}
+                  />
+                </div>                  
+              )
+            })
+          }
       </div>
     </div>
   );

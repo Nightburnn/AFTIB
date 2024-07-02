@@ -1,71 +1,39 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
 import "./Dash.css";
 import { TfiPrinter } from "react-icons/tfi";
-import { Link } from "react-router-dom";
-
-const approvalAndReviewData = [
-  {
-    icon: <TfiPrinter />,
-    number: "2,345",
-    title: "Agent",
-    buttonText: "Review Request",
-    link: "/review-agent",
-  },
-  {
-    icon: <TfiPrinter />,
-    number: "2,345",
-    title: "New Listing Pending",
-    buttonText: "Review Listings",
-    link: "/review-listings",
-  },
-  {
-    icon: <TfiPrinter />,
-    number: "2,345",
-    title: "New Hotel Listing",
-    buttonText: "Review Hotels",
-    link: "/review-hotels",
-  },
-];
-
-const statisticsAndInfoData = [
-  {
-    icon: <TfiPrinter />,
-    number: "2,345",
-    title: "Approved Agent",
-    buttonText: "View Data",
-    link: "/view-approved-agent",
-  },
-  {
-    icon: <TfiPrinter />,
-    number: "2,345",
-    title: "Client Account",
-    buttonText: "View Data",
-    link: "/view-client-account",
-  },
-  {
-    icon: <TfiPrinter />,
-    number: "2,345",
-    title: "Approved Listings",
-    buttonText: "View Data",
-    link: "/view-approved-listings",
-  },
-  {
-    icon: <TfiPrinter />,
-    number: "2,345",
-    title: "Approved Hotels",
-    buttonText: "View Data",
-    link: "/view-approved-hotels",
-  },
-  {
-    icon: <TfiPrinter />,
-    number: "2,345",
-    title: "Concluded Transactions",
-    buttonText: "View Data",
-    link: "/review-transactions",
-  },
-];
+import { Link, useNavigate } from "react-router-dom";
+import { getAdminDashboardData } from "../../../utils/adminOpsRequests";
+import { useSelector, useDispatch } from "react-redux";
+import { updateUserData, updateAdminDashboardData } from "../../../store/userSlice";
 
 const Dashboard = () => {
+  function getApproved(bool,array){
+    return bool? array.filter(x=> x.approved ): array.filter(x=> !x.approved)
+  }
+  let dispatch = useDispatch()
+  let navigate = useNavigate()
+  let [agents,setAgents] = useState([])
+  let [hotels,setHotels] = useState([])
+  let [listings,setListings] = useState([])
+  let [transactions,setTransactions] = useState([])
+  let [users,setUsers] = useState([])
+  let [dashboardData,setDashboardData] = useState([])
+  async function getData() {
+    try {
+      let {agents,hotels,listings,transactions,users} = await Promise.resolve(getAdminDashboardData());
+      setAgents(agents)
+      setHotels(hotels)
+      setListings(listings)
+      setTransactions(transactions)
+      setUsers(users)
+      dispatch(updateAdminDashboardData({agents,hotels,listings,transactions,users}))
+    } catch (err) {
+      console.error({ error: err.message });
+    }
+  }
+  useEffect(() => {
+    getData();
+  }, []);
   return (
     <div className="dash">
       <div className="container">
@@ -76,24 +44,54 @@ const Dashboard = () => {
           <h2 className="text-center">Approval and Review</h2>
           <div className="card-body">
             <div className="row">
-              {approvalAndReviewData.map((item, idx) => (
-                <div className="col-md-6 mb-4" key={idx}>
+            <div className="col-md-6 mb-4">
                   <div className="card text-dark bg-light h-100">
                     <div className="card-body">
                       <div className="d-flex align-items-center">
-                        <div className="icon mr-3">{item.icon}</div>
+                        <div className="icon mr-3"> <TfiPrinter /></div>
                         <div>
-                          <h3>{item.number}</h3>
-                          <p>{item.title}</p>
+                          <h3>{getApproved(false,agents).length}</h3>
+                          <p>Pending Agents</p>
                         </div>
                       </div>
-                      <Link to={item.link} className="btn blue btn-block mt-3">
-                        {item.buttonText}
+                      <Link to={'/review-agent'} className="btn blue btn-block mt-3">
+                        {'View Pending Agents'}
                       </Link>
                     </div>
                   </div>
-                </div>
-              ))}
+                </div>         
+            <div className="col-md-6 mb-4">
+                  <div className="card text-dark bg-light h-100">
+                    <div className="card-body">
+                      <div className="d-flex align-items-center">
+                        <div className="icon mr-3"> <TfiPrinter /></div>
+                        <div>
+                          <h3>{getApproved(false,listings).length}</h3>
+                          <p>Pending Listings</p>
+                        </div>
+                      </div>
+                      <Link to={'/review-listings'} className="btn blue btn-block mt-3">
+                        {'View Pending Listings'}
+                      </Link>
+                    </div>
+                  </div>
+                </div>         
+                <div className="col-md-6 mb-4">
+                  <div className="card text-dark bg-light h-100">
+                    <div className="card-body">
+                      <div className="d-flex align-items-center">
+                        <div className="icon mr-3"> <TfiPrinter /></div>
+                        <div>
+                          <h3>{getApproved(false,hotels).length}</h3>
+                          <p>Pending Hotels</p>
+                        </div>
+                      </div>
+                      <Link to={'/review-hotels'} className="btn blue btn-block mt-3">
+                        {'View Pending Hotels'}
+                      </Link>
+                    </div>
+                  </div>
+                </div>     
             </div>
           </div>
         </div>
@@ -103,27 +101,86 @@ const Dashboard = () => {
           <h2 className="text-center">Statistics & Information</h2>
           <div className="card-body">
             <div className="row">
-              {statisticsAndInfoData.map((item, idx) => (
-                <div
-                  className={`col-md-6 mb-4 ${idx === 4 ? "col-md-6" : ""}`}
-                  key={idx}
-                >
+            <div className="col-md-6 mb-4">
                   <div className="card text-dark bg-light h-100">
                     <div className="card-body">
                       <div className="d-flex align-items-center">
-                        <div className="icon mr-3">{item.icon}</div>
+                        <div className="icon mr-3"> <TfiPrinter /></div>
                         <div>
-                          <h3>{item.number}</h3>
-                          <p>{item.title}</p>
+                          <h3>{getApproved(true,agents).length}</h3>
+                          <p>Approved Agents</p>
                         </div>
                       </div>
-                      <Link to={item.link} className="btn blue btn-block mt-3">
-                        {item.buttonText}
+                      <Link to={'/view-approved-agent'} className="btn blue btn-block mt-3">
+                        {'View Approved Agents'}
                       </Link>
                     </div>
                   </div>
-                </div>
-              ))}
+                </div> 
+            <div className="col-md-6 mb-4">
+                  <div className="card text-dark bg-light h-100">
+                    <div className="card-body">
+                      <div className="d-flex align-items-center">
+                        <div className="icon mr-3"> <TfiPrinter /></div>
+                        <div>
+                          <h3>{users.length}</h3>
+                          <p>Client Accounts</p>
+                        </div>
+                      </div>
+                      <Link to={'/view-client-account'} className="btn blue btn-block mt-3">
+                        {'View Client Accounts'}
+                      </Link>
+                    </div>
+                  </div>
+                </div> 
+            <div className="col-md-6 mb-4">
+                  <div className="card text-dark bg-light h-100">
+                    <div className="card-body">
+                      <div className="d-flex align-items-center">
+                        <div className="icon mr-3"> <TfiPrinter /></div>
+                        <div>
+                          <h3>{getApproved(true,listings).length}</h3>
+                          <p>Approved Listings</p>
+                        </div>
+                      </div>
+                      <Link to={'/view-approved-listings'} className="btn blue btn-block mt-3">
+                        {'View Approved Listings'}
+                      </Link>
+                    </div>
+                  </div>
+                </div> 
+            <div className="col-md-6 mb-4">
+                  <div className="card text-dark bg-light h-100">
+                    <div className="card-body">
+                      <div className="d-flex align-items-center">
+                        <div className="icon mr-3"> <TfiPrinter /></div>
+                        <div>
+                          <h3>{getApproved(true,hotels).length}</h3>
+                          <p>Approved Hotels</p>
+                        </div>
+                      </div>
+                      <Link to={'/view-approved-hotels'} className="btn blue btn-block mt-3">
+                        {'View Approved Hotels'}
+                      </Link>
+                    </div>
+                  </div>
+                </div> 
+            <div className="col-md-6 mb-4">
+                  <div className="card text-dark bg-light h-100">
+                    <div className="card-body">
+                      <div className="d-flex align-items-center">
+                        <div className="icon mr-3"> <TfiPrinter /></div>
+                        <div>
+                          <h3>{transactions.length}</h3>
+                          <p>Transactions</p>
+                        </div>
+                      </div>
+                      <Link to={'/review-transactions'} className="btn blue btn-block mt-3">
+                        {'View Transactions'}
+                      </Link>
+                    </div>
+                  </div>
+                </div>     
             </div>
           </div>
         </div>

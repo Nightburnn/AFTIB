@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getAdminDashboardData } from "../utils/adminOpsRequests";
 
 let initialState = {
   email: "",
   accessToken: "",
   userData: {},
-  agentDashboardData: {}
+  agentDashboardData: {},
+  adminDashboardData: {}
 };
 
 export const userSlice = createSlice({
@@ -22,11 +24,14 @@ export const userSlice = createSlice({
     },
     updateAgentDashboardData: (state,action) => {
       state.agentDashboardData = action.payload
+    },
+    updateAdminDashboardData: (state,action) => {
+      state.adminDashboardData = action.payload
     }
   },
 });
 
-export const { updateEmail, updateAccessToken, updateUserData, updateAgentDashboardData } =
+export const { updateEmail, updateAccessToken, updateUserData, updateAgentDashboardData, updateAdminDashboardData } =
   userSlice.actions;
 
 export default userSlice.reducer;
