@@ -233,7 +233,7 @@ const Listing = () => {
             for (let i = 0; i < roomImages.images.length; i++) {
               roomFormData.append("files", roomImages.images[i]);
             }
-            await axios.put(`http://127.0.0.1:8080/hotels/addRoomImages/${response.data.hotel._id}/${roomImages.roomId}`, roomFormData, {
+            await axios.put(`https://aftib-6o3h.onrender.com/hotels/addRoomImages/${response.data.hotel._id}/${roomImages.roomId}`, roomFormData, {
               headers: {
                 "Content-Type": "multipart/form-data",
                 Authorization: `Bearer ${token}`,
