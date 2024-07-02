@@ -45,11 +45,19 @@ const Listing = () => {
   };
 
   const handleRoomAdd = () => {
-    setRooms([...rooms, { id: Date.now(), type: '', description: '', price: '', amenities: [], images: [], maxOccupants: '', roomCount: '' }]);
+    setRooms([...rooms, { ...emptyRoomData, id: Date.now() }]);
   };
 
   const handleRoomDelete = (id) => () => {
     setRooms(rooms.filter(room => room.id !== id));
+  };
+
+  const updateRoomImages = (id, images) => {
+    setRooms(rooms.map(room => (room.id === id ? { ...room, images } : room)));
+  };
+
+  const updateAmenities = (id, amenities) => {
+    setRooms(rooms.map(room => (room.id === id ? { ...room, amenities } : room)));
   };
 
   let [showModal, setShowModal] = useState(false);
@@ -333,7 +341,9 @@ const Listing = () => {
                   room={room}
                   onChange={handleRoomChange(room.id)}
                   onDelete={handleRoomDelete(room.id)}
-                />                
+                  updateRoomImages={updateRoomImages}
+                  updateAmenities={updateAmenities}
+                />           
               </div>
 
             ))}
