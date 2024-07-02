@@ -44,7 +44,7 @@ export const RoomForm = ({ room, onChange, onDelete }) => {
           type="radio"
           value="suite"
           name={`roomType-${room.id}`}
-          checked={room.type === 'suite'}
+          checked={room.roomType === 'suite'}
           onChange={onChange('type')}
           className="form-check-input"
         />
@@ -55,7 +55,7 @@ export const RoomForm = ({ room, onChange, onDelete }) => {
           type="radio"
           value="double"
           name={`roomType-${room.id}`}
-          checked={room.type === 'double'}
+          checked={room.roomType === 'double'}
           onChange={onChange('type')}
           className="form-check-input"
         />
@@ -66,7 +66,7 @@ export const RoomForm = ({ room, onChange, onDelete }) => {
           type="radio"
           value="single"
           name={`roomType-${room.id}`}
-          checked={room.type === 'single'}
+          checked={room.roomType === 'single'}
           onChange={onChange('type')}
           className="form-check-input"
         />
