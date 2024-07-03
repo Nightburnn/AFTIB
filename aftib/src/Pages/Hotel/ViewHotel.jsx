@@ -1,13 +1,18 @@
 import React, {useState,useEffect} from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { fetchHotelById } from "../../utils/adminOpsRequests";
 import './viewHotel.css'
+import { createTransaction } from "../../utils/transactionRequests";
+import { useLoading } from "../../Components/LoadingContext";
+
+import { Reservation } from "./Reservation";
 export default function ViewHotel() {
     let { id } = useParams();
     const [hotelData, setHotelData] = useState(null);
     const [agentData, setAgentData] = useState(null);
-    const [checkInDate, setCheckInDate] = useState("");
-    const [checkOutDate, setCheckOutDate] = useState("");
+    let {setLoading,setLoadingText} = useLoading()
+    let navigate = useNavigate()
+
   
     const getListing = async () => {
       try {
@@ -24,10 +29,43 @@ export default function ViewHotel() {
     useEffect(() => {
       getListing();
     }, [id]);
+
+    async function reqFunction () {
+      try {
   
-    const handleReservation = (roomId) => {
+      } 
+      catch {
+  
+      }
+      finally{
+        setTimeout(()=>{
+          setLoading(false)
+          setLoadingText('')
+        },3000)
+      }
+    }
+    const handleReservation = async ({room,checkInDate,checkOutDate,totalNights,pricePerNight,totalPrice}) => {
+      let bookingDetails = {
+        room,checkInDate,checkOutDate,totalNights,pricePerNight,totalPrice
+      }
+      let hotelId = id
+      console.log({hotelId,bookingDetails})
+      try {
+          setLoading(true)
+          setLoadingText('Creating Transaction.... Please wait')
+          let created = await createTransaction({bookingDetails,hotelId,transactionType: "hotelBooking"})
+          navigate(`/viewTransaction/${created.transaction.transactionId}?clientpov=true`)
+      } 
+      catch(err) {
+        console.error(err.message)
+      }
+      finally{
+        setTimeout(()=>{
+          setLoading(false)
+          setLoadingText('')
+        },3000)
+      }
       // Implement reservation logic
-      console.log(`Reserving room ${roomId} from ${checkInDate} to ${checkOutDate}`);
     };
   
     if (!hotelData || !agentData) {
@@ -57,54 +95,10 @@ export default function ViewHotel() {
           </ul>
         </div>        <div className="mt-4">
           <h3>Make Reservation</h3>
-          {hotelData.rooms.map((room) => (
-            <div key={room.roomId} className="card mb-3">
-              <div className="card-body">
-                <h5 className="card-title">{room.roomType}</h5>
-                <p className="card-text">{room.description}</p>
-                <p><strong>Price / Night:</strong> N{room.price}</p>
-                <p><strong>Max Occupants:</strong> {room.maxOccupants}</p>
-                <p><strong>Amenities:</strong> {room.amenities.join(", ")}</p>
-                <div>
-                  <h5>Images</h5>
-                  <div className="d-flex flex-wrap">
-                    {room.images.filter(x=>x).map((image, index) => (
-                      <img key={index} src={image} alt={`Room image ${index + 1}`} className="room-image" />
-                    ))}
-                  </div>
-                </div>
-                <form className="mt-3">
-                  <div className="form-group">
-                    <label htmlFor="checkInDate">Check-In Date</label>
-                    <input
-                      type="date"
-                      id="checkInDate"
-                      className="form-control"
-                      value={checkInDate}
-                      onChange={(e) => setCheckInDate(e.target.value)}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="checkOutDate">Check-Out Date</label>
-                    <input
-                      type="date"
-                      id="checkOutDate"
-                      className="form-control"
-                      value={checkOutDate}
-                      onChange={(e) => setCheckOutDate(e.target.value)}
-                    />
-                  </div>
-                  <button
-                    type="button"
-                    className="btn btn-primary mt-2"
-                    onClick={() => handleReservation(room.roomId)}
-                  >
-                    Make Reservation
-                  </button>
-                </form>
-              </div>
-            </div>
-          ))}
+          {hotelData.rooms.map(x=>{
+           return <Reservation room={x} handleReservation={handleReservation} />
+          })}
+
         </div>
         <div className="mt-4">
           <h3>Contact the Agent</h3>
