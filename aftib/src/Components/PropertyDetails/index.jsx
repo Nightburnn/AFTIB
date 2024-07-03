@@ -12,6 +12,9 @@ const Index = () => {
   let navigate = useNavigate()
   let [listing,setListing] = useState({})
   let [agentData,setAgentData] = useState({})
+  let [rentDate,setRentDate] = useState(new Date())
+  let [shortletDate,setShortletDate] = useState(new Date())
+  let [shortletDuration,setShortletDuration] = useState(1)
   let {setLoading,setLoadingText} = useLoading()
   let [actionText,setActionText] = useState('')
   let {id} = useParams()
@@ -26,7 +29,7 @@ const Index = () => {
         setActionText('Purchase This Property')
       }
       else if(data.saleType === 'For Rent'){
-        setActionText('Rent This Property')
+        setActionText('Proceed to Rent Property')
       }
       else {
         setActionText('Take This Short let')
@@ -58,19 +61,44 @@ const Index = () => {
 
   async function handleAction () {
     let transactionType;
+    let rentDetails =  {
+      startDate: '', // Start date of the rental
+      totalMonths: 12, // Total number of months for the rental
+      monthlyPayment: 0, // Total price of the rental
+      totalPrice: 0
+    }
+    let shortLetDetails = {
+      startDate: '', // Start date of the rental
+      totalMonths: 0, // Total number of months for the shortlet
+      monthlyPayment: 0, // Total price of the rental
+      totalPrice: 0
+    }
+    let bookingDetails = {}
       if(listing.saleType === 'For Sale'){
         transactionType = 'propertyPurchase'
       }
       else if(listing.saleType === 'For Rent'){
         transactionType = 'propertyRental'
+        rentDetails = {
+          startDate: rentDate, // Start date of the rental
+          totalMonths: 12, // Total number of months for the rental
+          monthlyPayment: listing.monthlyRentPayment, // Total price of the rental
+          totalPrice: listing.monthlyRentPayment * 12
+        }
       }
       else {
         transactionType = 'propertyShortLet'
+        shortLetDetails = {
+          startDate: shortletDate, // Start date of the rental
+          totalMonths: shortletDuration, // Total number of months for the rental
+          monthlyPayment: listing.monthlyShortLetPrice, // Total price of the shortlet
+          totalPrice: listing.monthlyShortLetPrice * shortletDuration
+        }
       }
     try {
       setLoading(true)
       setLoadingText('Creating New Transaction. Please Wait...')
-      let created = await Promise.resolve(createTransaction(listing._id,transactionType))
+      let created = await Promise.resolve(createTransaction({propertyId:listing._id,transactionType,rentDetails,shortLetDetails,bookingDetails}))
       setLoadingText('Created Successfully',created)
       navigate(`/viewTransaction/${created.transaction.transactionId}?clientpov=true`)
     } 
@@ -180,6 +208,45 @@ const Index = () => {
             </div>
           </div>
           <div className="action section">
+          <div>
+              {
+                listing?.saleType == 'For Rent' ? (
+                  <div>
+                    <h4>Rent Details</h4>
+                    <p><b>Monthly Rent Payment :</b> {listing.monthlyRentPayment}</p>
+                    <p><b>Total Price :</b> {listing.monthlyRentPayment * 12}</p>
+                    <p><b>Your Short Let would start on :</b> {rentDate.toString()}</p>
+                    <p><b>Pick Another Date to Begin your rent.</b></p>
+                    <p><input type="date" value={rentDate} onChange={(e)=>{setRentDate(e.target.value)}} /></p>
+                  </div>
+                ):null
+              }              
+            </div>
+            <div>
+              {
+                listing?.saleType == 'Short Let' ? (
+                  <div>
+                    <h4>Short Let Details</h4>
+                    <p><b>Duration: {shortletDuration} Month{shortletDuration>1?'s':''}</b></p>
+                    <p><b>Monthly Rent Payment :</b> {listing.monthlyShortLetPrice}</p>
+                    <p><b>Total Price :</b> {listing.monthlyShortLetPrice * Number(shortletDuration)}</p>
+                    <p><b>Your Rent would Start on :</b> {rentDate.toString()}</p>
+                    <p><b>Pick Another Date to Begin your rent.</b></p>
+                    <p><input type="date" value={rentDate} onChange={(e)=>{setRentDate(e.target.value)}} /></p>
+                    <p><b>How many months would you want to take this short let for. (A maximum of 6 months)</b></p>
+                    <select onChange={e=>setShortletDuration(e.target.value)}>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                    </select>
+                  </div>
+                ):null
+              }              
+            </div>
+
               <button onClick={handleAction}>{actionText}</button>
           </div>
         </div>

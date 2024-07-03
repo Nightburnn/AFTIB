@@ -41,14 +41,17 @@ export async function beginPayment(transactionId) {
 }
 
 
-export async function createTransaction(propertyId, transactionType,rentDetails={}) {
+export async function createTransaction({propertyId, transactionType,rentDetails={},shortLetDetails,bookingDetails,hotelId}) {
   console.log('Creating transaction with propertyId:', propertyId, 'and transactionType:', transactionType,token);
 
   try {
     let initData = {
       propertyId,
       transactionType,
-      rentDetails
+      rentDetails,
+      bookingDetails,
+      shortLetDetails,
+      hotelId
     };
 
     const response = await axios.post(`${API_BASE_URL}/transactions/create-transaction`, JSON.stringify(initData), {

@@ -59,24 +59,27 @@ const TransactionDetails = () => {
         return (
           <div>
             <h3>Rental Details</h3>
-            <p>Start Date: {new Date(transaction.rentDetails.startDate).toLocaleDateString()}</p>
-            <p>End Date: {new Date(transaction.rentDetails.endDate).toLocaleDateString()}</p>
-            <p>Total Months: {transaction.rentDetails.totalMonths}</p>
-            <p><b>Price:</b>NGN {transaction?.rentDetails?.price || 2000}</p>
+            <p><b>Start Date:</b> {new Date(transaction.rentDetails.startDate).toLocaleDateString()}</p>
+            <p><b>Total Months:</b> {transaction.rentDetails.totalMonths} Months</p>
+            <p><b>Price:</b>NGN {transaction?.rentDetails?.totalPrice || 'Check RRR on remita for the total price'}</p>
           </div>
         );
       case "propertyPurchase":
         return (
           <div>
             <h3>Purchase Details</h3>
-            <p><b>Price:</b>NGN {transaction?.purchaseDetails?.price || 938394}</p>
+            <p><b>Price:</b>NGN {transaction?.purchaseDetails?.price || "Check RRR on remita for the price"}</p>
           </div>
         );
       case "propertyShortLet":
         return (
           <div>
             <h3>Short Let Details</h3>
-            {/* Render short let specific details here */}
+            <div>
+            <p><b>Start Date:</b> {new Date(transaction.shortLetDetails.startDate).toLocaleDateString()}</p>
+            <p><b>Total Months:</b> {transaction.shortLetDetails.totalMonths} Months</p>
+            <p><b>Price:</b>NGN {transaction?.shortLetDetails?.totalPrice || 'Check RRR on remita for the total price'}</p>
+          </div>
           </div>
         );
       default:
