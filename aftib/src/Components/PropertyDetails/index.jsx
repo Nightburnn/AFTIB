@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useEffect } from "react";
+import { fetchListingById } from "../../utils/adminOpsRequests";
+import { useParams } from "react-router-dom";
 import "./PropertyDetails.css";
 import sh1 from "../../assets/images/sh1.png";
 import sh2 from "../../assets/images/sh2.png";
@@ -84,35 +86,25 @@ const Index = () => {
   }
 // check listing.agentData for agent info
   const contactInfo = {
-    name: "Anabella Geller",
+    name: listing.agentData.name,
     imgSrc: sh1,
-    description:
-      "Nulla porttitor accumsan tincidunt. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim.",
+    description: listing.agentData.businessName,
     details: [
-      { label: "Phone:", value: "(222) 4568932" },
-      { label: "Mobile:", value: "777 287 378 737" },
-      { label: "Email:", value: "annabella@example.com" },
-      { label: "Skype:", value: "Annabela.ge" },
+      { label: "Phone:", value: listing.agentData.phone },
+      { label: "Mobile:", value: listing.agentData.whatsappNo },
+      { label: "Email:", value: listing.agentData.email },
     ],
     socials: [
       { href: "#", className: "bi bi-facebook", ariaLabel: "Facebook" },
       { href: "#", className: "bi bi-twitter", ariaLabel: "Twitter" },
-      { href: "#", className: "bi bi-instagram", ariaLabel: "Instagrasm" },
+      { href: "#", className: "bi bi-instagram", ariaLabel: "Instagram" },
       { href: "#", className: "bi bi-linkedin", ariaLabel: "LinkedIn" },
     ],
   };
 
-  const amenities = [
-    "Balcony",
-    "Outdoor Kitchen",
-    "Cable Tv",
-    "Deck",
-    "Tennis Courts",
-    "Internet",
-    "Parking",
-    "Sun Room",
-    "Concrete Flooring",
-  ];
+  const amenities = listing.amenities.length
+    ? listing.amenities
+    : ["No amenities listed"];
 
   const summary = [
     { label: "Property ID:", value: "1134" },
@@ -122,6 +114,7 @@ const Index = () => {
     { label: "Area:", value: "340m²" },
     { label: "Beds:", value: "4" },
     { label: "Baths:", value: "2" },
+    { label: "Garage:", value: "1" },
   ];
   return (
     <div className="container mt-5">

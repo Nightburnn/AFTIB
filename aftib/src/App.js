@@ -207,7 +207,7 @@ function App() {
                   <Route path="/admin-users" Component={ManageUser} />
                   <Route path="/list" Component={Listing} />
                   <Route path="/review" Component={ListingReview} />
-                  <Route path="/pd/:id" Component={Index} />
+                  <Route path="/property-details/:id" Component={Index} />
                   <Route path="/hotel" Component={Hotel}/>
                   <Route path="/viewhotel/:id" Component={ViewHotel}/>
                  
