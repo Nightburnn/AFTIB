@@ -120,8 +120,6 @@ const Buy = () => {
     setFilteredProperties([]);
   };
 
-  const propertiesToDisplay = searchClicked ? filteredProperties : properties;
-
   return (
     <>
       <div className="row list">
@@ -178,19 +176,18 @@ const Buy = () => {
                 {showResults ? (
                   <div className="row g-4">
                     <div>Showing Filtered Result</div>
-                    {filteredProperties.map((x) => (
-                      <PropertyCard property={x} />
+                    {filteredProperties.map((x,index) => (
+                      <PropertyCard key={index} property={x} />
                     ))}
                   </div>
                 ) : (
                   <div className="row g-4">
                     <div>Showing the default properties</div>
-                    {properties.map((x) => (
-                      <PropertyCard property={x} />
+                    {properties.map((x,index) => (
+                      <PropertyCard key={index} property={x} />
                     ))}
                   </div>
                 )}
-
                 <div className="col-12 text-center mt-5 mb-5">
                   <button
                     className="btn x py-3 px-5"

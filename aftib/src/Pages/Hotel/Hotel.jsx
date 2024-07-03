@@ -1,58 +1,57 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import FilterCard from "../../Components/FilterCard/FilterCard";
 import { Link } from "react-router-dom";
 import sh1 from "../../assets/images/sh1.png";
 import './Hotel.css';
-
-const dummyHotels = [
-  {
-    _id: "1",
-    images: [sh1],
-    rating: 4,
-    roomType: "Deluxe Room",
-    price: 100000000,
-    name: "Hotel One",
-    location: "1234 Luxury Lane, Maitama, Abuja",
-    description: "A comfortable deluxe room with all amenities.",
-    amenities: ["Free Wi-Fi", "Breakfast included", "Swimming pool", "Gym"],
-  },
-  {
-    _id: "2",
-    images: [sh1],
-    rating: 5,
-    roomType: "Suite",
-    price: 250,
-    name: "Hotel Two",
-    location: "No 24 Toyin, Ikeja lagos ",
-    description: "A luxurious suite with a beach view.",
-    amenities: ["Free Wi-Fi", "Breakfast included", "Beach access", "Spa"],
-  },
-  // Add more dummy hotel objects as needed
-];
+import { fetchApprovedHotels } from "../../utils/adminOpsRequests";
 
 const Hotel = () => {
-  const [hotels, setHotels] = useState(dummyHotels);
+
+  const [hotels, setHotels] = useState([]);
   const [filteredHotels, setFilteredHotels] = useState([]);
   const [location, setLocation] = useState("");
   const [searchClicked, setSearchClicked] = useState(false);
-  const [checkInDate, setCheckInDate] = useState("");
-  const [checkOutDate, setCheckOutDate] = useState("");
+  const getListing = async () => {
+    try {
+      const response = await Promise.resolve(fetchApprovedHotels(1));
+      const data = response;
+      setHotels(data.hotels)
+      console.log('data from hotels',data)
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+  useEffect(()=>{
+    getListing()
+  },[])
+
+  function filterAmenities (array) {
+    let filtered = []
+    array.forEach(x=>{
+      let name = Object.keys(x)[0]
+      if(x[name] && filtered.length < 3){
+        filtered.push(name)
+      }
+    })
+    console.log({filtered})
+    return filtered
+  }
 
   const handleFilter = (filters) => {
     // Filter logic...
   };
 
   const handleSearch = (e) => {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault() // Prevent default form submission
     if (!location.trim()) {
       // If location is empty, do not proceed
-      return;
+      return
     }
-    setSearchClicked(true);
-    const filtered = dummyHotels.filter((hotel) =>
+    setSearchClicked(true)
+    const filtered = hotels.filter((hotel) =>
       hotel.location.toLowerCase().includes(location.toLowerCase())
-    );
-    setFilteredHotels(filtered);
+    )
+    setFilteredHotels(filtered)
   };
 
   const handleBrowseMore = () => {
@@ -61,8 +60,6 @@ const Hotel = () => {
 
   const handleClearSearch = () => {
     setLocation("");
-    setCheckInDate("");
-    setCheckOutDate("");
     setSearchClicked(false);
     setFilteredHotels([]);
   };
@@ -81,18 +78,6 @@ const Hotel = () => {
                 placeholder="Search for hotels by location"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
-              />
-              <input
-                type="date"
-                value={checkInDate}
-                onChange={(e) => setCheckInDate(e.target.value)}
-                placeholder="Check-in Date"
-              />
-              <input
-                type="date"
-                value={checkOutDate}
-                onChange={(e) => setCheckOutDate(e.target.value)}
-                placeholder="Check-out Date"
               />
               <button type="submit">Search</button>
             </form>
@@ -129,7 +114,7 @@ const Hotel = () => {
           </div>
 
           <div className="row g-4">
-            {hotelsToDisplay.map((hotel) => (
+            {hotels.map((hotel) => (
               <div
                 key={hotel._id}
                 className="col-12 wow fadeInUp"
@@ -153,28 +138,21 @@ const Hotel = () => {
                         <h2 className="rooms_desc__title">{hotel.name}</h2>
                         <p className="rooms_desc__location">{hotel.location}</p>
                         <p className="rooms_desc__price">
-                        ₦{hotel.price} per night
+
                         </p>
                       </div>
                       <p className="rooms_desc__desc">{hotel.description}</p>
                       <div className="row">
                         <div className="col-sm-6">
                           <ul className="rooms_desc__services">
-                            {hotel.amenities.slice(0, 2).map((amenity, index) => (
-                              <li key={index}>{amenity}</li>
-                            ))}
-                          </ul>
-                        </div>
-                        <div className="col-sm-6">
-                          <ul className="rooms_desc__services">
-                            {hotel.amenities.slice(2).map((amenity, index) => (
-                              <li key={index}>{amenity}</li>
-                            ))}
+                          {filterAmenities(hotel.amenities).map((x,index)=>{
+                            return <li key={index}>{x}</li>
+                          })}
                           </ul>
                         </div>
                       </div>
-                      <Link to="" className="btn btn-rooms">
-                        View details
+                      <Link to={`/viewhotel/${hotel._id}`} className="btn btn-rooms">
+                        View Hotel
                       </Link>
                     </div>
                   </div>

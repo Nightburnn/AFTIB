@@ -1,23 +1,88 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./PropertyDetails.css";
 import sh1 from "../../assets/images/sh1.png";
 import sh2 from "../../assets/images/sh2.png";
 import sh3 from "../../assets/images/sh3.png";
+import { useParams, useNavigate } from "react-router-dom";
+import { fetchListingById } from "../../utils/adminOpsRequests";
+import { useLoading } from "../LoadingContext";
+import { createTransaction } from "../../utils/transactionRequests";
 
 const Index = () => {
-  const [selectedImage, setSelectedImage] = useState("c1");
+  let navigate = useNavigate()
+  let [listing,setListing] = useState({})
+  let {setLoading,setLoadingText} = useLoading()
+  let [actionText,setActionText] = useState('')
+  let {id} = useParams()
 
-  const images = [
-    { id: "c1", src: sh1, alt: "Image 1" },
-    { id: "c2", src: sh2, alt: "Image 2" },
-    { id: "c3", src: sh3, alt: "Image 3" },
-  ];
+  const getListing = async () => {
+    try {
+      const response = await Promise.resolve(fetchListingById(id));
+      const data = response.listing;
+      setListing(data)
+      if(data.saleType === 'For Sale'){
+        setActionText('Purchase This Property')
+      }
+      else if(data.saleType === 'For Rent'){
+        setActionText('Rent This Property')
+      }
+      else {
+        setActionText('Take This Short let')
+      }
+      console.log('data from listings',data)
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+  console.log({id})
+  useEffect(()=>{
+    getListing()
+  },[])
+  const [selectedImage, setSelectedImage] = useState(0);
+  async function reqFunction () {
+    try {
 
-  const descriptions = [
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the when an printer took a galley of type and scrambled it to make.",
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the when an printer took a galley of type and scrambled it to make.",
-  ];
+    } 
+    catch {
 
+    }
+    finally{
+      setTimeout(()=>{
+        setLoading(false)
+        setLoadingText('')
+      },3000)
+    }
+  }
+
+  async function handleAction () {
+    let transactionType;
+      if(listing.saleType === 'For Sale'){
+        transactionType = 'propertyPurchase'
+      }
+      else if(listing.saleType === 'For Rent'){
+        transactionType = 'propertyRental'
+      }
+      else {
+        transactionType = 'propertyShortLet'
+      }
+    try {
+      setLoading(true)
+      setLoadingText('Creating New Transaction. Please Wait...')
+      let created = await Promise.resolve(createTransaction(listing._id,transactionType))
+      setLoadingText('Created Successfully')
+    } 
+    catch (err) {
+      console.error(err.message)
+    }
+    finally{
+      setTimeout(()=>{
+        setLoading(false)
+        setLoadingText('')
+        navigate('User-dashboard')
+      },3000)
+    }
+  }
+// check listing.agentData for agent info
   const contactInfo = {
     name: "Anabella Geller",
     imgSrc: sh1,
@@ -57,40 +122,37 @@ const Index = () => {
     { label: "Area:", value: "340m²" },
     { label: "Beds:", value: "4" },
     { label: "Baths:", value: "2" },
-    { label: "Garage:", value: "1" },
   ];
-
   return (
     <div className="container mt-5">
-      <h2 className="mb-3">Three bedroom apartment</h2>
+      <h2 className="mb-3">{listing.title}</h2>
       <div className="galleryContainer">
         <div className="gallery">
-          {images.map((image) => (
-            <React.Fragment key={image.id}>
+          {listing.images? listing.images.map((image,index) => (
+            <React.Fragment key={index}>
               <input
                 type="radio"
                 name="controls"
-                id={image.id}
-                checked={selectedImage === image.id}
-                onChange={() => setSelectedImage(image.id)}
+                id={index}
+                checked={selectedImage === index}
+                onChange={() => setSelectedImage(index)}
               />
-              <img className="galleryImage" src={image.src} alt={image.alt} />
+              <img className="galleryImage" src={image} alt={'img'} />
             </React.Fragment>
-          ))}
+          )): null}
         </div>
-        <div className="thumbnails">
-          {images.map((image) => (
-            <label className="thumbnailImage" key={image.id} htmlFor={image.id}>
-              <img src={image.src} className="img-responsive" alt={image.alt} />
+        <div className="thumbnails"> 
+          {listing.images?listing.images.map((image,index) => (
+            <label className="thumbnailImage" key={index} htmlFor={index}>
+              <img src={image} className="img-responsive" alt={'img'} />
             </label>
-          ))}
+          )): null}
         </div>
 
         <div className="form-group mb-3">
           <h3>Description</h3>
-          {descriptions.map((description, index) => (
-            <p key={index}>{description}</p>
-          ))}
+          <p>{listing.location}</p>
+          {listing.description}
         </div>
 
         <div className="row section-md-t3 justify-content-between amenities-summary-section">
@@ -113,7 +175,6 @@ const Index = () => {
           <div className="col-md-4 col-lg-4 summary-section">
             <div className="property-summary">
               <div className="title-box-d section-t4">
-                <h3 className="title-a">Quick Summary</h3>
               </div>
               <div className="summary-list">
                 <ul className="list">
@@ -126,6 +187,9 @@ const Index = () => {
                 </ul>
               </div>
             </div>
+          </div>
+          <div className="action section">
+              <button onClick={handleAction}>{actionText}</button>
           </div>
         </div>
 

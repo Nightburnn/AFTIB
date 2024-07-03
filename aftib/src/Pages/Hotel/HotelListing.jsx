@@ -169,9 +169,9 @@ const Listing = () => {
         address: response.address || "",
         LGA: response.LGA || "Aba North",
         state: response.state || "Abia",
-        phone: response.phone || "",
-        email: response.email || "",
-        website: response.website || "",
+        phone: response.contact.phone || "",
+        email: response.contact.email || "",
+        website: response.contact.website || "",
       });
 
       // Populate checks

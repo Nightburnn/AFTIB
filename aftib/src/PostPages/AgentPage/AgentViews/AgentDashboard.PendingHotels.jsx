@@ -13,7 +13,7 @@ export function AgentPendingHotels() {
 
   const handleViewListing = (id) => {
     console.log("View Listing clicked for:", id);
-    navigate(`/pd?id=${id}`);
+    navigate(`/viewhotel/${id}`);
   };
   const handleEdit = (id) => {
     console.log("View Listing clicked for:", id);

@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import "../../Pages/Buy/Buy.css";
-
+import { useNavigate } from "react-router-dom";
 export function PropertyCard(props) {
+  let navigate = useNavigate(0)
   let { property } = props;
   return (
     <div
@@ -31,7 +32,7 @@ export function PropertyCard(props) {
             {property.location}
           </p>
           <div className="text-center">
-            <Link to="/pd" className="btn blue mb-3" style={{ width: "100%" }}>
+            <Link to={`/pd/${property._id}`} className="btn blue mb-3" style={{ width: "100%" }}>
               View Details
             </Link>
           </div>{" "}

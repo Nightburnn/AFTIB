@@ -42,7 +42,7 @@ export function generateAddHotelReqBody({ formValues, amenities }) {
 }
 export async function addNewHotel(reqBody, token) {
   try {
-    let url = `https://aftib-6o3h.onrender.com/hotels`;
+    let url = `http://127.0.0.1:8080/hotels`;
     let response = await axios.post(url, reqBody, {
       headers: {
         "Content-Type": "application/json",

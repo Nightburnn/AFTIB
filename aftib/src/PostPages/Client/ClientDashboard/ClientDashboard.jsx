@@ -21,21 +21,19 @@ const ClientDashboard = () => {
       setTransactions(data.myTransactions);
       setMyPurchases(data.myPurchases);
       setMyRentals(data.myRentals);
-      console.log({ data });
     } catch (err) {
       console.error({ error: err.message });
     }
   }
   useEffect(() => {
-    getData();
-  }, []);
+    getData()
+  }, [])
   return (
     <div className="dash">
       <div className="container">
         <h1 className="my-4">Client Dashboard</h1>
         <div className="card text-white mb-5">
           <h2 className="text-center">Overview</h2>
-
           <div className="card-body">
             <div className="row">
               <div className="col-md-6 mb-4">

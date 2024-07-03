@@ -35,8 +35,10 @@
     font-size: 18px;
     color: #555;
   }
-  
-  .rooms_desc__price {
+  .rooms_desc__services li {
+    list-style-type: disc;
+  }
+   .rooms_desc__price {
     font-size: 20px;
     font-weight: 700;
     color: #ff6347;

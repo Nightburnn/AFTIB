@@ -1,0 +1,13 @@
+.hotel-image, .room-image {
+    width: 200px;
+    margin: 10px;
+  }
+  
+  .card {
+    border: 1px solid #007bff; /* Blue theme color */
+  }
+  
+  .card-title {
+    color: #007bff; /* Blue theme color */
+  }
+  

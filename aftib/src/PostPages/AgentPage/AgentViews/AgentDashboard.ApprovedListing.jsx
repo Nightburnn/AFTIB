@@ -14,7 +14,7 @@ export function AgentApprovedListings() {
 
   const handleViewListing = (id) => {
     console.log("View Listing clicked for:", id);
-    navigate(`/pd?id=${id}`);
+    navigate(`/pd/${id}`);
   };
   const handleEdit = (id) => {
     console.log("View Listing clicked for:", id);
