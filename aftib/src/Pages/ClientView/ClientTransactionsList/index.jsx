@@ -16,8 +16,8 @@ export function ClientTransactionList() {
     console.log(
       "View Transaction clicked for ID:",id
     );
-    navigate(`/viewNavigation/${id}`)
-  };
+    navigate(`/viewTransaction/${id}?clientpov`)
+  }
   return (
     <div className="p-3 p-md-5">
       <div style={{ borderRadius: "10px" }} className="py-4 agent my-3">

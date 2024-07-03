@@ -1,32 +1,37 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
-
+import { fetchTransactionById } from "../../../utils/transactionRequests";
+import { useLoading } from "../../../Components/LoadingContext";
+import { beginPayment } from "../../../utils/transactionRequests";
 const TransactionDetails = () => {
   const { id } = useParams();
   const location = useLocation();
+  let {setLoading,setLoadingText} = useLoading()
   const [transaction, setTransaction] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+    const [loadingState,setLoadingState] = useState(true)
   const query = new URLSearchParams(location.search);
   const clientPov = query.get("clientpov");
-
+  console.log({clientPov})
   useEffect(() => {
-    const fetchTransactionDetails = async () => {
+    setLoading(true)
+    const getTransaction = async () => {
       try {
-        const response = await axios.get(`${API_BASE_URL}/transactions/${id}`);
-        setTransaction(response.data);
+        const data = await fetchTransactionById(id);
+        console.log({transaction: data})
+        setTransaction(data);
       } catch (err) {
         setError(err.message);
       } finally {
         setLoading(false);
+        setLoadingState(false)
       }
     };
+    getTransaction();
+  }, []);
 
-    fetchTransactionDetails();
-  }, [id]);
 
-  if (loading) {
+  if (loadingState) {
     return <div>Loading...</div>;
   }
 
@@ -48,7 +53,7 @@ const TransactionDetails = () => {
             <p>Start Date: {new Date(transaction.bookingDetails.startDate).toLocaleDateString()}</p>
             <p>End Date: {new Date(transaction.bookingDetails.endDate).toLocaleDateString()}</p>
             <p>Total Nights: {transaction.bookingDetails.totalNights}</p>
-            <p>Price: {transaction.bookingDetails.price}</p>
+            <p>Price: {transaction?.bookingDetails?.price}</p>
           </div>
         );
       case "propertyRental":
@@ -58,14 +63,14 @@ const TransactionDetails = () => {
             <p>Start Date: {new Date(transaction.rentDetails.startDate).toLocaleDateString()}</p>
             <p>End Date: {new Date(transaction.rentDetails.endDate).toLocaleDateString()}</p>
             <p>Total Months: {transaction.rentDetails.totalMonths}</p>
-            <p>Price: {transaction.rentDetails.price}</p>
+            <p>Price: {transaction?.rentDetails?.price || 2000}</p>
           </div>
         );
       case "propertyPurchase":
         return (
           <div>
             <h3>Purchase Details</h3>
-            <p>Price: {transaction.purchaseDetails.price}</p>
+            <p>Price: {transaction?.purchaseDetails?.price || 938394}</p>
           </div>
         );
       case "propertyShortLet":
@@ -95,78 +100,15 @@ const TransactionDetails = () => {
       {renderDetails()}
       <p><strong>Narration:</strong> {transaction.narration}</p>
       <p><strong>RRR:</strong> {transaction.RRR}</p>
-      <p><strong>Remita One Time ID:</strong> {transaction.RemitaOneTimeID}</p>
-
-      {transaction.transactionStatus === "pending" && clientPov && (
-        <button className="btn btn-primary mt-3" onClick={beginPayment}>
+        <button>Begin payment</button>
+      {transaction.transactionStatus === "pending" && clientPov ? (
+        <button className="btn btn-primary mt-3" onClick={()=>{beginPayment(id)}}>
           Proceed to Payment
         </button>
-      )}
+      ): null}
     </div>
   );
 };
 
-const beginPayment = async () => {
-  console.log("beginning Payment");
-  try {
-    const transactionId = 'your_transaction_id_here'; // Replace with actual transaction ID
-    const response = await axios.post(
-      `${API_BASE_URL}/transactions/initialize-payment`,
-      JSON.stringify({ transactionId }),
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    console.log("payment data retrieved successfully", response.data);
-
-    function onSuccess() {
-      console.log({ success: true });
-      confirmPayment(transactionId);
-    }
-
-    function onError() {
-      console.error({ error: true });
-    }
-
-    function onClose() {
-      console.log({ closed: true });
-    }
-
-    const newPayment = window.RmPaymentEngine.init({
-      ...response.data,
-      onSuccess,
-      onError,
-      onClose,
-    });
-
-    newPayment.showPaymentWidget();
-  } catch (error) {
-    console.error("There was an error retrieving payment data", error);
-  }
-};
-
-const confirmPayment = async (transactionId) => {
-  console.log("beginning confirmation");
-  try {
-    const response = await axios.post(
-      `${API_BASE_URL}/transactions/check-rrr-payment-status`,
-      JSON.stringify({ transactionId }),
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    console.log(response);
-  } catch (error) {
-    console.error("There was an error retrieving payment data", error);
-  }
-};
 
 export default TransactionDetails;

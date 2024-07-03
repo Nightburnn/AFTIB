@@ -69,7 +69,8 @@ const Index = () => {
       setLoading(true)
       setLoadingText('Creating New Transaction. Please Wait...')
       let created = await Promise.resolve(createTransaction(listing._id,transactionType))
-      setLoadingText('Created Successfully')
+      setLoadingText('Created Successfully',created)
+      navigate(`/viewNavigation/${created.transaction._id}?clientpov`)
     } 
     catch (err) {
       console.error(err.message)
@@ -78,7 +79,6 @@ const Index = () => {
       setTimeout(()=>{
         setLoading(false)
         setLoadingText('')
-        navigate('User-dashboard')
       },3000)
     }
   }

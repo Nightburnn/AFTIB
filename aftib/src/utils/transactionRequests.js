@@ -84,3 +84,25 @@ export async function confirmPayment(transactionId) {
     throw error; // Optionally re-throw the error to handle it further up the call stack
   }
 }
+
+export const fetchTransactionById = async (transactionId) => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/transactions/transaction/${transactionId}`);
+    return response.data;
+  } catch (error) {
+    console.error("There was an error fetching the transaction by ID", error);
+    throw error;
+  }
+};
+
+export const fetchTransactions = async (page = 1) => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/transactions`, {
+      params: { page }
+    });
+    return response.data;
+  } catch (error) {
+    console.error("There was an error fetching transactions", error);
+    throw error;
+  }
+};
