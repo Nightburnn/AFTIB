@@ -6,7 +6,8 @@ API_BASE_URL = localhostAddr;
 let token = window.localStorage.getItem("accessToken");
 
 export async function beginPayment(transactionId) {
-  console.log("Beginning Payment with transaction ID:", transactionId);
+  let token = window.localStorage.getItem("accessToken");
+  console.log("Beginning Payment with transaction ID:", transactionId,token);
 
   try {
     const response = await axios.post(`${API_BASE_URL}/transactions/initialize-payment`, JSON.stringify({ transactionId }), {

@@ -11,8 +11,7 @@ const TransactionDetails = () => {
   const [error, setError] = useState(null);
     const [loadingState,setLoadingState] = useState(true)
   const query = new URLSearchParams(location.search);
-  const clientPov = query.get("clientpov");
-  console.log({clientPov})
+  const clientPov = !!query.get("clientpov");
   useEffect(() => {
     setLoading(true)
     const getTransaction = async () => {
@@ -53,7 +52,7 @@ const TransactionDetails = () => {
             <p>Start Date: {new Date(transaction.bookingDetails.startDate).toLocaleDateString()}</p>
             <p>End Date: {new Date(transaction.bookingDetails.endDate).toLocaleDateString()}</p>
             <p>Total Nights: {transaction.bookingDetails.totalNights}</p>
-            <p>Price: {transaction?.bookingDetails?.price}</p>
+            <p>Price NGN: {transaction?.bookingDetails?.price}</p>
           </div>
         );
       case "propertyRental":
@@ -63,14 +62,14 @@ const TransactionDetails = () => {
             <p>Start Date: {new Date(transaction.rentDetails.startDate).toLocaleDateString()}</p>
             <p>End Date: {new Date(transaction.rentDetails.endDate).toLocaleDateString()}</p>
             <p>Total Months: {transaction.rentDetails.totalMonths}</p>
-            <p>Price: {transaction?.rentDetails?.price || 2000}</p>
+            <p><b>Price:</b>NGN {transaction?.rentDetails?.price || 2000}</p>
           </div>
         );
       case "propertyPurchase":
         return (
           <div>
             <h3>Purchase Details</h3>
-            <p>Price: {transaction?.purchaseDetails?.price || 938394}</p>
+            <p><b>Price:</b>NGN {transaction?.purchaseDetails?.price || 938394}</p>
           </div>
         );
       case "propertyShortLet":
@@ -100,7 +99,6 @@ const TransactionDetails = () => {
       {renderDetails()}
       <p><strong>Narration:</strong> {transaction.narration}</p>
       <p><strong>RRR:</strong> {transaction.RRR}</p>
-        <button>Begin payment</button>
       {transaction.transactionStatus === "pending" && clientPov ? (
         <button className="btn btn-primary mt-3" onClick={()=>{beginPayment(id)}}>
           Proceed to Payment

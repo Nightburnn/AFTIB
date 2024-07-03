@@ -11,6 +11,7 @@ import { createTransaction } from "../../utils/transactionRequests";
 const Index = () => {
   let navigate = useNavigate()
   let [listing,setListing] = useState({})
+  let [agentData,setAgentData] = useState({})
   let {setLoading,setLoadingText} = useLoading()
   let [actionText,setActionText] = useState('')
   let {id} = useParams()
@@ -20,6 +21,7 @@ const Index = () => {
       const response = await Promise.resolve(fetchListingById(id));
       const data = response.listing;
       setListing(data)
+      setAgentData(data.agentData)
       if(data.saleType === 'For Sale'){
         setActionText('Purchase This Property')
       }
@@ -70,7 +72,7 @@ const Index = () => {
       setLoadingText('Creating New Transaction. Please Wait...')
       let created = await Promise.resolve(createTransaction(listing._id,transactionType))
       setLoadingText('Created Successfully',created)
-      navigate(`/viewNavigation/${created.transaction._id}?clientpov`)
+      navigate(`/viewTransaction/${created.transaction.transactionId}?clientpov=true`)
     } 
     catch (err) {
       console.error(err.message)
@@ -84,13 +86,13 @@ const Index = () => {
   }
 // check listing.agentData for agent info
   const contactInfo = {
-    name: listing.agentData.name,
+    name: 'annabelle',
     imgSrc: sh1,
-    description: listing.agentData.businessName,
+    description: '',
     details: [
-      { label: "Phone:", value: listing.agentData.phone },
-      { label: "Mobile:", value: listing.agentData.whatsappNo },
-      { label: "Email:", value: listing.agentData.email },
+      { label: "Phone:", value: '' },
+      { label: "Mobile:", value: '' },
+      { label: "Email:", value: '' },
     ],
     socials: [
       { href: "#", className: "bi bi-facebook", ariaLabel: "Facebook" },
@@ -100,9 +102,7 @@ const Index = () => {
     ],
   };
 
-  const amenities = listing.amenities.length
-    ? listing.amenities
-    : ["No amenities listed"];
+  const amenities = []
 
   const summary = [
     { label: "Property ID:", value: "1134" },

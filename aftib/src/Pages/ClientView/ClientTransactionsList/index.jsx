@@ -16,7 +16,7 @@ export function ClientTransactionList() {
     console.log(
       "View Transaction clicked for ID:",id
     );
-    navigate(`/viewTransaction/${id}?clientpov`)
+    navigate(`/viewTransaction/${id}?clientpov=true`)
   }
   return (
     <div className="p-3 p-md-5">
