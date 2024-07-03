@@ -1,6 +1,4 @@
-import React, { useEffect, useState, useEffect } from "react";
-import { fetchListingById } from "../../utils/adminOpsRequests";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import "./PropertyDetails.css";
 import sh1 from "../../assets/images/sh1.png";
 import sh2 from "../../assets/images/sh2.png";
