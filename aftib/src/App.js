@@ -69,6 +69,7 @@ import { AgentPendingListings } from "./PostPages/AgentPage/AgentViews/AgentDash
 import { AgentTransactions } from "./PostPages/AgentPage/AgentViews/AgentDashboard.Transactions";
 import Hotel from "./Pages/Hotel/Hotel";
 import ViewHotel from "./Pages/Hotel/ViewHotel";
+import TransactionDetails from "./Pages/ClientView/ClientTransactionsList/TransactionPage";
 
 const faqData = [
   {
@@ -256,6 +257,10 @@ function App() {
                   <Route
                     path="/client/purchaselist"
                     Component={ClientPurchaseList}
+                  />
+                  <Route
+                    path="/viewTransaction/:id"
+                    Component={TransactionDetails}
                   />
                   <Route
                     path="/client/hotelreservations"
