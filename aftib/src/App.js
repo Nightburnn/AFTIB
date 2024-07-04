@@ -70,6 +70,7 @@ import { AgentTransactions } from "./PostPages/AgentPage/AgentViews/AgentDashboa
 import Hotel from "./Pages/Hotel/Hotel";
 import ViewHotel from "./Pages/Hotel/ViewHotel";
 import TransactionDetails from "./Pages/ClientView/ClientTransactionsList/TransactionPage";
+import { AgentPropertyShortlet } from "./PostPages/AgentPage/AgentViews/AgentDashboard.MyShortLet";
 
 const faqData = [
   {
@@ -309,6 +310,10 @@ function App() {
                   <Route
                     path="/agent/hotelbookings"
                     Component={AgentHotelBookings}
+                  />
+                  <Route
+                    path="/agent/propertyshortlets"
+                    Component={AgentPropertyShortlet}
                   />
                 </Routes>
               </main>

@@ -11,6 +11,7 @@ const ClientDashboard = () => {
   let [transactions, setTransactions] = useState([]);
   let [myPurchases, setMyPurchases] = useState([]);
   let [myRentals, setMyRentals] = useState([]);
+  let [myShortLets,setMyShortlets] = useState([])
   let [myHotelReservations, setMyHotelReservations] = useState([]);
   let dispatch = useDispatch();
   async function getData() {
@@ -21,6 +22,7 @@ const ClientDashboard = () => {
       setTransactions(data.myTransactions);
       setMyPurchases(data.myPurchases);
       setMyRentals(data.myRentals);
+      setMyShortlets(data.myShortLets)
     } catch (err) {
       console.error({ error: err.message });
     }
@@ -102,7 +104,7 @@ const ClientDashboard = () => {
                     <div className="d-flex align-items-center">
                       <div className="icon mr-3">{<TfiPrinter />}</div>
                       <div>
-                        <h3>{"1"}</h3>
+                        <h3>{myShortLets.length}</h3>
                         <p>My Shortlets</p>
                       </div>
                     </div>

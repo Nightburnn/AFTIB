@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import { Modal } from "antd";
 import { nigerianStateData } from ".././Listing/data";
 import {
   validateRequiredHotelData,
@@ -13,7 +14,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useLoading } from "../../Components/LoadingContext";
 import { RoomForm } from "./Room";
 
-import { Modal } from "antd";
 import axios from "axios";
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -336,8 +336,8 @@ const Listing = () => {
         console.error(err.message);
       } finally {
         setTimeout(() => {
-          setShowModal(true);
-          setLoading(false);
+          setShowModal(true)
+          setLoading(false)
         }, 3000);
       }
     }

@@ -4,7 +4,6 @@ import "leaflet/dist/leaflet.css";
 import "./Listing.css";
 import L from "leaflet";
 import { nigerianStateData } from "./data";
-import { Modal } from "antd";
 import { useLoading } from "../../Components/LoadingContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { checkRequiredData } from "../../utils/processListing";
@@ -12,6 +11,7 @@ import { fetchListingById } from "../../utils/adminOpsRequests";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+import { Modal } from "antd";
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl:
@@ -34,7 +34,13 @@ const Listing = () => {
     setPreviousImages(newImages);
     setImagesToRemove([...imagesToRemove, previousImages[index]]);
   };
-
+  const handleOk = () => {
+    setShowModal(false);
+    navigate("/agent-dashboard");
+  };
+  const handleCancel = () => {
+    setShowModal(false);
+  };
   const getListing = async () => {
     try {
       const response = await Promise.resolve(fetchListingById(id));
@@ -54,7 +60,7 @@ const Listing = () => {
         yearBuilt: data.yearBuilt || "",
         price: data.price || "",
         monthlyRentPayment: data.monthlyRentPayment || "",
-        monthlyShortLetPrice: data.monthlyShortLetPrice || "",
+        dailyShortLetPrice: data.dailyShortLetPrice || "",
         location: data.location || "",
         state: data.state || "Abia",
         LGA: data.LGA || "Aba North",
@@ -89,16 +95,12 @@ const Listing = () => {
   let [showModal, setShowModal] = useState(false);
   let [modalTitle, setModalTitle] = useState("");
   let [modalBody, setModalBody] = useState("");
+  
   let { setLoading, setLoadingText } = useLoading();
   let imageInput = useRef(null);
   const [images, setImages] = useState([]);
   const [previews, setPreviews] = useState([]);
-  const handleOk = () => {
-    setShowModal(false);
-  };
-  const handleCancel = () => {
-    setShowModal(false);
-  };
+
   const [developmentStage, setDevelopmentStage] = useState("urban");
   function updateDevelopmentStage(e) {
     setDevelopmentStage(e.target.value);
@@ -140,7 +142,7 @@ const Listing = () => {
     yearBuilt: "",
     price: "",
     monthlyRentPayment: "",
-    monthlyShortLetPrice: "",
+    dailyShortLetPrice: "",
     location: "",
     state: "Abia",
     LGA: "Aba North",
@@ -249,7 +251,7 @@ const Listing = () => {
       setLoadingText("Adding images");
       // Make an Axios POST request to the add listing image endpoint
       const result = await axios.put(
-        `https://aftib-6o3h.onrender.com/listing/addListingImages/${id}`,
+        `https://aftib-6o3h.onrender.com/listing/addListingImages/${edit? id: addListing.data._id}`,
         formData,
         {
           headers: {
@@ -259,14 +261,20 @@ const Listing = () => {
           },
         },
       );
-      setLoadingText("Successful");
+      setLoadingText("done uploading");
+      setModalTitle("Successfully Added the Listing details.");
+      setModalBody(
+        "Your Listing has been submitted to the admins. They would review it and get back to you within the next 1 - 24 hours. Thanks",
+      );
       console.log("Images uploaded successfully", result.data);
     } catch (err) {
       console.error(err.message);
+      setModalTitle("Error Occured");
+      setModalBody(err.message);
     } finally {
       setTimeout(() => {
         setLoading(false);
-        navigate("/agent-dashboard");
+        setShowModal(true)
       }, 3000);
     }
   }
@@ -533,15 +541,15 @@ const Listing = () => {
                   (formValues.saleType == "Short Let" && (
                     <div className="col-sm-12">
                       <label className="col-form-label">
-                        Monthly Short Let Price
+                        Daily Short Let Price
                       </label>
                       <input
                         type="number"
                         className="form-control"
-                        placeholder="Monthly Short Let Price"
-                        name="monthlyShortLetPrice"
-                        id="monthlyShortLetPrice"
-                        value={formValues.monthlyShortLetPrice}
+                        placeholder="Daily Short Let Price"
+                        name="dailyShortLetPrice"
+                        id="dailyShortLetPrice"
+                        value={formValues.dailyShortLetPrice}
                         onChange={handleChange}
                       />
                     </div>
@@ -667,45 +675,6 @@ const Listing = () => {
                     name="ownerEmail"
                     id="ownerEmail"
                     value={formValues.ownerEmail}
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="form-group mb-3">
-              <label className="col-form-label">Agent's Contact</label>
-              <div className="row">
-                <div className="col-sm-6 mb-2">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Name"
-                    name="agentName"
-                    id="agentName"
-                    value={formValues.agentName}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="col-sm-6">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Phone"
-                    name="agentPhone"
-                    id="agentPhone"
-                    value={formValues.agentPhone}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="col-sm-6 mb-2">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Email"
-                    name="agentEmail"
-                    id="agentEmail"
-                    value={formValues.agentEmail}
                     onChange={handleChange}
                   />
                 </div>

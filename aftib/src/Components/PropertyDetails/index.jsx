@@ -70,9 +70,9 @@ const Index = () => {
         transactionType = 'propertyShortLet'
         shortLetDetails = {
           startDate: shortletDate, // Start date of the rental
-          totalMonths: shortletDuration, // Total number of months for the rental
-          monthlyPayment: listing.monthlyShortLetPrice, // Total price of the shortlet
-          totalPrice: listing.monthlyShortLetPrice * shortletDuration
+          totalDays: shortletDuration, // Total number of months for the rental
+          monthlyPayment: listing.dailyShortLetPrice, // Total price of the shortlet
+          totalPrice: listing.dailyShortLetPrice * shortletDuration
         }
       }
     try {
@@ -177,13 +177,13 @@ const Index = () => {
                 listing?.saleType == 'Short Let' ? (
                   <div>
                     <h4>Short Let Details</h4>
-                    <p><b>Duration: {shortletDuration} Month{shortletDuration>1?'s':''}</b></p>
-                    <p><b>Monthly Rent Payment :</b> {listing.monthlyShortLetPrice}</p>
-                    <p><b>Total Price :</b> {listing.monthlyShortLetPrice * Number(shortletDuration)}</p>
+                    <p><b>Duration: {shortletDuration} Days{shortletDuration>1?'s':''}</b></p>
+                    <p><b>Price / Day :</b> {listing.dailyShortLetPrice}</p>
+                    <p><b>Total Price :</b> {listing.dailyShortLetPrice * Number(shortletDuration)}</p>
                     <p><b>Your Rent would Start on :</b> {rentDate.toString()}</p>
-                    <p><b>Pick Another Date to Begin your rent.</b></p>
+                    <p><b>Pick Another Date to Begin your short let.</b></p>
                     <p><input type="date" value={rentDate} onChange={(e)=>{setRentDate(e.target.value)}} /></p>
-                    <p><b>How many months would you want to take this short let for. (A maximum of 6 months)</b></p>
+                    <p><b>How many days would you want to take this short let for.</b></p>
                     <select onChange={e=>setShortletDuration(e.target.value)}>
                         <option>1</option>
                         <option>2</option>
@@ -199,10 +199,7 @@ const Index = () => {
               <div className="my-3" />
               <button style={{width: '70%',padding: '20px', display: 'block', margin: '0px auto'}} className="property-action btn blue mb-4" onClick={handleAction}>{actionText}</button>
           </div>
-
-
-
-      
+   
       <div className="row contact-form-container">
         <div className="contact-agent col-md-6">
           <h3>Contact Agent</h3>

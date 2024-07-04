@@ -1,36 +1,29 @@
 import React, { useState, useEffect } from "react";
+import { useLoading } from "../../../Components/LoadingContext";
 import { useSelector, useDispatch } from "react-redux";
 import "./style.css";
 import { Link } from "react-router-dom";
-import ListingCard from "./Cards";
 
-export function AgentHotelBookings() {
-  let userData = useSelector((state) => state.user.userData);
-  let hotelBooking = userData.myHotelBookings
-  console.log({hotelBooking})
-  let listingDetails = {
-    image:
-      "https://res.cloudinary.com/mixambusiness/image/upload/v1718797096/listings/qhzp4cvoqvb7zy9l1kqv.jpg",
-    title: "Eko hotel and Suites",
-    date: "2023-06-29",
-    address: "123 Main St, Springfield",
-    message: "Your hotel got this booking",
-    buttonText: "View Booking Details",
+export function ClientPurchaseList() {
+  let { setLoading, setLoadingText } = useLoading();
+  let purchases = useSelector((state) => state.user.userData.myPurchases);
+  let listing = {
+    _id: "902",
+    location: "Lekki Phase 1",
+    saleType: "You bought this property",
+    title: "A Luxurious 2 bedroom flat in lekki phase 2",
   };
-  const handleViewListing = () => {
-    console.log("View Listing clicked for:", listingDetails.title);
-  }
   return (
     <div className="p-3 p-md-5">
       <div style={{ borderRadius: "10px" }} className="py-4 agent my-3">
-        <h1 className="text-center">My Hotel Bookings</h1>
+        <h1 className="text-center">My Property Purchases</h1>
         <h3 className="text-center">
-          This is a record of all Hotel Bookings you have recieved
+          This are the list of properties you have purchased.
         </h3>
       </div>
       <div className="row">
-      {
-          hotelBooking.map(x=>{
+        {
+          purchases.map(x=>{
             return (
               <div className="col-12 col-md-6 col-lg-4 border-gray p-2">
                   <div className="col">
@@ -46,10 +39,10 @@ export function AgentHotelBookings() {
                     </p>
                     <div className="px-3 py-1 viewPropertyContainer">
                       <Link
-                        to={`/viewhotel/${x.details.hotelId}`}
+                        to={`/property-details/${x.details.propertyId}`}
                         className="btn blue btn-block"
                       >
-                        View Hotel
+                        View Purchased Property
                       </Link>
                     </div>
                   </div>

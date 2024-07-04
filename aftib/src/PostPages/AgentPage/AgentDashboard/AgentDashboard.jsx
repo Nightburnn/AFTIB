@@ -20,7 +20,7 @@ const AgentDashboard = () => {
   let [sales, setSales] = useState([]);
   let [hotelbookings, setHotelBookings] = useState([]);
   let [rentals, setRentals] = useState([]);
-  let [userData, setUserData] = useState(null);
+  let [shortLets,setShortLets] = useState([])
   let [dashboardData, setDashboardData] = useState({});
   let [hotels, setHotel] = useState([]);
   let [listings, setListings] = useState([]);
@@ -30,10 +30,11 @@ const AgentDashboard = () => {
     try {
       let data = await Promise.resolve(getUserData());
       dispatch(updateUserData(data));
-      setHotelBookings(data.myHotelReservations);
+      setHotelBookings(data.myHotelBookings);
       setTransactions(data.myTransactions);
-      setSales(data.myPurchases);
+      setSales(data.mySales);
       setRentals(data.myRentals);
+      setShortLets(data.myShortLets)
       console.log({ data });
     } catch (err) {
       console.error({ error: err.message });
@@ -230,7 +231,7 @@ const AgentDashboard = () => {
                       </div>
                       <div>
                         <h3>{sales.length}</h3>
-                        <p>My Property Sales</p>
+                        <p>Property You Have Sold</p>
                       </div>
                     </div>
                     <Link
@@ -238,6 +239,27 @@ const AgentDashboard = () => {
                       className="btn blue btn-block mt-3"
                     >
                       View Sales Record
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-6 mb-4">
+                <div className="card text-dark bg-light h-100">
+                  <div className="card-body">
+                    <div className="d-flex align-items-center">
+                      <div className="icon mr-3">
+                        <TfiPrinter />
+                      </div>
+                      <div>
+                        <h3>{shortLets.length}</h3>
+                        <p>My ShortLets</p>
+                      </div>
+                    </div>
+                    <Link
+                      to={"/agent/propertyshortlets"}
+                      className="btn blue btn-block mt-3"
+                    >
+                      View Shortlet Records
                     </Link>
                   </div>
                 </div>
@@ -272,7 +294,7 @@ const AgentDashboard = () => {
                       </div>
                       <div>
                         <h3>{rentals.length}</h3>
-                        <p>Property Rentals</p>
+                        <p>Property You Rented Out</p>
                       </div>
                     </div>
                     <Link

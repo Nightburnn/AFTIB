@@ -26,7 +26,7 @@ const Dashboard = () => {
   async function getData() {
     try {
       let { agents, hotels, listings, transactions, users } =
-        await Promise.resolve(getAdminDashboardData());
+      await Promise.resolve(getAdminDashboardData());
       setAgents(agents);
       setHotels(hotels);
       setListings(listings);

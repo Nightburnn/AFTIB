@@ -6,6 +6,7 @@ const TransactionCard = ({
   transactionId,
   title,
   onViewTransaction,
+  status = ''
 }) => {
   let message;
   let displayType;
@@ -43,9 +44,15 @@ const TransactionCard = ({
         <span className="field-name">Transaction ID:</span>
         <span className="field-value">{transactionId}</span>
       </div>
+      <div className="transaction-field">
+        <span className="field-name">Status: </span>
+        {status === 'pending'? <span style={{color: '#ff8f00'}} className="field-value"><b>{status.toUpperCase()}</b></span>: <span style={{color: 'green'}} className="field-value"><b>{status.toUpperCase()}</b></span>}
+        
+      </div>
       <button className="view-transaction-button" onClick={()=>{onViewTransaction(transactionId)}}>
         View Transaction
       </button>
+      <div style={{paddingBottom: '20px'}}></div>
     </div>
   );
 };

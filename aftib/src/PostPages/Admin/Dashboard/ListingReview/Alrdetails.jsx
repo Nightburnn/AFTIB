@@ -65,10 +65,10 @@ const Alrdetails = () => {
               <strong>Title:</strong> {listing.title}
             </p>
             <p>
-              <strong>Description:</strong> {listing.description}
+              <strong>Listed As:</strong> {listing.saleType}
             </p>
             <p>
-              <strong>Property:</strong> {listing.saleType}
+              <strong>Description:</strong> {listing.description}
             </p>
             <p>
               <strong>Property Type:</strong> {listing.propertyType}
@@ -83,15 +83,16 @@ const Alrdetails = () => {
               <strong>Bathrooms:</strong> {listing.bathrooms}
             </p>
             <p>
-              <strong>Estate:</strong> {listing.estate}
+              <strong>Estate:</strong> {listing.estate || 'Not Applicable'}
             </p>
             <p>
-              <strong>Year Built:</strong> {listing.yearBuilt}
+              <strong>Year Built:</strong> {listing.yearBuilt || 'Not Applicable'}
             </p>
             <hr className="mr-4" />
             <p>
-              <strong>Pricing Information:</strong> Monthly Rent:{" "}
-              {listing.monthlyRentPayment}
+              <strong>Pricing Information:</strong> :{" "}
+              <br></br>
+              {listing.saleType == 'For Sale'? `Property Price ${listing.price}` : listing.saleType == 'For Rent'? `Monthly Rent Price ${listing.monthlyRentPayment}`  : `ShortLet Daily Price ${listing.dailyShortLetPrice}`}
             </p>
             <p>
               <strong>Full Address:</strong> {listing.location}
@@ -109,13 +110,13 @@ const Alrdetails = () => {
           <h2 className="text-center">Contact Information</h2>
           <div className="info-agent">
             <p>
-              <strong>Agent Name:</strong> {listing.agentContact?.name}
+              <strong>Agent Name:</strong> {listing.agentData.name}
             </p>
             <p>
-              <strong>Agent Phone:</strong> {listing.agentContact?.phone}
+              <strong>Agent Phone:</strong> {listing.agentData.phone}
             </p>
             <p>
-              <strong>Agent Email:</strong> {listing.agentContact?.email}
+              <strong>Agent Email:</strong> {listing.agentData.email}
             </p>
           </div>
         </div>

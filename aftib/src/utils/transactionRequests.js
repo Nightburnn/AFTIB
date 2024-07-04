@@ -1,7 +1,7 @@
 import axios from "axios";
 let localhostAddr = "http://127.0.0.1:8080";
 let API_BASE_URL = "https://aftib-6o3h.onrender.com"; // adjust the base URL accordingly
-//API_BASE_URL = localhostAddr;
+API_BASE_URL = localhostAddr;
 
 let token = window.localStorage.getItem("accessToken");
 
@@ -42,10 +42,9 @@ export async function beginPayment(transactionId) {
   }
 }
 
-
 export async function createTransaction({propertyId, transactionType,rentDetails={},shortLetDetails,bookingDetails,hotelId}) {
+  let token = window.localStorage.getItem("accessToken");
   console.log('Creating transaction with propertyId:', propertyId, 'and transactionType:', transactionType,token);
-
   try {
     let initData = {
       propertyId,
@@ -55,6 +54,7 @@ export async function createTransaction({propertyId, transactionType,rentDetails
       shortLetDetails,
       hotelId
     };
+    console.log('init data', initData)
 
     const response = await axios.post(`${API_BASE_URL}/transactions/create-transaction`, JSON.stringify(initData), {
       headers: {
@@ -71,11 +71,9 @@ export async function createTransaction({propertyId, transactionType,rentDetails
   }
 }
 
-
-
 export async function confirmPayment(transactionId) {
   console.log('Beginning confirmation for transaction ID:', transactionId);
-  
+  let token = window.localStorage.getItem("accessToken");
   try {
     const response = await axios.post(`${API_BASE_URL}/transactions/check-rrr-payment-status`, JSON.stringify({ transactionId }), {
       headers: {

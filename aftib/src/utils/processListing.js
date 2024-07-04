@@ -13,19 +13,16 @@ export function checkRequiredData(listingData) {
     "ownerName",
     "ownerPhone",
     "ownerEmail",
-    "propertyStatus",
-    "agentName",
-    "agentPhone",
-    "agentEmail",
+    "propertyStatus"
   ];
-  let pricingInputs = ["price", "monthlyRentPayment", "monthlyShortLetPrice"];
+  let pricingInputs = ["price", "monthlyRentPayment", "dailyShortLetPrice"];
   let success = { valid: true, message: "All required data are filled" };
   let failed = { valid: false, message: "" };
   let saleType = listingData["saleType"];
   if (
     (saleType == "For Sale" && listingData.price == "") ||
     (saleType == "For Rent" && listingData.monthlyRentPayment == "") ||
-    (saleType == "Short Let" && listingData.monthlyShortLetPrice == "")
+    (saleType == "Short Let" && listingData.dailyShortLetPrice == "")
   ) {
     failed.message = `${saleType} Pricing information has not been added`;
     return failed;
