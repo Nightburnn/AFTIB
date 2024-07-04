@@ -48,11 +48,11 @@ const TransactionDetails = () => {
         return (
           <div>
             <h3>Booking Details</h3>
-            <p>Room: {transaction.bookingDetails.room}</p>
-            <p>Start Date: {new Date(transaction.bookingDetails.startDate).toLocaleDateString()}</p>
-            <p>End Date: {new Date(transaction.bookingDetails.endDate).toLocaleDateString()}</p>
+            <p><b>Room Type: {transaction.bookingDetails.room.roomType}</b></p>
+            <p>Check In Date: {new Date(transaction.bookingDetails.checkInDate).toLocaleDateString()}</p>
+            <p>Check Out Date: {new Date(transaction.bookingDetails.checkOutDate).toLocaleDateString()}</p>
             <p>Total Nights: {transaction.bookingDetails.totalNights}</p>
-            <p>Price NGN: {transaction?.bookingDetails?.price}</p>
+            <p>Price NGN: {transaction?.bookingDetails?.totalPrice}</p>
           </div>
         );
       case "propertyRental":
