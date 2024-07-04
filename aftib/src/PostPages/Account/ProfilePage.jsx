@@ -48,7 +48,14 @@ const ProfilePage = () => {
               {activeTab === "help" && <Help />}
             </>
           );
-
+        case "admin":
+          return (
+            <>
+              {activeTab === "user" && <AgentUser />}
+              {activeTab === "settings" && <AgentSetting />}
+              {activeTab === "help" && <Help />}
+            </>
+          );
         default:
           return null;
       }
@@ -99,9 +106,9 @@ const ProfilePage = () => {
                     onClick={() => handleTabChange("user")}
                   >
                     <BsPersonFill className="icon" />
-                    {user && user.accountType === "Agent"
+                    {user && user.accountType === "agent"
                       ? "Agent"
-                      : user && user.accountType === "Admin"
+                      : user && user.accountType === "admin"
                         ? "Admin"
                         : "User"}
                   </Link>
@@ -118,22 +125,22 @@ const ProfilePage = () => {
                     Settings
                   </Link>
                 </li>
-                <li
-                  className={`nav-item ${activeTab === "agent" ? "active" : ""}`}
-                >
-                  <Link
-                    className="nav-link"
-                    to="#agent"
-                    onClick={() => handleTabChange("agent")}
+                {user.accountType !== "admin" && (
+                  <li
+                    className={`nav-item ${activeTab === "agent" ? "active" : ""}`}
                   >
-                    <FaEnvelopesBulk className="icon" />
-                    {user && user.accountType === "Agent"
-                      ? "Your Client"
-                      : user && user.accountType === "Admin"
-                        ? "Admin Settings"
+                    <Link
+                      className="nav-link"
+                      to="#agent"
+                      onClick={() => handleTabChange("agent")}
+                    >
+                      <FaEnvelopesBulk className="icon" />
+                      {user && user.accountType === "agent"
+                        ? "Your Client"
                         : "Your Agent"}
-                  </Link>
-                </li>
+                    </Link>
+                  </li>
+                )}
                 <li
                   className={`nav-item ${activeTab === "help" ? "active" : ""}`}
                 >
@@ -153,20 +160,20 @@ const ProfilePage = () => {
                 onChange={(e) => handleTabChange(e.target.value)}
               >
                 <option value="user">
-                  {user && user.accountType === "Agent"
+                  {user && user.accountType === "agent"
                     ? "Agent"
                     : user && user.accountType === "admin"
-                      ? "admin"
+                      ? "Admin"
                       : "User"}
                 </option>
                 <option value="settings">Settings</option>
-                <option value="agent">
-                  {user && user.accountType === "Agent"
-                    ? "Your Client"
-                    : user && user.accountType === "admin"
-                      ? "Admin Settings"
+                {user.accountType !== "admin" && (
+                  <option value="agent">
+                    {user && user.accountType === "agent"
+                      ? "Your Client"
                       : "Your Agent"}
-                </option>
+                  </option>
+                )}
                 <option value="help">Help</option>
               </select>
             </div>

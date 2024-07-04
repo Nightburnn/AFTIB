@@ -242,30 +242,14 @@ const Header = () => {
                           <li>
                             <NavLink
                               className="dropdown-item"
-                              to="/admin-profile"
+                              to="/profile"
                               onClick={handleNavLinkClick}
                             >
                               Profile
                             </NavLink>
                           </li>
-                          <li>
-                            <NavLink
-                              className="dropdown-item"
-                              to="admin-users"
-                              onClick={handleNavLinkClick}
-                            >
-                              Manage User
-                            </NavLink>
-                          </li>
-                          <li>
-                            <NavLink
-                              className="dropdown-item"
-                              to="/admin-profile#settings"
-                              onClick={handleNavLinkClick}
-                            >
-                              Settings
-                            </NavLink>
-                          </li>
+                         
+                          
                         </>
                       ) : user.accountType === "agent" ? (
                         <>

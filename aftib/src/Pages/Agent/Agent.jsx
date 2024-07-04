@@ -34,7 +34,7 @@ const Agent = () => {
                       <option selected>Specialties</option>
                       <option value="1">Consultation and Advice</option>
                       <option value="2">Relocation Services</option>
-                      <option value="3">Client Representation</option>
+                      <option value="3">Others</option>
                     </select>
                   </div>
                 </div>
