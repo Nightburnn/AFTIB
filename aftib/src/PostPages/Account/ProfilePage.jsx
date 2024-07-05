@@ -5,7 +5,7 @@ import { BsPersonFill } from "react-icons/bs";
 import { FaEnvelopesBulk } from "react-icons/fa6";
 import { MdHelp } from "react-icons/md";
 import { Link } from "react-router-dom";
-import profile from "../../assets/images/profile.png";
+import profileavatar from "../../assets/images/profileavatar.jpg";
 import User from "./User";
 import Setting from "./Setting";
 import AgentSetting from "../AgentPage/Setting";
@@ -73,7 +73,7 @@ const ProfilePage = () => {
                 {user.profilePicture ? (
                   <img src={user.profilePicture} alt="Profile" />
                 ) : (
-                  <img src={profile} alt="Default Profile" />
+                  <img src={profileavatar} alt="Default Profile" />
                 )}
               </div>
               <div className="profile-info">

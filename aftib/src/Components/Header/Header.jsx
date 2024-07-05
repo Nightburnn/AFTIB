@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
-import profile from "../../assets/images/profile.png";
+import profileavatar from "../../assets/images/profileavatar.jpg";
 import "./Header.css";
 import { useAuth } from "../../AuthContext";
 import { IoMdArrowDropdown } from "react-icons/io";
@@ -223,7 +223,7 @@ const Header = () => {
                 {isLoggedIn && user ? (
                   <li className="nav-item dropdown profile-dropdown-toggle">
                     <img
-                      src={profile}
+                      src={profileavatar}
                       alt="Profile"
                       className="profile-image"
                     />

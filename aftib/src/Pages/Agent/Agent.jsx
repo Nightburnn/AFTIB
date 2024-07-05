@@ -64,9 +64,14 @@ const Agent = () => {
                           duo.
                         </p>
                       </div>
-                      <Link to="#" className="btn me-3 contact-icon ii ">
-                        <i className="bi bi-telephone-fill"></i>Make A Call
-                      </Link>
+                      <Link to="https://wa.me/phoneNumber?text=Hello%2C%20I%20am%20interested%20in%20your%20property" className="btn me-3 contact-icon ii">
+  <i className="bi bi-whatsapp"></i>Contact on WhatsApp
+</Link>
+
+<Link to="mailto:agent@example.com?subject=Property%20Inquiry&body=Hello%2C%20I%20am%20interested%20in%20your%20property" className="btn me-3 contact-icon ii">
+  <i className="bi bi-envelope-fill"></i>Send an Email
+</Link>
+
                     </div>
                   </div>
                 </div>

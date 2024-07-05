@@ -143,7 +143,7 @@ const Index = () => {
             )) : <li>No amenities listed</li>}
           </ul>
         </div>
-        <div className="additional-info col-md-6">
+        <div className="additional-info ">
           <h3>Additional Information</h3>
           <ul>
             <li><strong>Property Type:</strong> {listing.propertyType}</li>
