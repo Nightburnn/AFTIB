@@ -149,7 +149,7 @@ const Index = () => {
             <li><strong>Property Type:</strong> {listing.propertyType}</li>
             <li><strong>State:</strong> {listing.state}</li>
             <li><strong>LGA:</strong> {listing.LGA}</li>
-            <li><strong>Size:</strong> {listing.size}m²</li>
+            <li><strong>Size:</strong> {listing.size}sqt</li>
             <li><strong>Year Built:</strong> {listing.yearBuilt}</li>
           </ul>
         </div>
@@ -202,7 +202,7 @@ const Index = () => {
    
       <div className="row contact-form-container">
         <div className="contact-agent col-md-6">
-         
+     
           <div className="agent-details">
             <h4>{listing.agentData?.name}</h4>
             <p>{listing.agentData?.businessName}</p>

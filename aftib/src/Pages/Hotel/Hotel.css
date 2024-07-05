@@ -5,6 +5,12 @@
     box-shadow: 0px 0px 20px rgba(102, 102, 102, 0.15);
     background-color: #ffffff;
   }
+
+  .hotelp{
+    padding: 20px;
+  }
+
+
   
   .rooms__pic img {
     width: 100%;
@@ -36,7 +42,7 @@
     color: #555;
   }
   .rooms_desc__services li {
-    list-style-type: disc;
+    list-style-type: none;
   }
    .rooms_desc__price {
     font-size: 20px;
@@ -79,6 +85,9 @@
       flex-direction: column;
     }
   
+    .hotelp{
+      padding: 0;
+    }
     .rooms__desc {
       padding: 15px;
     }

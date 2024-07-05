@@ -361,8 +361,8 @@ const Landing = () => {
                   <div className="card-body landingTopics">
                     <h5 className="card-title">Buy a home</h5>
                     <p className="card-text">
-                      Find your place with immersive photos and exclusive
-                      listings.
+                    Discover your dream home with immersive photos and exclusive listings.
+                     Find the perfect place to call your own
                     </p>
                     <Link className="enter" to="buy">
                       Buy
@@ -381,8 +381,8 @@ const Landing = () => {
                   <div className="card-body landingTopics">
                     <h5 className="card-title">Sell a home</h5>
                     <p className="card-text">
-                      Find your place with immersive photos and exclusive
-                      listings.
+                    Sell your property with ease. Reach potential buyers with 
+                    immersive photos and exclusive listings.
                     </p>
                     <Link className="enter" to="/sell">
                       Sell
@@ -401,8 +401,8 @@ const Landing = () => {
                   <div className="card-body landingTopics">
                     <h5 className="card-title">Rent a home</h5>
                     <p className="card-text">
-                      Find your place with immersive photos and exclusive
-                      listings.
+                    Explore top rental properties with immersive photos and exclusive listings. 
+                    Find the ideal place to rent today.
                     </p>
                     <Link className="enter" to="/rent">
                       Rent

@@ -113,7 +113,7 @@ const Hotel = () => {
             </div>
           </div>
 
-          <div className="row g-4">
+          <div className="row hotelp">
             {hotels.map((hotel) => (
               <div
                 key={hotel._id}
