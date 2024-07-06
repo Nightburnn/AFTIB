@@ -1,209 +1,74 @@
-.card-box-d {
-  position: relative;
+.agentcardb .card-box-d {
+  border: 1px solid #4517fb;
+  border-radius: 8px;
   overflow: hidden;
-  margin-bottom: 30px;
+  height: 450px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+
 }
 
-.card-img-d {
-  display: block;
-  width: 100%;
+.agentcardb .card-box-d:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.link-two,
-.card-box-d i {
-  color: #fff;
-}
-
-.card-overlay-hover {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #4517fb;
-  color: #fff;
-  transition: all 0.3s ease-in-out;
-  padding: 15px 40px 15px 35px;
-  opacity: 0;
+.agentcardb .card-img-d {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 10px;
+  background: #f8f8f8;
 }
 
-@media (min-width: 768px) {
-  .card-overlay-hover {
-    padding: 5px 15px 5px 10px;
-  }
+.agentcardb .card-img-d img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
 }
 
-@media (min-width: 992px) {
-  .card-overlay-hover {
-    padding: 5px 40px 5px 35px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .card-overlay-hover {
-    padding: 15px 40px 5px 35px;
-  }
+.agentcardb .card-body-d {
+  padding: 20px;
+  text-align: center;
 }
 
 .title-d {
-  font-size: 2rem;
-  font-weight: 600;
-  margin: 1rem 0;
-
-  transition: 0.3s ease-in-out;
-  transform: translateY(-20px);
-  opacity: 0;
-  text-align: center;
-}
-
-@media (min-width: 768px) {
-  .title-d {
-    font-size: 1.1rem;
-    margin: 0.5rem 0;
-  }
-}
-
-@media (min-width: 992px) {
-  .title-d {
-    font-size: 1.5rem;
-    margin: 1rem 0;
-  }
-}
-
-@media (min-width: 1200px) {
-  .title-d {
-    font-size: 2rem;
-    margin: 1rem 0;
-  }
-}
-
-.content-d {
-  transition: 0.5s ease-in-out;
-  transform: translateY(-40px);
-  opacity: 0;
-  text-align: center;
-}
-
-@media (min-width: 768px) {
-  .content-d {
-    font-size: 0.8rem;
-    margin: 0.5rem 0;
-  }
-}
-
-@media (min-width: 768px) {
-  .card-body-d p {
-    margin-bottom: 8px;
-    font-size: 0.8rem;
-  }
-}
-
-@media (max-width: 359px) {
-  .title-d {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin: 0.9rem 0;
-    margin-top: -20px;
-  }
-  .card-body-d p {
-    margin-bottom: 10px;
-    font-size: 0.9rem;
-  }
-}
-
-@media (min-width: 992px) {
-  .card-body-d p {
-    margin-bottom: 12px;
-    font-size: 1rem;
-  }
-}
-
-.info-agents {
-  opacity: 0;
-  transition: 0.5s ease-in-out;
-  text-align: center;
-}
-
-.card-footer-d {
-  transition: 0.5s ease-in-out;
-  transform: translateY(40px);
-  opacity: 0;
-  position: absolute;
-  width: 100%;
-  bottom: 10px;
-  left: 0;
-  display: flex;
-  justify-content: center;
-}
-
-.list-inline-item:not(:last-child) {
-  margin-right: 25px;
-}
-
-.card-box-d:hover .card-overlay-hover {
-  opacity: 1;
-}
-
-.card-box-d:hover .title-d,
-.card-box-d:hover .content-d,
-.card-box-d:hover .info-agents,
-.card-box-d:hover .card-footer-d {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.agent-info-box .socials-footer {
-  margin-top: 2rem;
-}
-
-.agent-info-box .socials-footer li {
-  margin-right: 1.5rem;
-}
-
-.intro-single {
-  padding: 60px 0;
-}
-
-.intro-single .title-single-box {
-  margin-bottom: 30px;
-}
-
-.intro-single .title-single {
-  font-size: 2.5rem;
-  font-weight: 600;
+  margin: 10px 0;
+  font-size: 1.5em;
   color: #333;
 }
 
-.intro-single .color-text-a {
-  color: #2eca6a;
+.title-d .link-two {
+  color: #4517fb;
+  text-decoration: none;
+  cursor: none;
 }
 
-.breadcrumb-box {
-  margin-top: 20px;
+
+.content-d {
+  margin: 10px 0;
+  color: #666;
 }
 
-.breadcrumb {
-  background: none;
+.info-agents {
+  margin: 15px 0;
+}
+
+.socials-footer .list-inline {
   padding: 0;
-  margin-bottom: 0;
+  margin: 0;
 }
 
-.breadcrumb-item + .breadcrumb-item::before {
-  content: ">";
+.socials-footer .list-inline-item {
+  margin-right: 10px;
 }
 
-@media (min-width: 768px) {
-  .intro-single .title-single {
-    font-size: 3rem;
-  }
+.socials-footer .list-inline-item a {
+  color: #333;
 }
 
-@media (min-width: 992px) {
-  .intro-single .title-single {
-    font-size: 3.5rem;
-  }
+.socials-footer .list-inline-item a:hover {
+  color: #4517fb;
 }

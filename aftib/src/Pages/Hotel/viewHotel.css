@@ -1,13 +1,259 @@
-.hotel-image, .room-image {
-    width: 200px;
-    margin: 10px;
+.hotel-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.hotel-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #666;
+}
+
+.hotel-images-section h3,
+.hotel-amenities h3,
+.make-reservation-section h3,
+.contact-section h3,
+.hotel-support-contact h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.hotel-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.hotel-image {
+  width: calc(33% - 1rem);
+  height: auto;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.hotel-amenities {
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+}
+
+.amenities-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.amenity-item {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-size: 0.9rem;
+}
+
+.make-reservation-section {
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.make-reservation-section h3 {
+  margin-bottom: 1.5rem;
+}
+
+.contact-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.contact-agent,
+.contact-form {
+  flex: 1;
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-agent p,
+.hotel-support-contact p {
+  margin: 0.5rem 0;
+}
+
+.hotel-support-contact {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.hotel-support-contact p {
+  font-size: 1rem;
+}
+
+.hotel-support-contact a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.contact-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.contact-agent,
+.contact-form {
+  flex: 1;
+  min-width: 300px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form h3 {
+  margin-bottom: 15px;
+}
+
+.contact-form .form-control {
+  margin-bottom: 10px;
+}
+
+.contact-form .btn {
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card {
+  border: 1px solid #4517fb;
+}
+
+.card-title {
+  color: #4517fb;
+}
+
+@media (max-width: 768px) {
+  .hotel-title {
+    font-size: 2rem;
   }
-  
-  .card {
-    border: 1px solid #007bff; /* Blue theme color */
+
+  .hotel-subtitle {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
   }
-  
-  .card-title {
-    color: #007bff; /* Blue theme color */
+
+  .hotel-images {
+    flex-direction: column;
   }
-  
+
+  .hotel-image {
+    width: 100%;
+  }
+
+  .hotel-amenities,
+  .make-reservation-section,
+  .contact-section,
+  .hotel-support-contact {
+    padding: 1rem;
+  }
+
+  .make-reservation-section h3,
+  .contact-section h3,
+  .hotel-support-contact h3 {
+    font-size: 1.2rem;
+  }
+
+  .contact-section {
+    flex-direction: column;
+  }
+
+  .contact-agent,
+  .contact-form {
+    min-width: 100%;
+    margin-bottom: 1rem;
+  }
+}
+
+
+.room-details {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.room-details h5 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #4517fb;
+}
+
+.room-details .card-text {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.room-details p {
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.room-details .images-section {
+  margin-top: 1.5rem;
+}
+
+.room-details .room-image {
+  width: calc(33% - 1rem);
+  height: auto;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.room-details .dates-section {
+  margin-top: 1.5rem;
+}
+
+.room-details .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.room-details .form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.room-details .btn-primary {
+  background-color: #4517fb;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .room-details .room-image {
+    width: 100%;
+  }
+}

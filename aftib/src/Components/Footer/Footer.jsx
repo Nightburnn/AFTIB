@@ -129,11 +129,11 @@ const Footer = () => {
         <div className="signupPost">
           <div className="col socials">
             <div className="">
-              <i className="bi bi-instagram"></i>
-              <i className="bi bi-facebook"></i>
+             <a href="https://www.instagram.com/aftibrealestate/"> <i className="bi bi-instagram"></i></a>
+             <a href=" https://www.facebook.com/profile.php?id=61560879570798&mibextid=ZbWKwL"><i className="bi bi-facebook"></i></a> 
               <i className="bi bi-whatsapp"></i>
-              <i className="bi bi-twitter"></i>
-              <i className="bi bi-linkedin"></i>
+             <a href="https://www.x.com/aftibrealestate/"><i className="bi bi-twitter"></i></a> 
+             <a href="https://www.linkedin.com/in/aftibrealestate"><i className="bi bi-linkedin"></i></a> 
             </div>
           </div>
           <div className="col text-center align-item-end copy">

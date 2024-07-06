@@ -60,39 +60,76 @@
 }
 
 .property-price h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
+  font-size: 1.8em;
+  color: #000;
 }
 
-.property-details {
+
+.property-section, .property-address, .property-description, .property-amenities, .additional-info {
+  margin-bottom: 20px;
+}
+
+.property-section p, .property-address p, .property-description p {
+  font-size: 1.2em;
+  line-height: 1.5;
+  color: #555;
+}
+
+.property-section p {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
 }
 
-.property-details .property-section {
-  flex-basis: 48%;
+.property-section .pp {
+  margin-right: 10px;
+  color: #4517fb;
+}
+/* New Styles for Address to Contact Form */
+.property-address h3, .property-description h3, .property-amenities h3, .additional-info h3 {
+  font-size: 1.8em;
+  margin-bottom: 10px;
+  color: #333;
+}
+.additional-info{
+  text-align: start;
 }
 
-.property-details .property-section p {
-  margin-bottom: 5px;
-}
+.property-amenities,
+.additional-info {
+  
+  padding: 20px;
+  border-radius: 8px;
 
-.property-address {
   margin-bottom: 20px;
 }
 
-.property-address h3 {
-  font-size: 18px;
+.property-address h3,
+.property-description h3,
+.property-amenities h3,
+.additional-info h3 {
+  font-size: 1.8em;
   margin-bottom: 10px;
+  color: #333;
 }
 
-.property-description {
-  margin-bottom: 20px;
+.property-address p,
+.property-description p {
+  font-size: 1.2em;
+  line-height: 1.5;
+  color: #555;
 }
 
-.property-description h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
+.property-amenities ul,
+.additional-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.property-amenities ul li,
+.additional-info ul li {
+  font-size: 1em;
+  line-height: 1.5;
+  color: #555;
 }
 
 .property-amenities,
@@ -100,86 +137,119 @@
   margin-bottom: 20px;
 }
 
-.property-amenities h3,
-.additional-info h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-
-.property-amenities ul,
-.additional-info ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.property-amenities ul li,
-.additional-info ul li {
-  margin-bottom: 5px;
+.contact-form-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .contact-agent,
 .contact-form {
-  background-color: #fff;
+  background-color: #f9f9f9;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
+  flex: 1;
+  margin-right: 10px;
 }
 
-.contact-agent h3,
+.contact-agent {
+  margin-right: 10px;
+}
+
+.contact-agent h4,
 .contact-form h3 {
-  font-size: 18px;
+  font-size: 1.8em;
   margin-bottom: 10px;
+  color: #333;
 }
 
-.agent-details h4 {
-  margin-bottom: 5px;
-}
-
-.agent-details ul {
+.contact-agent ul {
+  list-style: none;
   padding: 0;
-  list-style-type: none;
-  margin-top: 5px;
 }
 
-.agent-details ul li {
-  margin-bottom: 5px;
+.contact-agent ul li {
+  font-size: 1em;
+  line-height: 1.5;
+  color: #555;
+}
+
+.contact-form form {
+  display: flex;
+  flex-direction: column;
 }
 
 .contact-form input,
 .contact-form textarea {
-  width: 100%;
-  padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid #ddd;
+  padding: 15px;
+  font-size: 1em;
   border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
 .contact-form button {
-  padding: 10px 20px;
-  
-  color: #fff;
+  background-color: #4517fb;
+  color: white;
+  padding: 15px;
+  font-size: 1.2em;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .contact-form button:hover {
-  background-color: #0056b3;
+  background-color: #4517fbdd;
 }
 
-@media (max-width: 767px) {
-  .property-details .property-section {
-    flex-basis: 100%;
-  }
+/* Mobile Styles */
+@media (max-width: 768px) {
   .property-details-container {
-    padding: 30px;
-    
-    border-radius: 8px;
+    padding: 10px;
   }
-  
+  .additional-info{
+    text-align: start;
+  }
+
+  .property-title {
+    font-size: 2em;
+  }
+
+  .main-image {
+    max-width: 100%;
+  }
+
+  .property-price h3 {
+    font-size: 1.5em;
+  }
+
+  .property-section p,
+  .property-address p,
+  .property-description p {
+    font-size: 1em;
+  }
+
+  .property-address h3,
+  .property-description h3,
+  .property-amenities h3,
+  .additional-info h3 {
+    font-size: 1.5em;
+  }
+
+  .property-action button {
+    padding: 10px;
+    font-size: 1em;
+  }
+
   .contact-agent,
   .contact-form {
-    padding: 15px;
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .contact-form-container {
+    flex-direction: column;
   }
 }
