@@ -399,4 +399,26 @@ export const sendContactForm = async (name, email, message) => {
     console.error('Error sending contact form:', error.response ? error.response.data : error.message);
     throw error;
   }
-};
+}
+
+export const updateUser = async (userData) => {
+  try {
+    const response = await axios.put(
+      `${API_BASE_URL}/update-user`,
+      userData,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log('User updated successfully:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error updating user:', error.response ? error.response.data : error.message);
+    throw error;
+  }
+}
+
+
