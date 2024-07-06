@@ -372,3 +372,31 @@ export const getAdminDashboardData = async () => {
     throw err;
   }
 };
+
+export const sendContactForm = async (name, email, message) => {
+  let token = window.localStorage.getItem("accessToken");
+  try {
+    // Create the payload
+    const payload = {
+      name,
+      email,
+      message,
+    };
+
+    // Send the POST request to the server
+    const response = await axios.post(
+      `${API_BASE_URL}/send-contact-form`,
+      payload,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error('Error sending contact form:', error.response ? error.response.data : error.message);
+    throw error;
+  }
+};
