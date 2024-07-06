@@ -5,35 +5,34 @@ import { fetchAapprovedAgents } from "../../utils/adminOpsRequests"; // Adjust p
 import { useLoading } from "../../Components/LoadingContext"; // Adjust path as necessary
 
 const AgentsSection = ({ agents, isSearching }) => {
-  const [allAgents, setAllAgents] = useState([]);
-  const [error, setError] = useState(null);
-  const { setLoading, setLoadingText } = useLoading();
+  const [allAgents, setAllAgents] = useState([])
+  const [error, setError] = useState(null)
+  const { setLoading, setLoadingText } = useLoading()
 
   const fetchAgents = async () => {
     try {
-      setLoading(true);
-      setLoadingText("Fetching Approved Agents");
-      const response = await fetchAapprovedAgents();
-      console.log("Approved Agents Data:", response.data);
-      setAllAgents(response.data);
+      setLoading(true)
+      setLoadingText("Fetching Approved Agents")
+      const response = await fetchAapprovedAgents()
+      console.log("Approved Agents Data:", response.data)
+      setAllAgents(response.data)
     } catch (error) {
-      console.error("Error fetching agents:", error);
-      setError(error.message);
+      console.error("Error fetching agents:", error)
+      setError(error.message)
     } finally {
-      setLoading(false);
-      setLoadingText("");
+      setLoading(false)
+      setLoadingText("")
     }
   };
-
   useEffect(() => {
-    fetchAgents();
-  }, []);
+    fetchAgents()
+  }, [])
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div>Error: {error}</div>
   }
 
-  const displayedAgents = isSearching ? agents : allAgents;
+  const displayedAgents = isSearching ? agents : allAgents
 
   return (
     <section className="section-agents section-t8">

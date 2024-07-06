@@ -100,21 +100,15 @@ export const fetchAapprovedAgents = async () => {
 };
 
 // search for agents
-export const searchForAgents = async ({ state, lga, location }) => {
+export const searchForAgents = async ({ location }) => {
   let query = [];
-  if (state) {
-    query.push(`state=${state}`);
-  }
-  if (lga) {
-    query.push(`LGA=${lga}`);
-  }
   if (location) {
     query.push(`address=${location}`);
   }
   query = query.join("&");
   try {
     const response = await axios.get(
-      `${API_BASE_URL}/search-for-agent?${query}`,
+      `${API_BASE_URL}/search-for-agent?location=${location}`,
     );
     console.log({ response });
     return response;

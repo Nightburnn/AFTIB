@@ -20,7 +20,8 @@ const AgentCard = ({ agent }) => (
         </h3>
         <p className="content-d">{agent.about}</p>
         <div className="info-agents">
-          <p><strong>Phone: </strong> {agent.phone}</p>
+        <p><strong>Phone: </strong> {agent.phone}</p>
+        <p><strong>Office Address: </strong> {agent.officeAddress || ''}</p>
           <p><strong>Email: </strong> {agent.email}</p>
         </div>
         <div className="socials-footer d-flex justify-content-center">
