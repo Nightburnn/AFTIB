@@ -13,12 +13,12 @@ const AgentCard = ({ agent }) => (
         />
       </div>
       <div className="card-body-d">
-        <h3 className="title-d">
+        <h3 className="title-d text-center">
           <Link className="link-two">
             {agent.name} {agent.surname}
           </Link>
         </h3>
-        <p className="content-d">{agent.about}</p>
+        <p className="content-d ">{agent.about}</p>
         <div className="info-agents">
         <p><strong>Phone: </strong> {agent.phone}</p>
         <p><strong>Office Address: </strong> {agent.officeAddress || ''}</p>

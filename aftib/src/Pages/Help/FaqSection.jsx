@@ -28,8 +28,7 @@ const FaqSection = ({ searchTerm, faqData, sectionTitle }) => {
         <div className="col-lg-8 offset-lg-2">
           <h2 className="text-center faq-title">{sectionTitle}</h2>
           <p className="text-center">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
-            dolorum natus explicabo
+          Everything You Need to Know: Comprehensive Answers to Frequently Asked Questions
           </p>
           <div className="accordion" id="faqAccordion">
             {filteredFaqs.length > 0 ? (

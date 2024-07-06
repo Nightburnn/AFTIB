@@ -117,7 +117,7 @@ const Agent = () => {
             </div>
           </div>
         </div>
-        <div className="row">
+        <div className="row mb-5">
           {agents.length == 0 && showDefault == false? <div>No results found for the location query. <b>"{searchQuery}"</b>. Try making sure your search text is correct.</div>: null}
           {showDefault? agents.map((agent, index) => (
             <AgentCard agent={agent} key={index} />
