@@ -65,6 +65,7 @@ export function transformSearchOptions({
     transformedObject.minMonthlyPayment = minPrice;
     transformedObject.maxMonthlyPayment = maxPrice;
   }
+  console.log({transformedObject})
   return transformedObject;
 }
 

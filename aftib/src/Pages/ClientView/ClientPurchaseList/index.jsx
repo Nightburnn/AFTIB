@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 export function ClientPurchaseList() {
   let { setLoading, setLoadingText } = useLoading();
-  let purchases = useSelector((state) => state.user.userData.myPurchases);
+  let purchases = useSelector((state) => state.user.userData.myPurchases) || [];
   let listing = {
     _id: "902",
     location: "Lekki Phase 1",

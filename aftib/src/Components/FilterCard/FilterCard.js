@@ -6,7 +6,7 @@ import {
   searchRequest,
 } from "../../utils/createSearchQuery";
 
-const FilterCard = ({ onFilter }) => {
+const FilterCard = ({ onFilter, handleClearFilter }) => {
   const [location, setLocation] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
@@ -16,7 +16,6 @@ const FilterCard = ({ onFilter }) => {
 
   const handleFilter = () => {
     const saleType = activeFilter.toLowerCase(); // Assuming 'Featured' is a type, adjust as needed
-
     console.log({ minPrice, maxPrice });
     let transformed = transformSearchOptions({
       location,
@@ -55,8 +54,10 @@ const FilterCard = ({ onFilter }) => {
     setMaxPrice("");
     setBeds("Any");
     setBaths("Any");
-    setActiveFilter("Featured");
-    onFilter({ minPrice: "", maxPrice: "", beds: "Any", baths: "Any" });
+    setActiveFilter("Buy");
+    onFilter({ minPrice: "", maxPrice: "", beds: "Any", baths: "Any" })
+    onFilter([])
+    handleClearFilter()
   };
 
   return (

@@ -85,7 +85,7 @@ const Header = () => {
                 <li className="nav-item">
                   <NavLink
                     className="nav-link"
-                    to="/buy"
+                    to="/buy?withSearch=yes&saleType=sale"
                     activeClassName="active"
                     onClick={handleNavLinkClick}
                   >
@@ -163,7 +163,7 @@ const Header = () => {
                     <li className="nav-item">
                       <NavLink
                         className="nav-link"
-                        to="/rent"
+                        to="/rent?withSearch=yes&saleType=rent"
                         activeClassName="active"
                         onClick={handleNavLinkClick}
                       >
@@ -173,7 +173,7 @@ const Header = () => {
                     <li className="nav-item">
                       <NavLink
                         className="nav-link"
-                        to="/short"
+                        to="/short?withSearch=yes&saleType=shortlet"
                         activeClassName="active"
                         onClick={handleNavLinkClick}
                       >

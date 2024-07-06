@@ -16,7 +16,6 @@ const Buy = () => {
   const [filteredProperties, setFilteredProperties] = useState([]);
   const [showResults, setShowResults] = useState(false);
   const [location, setLocation] = useState("");
-  const [searchClicked, setSearchClicked] = useState(false);
   const [currentSection, setCurrentSection] = useState(1);
 
   useEffect(() => {
@@ -62,7 +61,6 @@ const Buy = () => {
         state,
         LGA,
       });
-      console.log({ query });
       searchRequest(query)
         .then((res) => {
           setFilteredProperties(res.data);
@@ -97,7 +95,7 @@ const Buy = () => {
     } catch (error) {
       console.error("Error fetching listings:", error);
     }
-  };
+  }
 
   const handleBrowseMore = async () => {
     try {
@@ -115,7 +113,6 @@ const Buy = () => {
 
   const handleClearSearch = () => {
     setLocation("");
-    setSearchClicked(false);
     setShowResults(false);
     setFilteredProperties([]);
   };
@@ -145,7 +142,7 @@ const Buy = () => {
       <div className="content">
         <div className="filter-container">
           {(properties.length > 0 || filteredProperties.length > 0) && (
-            <FilterCard onFilter={handleFilter} />
+            <FilterCard handleClearFilter={handleClearSearch} onFilter={handleFilter} />
           )}
         </div>
       </div>

@@ -489,12 +489,7 @@ const Listing = () => {
                     updateAmenities={updateAmenities}
                     updateRoomImages={updateRoomImages}
                   />
-                  <div className="form-group mb-3">
-                    <label className="form-label mb-1">Upload Room Image</label>
-                    <div className="input-group">
-                      <input type="file" className="form-control-file" />
-                    </div>
-                  </div>
+
                 </div>
               ))}
               <div className="d-grid mt-4">
