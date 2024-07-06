@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { fetchHotelById } from "../../utils/adminOpsRequests";
+import { fetchHotelById, sendContactForm } from "../../utils/adminOpsRequests";
 import './viewHotel.css';
 import { createTransaction } from "../../utils/transactionRequests";
 import { useLoading } from "../../Components/LoadingContext";
 import { Reservation } from "./Reservation";
+import Modal from "../../Components/PropertyDetails/Modal"; 
 
 export default function ViewHotel() {
     let { id } = useParams();
     const [hotelData, setHotelData] = useState(null);
     const [agentData, setAgentData] = useState(null);
+    const [formState, setFormState] = useState({ name: "", email: "", message: "" });
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modalMessage, setModalMessage] = useState("");
     let { setLoading, setLoadingText } = useLoading();
     let navigate = useNavigate();
 
@@ -48,6 +52,28 @@ export default function ViewHotel() {
                 setLoadingText('');
             }, 3000);
         }
+    };
+
+    const handleInputChange = (e) => {
+        const { id, value } = e.target;
+        setFormState(prevState => ({ ...prevState, [id]: value }));
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const { name, email, message } = formState;
+        try {
+            await sendContactForm(name, email, message);
+            setModalMessage("Your message has been sent successfully!");
+        } catch (error) {
+            setModalMessage("Failed to send your message. Please try again later.");
+        } finally {
+            setModalIsOpen(true);
+        }
+    };
+
+    const closeModal = () => {
+        setModalIsOpen(false);
     };
 
     if (!hotelData || !agentData) {
@@ -96,20 +122,41 @@ export default function ViewHotel() {
                 </div>
                 <div className="contact-form">
                     <h3>Contact Form</h3>
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <div className="mb-3">
                             <label htmlFor="name" className="form-label">Name</label>
-                            <input type="text" className="form-control" id="name" required />
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="name"
+                                value={formState.name}
+                                onChange={handleInputChange}
+                                required
+                            />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="email" className="form-label">Email</label>
-                            <input type="email" className="form-control" id="email" required />
+                            <input
+                                type="email"
+                                className="form-control"
+                                id="email"
+                                value={formState.email}
+                                onChange={handleInputChange}
+                                required
+                            />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="message" className="form-label">Message</label>
-                            <textarea className="form-control" id="message" rows="3" required></textarea>
+                            <textarea
+                                className="form-control"
+                                id="message"
+                                rows="3"
+                                value={formState.message}
+                                onChange={handleInputChange}
+                                required
+                            ></textarea>
                         </div>
-                        <button type="submit" className="btn btn-primary">Submit</button>
+                        <button type="submit" className="btn blue">Submit</button>
                     </form>
                 </div>
             </div>
@@ -119,6 +166,8 @@ export default function ViewHotel() {
                 <p><strong>Phone:</strong> {hotelData.contact.phone}</p>
                 <p><strong>Website:</strong> <a href={hotelData.website} target="_blank" rel="noopener noreferrer">{hotelData.contact.website}</a></p>
             </div>
+
+            <Modal isOpen={modalIsOpen} message={modalMessage} onClose={closeModal} />
         </div>
     );
 }

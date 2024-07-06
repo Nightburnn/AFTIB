@@ -91,7 +91,7 @@ const User = () => {
             <input
               type="date"
               className="form-control"
-              id="dob" // Assuming 'dob' matches the key in user profile
+              id="dob" 
               value={userProfile.dob || ""}
               onChange={handleChange}
             />
@@ -99,7 +99,7 @@ const User = () => {
         </div>
 
         <div className="form-row">
-          <div className="form-group col-md-8">
+          <div className="form-group col-md-12">
             <label htmlFor="address">Address</label>
             <input
               type="text"
@@ -110,17 +110,7 @@ const User = () => {
               onChange={handleChange}
             />
           </div>
-          <div className="form-group col-md-4">
-            <label htmlFor="landmark">Landmark</label>
-            <input
-              type="text"
-              className="form-control"
-              id="landmark" // Assuming 'landmark' matches the key in user profile
-              placeholder="Landmark"
-              value={userProfile.landmark || ""}
-              onChange={handleChange}
-            />
-          </div>
+         
         </div>
 
         <div className="save">

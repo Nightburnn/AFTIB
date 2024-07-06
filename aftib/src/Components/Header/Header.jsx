@@ -280,15 +280,7 @@ const Header = () => {
                               Settings
                             </NavLink>
                           </li>
-                          <li>
-                            <NavLink
-                              className="dropdown-item"
-                              to="/profile#help"
-                              onClick={handleNavLinkClick}
-                            >
-                              Help
-                            </NavLink>
-                          </li>
+                         
                         </>
                       ) : (
                         <>
@@ -310,24 +302,8 @@ const Header = () => {
                               Dashboard
                             </NavLink>
                           </li>
-                          <li>
-                            <NavLink
-                              className="dropdown-item"
-                              to="/profile#agent"
-                              onClick={handleNavLinkClick}
-                            >
-                              Agent
-                            </NavLink>
-                          </li>
-                          <li>
-                            <NavLink
-                              className="dropdown-item"
-                              to="/profile#help"
-                              onClick={handleNavLinkClick}
-                            >
-                              Help
-                            </NavLink>
-                          </li>
+                          
+                          
                           <li>
                             <NavLink
                               className="dropdown-item"

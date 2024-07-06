@@ -2,17 +2,12 @@ import React, { useState } from "react";
 import "./ProfilePage.css";
 import { FaPowerOff, FaWrench } from "react-icons/fa";
 import { BsPersonFill } from "react-icons/bs";
-import { FaEnvelopesBulk } from "react-icons/fa6";
-import { MdHelp } from "react-icons/md";
 import { Link } from "react-router-dom";
 import profileavatar from "../../assets/images/profileavatar.jpg";
 import User from "./User";
 import Setting from "./Setting";
 import AgentSetting from "../AgentPage/Setting";
 import AgentUser from "../AgentPage/User";
-import UserAgent from "./UserAgent";
-import Client from "../AgentPage/Client";
-import Help from "./Help";
 import { useAuth } from "../../AuthContext";
 
 const ProfilePage = () => {
@@ -35,17 +30,13 @@ const ProfilePage = () => {
             <>
               {activeTab === "user" && <User />}
               {activeTab === "settings" && <Setting />}
-              {activeTab === "agent" && <UserAgent />}
-              {activeTab === "help" && <Help />}
             </>
           );
         case "agent":
           return (
             <>
               {activeTab === "user" && <AgentUser />}
-              {activeTab === "agent" && <Client />}
               {activeTab === "settings" && <AgentSetting />}
-              {activeTab === "help" && <Help />}
             </>
           );
         case "admin":
@@ -53,7 +44,6 @@ const ProfilePage = () => {
             <>
               {activeTab === "user" && <AgentUser />}
               {activeTab === "settings" && <AgentSetting />}
-              {activeTab === "help" && <Help />}
             </>
           );
         default:
@@ -125,34 +115,6 @@ const ProfilePage = () => {
                     Settings
                   </Link>
                 </li>
-                {user.accountType !== "admin" && (
-                  <li
-                    className={`nav-item ${activeTab === "agent" ? "active" : ""}`}
-                  >
-                    <Link
-                      className="nav-link"
-                      to="#agent"
-                      onClick={() => handleTabChange("agent")}
-                    >
-                      <FaEnvelopesBulk className="icon" />
-                      {user && user.accountType === "agent"
-                        ? "Your Client"
-                        : "Your Agent"}
-                    </Link>
-                  </li>
-                )}
-                <li
-                  className={`nav-item ${activeTab === "help" ? "active" : ""}`}
-                >
-                  <Link
-                    className="nav-link"
-                    to="#help"
-                    onClick={() => handleTabChange("help")}
-                  >
-                    <MdHelp className="icon" />
-                    Help
-                  </Link>
-                </li>
               </ul>
               <select
                 className="mobile-dropdown"
@@ -167,14 +129,6 @@ const ProfilePage = () => {
                       : "User"}
                 </option>
                 <option value="settings">Settings</option>
-                {user.accountType !== "admin" && (
-                  <option value="agent">
-                    {user && user.accountType === "agent"
-                      ? "Your Client"
-                      : "Your Agent"}
-                  </option>
-                )}
-                <option value="help">Help</option>
               </select>
             </div>
           </div>
