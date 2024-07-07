@@ -468,7 +468,7 @@ export const getClientAccounts = async (page) => {
 export const getUserById = async (id) => {
   let token = window.localStorage.getItem("accessToken");
   try {
-    const response = await axios.get(`${API_BASE_URL}/get-user/${id}`, {
+    const response = await axios.get(`${API_BASE_URL}/get-user-by-id/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
