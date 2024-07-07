@@ -464,3 +464,33 @@ export const getClientAccounts = async (page) => {
     throw error;
   }
 };
+
+export const getUserById = async (id) => {
+  let token = window.localStorage.getItem("accessToken");
+  try {
+    const response = await axios.get(`${API_BASE_URL}/get-user/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching user:', error);
+    throw error;
+  }
+};
+
+export const getClientCount = async (token) => {
+  let token = window.localStorage.getItem("accessToken");
+  try {
+    const response = await axios.get(`${API_BASE_URL}/client-count`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data.count;
+  } catch (error) {
+    console.error('Error fetching client count:', error);
+    throw error;
+  }
+};
