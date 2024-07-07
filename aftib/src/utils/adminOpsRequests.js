@@ -421,7 +421,7 @@ export const updateUser = async (userData) => {
   }
 }
 
-const checkSession = async () => {
+export const checkSession = async () => {
   let token = window.localStorage.getItem("accessToken");
   try {
     const response = await axios.get(
@@ -446,7 +446,7 @@ const checkSession = async () => {
   }
 };
 
-const getClientAccounts = async (page) => {
+export const getClientAccounts = async (page) => {
   try {
     const response = await axios.get(
       `${API_BASE_URL}/getClientAccounts/${page}`,
