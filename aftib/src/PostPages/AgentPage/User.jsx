@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { updateUser } from '../../utils/adminOpsRequests'; 
 import "../Account/User.css";
 import { useAuth } from "../../AuthContext";
 
@@ -16,7 +17,7 @@ const specialties = [
 ];
 
 const AgentUser = () => {
-  const { user, login } = useAuth();
+  const { user, login, token } = useAuth(); // Assuming token is available in useAuth
   const [userProfile, setUserProfile] = useState(user || {});
 
   const handleChange = (e) => {
@@ -38,10 +39,15 @@ const AgentUser = () => {
     }));
   };
 
-  const handleSave = (e) => {
+  const handleSave = async (e) => {
     e.preventDefault();
-    console.log("Saving user profile:", userProfile);
-    login(userProfile);
+    try {
+      const updatedUser = await updateUser(userProfile, token);
+      console.log("User updated successfully:", updatedUser);
+      login(updatedUser); // Update the user in the Auth context
+    } catch (error) {
+      console.error("Error updating user:", error);
+    }
   };
 
   if (!user) {

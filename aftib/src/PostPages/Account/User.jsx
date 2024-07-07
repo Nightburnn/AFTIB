@@ -1,11 +1,23 @@
 import React, { useState } from "react";
 import "./User.css";
 import { useAuth } from "../../AuthContext";
-const User = () => {
-  const { user, login } = useAuth(); // Use useAuth hook to access user data and login function
-  const [userProfile, setUserProfile] = useState(user || {}); // Initialize state with user from AuthContext
+import { updateUser } from "../../utils/adminOpsRequests";
 
-  // Handle changes in form inputs
+const User = () => {
+  const { user, login, token } = useAuth();
+  const [userProfile, setUserProfile] = useState({
+    name: user.name || "",
+    email: user.email || "",
+    mobileNumber: user.mobileNumber || "",
+    gender: user.gender || "",
+    dateOfBirth: user.dateOfBirth || new Date().toISOString().split('T')[0], // Ensure it's in the correct format
+    address: user.address || "",
+    password: "", // Leave empty if not changing the password
+    country: user.country || "",
+    language: user.language || "English",
+    state: user.state || ""
+  });
+
   const handleChange = (e) => {
     const { id, value } = e.target;
     setUserProfile((prevProfile) => ({
@@ -14,21 +26,20 @@ const User = () => {
     }));
   };
 
-  // Handle form submission (save changes)
-  const handleSave = (e) => {
+  const handleSave = async (e) => {
     e.preventDefault();
-    // Simulate saving changes - you can replace this with actual API call
     console.log("Saving user profile:", userProfile);
-    // Update userProfile state or send API request to save changes
-
-    // Assuming you have an API call to update user profile, you can update user context
-    // For simulation, update context directly
-    login(userProfile);
+    try {
+      const updatedUserData = await updateUser(userProfile, token);
+      console.log("User updated successfully:", updatedUserData);
+      login(updatedUserData);
+    } catch (error) {
+      console.error("Error updating user:", error);
+    }
   };
 
-  // Check if user is null or undefined before accessing user.name
   if (!user) {
-    return <div>Loading...</div>; // Replace with your loading indicator or logic
+    return <div>Loading...</div>;
   }
 
   return (
@@ -36,13 +47,13 @@ const User = () => {
       <form onSubmit={handleSave}>
         <div className="form-row">
           <div className="form-group col-md-6">
-            <label htmlFor="fullName">Full Name</label>
+            <label htmlFor="name">Full Name</label>
             <input
               type="text"
               className="form-control"
-              id="name" // Assuming 'name' matches the key in user profile
+              id="name"
               placeholder="Full Name"
-              value={userProfile.name || ""}
+              value={userProfile.name}
               onChange={handleChange}
             />
           </div>
@@ -51,33 +62,32 @@ const User = () => {
             <input
               type="email"
               className="form-control"
-              id="email" // Assuming 'email' matches the key in user profile
+              id="email"
               placeholder="Email"
-              value={userProfile.email || ""}
+              value={userProfile.email}
               onChange={handleChange}
-              disabled // Assuming email should not be editable in this form
+              disabled
             />
           </div>
         </div>
-
         <div className="form-row">
           <div className="form-group col-md-4">
-            <label htmlFor="phoneNumber">Phone Number</label>
+            <label htmlFor="mobileNumber">Phone Number</label>
             <input
               type="text"
               className="form-control"
-              id="phoneNumber" // Assuming 'phoneNumber' matches the key in user profile
+              id="mobileNumber"
               placeholder="Phone Number"
-              value={userProfile.mobileNumber || ""}
+              value={userProfile.mobileNumber}
               onChange={handleChange}
             />
           </div>
           <div className="form-group col-md-4">
             <label htmlFor="gender">Gender</label>
             <select
-              id="gender" // Assuming 'gender' matches the key in user profile
+              id="gender"
               className="form-control"
-              value={userProfile.gender || ""}
+              value={userProfile.gender}
               onChange={handleChange}
             >
               <option value="">Choose...</option>
@@ -87,32 +97,29 @@ const User = () => {
             </select>
           </div>
           <div className="form-group col-md-4">
-            <label htmlFor="dob">Date of Birth</label>
+            <label htmlFor="dateOfBirth">Date of Birth</label>
             <input
               type="date"
               className="form-control"
-              id="dob" 
-              value={userProfile.dob || ""}
+              id="dateOfBirth"
+              value={userProfile.dateOfBirth}
               onChange={handleChange}
             />
           </div>
         </div>
-
         <div className="form-row">
           <div className="form-group col-md-12">
             <label htmlFor="address">Address</label>
             <input
               type="text"
               className="form-control"
-              id="address" // Assuming 'address' matches the key in user profile
+              id="address"
               placeholder="Address"
-              value={userProfile.address || ""}
+              value={userProfile.address}
               onChange={handleChange}
             />
           </div>
-         
         </div>
-
         <div className="save">
           <button type="submit" className="btn btn-primary">
             Save and Continue

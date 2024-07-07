@@ -2,18 +2,22 @@ import React, { useState, useEffect } from "react";
 import "./Setting.css";
 import { useAuth } from "../../AuthContext";
 import csc from "countries-states-cities";
+import { updateUser } from "../../utils/adminOpsRequests";
 
 const Setting = () => {
-  const { user } = useAuth();
+  const { user, login, token } = useAuth();
 
   const [settings, setSettings] = useState({
-    accountType: user ? user.accountType : "",
-    changePassword: "",
-    language: "English",
-    country: "",
-    state: "",
-    notification: "On",
-    location: "Disabled",
+    name: user.name || "",
+    email: user.email || "",
+    mobileNumber: user.mobileNumber || "",
+    gender: user.gender || "",
+    dateOfBirth: user.dateOfBirth || new Date().toISOString().split('T')[0], // Ensure it's in the correct format
+    address: user.address || "",
+    password: "", // Leave empty if not changing the password
+    country: user.country || "",
+    language: user.language || "English",
+    state: user.state || ""
   });
 
   const [countries, setCountries] = useState([]);
@@ -28,7 +32,7 @@ const Setting = () => {
   useEffect(() => {
     if (settings.country) {
       const countryId = countries.find(
-        (country) => country.iso2 === settings.country,
+        (country) => country.iso2 === settings.country
       )?.id;
       if (countryId) {
         const statesData = csc.getStatesOfCountry(countryId);
@@ -46,17 +50,29 @@ const Setting = () => {
     }));
   };
 
-  const handleSave = (e) => {
+  const handleSave = async (e) => {
     e.preventDefault();
-    console.log("Saving settings:", settings);
-    // Add your save logic here
+    const updatedUserSettings = {
+      ...user,
+      password: settings.changePassword,
+      language: settings.language,
+      country: settings.country,
+      state: settings.state
+    };
+    console.log("Saving settings:", updatedUserSettings);
+    try {
+      const updatedData = await updateUser(updatedUserSettings, token);
+      console.log("Settings updated successfully:", updatedData);
+      login(updatedData);
+    } catch (error) {
+      console.error("Error updating settings:", error);
+    }
   };
 
   return (
     <div className="settings-form-container">
       <form onSubmit={handleSave}>
         <div className="form-row">
-         
           <div className="form-group col-md-6">
             <label htmlFor="changePassword">Change Password</label>
             <input
@@ -77,11 +93,9 @@ const Setting = () => {
               onChange={handleChange}
             >
               <option value="English">English</option>
-              
             </select>
           </div>
         </div>
-
         <div className="form-row">
           <div className="form-group col-md-6">
             <label htmlFor="country">Country</label>
@@ -121,11 +135,7 @@ const Setting = () => {
               ))}
             </select>
           </div>
-         
         </div>
-
-       
-
         <div className="save">
           <button type="submit" className="btn btn-primary">
             Save and Continue

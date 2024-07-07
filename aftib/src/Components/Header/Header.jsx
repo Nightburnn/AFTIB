@@ -114,16 +114,7 @@ const Header = () => {
                         Hotel Listing
                       </NavLink>
                     </li>
-                    <li className="nav-item">
-                      <NavLink
-                        className="nav-link"
-                        to="/inbox"
-                        activeClassName="active"
-                        onClick={handleNavLinkClick}
-                      >
-                        Inbox
-                      </NavLink>
-                    </li>
+                    
                   </>
                 ) : isLoggedIn && user && user.accountType === "admin" ? (
                   <>
@@ -137,16 +128,7 @@ const Header = () => {
                         Dashboard
                       </NavLink>
                     </li>
-                    <li className="nav-item">
-                      <NavLink
-                        className="nav-link"
-                        to="/inbox"
-                        activeClassName="active"
-                        onClick={handleNavLinkClick}
-                      >
-                        Inbox
-                      </NavLink>
-                    </li>
+                    
                   </>
                 ) : (
                   <>
@@ -248,7 +230,7 @@ const Header = () => {
                               Profile
                             </NavLink>
                           </li>
-                         
+                          
                           
                         </>
                       ) : user.accountType === "agent" ? (

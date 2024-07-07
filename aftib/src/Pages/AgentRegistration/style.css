@@ -6,7 +6,7 @@
   max-width: 900px;
   margin: 0 auto;
   padding: 20px;
-  border: 1px solid #ccc;
+  border: 2px dotted #4517fb;
   border-radius: 4px;
   background-color: #f9f9f9;
 }
@@ -42,12 +42,16 @@
   margin-bottom: 5px;
 }
 
+.agent-registration-container .form-control{
+  border: 1px solid #4517fb;
+}
+
 .agent-registration-container .form-group input[type="text"],
 .agent-registration-container .form-group input[type="date"],
 .agent-registration-container .form-group input[type="file"] {
   width: 100%;
   padding: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid #4517fb;
   border-radius: 4px;
 }
 
