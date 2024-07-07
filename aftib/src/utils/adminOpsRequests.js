@@ -421,4 +421,28 @@ export const updateUser = async (userData) => {
   }
 }
 
+const checkSession = async () => {
+  let token = window.localStorage.getItem("accessToken");
+  try {
+    const response = await axios.get(
+      `${API_BASE_URL}/check-session`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log('Session is valid:', response.status);
+    return response.status === 200;
+  } catch (error) {
+    if (error.response && error.response.status === 401) {
+      console.error('Session expired or unauthorized:', error.response.data);
+      return false;
+    } else {
+      console.error('Error checking session:', error.message);
+      throw error;
+    }
+  }
+};
 
