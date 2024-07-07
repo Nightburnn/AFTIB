@@ -446,3 +446,21 @@ const checkSession = async () => {
   }
 };
 
+const getClientAccounts = async (page) => {
+  try {
+    const response = await axios.get(
+      `${API_BASE_URL}/getClientAccounts/${page}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log('Client accounts retrieved successfully:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('There was an error retrieving client accounts:', error.message);
+    throw error;
+  }
+};
