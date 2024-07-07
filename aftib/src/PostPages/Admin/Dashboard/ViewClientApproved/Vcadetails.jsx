@@ -4,19 +4,25 @@ import { useLoading } from "../../../../Components/LoadingContext";
 
 // Mock data for testing purposes
 const mockAgent = {
-  _id: "1",
-  name: "John Doe",
-  businessName: "Dafemutey",
-  agencyType: "Individual",
-  CACRef: "",
-  ninNumber: "01234567",
-  officeAddress: "Lagos",
-  state: "Lagos",
-  LGA: "Aba North",
-  phone: "8109558854",
-  whatsappNo: "864225785",
-  about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  IssuedId: "https://via.placeholder.com/300",
+  _id: "6686a115c475b7532bcfe04b",
+  accountType: "client",
+  agentSpecialities: [],
+  email: "tochukwueagles7@gmail.com",
+  hash: "$2a$10$0FWQrrwZ/z5OaXh9dS20j.kSp4/kx5g8y.easHskqXsrX5bM8PQk2",
+  mobileNumber: "+23407088572141",
+  myHotelBookings: [],
+  myHotelReservations: [],
+  myHotels: [],
+  myListings: [],
+  myPurchases: [],
+  myRentals: [],
+  mySales: [],
+  myShortLets: [],
+  myTransactions: [],
+  name: "Tochukwu Chikezie",
+  signupType: "emailAndPassword",
+  verified: false,
+  __v: 0,
 };
 
 const Vcadetails = () => {
@@ -85,11 +91,6 @@ const Vcadetails = () => {
 
       <div className="section border profile-section">
         <div className="profile text-center">
-          <img
-            src={agent.passport}
-            className="rounded-circle"
-            alt="Agent profile"
-          />
           <h3>{agent.name}</h3>
         </div>
       </div>
@@ -98,38 +99,22 @@ const Vcadetails = () => {
         <h2 className="text-center">Informations</h2>
         <div className="info-agent">
           <p>
-            <strong>Client Name:</strong> {agent.businessName}
+            <strong>Client Name:</strong> {agent.name}
           </p>
           <p>
-            <strong>Agency Type:</strong> {agent.agencyType}
+            <strong>Account Type:</strong> {agent.accountType}
           </p>
           <p>
-            <strong>Identification Type:</strong>{" "}
-            {agent.agencyType === "Company" ? "CAC Number" : "NIN Number"}
+            <strong>Email:</strong> {agent.email}
           </p>
           <p>
-            <strong>
-              {agent.agencyType === "Company" ? "CAC Number" : "NIN Number"}:
-            </strong>{" "}
-            {agent.agencyType === "Company" ? agent.CACRef : agent.ninNumber}
+            <strong>Mobile Number:</strong> {agent.mobileNumber}
           </p>
           <p>
-            <strong>Office Address:</strong> {agent.officeAddress}
+            <strong>Signup Type:</strong> {agent.signupType}
           </p>
           <p>
-            <strong>State:</strong> {agent.state}
-          </p>
-          <p>
-            <strong>LGA:</strong> {agent.LGA}
-          </p>
-          <p>
-            <strong>Phone Number:</strong> {agent.phone}
-          </p>
-          <p>
-            <strong>Whatsapp Number:</strong> {agent.whatsappNo}
-          </p>
-          <p>
-            <strong>About the Agent / Organization:</strong> {agent.about}
+            <strong>Verified:</strong> {agent.verified ? "Yes" : "No"}
           </p>
         </div>
       </div>
@@ -137,13 +122,14 @@ const Vcadetails = () => {
       <div className="section border">
         <h2 className="text-center">Notify The User</h2>
         <p className="text-center">
-          This account has already been approved. You can contact the user if
-          there are any updates or changes required.
+          {agent.verified
+            ? "User is verified."
+            : " Please remind the user to verify their account by confirming their email."}
         </p>
       </div>
 
       <div className="section border">
-        <h2 className="text-center">Approval Section</h2>
+        <h2 className="text-center">Disable Section</h2>
         <p className="text-center">
           Are you sure you want to Disable this client? This action cannot be
           undone.
