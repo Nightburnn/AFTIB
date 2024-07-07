@@ -481,7 +481,6 @@ export const getUserById = async (id) => {
 };
 
 export const getClientCount = async (token) => {
-  let token = window.localStorage.getItem("accessToken");
   try {
     const response = await axios.get(`${API_BASE_URL}/client-count`, {
       headers: {
