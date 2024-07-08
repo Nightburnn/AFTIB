@@ -245,7 +245,7 @@ function App() {
                     }
                   />
                   <Route path="/view-client-account" Component={Vca} />
-                  <Route path="/vcadetails" Component={Vcadetails} />
+                  <Route path="/vcadetails/:id" Component={Vcadetails} />
                   <Route path="/view-approved-hotels" Component={Vha} />
                   <Route path="/Vhadetails/:id" Component={Vhadetails} />
                   <Route path="/change-password" Component={ChangePassword} />

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { updateUser } from '../../utils/adminOpsRequests'; 
+// AgentUser.js
+import React, { useState, useEffect } from "react";
+import { updateUser, checkSession } from '../../utils/adminOpsRequests'; 
 import "../Account/User.css";
 import { useAuth } from "../../AuthContext";
 
@@ -17,8 +18,18 @@ const specialties = [
 ];
 
 const AgentUser = () => {
-  const { user, login, token } = useAuth(); // Assuming token is available in useAuth
+  const { user, login, token } = useAuth(); 
   const [userProfile, setUserProfile] = useState(user || {});
+  const [sessionValid, setSessionValid] = useState(true);
+
+  useEffect(() => {
+    const validateSession = async () => {
+      const isValid = await checkSession();
+      setSessionValid(isValid);
+    };
+
+    validateSession();
+  }, []);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -49,6 +60,10 @@ const AgentUser = () => {
       console.error("Error updating user:", error);
     }
   };
+
+  if (!sessionValid) {
+    return <div>Session expired. Please log in again.</div>;
+  }
 
   if (!user) {
     return <div>Loading...</div>;
@@ -253,7 +268,7 @@ const AgentUser = () => {
 
         <div className="form-row">
           <div className="form-group col-md-12 d-flex align-items-center">
-            <label htmlFor="twitter" className="col-form-label me-5">
+            <label htmlFor="twitter" className="col-form-label me-4">
               Twitter
             </label>
             <input
@@ -267,11 +282,9 @@ const AgentUser = () => {
           </div>
         </div>
 
-        <div className="save">
-          <button type="submit" className="btn btn-primary">
-            Save and Continue
-          </button>
-        </div>
+        <button type="submit" className="btn btn-primary mt-4">
+          Save
+        </button>
       </form>
     </div>
   );
