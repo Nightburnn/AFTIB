@@ -4,7 +4,6 @@ import { getUserById } from "../../../../utils/adminOpsRequests";
 import { useLoading } from "../../../../Components/LoadingContext";
 
 const Vcadetails = () => {
-  let token = window.localStorage.getItem("accessToken");
   let { setLoading, setLoadingText } = useLoading();
   const { id } = useParams();
   const [client, setClient] = useState(null);
@@ -13,9 +12,9 @@ const Vcadetails = () => {
     setLoading(true);
     setLoadingText("Fetching client Information");
     try {
-      const response = await getUserById(id);
-      setClient(response.data);
-      console.log("Client Data:", response.data);
+      const clientData = await getUserById(id);
+      setClient(clientData);
+      console.log("Client Data:", clientData);
     } catch (error) {
       console.error("Error fetching Client request:", error);
     } finally {
@@ -30,11 +29,7 @@ const Vcadetails = () => {
 
   if (!client) {
     return (
-      <div
-        onClick={() => {
-          fetchClientAccounts(id);
-        }}
-      >
+      <div onClick={() => fetchClientAccounts(id)}>
         Loading...
       </div>
     );
@@ -42,50 +37,38 @@ const Vcadetails = () => {
 
   return (
     <div className="container client-detail">
-    <div className="header">
-      <h1 className="text-center">Client</h1>
-    </div>
+      <div className="header">
+        <h1 className="text-center">Client</h1>
+      </div>
 
-    <div className="section border profile-section">
-      <div className="profile text-center">
-        <h3>{client.name}</h3>
+      <div className="section border profile-section">
+        <div className="profile text-center">
+          <h3>{client.name}</h3>
+        </div>
+      </div>
+
+      <div className="section border">
+        <h2 className="text-center">Information</h2>
+        <div className="info-client">
+          <p><strong>Client Name:</strong> {client.name}</p>
+          <p><strong>Account Type:</strong> {client.accountType}</p>
+          <p><strong>Email:</strong> {client.email}</p>
+          <p><strong>Mobile Number:</strong> {client.mobileNumber}</p>
+          <p><strong>Signup Type:</strong> {client.signupType}</p>
+          <p><strong>Verified:</strong> {client.verified ? "Yes" : "No"}</p>
+        </div>
+      </div>
+
+      <div className="section border">
+        <h2 className="text-center">Notify The User</h2>
+        <p className="text-center">
+          {client.verified
+            ? "User is verified."
+            : "Please remind the user to verify their account by confirming their email."}
+        </p>
       </div>
     </div>
-
-    <div className="section border">
-      <h2 className="text-center">Information</h2>
-      <div className="info-client">
-        <p>
-          <strong>Client Name:</strong> {client.name}
-        </p>
-        <p>
-          <strong>Account Type:</strong> {client.accountType}
-        </p>
-        <p>
-          <strong>Email:</strong> {client.email}
-        </p>
-        <p>
-          <strong>Mobile Number:</strong> {client.mobileNumber}
-        </p>
-        <p>
-          <strong>Signup Type:</strong> {client.signupType}
-        </p>
-        <p>
-          <strong>Verified:</strong> {client.verified ? "Yes" : "No"}
-        </p>
-      </div>
-    </div>
-
-    <div className="section border">
-      <h2 className="text-center">Notify The User</h2>
-      <p className="text-center">
-        {client.verified
-          ? "User is verified."
-          : " Please remind the user to verify their account by confirming their email."}
-      </p>
-    </div>
-  </div>
-);
+  );
 };
 
 export default Vcadetails;

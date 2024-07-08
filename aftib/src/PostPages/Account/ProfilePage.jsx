@@ -9,6 +9,7 @@ import Setting from "./Setting";
 import AgentSetting from "../AgentPage/Setting";
 import AgentUser from "../AgentPage/User";
 import { useAuth } from "../../AuthContext";
+import AdminProfile from "../Admin/AdminProfile";
 
 const ProfilePage = () => {
   const [activeTab, setActiveTab] = useState("user");
@@ -42,7 +43,7 @@ const ProfilePage = () => {
         case "admin":
           return (
             <>
-              {activeTab === "user" && <AgentUser />}
+              {activeTab === "user" && <AdminProfile />}
               {activeTab === "settings" && <AgentSetting />}
             </>
           );

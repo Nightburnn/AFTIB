@@ -282,9 +282,11 @@ const AgentUser = () => {
           </div>
         </div>
 
-        <button type="submit" className="btn btn-primary mt-4">
-          Save
-        </button>
+        <div className="save">
+          <button type="submit" className="btn blue">
+            Save and Continue
+          </button>
+        </div>
       </form>
     </div>
   );

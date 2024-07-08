@@ -238,3 +238,10 @@ a:focus {
     margin-left: 10px;
   }
 }
+
+
+.navbar-toggler:focus {
+  text-decoration: none;
+  outline: 0;
+ box-shadow: none !important; 
+}

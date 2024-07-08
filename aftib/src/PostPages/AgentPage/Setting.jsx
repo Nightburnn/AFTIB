@@ -132,7 +132,7 @@ const AgentSetting = () => {
 
        
         <div className="save">
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn blue">
             Save and Continue
           </button>
         </div>
