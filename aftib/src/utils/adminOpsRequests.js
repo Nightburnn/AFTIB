@@ -449,7 +449,7 @@ export const checkSession = async () => {
 export const getClientAccounts = async (page) => {
   try {
     const response = await axios.get(
-      `${API_BASE_URL}/getClientAccounts/${page}`,
+      `${API_BASE_URL}/auth/getClientAccounts/${page}`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -468,7 +468,7 @@ export const getClientAccounts = async (page) => {
 export const getUserById = async (id) => {
   let token = window.localStorage.getItem("accessToken");
   try {
-    const response = await axios.get(`${API_BASE_URL}/get-user-by-id/${id}`, {
+    const response = await axios.get(`${API_BASE_URL}/auth/get-user-by-id/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -483,7 +483,7 @@ export const getUserById = async (id) => {
 export const getClientCount = async (token) => {
   let token = window.localStorage.getItem("accessToken");
   try {
-    const response = await axios.get(`${API_BASE_URL}/client-count`, {
+    const response = await axios.get(`${API_BASE_URL}/auth/client-count`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
