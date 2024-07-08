@@ -14,7 +14,17 @@ const Vca = () => {
     try {
       const data = await getClientAccounts(page);
       console.log('Client accounts retrieved:', data); // Log client data to console
-      setClients((prevClients) => [...prevClients, ...data]);
+
+      setClients((prevClients) => {
+        // Create a Set to track unique client IDs
+        const clientIds = new Set(prevClients.map(client => client._id));
+        
+        // Filter out duplicate clients
+        const newClients = data.filter(client => !clientIds.has(client._id));
+        
+        return [...prevClients, ...newClients];
+      });
+
       if (data.length < 30) {
         setHasMore(false); // No more results if less than 30 are returned
       }
@@ -54,7 +64,6 @@ const Vca = () => {
             <div className="col-md-6 mb-4" key={client._id}>
               <div className="card text-center">
                 <div className="card-body">
-                 
                   <div className="client-info">
                     <h5>Client Name</h5>
                     <p>{client.name}</p>

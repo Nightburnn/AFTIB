@@ -11,13 +11,13 @@ const Vcadetails = () => {
 
   const fetchClientAccounts = async (id) => {
     setLoading(true);
-    setLoadingText("Fetching Agent Information");
+    setLoadingText("Fetching client Information");
     try {
       const response = await getUserById(id);
       setClient(response.data);
       console.log("Client Data:", response.data);
     } catch (error) {
-      console.error("Error fetching agent request:", error);
+      console.error("Error fetching Client request:", error);
     } finally {
       setLoading(false);
       setLoadingText("");
