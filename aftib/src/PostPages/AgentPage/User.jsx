@@ -1,35 +1,23 @@
 // AgentUser.js
-import React, { useState, useEffect } from "react";
-import { updateUser, checkSession } from '../../utils/adminOpsRequests'; 
-import "../Account/User.css";
+import React, { useContext, useState } from "react";
+import { updateUser } from "../../utils/adminOpsRequests"; // Adjust the import path as needed
 import { useAuth } from "../../AuthContext";
+import { UserContext } from "./UserContext"; // Adjust the import path as needed
 
-const specialties = [
-  "Buyers Agent",
-  "Consulting",
-  "Insurance",
-  "Vacation",
-  "Staging",
-  "Relocation",
-  "Moving",
-  "Listing Agent",
-  "Property Management",
-  "Other",
-];
+import "../Account/User.css";
 
 const AgentUser = () => {
-  const { user, login, token } = useAuth(); 
-  const [userProfile, setUserProfile] = useState(user || {});
-  const [sessionValid, setSessionValid] = useState(true);
+  const { user, login, token } = useAuth();
+  const { userUpdateObject, setUserUpdateObject } = useContext(UserContext);
 
-  useEffect(() => {
-    const validateSession = async () => {
-      const isValid = await checkSession();
-      setSessionValid(isValid);
-    };
-
-    validateSession();
-  }, []);
+  const [userProfile, setUserProfile] = useState({
+    name: user ? user.name : "",
+    email: user ? user.email : "",
+    mobileNumber: user ? user.mobileNumber : "",
+    gender: user ? user.gender : "",
+    dateOfBirth: user ? user.dateOfBirth : new Date(),
+    address: user ? user.address : "",
+  });
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -39,35 +27,28 @@ const AgentUser = () => {
     }));
   };
 
-  const handleCheckboxChange = (e) => {
-    const { name, checked } = e.target;
-    setUserProfile((prevProfile) => ({
-      ...prevProfile,
-      specialties: {
-        ...prevProfile.specialties,
-        [name]: checked,
-      },
-    }));
-  };
-
   const handleSave = async (e) => {
     e.preventDefault();
+
+    // Update the user update object in the context
+    setUserUpdateObject((prev) => ({
+      ...prev,
+      name: userProfile.name,
+      email: userProfile.email,
+      mobileNumber: userProfile.mobileNumber,
+      gender: userProfile.gender,
+      dateOfBirth: userProfile.dateOfBirth,
+      address: userProfile.address,
+    }));
+
     try {
-      const updatedUser = await updateUser(userProfile, token);
+      const updatedUser = await updateUser(userUpdateObject, token);
       console.log("User updated successfully:", updatedUser);
       login(updatedUser); // Update the user in the Auth context
     } catch (error) {
       console.error("Error updating user:", error);
     }
   };
-
-  if (!sessionValid) {
-    return <div>Session expired. Please log in again.</div>;
-  }
-
-  if (!user) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <div className="user-form-container">
@@ -80,7 +61,7 @@ const AgentUser = () => {
               className="form-control"
               id="name"
               placeholder="Full Name"
-              value={userProfile.name || ""}
+              value={userProfile.name}
               onChange={handleChange}
             />
           </div>
@@ -91,35 +72,9 @@ const AgentUser = () => {
               className="form-control"
               id="email"
               placeholder="Email"
-              value={userProfile.email || ""}
+              value={userProfile.email}
               onChange={handleChange}
               disabled
-            />
-          </div>
-          <div className="form-group col-md-4">
-            <label htmlFor="role">Role</label>
-            <select
-              id="role"
-              className="form-control"
-              value={userProfile.profession}
-              onChange={handleChange}
-            >
-              <option value="real">Real Estate Agent</option>
-              <option value="Disabled">Disabled</option>
-            </select>
-          </div>
-        </div>
-
-        <div className="form-row">
-          <div className="form-group col-md-4">
-            <label htmlFor="phoneNumber">Phone Number</label>
-            <input
-              type="text"
-              className="form-control"
-              id="phoneNumber"
-              placeholder="Phone Number"
-              value={userProfile.mobileNumber || ""}
-              onChange={handleChange}
             />
           </div>
           <div className="form-group col-md-4">
@@ -127,7 +82,7 @@ const AgentUser = () => {
             <select
               id="gender"
               className="form-control"
-              value={userProfile.gender || ""}
+              value={userProfile.gender}
               onChange={handleChange}
             >
               <option value="">Choose...</option>
@@ -136,147 +91,41 @@ const AgentUser = () => {
               <option value="Other">Other</option>
             </select>
           </div>
-          <div className="form-group col-md-4">
-            <label htmlFor="dob">Date of Birth</label>
+        </div>
+
+        <div className="form-row">
+          <div className="form-group col-md-6">
+            <label htmlFor="mobileNumber">Mobile Number</label>
+            <input
+              type="text"
+              className="form-control"
+              id="mobileNumber"
+              placeholder="Mobile Number"
+              value={userProfile.mobileNumber}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group col-md-6">
+            <label htmlFor="dateOfBirth">Date of Birth</label>
             <input
               type="date"
               className="form-control"
-              id="dob"
-              value={userProfile.dob || ""}
+              id="dateOfBirth"
+              value={userProfile.dateOfBirth}
               onChange={handleChange}
             />
           </div>
         </div>
 
         <div className="form-row">
-          <div className="form-group col-md-8">
+          <div className="form-group col-md-12">
             <label htmlFor="address">Address</label>
             <input
               type="text"
               className="form-control"
               id="address"
               placeholder="Address"
-              value={userProfile.address || ""}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="form-group col-md-4">
-            <label htmlFor="landmark">Landmark</label>
-            <input
-              type="text"
-              className="form-control"
-              id="landmark"
-              placeholder="Landmark"
-              value={userProfile.landmark || ""}
-              onChange={handleChange}
-            />
-          </div>
-        </div>
-
-        <div className="form-row">
-          <div className="form-group col-md-4">
-            <label htmlFor="license">Real Estate Agent License</label>
-            <input
-              type="text"
-              className="form-control"
-              id="license"
-              placeholder="License"
-              value={userProfile.license || ""}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="form-group col-md-4">
-            <label htmlFor="licenseNumber">License Number</label>
-            <input
-              type="text"
-              className="form-control"
-              id="licenseNumber"
-              placeholder="License Number"
-              value={userProfile.licenseNumber || ""}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="form-group col-md-4">
-            <label htmlFor="expdate">License Expiration Date</label>
-            <input
-              type="date"
-              className="form-control"
-              id="expdate"
-              value={userProfile.expdate || ""}
-              onChange={handleChange}
-            />
-          </div>
-        </div>
-
-        <div className="form-row">
-          <div className="form-group col-md-12 ">
-            <label>Agent Specialties</label>
-            <div className="specialties-grid mt-2">
-              {specialties.map((specialty, index) => (
-                <div className="form-check" key={index}>
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    name={specialty}
-                    id={specialty}
-                    checked={userProfile.specialties?.[specialty] || false}
-                    onChange={handleCheckboxChange}
-                  />
-                  <span
-                    className="form-check-label checkLabel"
-                    htmlFor={specialty}
-                  >
-                    {specialty}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className="form-row">
-          <div className="form-group col-md-12 d-flex align-items-center">
-            <label htmlFor="facebook" className="col-form-label me-4">
-              Facebook
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="facebook"
-              placeholder="Facebook Account"
-              value={userProfile.facebook || ""}
-              onChange={handleChange}
-            />
-          </div>
-        </div>
-
-        <div className="form-row">
-          <div className="form-group col-md-12 d-flex align-items-center">
-            <label htmlFor="instagram" className="col-form-label me-4">
-              Instagram
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="instagram"
-              placeholder="Instagram Account"
-              value={userProfile.instagram || ""}
-              onChange={handleChange}
-            />
-          </div>
-        </div>
-
-        <div className="form-row">
-          <div className="form-group col-md-12 d-flex align-items-center">
-            <label htmlFor="twitter" className="col-form-label me-4">
-              Twitter
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="twitter"
-              placeholder="Twitter Account"
-              value={userProfile.twitter || ""}
+              value={userProfile.address}
               onChange={handleChange}
             />
           </div>

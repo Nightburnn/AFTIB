@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from "react";
-import ".././Account/Setting.css";
+// AgentSetting.js
+import React, { useContext, useState, useEffect } from "react";
+import "../Account/Setting.css";
 import { useAuth } from "../../AuthContext";
 import csc from "countries-states-cities";
+import { updateUser } from "../../utils/adminOpsRequests"; // Adjust the import path as needed
+import { UserContext } from "./UserContext"; // Adjust the import path as needed
 
 const AgentSetting = () => {
-  const { user } = useAuth();
+  const { user, token } = useAuth();
+  const { userUpdateObject, setUserUpdateObject } = useContext(UserContext);
 
   const [settings, setSettings] = useState({
     accountType: user ? user.accountType : "",
@@ -12,12 +16,8 @@ const AgentSetting = () => {
     language: "English",
     country: "",
     state: "",
-    notification: "On",
-    location: "Disabled",
-    profession: "home",
   });
 
-  // Handle changes in form inputs
   const handleChange = (e) => {
     const { id, value } = e.target;
     setSettings((prevSettings) => ({
@@ -38,7 +38,7 @@ const AgentSetting = () => {
   useEffect(() => {
     if (settings.country) {
       const countryId = countries.find(
-        (country) => country.iso2 === settings.country,
+        (country) => country.iso2 === settings.country
       )?.id;
       if (countryId) {
         const statesData = csc.getStatesOfCountry(countryId);
@@ -48,19 +48,29 @@ const AgentSetting = () => {
     }
   }, [settings.country, countries]);
 
-  // Handle form submission (save changes)
-  const handleSave = (e) => {
+  const handleSave = async (e) => {
     e.preventDefault();
-    // Simulate saving changes - you can replace this with actual API call
-    console.log("Saving settings:", settings);
-    // Update settings state or send API request to save changes
+    
+    setUserUpdateObject((prev) => ({
+      ...prev,
+      password: settings.changePassword,
+      country: settings.country,
+      language: settings.language,
+      state: settings.state
+    }));
+
+    try {
+      const updatedUser = await updateUser(userUpdateObject, token);
+      console.log("User updated successfully:", updatedUser);
+    } catch (error) {
+      console.error("Error updating user:", error);
+    }
   };
 
   return (
     <div className="settings-form-container">
       <form onSubmit={handleSave}>
         <div className="form-row">
-          
           <div className="form-group col-md-6">
             <label htmlFor="changePassword">Change Password</label>
             <input
@@ -81,11 +91,8 @@ const AgentSetting = () => {
               onChange={handleChange}
             >
               <option value="English">English</option>
-             
             </select>
           </div>
-
-          
         </div>
 
         <div className="form-row">
@@ -95,13 +102,7 @@ const AgentSetting = () => {
               id="country"
               className="form-control"
               value={settings.country}
-              onChange={(e) => {
-                handleChange(e);
-                setSettings((prevSettings) => ({
-                  ...prevSettings,
-                  state: "",
-                }));
-              }}
+              onChange={handleChange}
             >
               <option value="">Choose...</option>
               {countries.map((country) => (
@@ -127,10 +128,11 @@ const AgentSetting = () => {
               ))}
             </select>
           </div>
-         
         </div>
 
+
        
+
         <div className="save">
           <button type="submit" className="btn blue">
             Save and Continue
