@@ -97,6 +97,10 @@ const Chatbot = () => {
         "To create an account, go to the signup page and fill out the form with your details. Once you submit the form, you will receive a confirmation email.",
     },
     {
+      keywords: ["one bedroom apartment", "1 bedroom", "single bedroom", "bedroom"],
+      response: "One-bedroom apartments typically range in price. You can browse our listings to find one that suits your needs."
+  },
+    {
       keywords: ["forgot", "reset", "password"],
       response:
         "To reset your password, click on the 'Forgot Password' link on the login page and follow the instructions.",
@@ -177,31 +181,31 @@ const Chatbot = () => {
     },
     {
       keywords: ["house", "houses",  "buy", "property", "apartment", "room"],
-      response: "To find properties, please visit our [Buy Page](inputurl) and use the search feature to specify your location and preferences.",
+      response: "To find properties, please visit our [Buy Page](https://aftib.netlify.app/buy) and use the search feature to specify your location and preferences.",
     },
     {
       keywords: ["rent"],
-      response: "To find properties, please visit our [Rent Page](inputurl) and use the search feature to specify your location and preferences.",
+      response: "To find properties, please visit our [Rent Page](https://aftib.netlify.app/rent) and use the search feature to specify your location and preferences.",
     },
     {
       keywords: ["agent", "contact agent", "real estate agent"],
-      response: "To get in touch with a real estate agent, please visit our [Agent Page](https://aftib.onrender.com/agent-finder) for more information.",
+      response: "To get in touch with a real estate agent, please visit our [Agent Page](https://aftib.netlify.app/agent-finder) for more information.",
     },
     {
       keywords: ["location", "area", "neighborhood", "place"],
-      response: "To search properties by location, please visit our [Buy Page](https://yourwebsite.com/buy) and use the location filter.",
+      response: "To search properties by location, please visit our [Buy Page](https://aftib.netlify.app/buy) and use the location filter.",
     },
     {
       keywords: ["availability", "available properties", "currently available"],
-      response: "To check the availability of properties, please visit our [Buy Page](https://yourwebsite.com/buy) and browse the listings.",
+      response: "To check the availability of properties, please visit our [Buy Page](https://aftib.netlify.app/buy) and browse the listings.",
     },
     {
       keywords: ["schedule", "visit", "tour", "viewing"],
-      response: "To schedule a property viewing, please contact the respective agent through the property listing on our [Buy Page](https://yourwebsite.com/buy).",
+      response: "To schedule a property viewing, please contact the respective agent through the property listing on our [Buy Page](https://aftib.netlify.app/buy).",
     },
     {
       keywords: ["sell", "selling", "list property", "property for sale"],
-      response: "To list your property for sale, please visit our [Sell Page](https://aftib.onrender.com/sell) and follow the instructions or become an agent by signing up as one.",
+      response: "To list your property for sale, please visit our [Sell Page](https://aftib.netlify.app/sell) and follow the instructions or become an agent by signing up as one.",
     },
     {
       keywords: ["submit", "report", "broken", "feature"],
