@@ -1,52 +1,43 @@
 // AgentUser.js
-import React, { useContext, useState } from "react";
-import { updateUser } from "../../utils/adminOpsRequests"; // Adjust the import path as needed
+import React, { useContext, useEffect } from "react";
+import "../Account/User.css";
 import { useAuth } from "../../AuthContext";
 import { UserContext } from "./UserContext"; // Adjust the import path as needed
-
-import "../Account/User.css";
+import { updateUser } from "../../utils/adminOpsRequests"; // Adjust the import path as needed
 
 const AgentUser = () => {
-  const { user, login, token } = useAuth();
+  const { user, token } = useAuth();
   const { userUpdateObject, setUserUpdateObject } = useContext(UserContext);
 
-  const [userProfile, setUserProfile] = useState({
-    name: user ? user.name : "",
-    email: user ? user.email : "",
-    mobileNumber: user ? user.mobileNumber : "",
-    gender: user ? user.gender : "",
-    dateOfBirth: user ? user.dateOfBirth : new Date(),
-    address: user ? user.address : "",
-  });
+  useEffect(() => {
+    if (user) {
+      setUserUpdateObject((prev) => ({
+        ...prev,
+        name: user.name,
+        email: user.email,
+        mobileNumber: user.mobileNumber,
+        gender: user.gender,
+        dateOfBirth: user.dateOfBirth,
+        address: user.address,
+      }));
+    }
+  }, [user, setUserUpdateObject]);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
-    setUserProfile((prevProfile) => ({
-      ...prevProfile,
+    setUserUpdateObject((prev) => ({
+      ...prev,
       [id]: value,
     }));
   };
 
   const handleSave = async (e) => {
     e.preventDefault();
-
-    // Update the user update object in the context
-    setUserUpdateObject((prev) => ({
-      ...prev,
-      name: userProfile.name,
-      email: userProfile.email,
-      mobileNumber: userProfile.mobileNumber,
-      gender: userProfile.gender,
-      dateOfBirth: userProfile.dateOfBirth,
-      address: userProfile.address,
-    }));
-
     try {
       const updatedUser = await updateUser(userUpdateObject, token);
-      console.log("User updated successfully:", updatedUser);
-      login(updatedUser); // Update the user in the Auth context
+      console.log("User profile updated successfully:", updatedUser);
     } catch (error) {
-      console.error("Error updating user:", error);
+      console.error("Error updating user profile:", error);
     }
   };
 
@@ -54,35 +45,38 @@ const AgentUser = () => {
     <div className="user-form-container">
       <form onSubmit={handleSave}>
         <div className="form-row">
-          <div className="form-group col-md-4">
-            <label htmlFor="name">Full Name</label>
+          <div className="form-group col-md-6">
+            <label htmlFor="name">Name</label>
             <input
               type="text"
               className="form-control"
               id="name"
-              placeholder="Full Name"
-              value={userProfile.name}
+              placeholder="Name"
+              value={userUpdateObject.name}
               onChange={handleChange}
             />
           </div>
-          <div className="form-group col-md-4">
+          <div className="form-group col-md-6">
             <label htmlFor="email">Email</label>
             <input
               type="email"
               className="form-control"
               id="email"
               placeholder="Email"
-              value={userProfile.email}
+              value={userUpdateObject.email}
               onChange={handleChange}
               disabled
             />
           </div>
+        </div>
+
+        <div className="form-row">
           <div className="form-group col-md-4">
             <label htmlFor="gender">Gender</label>
             <select
               id="gender"
               className="form-control"
-              value={userProfile.gender}
+              value={userUpdateObject.gender}
               onChange={handleChange}
             >
               <option value="">Choose...</option>
@@ -91,27 +85,24 @@ const AgentUser = () => {
               <option value="Other">Other</option>
             </select>
           </div>
-        </div>
-
-        <div className="form-row">
-          <div className="form-group col-md-6">
+          <div className="form-group col-md4">
             <label htmlFor="mobileNumber">Mobile Number</label>
             <input
               type="text"
               className="form-control"
               id="mobileNumber"
               placeholder="Mobile Number"
-              value={userProfile.mobileNumber}
+              value={userUpdateObject.mobileNumber}
               onChange={handleChange}
             />
           </div>
-          <div className="form-group col-md-6">
+          <div className="form-group col-md-4">
             <label htmlFor="dateOfBirth">Date of Birth</label>
             <input
               type="date"
               className="form-control"
               id="dateOfBirth"
-              value={userProfile.dateOfBirth}
+              value={userUpdateObject.dateOfBirth}
               onChange={handleChange}
             />
           </div>
@@ -125,7 +116,7 @@ const AgentUser = () => {
               className="form-control"
               id="address"
               placeholder="Address"
-              value={userProfile.address}
+              value={userUpdateObject.address}
               onChange={handleChange}
             />
           </div>

@@ -3,8 +3,8 @@ import React, { useContext, useState, useEffect } from "react";
 import "../Account/Setting.css";
 import { useAuth } from "../../AuthContext";
 import csc from "countries-states-cities";
-import { updateUser } from "../../utils/adminOpsRequests"; 
-import { UserContext } from "./UserContext"; 
+import { updateUser } from "../../utils/adminOpsRequests"; // Adjust the import path as needed
+import { UserContext } from "./UserContext"; // Adjust the import path as needed
 
 const AgentSetting = () => {
   const { user, token } = useAuth();
@@ -16,12 +16,17 @@ const AgentSetting = () => {
     language: "English",
     country: "",
     state: "",
+    
   });
 
   const handleChange = (e) => {
     const { id, value } = e.target;
     setSettings((prevSettings) => ({
       ...prevSettings,
+      [id]: value,
+    }));
+    setUserUpdateObject((prev) => ({
+      ...prev,
       [id]: value,
     }));
   };
@@ -32,7 +37,6 @@ const AgentSetting = () => {
   useEffect(() => {
     const allCountries = csc.getAllCountries();
     setCountries(allCountries);
-    console.log("All Countries:", allCountries);
   }, []);
 
   useEffect(() => {
@@ -43,24 +47,14 @@ const AgentSetting = () => {
       if (countryId) {
         const statesData = csc.getStatesOfCountry(countryId);
         setStates(statesData);
-        console.log("States for Selected Country:", statesData);
       }
     }
   }, [settings.country, countries]);
 
   const handleSave = async (e) => {
     e.preventDefault();
-    
-    setUserUpdateObject((prev) => ({
-      ...prev,
-      password: settings.changePassword,
-      country: settings.country,
-      language: settings.language,
-      state: settings.state
-    }));
-
     try {
-      const updatedUser = await updateUser(userUpdateObject, token);
+      const updatedUser = await updateUser({ ...userUpdateObject, password: settings.changePassword }, token);
       console.log("User updated successfully:", updatedUser);
     } catch (error) {
       console.error("Error updating user:", error);
@@ -122,7 +116,7 @@ const AgentSetting = () => {
             >
               <option value="">Choose...</option>
               {states.map((state) => (
-                <option key={state.id} value={state.id}>
+                <option key={state.iso2} value={state.iso2}>
                   {state.name}
                 </option>
               ))}
@@ -130,9 +124,7 @@ const AgentSetting = () => {
           </div>
         </div>
 
-
-       
-
+        
         <div className="save">
           <button type="submit" className="btn blue">
             Save and Continue

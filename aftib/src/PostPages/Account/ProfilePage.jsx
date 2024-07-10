@@ -31,8 +31,8 @@ const ProfilePage = () => {
         case "client":
           return (
             <>
-              {activeTab === "user" && <User />}
-              {activeTab === "settings" && <Setting />}
+              {activeTab === "user" && <AgentUser />}
+              {activeTab === "settings" && <AgentSetting />}
             </>
           );
         case "agent":
@@ -45,7 +45,7 @@ const ProfilePage = () => {
         case "admin":
           return (
             <>
-              {activeTab === "user" && <AdminProfile />}
+              {activeTab === "user" && <AgentUser />}
               {activeTab === "settings" && <AgentSetting />}
             </>
           );

@@ -9,7 +9,7 @@ export const UserProvider = ({ children }) => {
     email: "",
     mobileNumber: "",
     gender: "",
-    dateOfBirth: new Date(),
+    dateOfBirth: "",
     address: "",
     password: "",
     country: "",
