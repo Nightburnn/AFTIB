@@ -404,7 +404,7 @@ export const sendContactForm = async (name, email, message) => {
 export const updateUser = async (userData) => {
   try {
     const response = await axios.put(
-      `${API_BASE_URL}/update-user`,
+      `${API_BASE_URL}/auth/update-user`,
       userData,
       {
         headers: {
