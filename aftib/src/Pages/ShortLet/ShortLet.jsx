@@ -169,14 +169,14 @@ const Shortlet = () => {
               <div>
                 {showResults ? (
                   <div className="row g-4">
-                    <div>Showing Filtered Result</div>
+                    <div className="d-none">Showing Filtered Result</div>
                     {filteredProperties.map((x,index) => (
                       <PropertyCard key={index} property={x} />
                     ))}
                   </div>
                 ) : (
                   <div className="row g-4">
-                    <div>Showing the default properties</div>
+                    <div className="d-none">Showing the default properties</div>
                     {properties.map((x,index) => (
                       <PropertyCard key={index} property={x} />
                     ))}
