@@ -3,8 +3,8 @@ import React, { useContext, useState, useEffect } from "react";
 import "../Account/Setting.css";
 import { useAuth } from "../../AuthContext";
 import csc from "countries-states-cities";
-import { updateUser } from "../../utils/adminOpsRequests"; // Adjust the import path as needed
-import { UserContext } from "./UserContext"; // Adjust the import path as needed
+import { updateUser } from "../../utils/adminOpsRequests"; 
+import { UserContext } from "./UserContext"; 
 
 const AgentSetting = () => {
   const { user, token } = useAuth();
