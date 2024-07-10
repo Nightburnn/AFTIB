@@ -176,20 +176,20 @@ const Chatbot = () => {
         "To report an error in the app, use the feedback feature or contact our support team.",
     },
     {
-      keywords: ["house", "houses", "rent", "buy", "property", "apartment", "room"],
+      keywords: ["house", "houses",  "buy", "property", "apartment", "room"],
       response: "To find properties, please visit our [Buy Page](inputurl) and use the search feature to specify your location and preferences.",
     },
     {
+      keywords: ["rent"],
+      response: "To find properties, please visit our [Rent Page](inputurl) and use the search feature to specify your location and preferences.",
+    },
+    {
       keywords: ["agent", "contact agent", "real estate agent"],
-      response: "To get in touch with a real estate agent, please visit our [Agent Page](https://yourwebsite.com/agents) for more information.",
+      response: "To get in touch with a real estate agent, please visit our [Agent Page](https://aftib.onrender.com/agent-finder) for more information.",
     },
     {
       keywords: ["location", "area", "neighborhood", "place"],
       response: "To search properties by location, please visit our [Buy Page](https://yourwebsite.com/buy) and use the location filter.",
-    },
-    {
-      keywords: ["mortgage", "loan", "finance", "payment plan"],
-      response: "For information on financing options and mortgage plans, please visit our [Financing Page](https://yourwebsite.com/financing).",
     },
     {
       keywords: ["availability", "available properties", "currently available"],
@@ -201,7 +201,7 @@ const Chatbot = () => {
     },
     {
       keywords: ["sell", "selling", "list property", "property for sale"],
-      response: "To list your property for sale, please visit our [Sell Page](https://yourwebsite.com/sell) and follow the instructions or become an agent by signing up as one.",
+      response: "To list your property for sale, please visit our [Sell Page](https://aftib.onrender.com/sell) and follow the instructions or become an agent by signing up as one.",
     },
     {
       keywords: ["submit", "report", "broken", "feature"],
