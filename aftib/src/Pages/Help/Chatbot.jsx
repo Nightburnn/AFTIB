@@ -284,6 +284,22 @@ const Chatbot = () => {
     ]);
   };
 
+  const renderMessageText = (text) => {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.split(urlRegex).map((part, index) => {
+      if (part.match(urlRegex)) {
+        return (
+          <a key={index} href={part} target="_blank" rel="noopener noreferrer" className="linkto">
+            {part}
+          </a>
+        );
+      } else {
+        return part;
+      }
+    });
+  };
+
+
   return (
     <div>
       <button className="chatbot-toggler" onClick={toggleChatbot}>
@@ -314,7 +330,7 @@ const Chatbot = () => {
                 {message.type === "incoming" && (
                   <span className="material-symbols-outlined">smart_toy</span>
                 )}
-                <p>{message.text}</p>
+                <p>{renderMessageText(message.text)}</p>
               </li>
             ))}
           </ul>

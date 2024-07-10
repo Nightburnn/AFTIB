@@ -1,13 +1,16 @@
 // AgentUser.js
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../Account/User.css";
 import { useAuth } from "../../AuthContext";
-import { UserContext } from "./UserContext"; // Adjust the import path as needed
-import { updateUser } from "../../utils/adminOpsRequests"; // Adjust the import path as needed
+import { UserContext } from "./UserContext"; 
+import { updateUser } from "../../utils/adminOpsRequests"; 
+import Modal from "../../Components/PropertyDetails/Modal";
 
 const AgentUser = () => {
   const { user, token } = useAuth();
   const { userUpdateObject, setUserUpdateObject } = useContext(UserContext);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
 
   useEffect(() => {
     if (user) {
@@ -36,9 +39,15 @@ const AgentUser = () => {
     try {
       const updatedUser = await updateUser(userUpdateObject, token);
       console.log("User profile updated successfully:", updatedUser);
+      setModalMessage("Your profile has been updated. Please log in again to sync changes.");
+      setModalIsOpen(true);
     } catch (error) {
       console.error("Error updating user profile:", error);
     }
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
   };
 
   return (
@@ -85,7 +94,7 @@ const AgentUser = () => {
               <option value="Other">Other</option>
             </select>
           </div>
-          <div className="form-group col-md4">
+          <div className="form-group col-md-4">
             <label htmlFor="mobileNumber">Mobile Number</label>
             <input
               type="text"
@@ -128,6 +137,7 @@ const AgentUser = () => {
           </button>
         </div>
       </form>
+      <Modal isOpen={modalIsOpen} message={modalMessage} onClose={closeModal} />
     </div>
   );
 };

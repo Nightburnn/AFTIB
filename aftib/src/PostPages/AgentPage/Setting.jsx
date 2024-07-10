@@ -5,10 +5,13 @@ import { useAuth } from "../../AuthContext";
 import csc from "countries-states-cities";
 import { updateUser } from "../../utils/adminOpsRequests"; // Adjust the import path as needed
 import { UserContext } from "./UserContext"; // Adjust the import path as needed
+import Modal from "../../Components/PropertyDetails/Modal";
 
 const AgentSetting = () => {
   const { user, token } = useAuth();
   const { userUpdateObject, setUserUpdateObject } = useContext(UserContext);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
 
   const [settings, setSettings] = useState({
     accountType: user ? user.accountType : "",
@@ -56,11 +59,17 @@ const AgentSetting = () => {
     try {
       const updatedUser = await updateUser({ ...userUpdateObject, password: settings.changePassword }, token);
       console.log("User updated successfully:", updatedUser);
+      setModalMessage("Your profile has been updated. Please log in again to sync changes.");
+      setModalIsOpen(true);
     } catch (error) {
       console.error("Error updating user:", error);
     }
   };
 
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
   return (
     <div className="settings-form-container">
       <form onSubmit={handleSave}>
@@ -131,6 +140,8 @@ const AgentSetting = () => {
           </button>
         </div>
       </form>
+      <Modal isOpen={modalIsOpen} message={modalMessage} onClose={closeModal} />
+
     </div>
   );
 };
