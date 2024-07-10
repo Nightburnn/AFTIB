@@ -12,7 +12,7 @@ const Setting = () => {
     email: user.email || "",
     mobileNumber: user.mobileNumber || "",
     gender: user.gender || "",
-    dateOfBirth: user.dateOfBirth || new Date().toISOString().split('T')[0], // Ensure it's in the correct format
+    dateOfBirth: user.dateOfBirth || new Date(), // Ensure it's in the correct format
     address: user.address || "",
     password: "", // Leave empty if not changing the password
     country: user.country || "",
@@ -53,7 +53,6 @@ const Setting = () => {
   const handleSave = async (e) => {
     e.preventDefault();
     const updatedUserSettings = {
-      ...user,
       password: settings.changePassword,
       language: settings.language,
       country: settings.country,
