@@ -21,7 +21,7 @@ export const requestAgencyStatus = async (data) => {
 };
 
 // Update passport photo
-export const updateAgencyStatusPassport = async (formData, token) => {
+export const updateAgencyStatusPassport = async (formData) => {
   let token = window.localStorage.getItem("accessToken");
   try {
     const response = await axios.post(

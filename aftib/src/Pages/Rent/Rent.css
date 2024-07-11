@@ -46,6 +46,11 @@
   font-weight: 800;
 }
 
+.none{
+  display: none;
+}
+
+
 .plisting-head {
   display: flex;
   align-items: center;
