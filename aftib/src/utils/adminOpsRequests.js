@@ -4,7 +4,8 @@ let API_BASE_URL = "https://aftib-6o3h.onrender.com";
 //API_BASE_URL = localhostAddr
 let token = window.localStorage.getItem("accessToken");
 // Initialize agent status request 
-export const requestAgencyStatus = async (data, token) => {
+export const requestAgencyStatus = async (data) => {
+  let token = window.localStorage.getItem("accessToken");
   try {
     const response = await axios.post(
       `${API_BASE_URL}/request-agency-status`,
@@ -21,6 +22,7 @@ export const requestAgencyStatus = async (data, token) => {
 
 // Update passport photo
 export const updateAgencyStatusPassport = async (formData, token) => {
+  let token = window.localStorage.getItem("accessToken");
   try {
     const response = await axios.post(
       `${API_BASE_URL}/update-agency-status-passport`,
@@ -40,6 +42,7 @@ export const updateAgencyStatusPassport = async (formData, token) => {
 
 // Update issued ID photo
 export const updateAgencyStatusIssuedId = async (formData, token) => {
+  let token = window.localStorage.getItem("accessToken");
   try {
     const response = await axios.post(
       `${API_BASE_URL}/update-agency-status-issuedId`,
@@ -59,6 +62,7 @@ export const updateAgencyStatusIssuedId = async (formData, token) => {
 
 // Update the text fields of the agent status
 export const updateAgencyStatus = async (data, token) => {
+  let token = window.localStorage.getItem("accessToken");
   try {
     const response = await axios.put(
       `${API_BASE_URL}/update-agency-status`,
@@ -121,6 +125,7 @@ export const searchForAgents = async ({ location }) => {
 
 // function to approve request.
 export const approveRequest = async (requestId, token) => {
+  let token = window.localStorage.getItem("accessToken");
   // id of the item to be approved.
   try {
     const response = await axios.put(
@@ -142,6 +147,7 @@ export const approveRequest = async (requestId, token) => {
 
 // function to approve request.
 export const rejectRequest = async (requestId, token, message) => {
+  let token = window.localStorage.getItem("accessToken");
   // id of the item to be approved.
   try {
     const response = await axios.put(
@@ -163,6 +169,7 @@ export const rejectRequest = async (requestId, token, message) => {
 
 export const getAgencyRequestById = async (id) => {
   let url = `${API_BASE_URL}/get-agency-request/${id}`;
+  let token = window.localStorage.getItem("accessToken");
   try {
     const response = await axios.get(url, {
       headers: {
@@ -178,7 +185,7 @@ export const getAgencyRequestById = async (id) => {
 
 export const getAgencyRequestByToken = async (id) => {
   let url = `${API_BASE_URL}/get-agency-request-by-token`;
-  console.log({ token });
+  let token = window.localStorage.getItem("accessToken");
   try {
     const response = await axios.get(url, {
       headers: {
@@ -204,6 +211,7 @@ export const fetchUnapprovedListings = async () => {
 };
 
 export const removeListingImages = async (listingId, toBeRemoved) => {
+  let token = window.localStorage.getItem("accessToken");
   try {
     const response = await axios.put(
       `${API_BASE_URL}/${listingId}`,
@@ -234,6 +242,7 @@ export const fetchListingById = async (id) => {
 
 export const approveListing = async (id, token) => {
   let url = `${API_BASE_URL}/listing/approveListing/${id}`;
+  let token = window.localStorage.getItem("accessToken");
 
   try {
     const response = await axios.put(
@@ -264,6 +273,7 @@ export const fetchUnapprovedHotels = async (page = 1) => {
   }
 };
 export const approveHotel = async (hotelId, token) => {
+  let token = window.localStorage.getItem("accessToken");
   try {
     const response = await axios.put(
       `${API_BASE_URL}/hotels/approve/${hotelId}`,
@@ -281,6 +291,7 @@ export const approveHotel = async (hotelId, token) => {
   }
 };
 export const rejectHotel = async (hotelId, token, message) => {
+  let token = window.localStorage.getItem("accessToken");
   try {
     const response = await axios.put(
       `${API_BASE_URL}//hotels/reject/${hotelId}?message=${message}`,
@@ -403,6 +414,7 @@ export const sendContactForm = async (name, email, message) => {
 }
 
 export const updateUser = async (userData) => {
+  let token = window.localStorage.getItem("accessToken");
   try {
     const response = await axios.put(
       `${API_BASE_URL}/auth/update-user`,
