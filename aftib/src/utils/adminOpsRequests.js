@@ -41,7 +41,7 @@ export const updateAgencyStatusPassport = async (formData) => {
 };
 
 // Update issued ID photo
-export const updateAgencyStatusIssuedId = async (formData, token) => {
+export const updateAgencyStatusIssuedId = async (formData) => {
   let token = window.localStorage.getItem("accessToken");
   try {
     const response = await axios.post(
@@ -61,7 +61,7 @@ export const updateAgencyStatusIssuedId = async (formData, token) => {
 };
 
 // Update the text fields of the agent status
-export const updateAgencyStatus = async (data, token) => {
+export const updateAgencyStatus = async (data) => {
   let token = window.localStorage.getItem("accessToken");
   try {
     const response = await axios.put(
@@ -124,7 +124,7 @@ export const searchForAgents = async ({ location }) => {
 };
 
 // function to approve request.
-export const approveRequest = async (requestId, token) => {
+export const approveRequest = async (requestId) => {
   let token = window.localStorage.getItem("accessToken");
   // id of the item to be approved.
   try {
@@ -146,7 +146,7 @@ export const approveRequest = async (requestId, token) => {
 };
 
 // function to approve request.
-export const rejectRequest = async (requestId, token, message) => {
+export const rejectRequest = async (requestId, message) => {
   let token = window.localStorage.getItem("accessToken");
   // id of the item to be approved.
   try {
@@ -240,7 +240,7 @@ export const fetchListingById = async (id) => {
   }
 };
 
-export const approveListing = async (id, token) => {
+export const approveListing = async (id) => {
   let url = `${API_BASE_URL}/listing/approveListing/${id}`;
   let token = window.localStorage.getItem("accessToken");
 
@@ -272,7 +272,7 @@ export const fetchUnapprovedHotels = async (page = 1) => {
     throw error;
   }
 };
-export const approveHotel = async (hotelId, token) => {
+export const approveHotel = async (hotelId) => {
   let token = window.localStorage.getItem("accessToken");
   try {
     const response = await axios.put(
@@ -290,7 +290,7 @@ export const approveHotel = async (hotelId, token) => {
     throw error;
   }
 };
-export const rejectHotel = async (hotelId, token, message) => {
+export const rejectHotel = async (hotelId, message) => {
   let token = window.localStorage.getItem("accessToken");
   try {
     const response = await axios.put(

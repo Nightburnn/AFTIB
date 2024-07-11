@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import sell1 from "../../assets/images/sell1.png";
 import sell3 from "../../assets/images/sell3.png";
-import sh1 from "../../assets/images/sh1.png";
-import sh2 from "../../assets/images/sh2.png";
 import why1 from "../../assets/images/why1.png";
 import why2 from "../../assets/images/why2.png";
 import why3 from "../../assets/images/why3.png";
-import sh3 from "../../assets/images/sh3.png";
 import { Link } from "react-router-dom";
 
 
