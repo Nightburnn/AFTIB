@@ -336,6 +336,7 @@ const Listing = () => {
                 id="title"
                 value={formValues.title}
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="form-group row mb-3">
@@ -351,6 +352,7 @@ const Listing = () => {
                   id="description"
                   value={formValues.description}
                   onChange={handleChange}
+                  required
                 ></textarea>
               </div>
               <div className="col-sm-12">
@@ -363,6 +365,8 @@ const Listing = () => {
                   id="saleType"
                   value={formValues.saleType}
                   onChange={handleChange}
+                  required
+                  
                 >
                   <option>Select Option</option>
                   <option>For Sale</option>
@@ -405,6 +409,7 @@ const Listing = () => {
                   id="size"
                   value={formValues.size}
                   onChange={handleChange}
+                  required
                 />
               </div>
             </div>
@@ -418,6 +423,7 @@ const Listing = () => {
                   id="bedrooms"
                   value={formValues.bedrooms}
                   onChange={handleChange}
+                  required
                 >
                   <option>Select Option</option>
                   <option>1</option>
@@ -438,6 +444,7 @@ const Listing = () => {
                   id="bathrooms"
                   value={formValues.bathrooms}
                   onChange={handleChange}
+                  required
                 >
                   <option>Select Option</option>
                   <option>1</option>
@@ -492,6 +499,7 @@ const Listing = () => {
                   id="propertyStatus"
                   value={formValues.propertyStatus}
                   onChange={handleChange}
+                  required
                 >
                   <option>Available</option>
                   <option>Rented</option>
@@ -519,6 +527,7 @@ const Listing = () => {
                       id="price"
                       value={formValues.price}
                       onChange={handleChange}
+                      required
                     />
                   </div>
                 )) ||
@@ -535,6 +544,7 @@ const Listing = () => {
                         id="monthlyRentPayment"
                         value={formValues.monthlyRentPayment}
                         onChange={handleChange}
+                        required
                       />
                     </div>
                   )) ||
@@ -551,6 +561,7 @@ const Listing = () => {
                         id="dailyShortLetPrice"
                         value={formValues.dailyShortLetPrice}
                         onChange={handleChange}
+                        required
                       />
                     </div>
                   ))}
@@ -609,6 +620,7 @@ const Listing = () => {
                     id="location"
                     value={formValues.location}
                     onChange={handleChange}
+                    required
                   />
                 </div>
                 <div className="col-sm-6 mb-2">
@@ -633,6 +645,7 @@ const Listing = () => {
                     id="LGA"
                     value={formValues.LGA}
                     onChange={handleChange}
+                    required
                   >
                     {nigerianStateData[formValues.state].map((x) => {
                       return <option>{x}</option>;
@@ -654,6 +667,7 @@ const Listing = () => {
                     id="ownerName"
                     value={formValues.ownerName}
                     onChange={handleChange}
+                    required
                   />
                 </div>
                 <div className="col-sm-6">
@@ -665,6 +679,7 @@ const Listing = () => {
                     id="ownerPhone"
                     value={formValues.ownerPhone}
                     onChange={handleChange}
+                    required
                   />
                 </div>
                 <div className="col-sm-6 mb-2">
@@ -676,6 +691,7 @@ const Listing = () => {
                     id="ownerEmail"
                     value={formValues.ownerEmail}
                     onChange={handleChange}
+                    required
                   />
                 </div>
               </div>

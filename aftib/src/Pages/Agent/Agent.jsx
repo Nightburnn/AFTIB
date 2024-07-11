@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import agent from "../../assets/images/agent.png";
 import { Link } from "react-router-dom";
 import "./Agent.css";
-import AgentsSection from "./AgentsSection";
 import { searchForAgents } from "../../utils/adminOpsRequests";
 import { fetchAapprovedAgents } from "../../utils/adminOpsRequests";
 import AgentCard from "./AgentCard";
