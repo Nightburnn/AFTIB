@@ -1,10 +1,17 @@
-import React, { useState, useEffect } from "react";
-import ".././Account/Setting.css";
+// AgentSetting.js
+import React, { useContext, useState, useEffect } from "react";
+import "../Account/Setting.css";
 import { useAuth } from "../../AuthContext";
 import csc from "countries-states-cities";
+import { updateUser } from "../../utils/adminOpsRequests"; // Adjust the import path as needed
+import { UserContext } from "./UserContext"; // Adjust the import path as needed
+import Modal from "../../Components/PropertyDetails/Modal";
 
 const AgentSetting = () => {
-  const { user } = useAuth();
+  const { user, token } = useAuth();
+  const { userUpdateObject, setUserUpdateObject } = useContext(UserContext);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
 
   const [settings, setSettings] = useState({
     accountType: user ? user.accountType : "",
@@ -12,16 +19,17 @@ const AgentSetting = () => {
     language: "English",
     country: "",
     state: "",
-    notification: "On",
-    location: "Disabled",
-    profession: "home",
+    
   });
 
-  // Handle changes in form inputs
   const handleChange = (e) => {
     const { id, value } = e.target;
     setSettings((prevSettings) => ({
       ...prevSettings,
+      [id]: value,
+    }));
+    setUserUpdateObject((prev) => ({
+      ...prev,
       [id]: value,
     }));
   };
@@ -32,35 +40,40 @@ const AgentSetting = () => {
   useEffect(() => {
     const allCountries = csc.getAllCountries();
     setCountries(allCountries);
-    console.log("All Countries:", allCountries);
   }, []);
 
   useEffect(() => {
     if (settings.country) {
       const countryId = countries.find(
-        (country) => country.iso2 === settings.country,
+        (country) => country.iso2 === settings.country
       )?.id;
       if (countryId) {
         const statesData = csc.getStatesOfCountry(countryId);
         setStates(statesData);
-        console.log("States for Selected Country:", statesData);
       }
     }
   }, [settings.country, countries]);
 
-  // Handle form submission (save changes)
-  const handleSave = (e) => {
+  const handleSave = async (e) => {
     e.preventDefault();
-    // Simulate saving changes - you can replace this with actual API call
-    console.log("Saving settings:", settings);
-    // Update settings state or send API request to save changes
+    try {
+      const updatedUser = await updateUser({ ...userUpdateObject, password: settings.changePassword }, token);
+      console.log("User updated successfully:", updatedUser);
+      setModalMessage("Your profile has been updated. Please log in again to sync changes.");
+      setModalIsOpen(true);
+    } catch (error) {
+      console.error("Error updating user:", error);
+    }
   };
 
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
   return (
     <div className="settings-form-container">
       <form onSubmit={handleSave}>
         <div className="form-row">
-          
           <div className="form-group col-md-6">
             <label htmlFor="changePassword">Change Password</label>
             <input
@@ -81,11 +94,8 @@ const AgentSetting = () => {
               onChange={handleChange}
             >
               <option value="English">English</option>
-             
             </select>
           </div>
-
-          
         </div>
 
         <div className="form-row">
@@ -95,13 +105,7 @@ const AgentSetting = () => {
               id="country"
               className="form-control"
               value={settings.country}
-              onChange={(e) => {
-                handleChange(e);
-                setSettings((prevSettings) => ({
-                  ...prevSettings,
-                  state: "",
-                }));
-              }}
+              onChange={handleChange}
             >
               <option value="">Choose...</option>
               {countries.map((country) => (
@@ -121,22 +125,23 @@ const AgentSetting = () => {
             >
               <option value="">Choose...</option>
               {states.map((state) => (
-                <option key={state.id} value={state.id}>
+                <option key={state.iso2} value={state.iso2}>
                   {state.name}
                 </option>
               ))}
             </select>
           </div>
-         
         </div>
 
-       
+        
         <div className="save">
           <button type="submit" className="btn blue">
             Save and Continue
           </button>
         </div>
       </form>
+      <Modal isOpen={modalIsOpen} message={modalMessage} onClose={closeModal} />
+
     </div>
   );
 };

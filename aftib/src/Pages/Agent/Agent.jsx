@@ -112,7 +112,7 @@ const Agent = () => {
             <div className="title-wrap d-flex justify-content-between mb-3">
               <div className="title-box">
                 <h2 className="title-a">Aftib Agents</h2>
-                {showDefault? <div>Showing All agents</div>: <div>Showing Location Search results for <b>"{searchQuery}"</b> <button onClick={()=>{setShowCertifiedAgent(true);setShowDefault(true)}} className="btn btn-primary">Clear Search</button></div>}
+                {showDefault? <div className="d-none">Showing All agents</div>: <div className="d-none">Showing Location Search results for <b>"{searchQuery}"</b> <button onClick={()=>{setShowCertifiedAgent(true);setShowDefault(true)}} className="btn btn-primary">Clear Search</button></div>}
               </div>
             </div>
           </div>

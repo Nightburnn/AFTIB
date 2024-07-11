@@ -46,26 +46,17 @@ const About = () => {
                 </SwiperSlide>
                 <SwiperSlide>
                   <p>
-                    Welcome to Aftib, your trusted partner in real estate. We
-                    specialize in providing exceptional property services,
-                    helping you find the perfect home, investment property, or
-                    commercial space that meets your unique needs.
+                  At Aftib, we pride ourselves on our commitment to excellence. Our experienced team of real estate professionals is dedicated to offering personalized services tailored to your specific requirements. From the initial consultation to the final closing, we are with you every step of the way, ensuring a seamless and satisfying experience.
                   </p>
                 </SwiperSlide>
                 <SwiperSlide>
                   <p>
-                    Welcome to Aftib, your trusted partner in real estate. We
-                    specialize in providing exceptional property services,
-                    helping you find the perfect home, investment property, or
-                    commercial space that meets your unique needs.
+                  Our success is built on the strong relationships we form with our clients. We believe in open communication, transparency, and integrity in all our dealings. Your satisfaction is our top priority, and we strive to exceed your expectations by delivering outstanding results.
                   </p>
                 </SwiperSlide>
                 <SwiperSlide>
                   <p>
-                    Welcome to Aftib, your trusted partner in real estate. We
-                    specialize in providing exceptional property services,
-                    helping you find the perfect home, investment property, or
-                    commercial space that meets your unique needs.
+                  As the real estate landscape evolves, Aftib remains at the forefront of industry trends. We continuously adapt our strategies to ensure we provide the best possible services. Our forward-thinking approach ensures that we are always prepared to meet the changing needs of our clients.
                   </p>
                 </SwiperSlide>
               </Swiper>
