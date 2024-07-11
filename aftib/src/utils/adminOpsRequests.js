@@ -18,7 +18,7 @@ export const requestAgencyStatus = async (data) => {
   } catch (error) {
     throw new Error(error.response.data.error);
   }
-};
+}
 
 // Update passport photo
 export const updateAgencyStatusPassport = async (formData) => {

@@ -251,7 +251,7 @@ const Listing = () => {
       setLoadingText("Adding images");
       // Make an Axios POST request to the add listing image endpoint
       const result = await axios.put(
-        `https://aftib-6o3h.onrender.com/listing/addListingImages/${edit? id: addListing.data._id}`,
+        `https://aftib-6o3h.onrender.com/listing/addListingImages/${edit? id: addListing.data.listing._id}`,
         formData,
         {
           headers: {
