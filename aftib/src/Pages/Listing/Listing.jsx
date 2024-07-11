@@ -9,7 +9,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { checkRequiredData } from "../../utils/processListing";
 import { fetchListingById } from "../../utils/adminOpsRequests";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 import { Modal } from "antd";
 delete L.Icon.Default.prototype._getIconUrl;
@@ -184,10 +183,19 @@ const Listing = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    const numericValue = value.replace(/,/g, ''); // Remove existing commas
+    const formattedValue = formatCurrency(numericValue);
     setFormValues({
       ...formValues,
-      [name]: value,
+      [name]: formattedValue,
     });
+  };
+
+  const formatCurrency = (number) => {
+    if (!number) return '';
+    const [integer, decimal] = number.split('.');
+    const formattedInteger = integer.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return decimal ? `${formattedInteger}.${decimal.slice(0, 2)}` : formattedInteger;
   };
 
   async function submitForm() {
@@ -520,7 +528,7 @@ const Listing = () => {
                       How much is this property (Naira){" "}
                     </label>
                     <input
-                      type="number"
+                      type="text"
                       className="form-control"
                       placeholder="Price"
                       name="price"
@@ -537,7 +545,7 @@ const Listing = () => {
                         Monthly Rent Price
                       </label>
                       <input
-                        type="number"
+                        type="text"
                         className="form-control"
                         placeholder="Monthly Rent Payment"
                         name="monthlyRentPayment"
@@ -554,7 +562,7 @@ const Listing = () => {
                         Daily Short Let Price
                       </label>
                       <input
-                        type="number"
+                        type="text"
                         className="form-control"
                         placeholder="Daily Short Let Price"
                         name="dailyShortLetPrice"

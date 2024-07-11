@@ -39,6 +39,16 @@ export const RoomForm = ({
     }
   };
 
+  const formatPrice = (value) => {
+    return value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
+  const handlePriceChange = (e) => {
+    const { value } = e.target;
+    const numericValue = value.replace(/,/g, '');
+    onChange("price")({ target: { value: numericValue } });
+  };
+
   const handleAmenityDelete = (index) => {
     const newAmenities = amenities.filter((_, i) => i !== index);
     updateAmenities(room.roomId, newAmenities);
@@ -98,11 +108,11 @@ export const RoomForm = ({
       <div className="form-group mb-3">
         <label className="form-label mb-1">Price Per Night</label>
         <input
-          type="number"
+          type="text"
           className="form-control"
           placeholder="Price"
-          value={room.price}
-          onChange={onChange("price")}
+          value={formatPrice(room.price)}
+          onChange={handlePriceChange}
         />
       </div>
 
