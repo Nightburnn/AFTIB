@@ -35,7 +35,11 @@ const Listing = () => {
   };
   const handleOk = () => {
     setShowModal(false);
-    navigate("/agent-dashboard");
+    if (is404Error) {
+      navigate(agentRegistrationUrl); // Redirect to agent registration
+    } else {
+      navigate("/agent-dashboard"); // Redirect to agent dashboard
+    }
   };
   const handleCancel = () => {
     setShowModal(false);
@@ -94,6 +98,9 @@ const Listing = () => {
   let [showModal, setShowModal] = useState(false);
   let [modalTitle, setModalTitle] = useState("");
   let [modalBody, setModalBody] = useState("");
+  const [is404Error, setIs404Error] = useState(false);
+
+  const agentRegistrationUrl = '/agent-registration';
   
   let { setLoading, setLoadingText } = useLoading();
   let imageInput = useRef(null);
@@ -183,21 +190,26 @@ const Listing = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    const numericValue = value.replace(/,/g, ''); // Remove existing commas
-    const formattedValue = formatCurrency(numericValue);
+    let formattedValue = value;
+  
+    if (name === 'price' || name === 'monthlyRentPayment' || name === 'dailyShortLetPrice') {
+      const numericValue = value.replace(/,/g, ''); // Remove existing commas
+      formattedValue = formatCurrency(numericValue);
+    }
+  
     setFormValues({
       ...formValues,
       [name]: formattedValue,
     });
   };
-
+  
   const formatCurrency = (number) => {
     if (!number) return '';
     const [integer, decimal] = number.split('.');
     const formattedInteger = integer.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     return decimal ? `${formattedInteger}.${decimal.slice(0, 2)}` : formattedInteger;
   };
-
+  
   async function submitForm() {
     // this function only checks the required values and make sure that they have been filled
     let validate = checkRequiredData({ ...formValues });
@@ -277,12 +289,20 @@ const Listing = () => {
       console.log("Images uploaded successfully", result.data);
     } catch (err) {
       console.error(err.message);
-      setModalTitle("Error Occured");
-      setModalBody(err.message);
+      if (err.response && err.response.status === 404) {
+        setModalTitle("Error Occurred");
+        setModalBody("Please fill the Agent registration form to be able to create a listing.");
+        setIs404Error(true);
+            } else {
+        setModalTitle("Error Occurred");
+        setModalBody(err.message);
+        setIs404Error(false);
+        
+      }
     } finally {
       setTimeout(() => {
         setLoading(false);
-        setShowModal(true)
+        setShowModal(true);
       }, 3000);
     }
   }

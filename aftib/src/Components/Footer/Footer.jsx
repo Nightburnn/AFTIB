@@ -129,6 +129,7 @@ const Footer = () => {
         <div className="signupPost">
           <div className="col socials">
             <div className="">
+              <h5>Contact Us</h5>
              <a href="https://www.instagram.com/aftibrealestate/"> <i className="bi bi-instagram"></i></a>
              <a href=" https://www.facebook.com/profile.php?id=61560879570798&mibextid=ZbWKwL"><i className="bi bi-facebook"></i></a> 
               <i className="bi bi-whatsapp"></i>
