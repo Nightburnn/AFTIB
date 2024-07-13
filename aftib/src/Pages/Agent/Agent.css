@@ -32,6 +32,8 @@
   font-weight: 500;
 }
 
+
+
 .contact-icon i {
   margin-right: 9px;
 }
@@ -54,4 +56,5 @@
   .agent-title {
     margin-left: 0;
   }
+ 
 }

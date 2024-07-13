@@ -5,7 +5,6 @@ import "./Agent.css";
 import { searchForAgents } from "../../utils/adminOpsRequests";
 import { fetchAapprovedAgents } from "../../utils/adminOpsRequests";
 import AgentCard from "./AgentCard";
-import { useLoading } from "../../Components/LoadingContext";
 
 const Agent = () => {
   const [agents, setAgents] = useState([]);
@@ -13,13 +12,11 @@ const Agent = () => {
   const [showCertifiedAgent, setShowCertifiedAgent] = useState(true);
   const [searchQuery, setSearchQuery] = useState("")
   const [showDefault,setShowDefault] = useState(true)
-  const { setLoading, setLoadingText } = useLoading();
   const [error, setError] = useState(null);
 
   const fetchAgents = async () => {
     try {
-      setLoading(true);
-      setLoadingText("Fetching Approved Agents");
+     
       const response = await fetchAapprovedAgents();
       console.log("Approved Agents Data:", response.data);
       setAgents(response.data);
@@ -27,8 +24,7 @@ const Agent = () => {
       console.error("Error fetching agents:", error);
       setError(error.message);
     } finally {
-      setLoading(false);
-      setLoadingText("");
+      console.log("Done fetching agents");
     }
   };
   useEffect(() => {
