@@ -1,4 +1,0 @@
-[build]
-  base = "aftib"
-  command = "CI= npm install && CI= npm run build"
-  publish = "aftib/build"

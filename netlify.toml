@@ -1,0 +1,4 @@
+[build]
+  base = "aftib"
+  publish = "aftib/build"
+  command = "npm run build"
