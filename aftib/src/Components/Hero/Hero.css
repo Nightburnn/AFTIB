@@ -1,13 +1,9 @@
-/* Your original CSS with only the image URL optimized */
 .bg-image1 {
   /* Using the smaller, faster-loading image from Cloudinary */
   background-image: url("https://res.cloudinary.com/da955qnb2/image/upload/f_auto,q_auto,w_1920/v1749566076/about_1_mgl2sv.webp");
   background-repeat: no-repeat;
-  
-  /* IMPORTANT: This line is kept to preserve your design, but it is the main cause of performance issues.
-     Changing this to 'background-attachment: scroll;' would make it much faster.
-  */
-  background-attachment: fixed;
+
+  background-attachment: scroll;
   background-size: cover;
   background-position: center center;
   transform: translateZ(0);
