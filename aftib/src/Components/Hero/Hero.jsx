@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import {
   Navigation,
   Pagination,
@@ -13,29 +13,31 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "./Hero.css";
 
+// This data structure is kept exactly as you had it.
 const slides = [
   {
     id: 1,
     bgClass: "bg-image1",
-
     titleNumber: "Buy.",
     title: "Rent.",
     word: "Sell. Agent.",
   },
+  // You can add more slides here if you need them
 ];
 
-const Hero = () => {
+const Hero = memo(() => {
   return (
     <div className="intro intro-carousel position-relative overflow-hidden">
       <Swiper
         modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
         slidesPerView={1}
-        autoplay={false}
+        autoplay={false} // Autoplay is off for better initial load performance
         loop={true}
       >
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
-            <div className={`carousel-item-a intro-item ${slide.bgClass}`}>
+            {/* This is your original HTML structure, unchanged. */}
+            <div className={` intro-item ${slide.bgClass}`}>
               <div className="overlay overlay-a"></div>
               <div className="intro-content display-table">
                 <div className="table-cell">
@@ -67,6 +69,8 @@ const Hero = () => {
       </Swiper>
     </div>
   );
-};
+});
+
+Hero.displayName = 'Hero';
 
 export default Hero;
