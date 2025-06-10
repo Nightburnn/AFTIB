@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import agent from "../../assets/images/agent.png";
+import agent from "../../assets/images/agent.webp";
 import { Link } from "react-router-dom";
 import "./Agent.css";
 import { searchForAgents } from "../../utils/adminOpsRequests";
