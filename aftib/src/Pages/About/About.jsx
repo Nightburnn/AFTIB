@@ -2,11 +2,11 @@ import React from "react";
 import { Navigation, Pagination, A11y } from "swiper/modules";
 import prev from "../../assets/images/prev.svg";
 import next from "../../assets/images/next.svg";
-import about1 from "../../assets/images/about1.png";
-import about2 from "../../assets/images/about2.png";
-import about3 from "../../assets/images/about3.png";
-import about4 from "../../assets/images/about4.png";
-import about5 from "../../assets/images/about5.png";
+import about1 from "../../assets/images/about1.webp";
+import about2 from "../../assets/images/about2.webp";
+import about3 from "../../assets/images/about3.webp";
+import about4 from "../../assets/images/about4.webp";
+import about5 from "../../assets/images/about5.webp";
 import "./About.css";
 
 import { Swiper, SwiperSlide } from "swiper/react";
