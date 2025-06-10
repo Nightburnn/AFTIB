@@ -1,4 +1,4 @@
 [build]
   base = "aftib"
-  publish = "aftib/build"
+  publish = "build"  # Not "aftib/build"
   command = "npm run build"
